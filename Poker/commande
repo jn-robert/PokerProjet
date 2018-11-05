@@ -1,0 +1,41 @@
+php bin/console debug:route
+php bin/console debug:container doctrine
+
+php bin/console server:run
+
+php bin/console doctrine:database:create
+php bin/console debug:container --parameters
+
+php bin/console doctrine:schema:validate
+php bin/console doctrine:schema:update  --dump-sql
+php bin/console doctrine:schema:update  --force
+
+php bin/console make:entity --regenerate
+php bin/console make:entity Location
+php bin/console make:controller ProduitController
+
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
+
+composer require orm-fixtures --dev
+php bin/console make:fixtures
+php bin/console doctrine:fixtures:load
+
+
+  /**
+     * @Route("/delete/{id}/Employes", name="Employes.deleteEmployes", requirements={"id" = "\d+"}, methods={"GET"})
+     */
+    public function deleteEmployes(Request $request, Environment $twig, RegistryInterface $doctrine, $id)
+    {
+
+        $em = $this->container->get('doctrine')->getManager();
+        $repository = $em->getRepository(Employes::class);
+
+        $enregistrement_supprimer = $repository->findOneBy(['id' => $id]);
+        if ($enregistrement_supprimer) {
+            $em->remove($enregistrement_supprimer);
+        }
+        $em->flush();    // commit des opérations
+
+        return $this->redirectToRoute('Employes.showEmployes');
+    }
