@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
             $message = (new \Swift_Message('Hello Email'))
-                ->setFrom('dimilorrain@gmail.com')
+                ->setFrom('projetpoker@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(
