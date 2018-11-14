@@ -40,6 +40,11 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $temp;
+
+    /**
      * @ORM\Column(type="string", length=60, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
@@ -52,9 +57,14 @@ class User implements UserInterface, \Serializable
     private $isActive;
 
     /**
+     * @ORM\Column(name="cle", type="integer", nullable=true)
+     */
+    private $cle;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="roles", type="string", length=64)
+     * @ORM\Column(name="roles", type="string", length=64, nullable=true)
      */
     private $roles;
 
@@ -170,6 +180,28 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function getCle()
+    {
+        return $this->cle;
+    }
+
+    public function setCle($cle): self
+    {
+        $this->cle = $cle;
+        return $this;
+    }
+
+    public function getTemp()
+    {
+        return $this->temp;
+    }
+
+    public function setTemp($temp): self
+    {
+        $this->temp = $temp;
+        return $this;
     }
 
 
