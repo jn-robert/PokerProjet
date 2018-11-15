@@ -1,0 +1,49 @@
+module.exports = Player;
+
+function Player(id,name,jetons) {
+    this.id = id;
+    this.name = name;
+    this.jetons = jetons;
+    this.main = [];
+    this.tas = 0;
+}
+
+Player.prototype.getAction = function(){
+
+}
+
+Player.prototype.addMain = function(carte){
+    this.main.push(carte);
+}
+
+
+Player.prototype.fold = function (mise) {
+    if (mise <= this.jetons){
+        this.jetons -= mise;
+        this.tas += mise;
+    } 
+}
+
+Player.prototype.allin = function () {
+    this.tas += this.jetons;
+    this.jetons = 0;
+}
+
+Player.prototype.callCheck = function (mise) {
+    if (mise <= this.jetons){
+        this.jetons -= mise;
+        this.tas += mise;
+    }
+}
+
+Player.prototype.raise = function (mise,miseJoueur) {
+    if (mise <= this.jetons && miseJoueur <= this.jetons && miseJoueur > mise ){
+        this.jetons -= miseJoueur;
+        this.tas += miseJoueur;
+    }
+}
+
+Player.prototype.reset = function () {
+    this.main = [];
+    this.tas = 0;
+}
