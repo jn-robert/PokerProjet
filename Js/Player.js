@@ -16,6 +16,10 @@ Player.prototype.getAction = function(){
 
 };
 
+Player.prototype.getJetons = function(){
+    return this.jetons;
+};
+
 Player.prototype.addMain = function(carte){
     this.main.push(carte);
 };
