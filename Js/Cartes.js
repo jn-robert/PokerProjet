@@ -11,9 +11,9 @@ function Cartes() {
 
 Cartes.prototype.giveCarte = function(){
     var temp = this.cards[this.cards.length];
-    this.cards.pop();
-    return temp;
-}
+    return this.cards.pop();
+    // return temp;
+};
 
 Cartes.prototype.init = function() {
     var suitsLen = this.suits.length;
