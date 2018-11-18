@@ -10,11 +10,11 @@ function Game() {
     this.cartes = new Cartes();
     this.tapisCarte = [];
     this.dealer = 0;
-    this.tour = 1;
+    this.tour = 0;
 }
 
 Game.prototype.addPlayer = function(id,name,jetons) {
-    var newPlayer = new Player(id,name,jetons);
+    let newPlayer = new Player(id, name, jetons);
     newPlayer.game = this;
     this.listePlayer.push(newPlayer);
 };
@@ -22,7 +22,7 @@ Game.prototype.addPlayer = function(id,name,jetons) {
 Game.prototype.reset = function() {
     this.pot = 0;
     this.cartes = new Cartes();
-    for (var i=0; i<this.listePlayer.length; i++) {
+    for (let i=0; i<this.listePlayer.length; i++) {
         this.listePlayer[i].reset();
     }
 };
@@ -48,16 +48,15 @@ Game.prototype.affichage = function(){
 
     console.log('Tapis : ');
 
-    if (this.tour>=3 && this.tour<5) {
-        for (i=0;i<this.tour;i++){
+    if (this.tour<=5) {
+        for (let i = 0; i<this.tour; i++){
             console.log(this.tapisCarte[i]);
         }
-        this.tour++;
     }
 
     console.log();
     console.log('Joueurs :');
-    for (i=0;i<this.listePlayer.length;i++){
+    for (let i=0;i<this.listePlayer.length;i++){
         console.log(+this.listePlayer[i].getNom()+" : "+this.listePlayer[i].getMain()+", "+this.listePlayer[i].getJetons()+" coins");
     }
 };
@@ -68,11 +67,11 @@ Game.prototype.affichage = function(){
  */
 Game.prototype.option = function(miseMin){
 
-    var actionPrec='check'; //action précedente autre que coucher pour déterminer possibilités des actions a jouer
+    let actionPrec = 'check'; //action précedente autre que coucher pour déterminer possibilités des actions a jouer
 
-    for (i=0;i<this.listePlayer.length;i++) {
+    for (let i=0;i<this.listePlayer.length;i++) {
         console.log(this.listePlayer[i].getNom()+' :');
-        var action;
+        let action;
 
 
         switch (actionPrec) {
@@ -86,7 +85,6 @@ Game.prototype.option = function(miseMin){
                 action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
                 break;
             case 'all-in':
-
                 action = readlineSync.question('action : coucher, all-in : ');
                 break;
             default:
@@ -120,6 +118,7 @@ Game.prototype.option = function(miseMin){
                 console.log('Selectionner une action proposée');
         }
 
+        console.log(this.tour);
         console.log();
     }
 };
@@ -134,8 +133,8 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
         this.affichage();
 
         //initialisation main + affichage main joueur
-        for (i=0 ; i<2 ;i++){
-            for (j=0 ; j<this.listePlayer.length ;j++){
+        for (let i=0 ; i<2 ;i++){
+            for (let j=0 ; j<this.listePlayer.length ;j++){
                 this.listePlayer[j].addMain(this.cartes.giveCarte());
             }
 
@@ -145,12 +144,21 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
 
         this.option(grosseBlinde);
 
-        for (i=0; i<5 ;i++){
+        this.tour++;
+
+        for (let i=0; i<5 ;i++){
             this.tapisCarte.push(this.cartes.giveCarte());
         }
 
-        for (i=3;i<=5;i++){
-            this.tour=i;
+        this.tour++;
+
+        for (let i=0;i<5;i++){
+            console.log(this.tapisCarte[i]);
+        }
+
+        for (let i=0;i<3;i++){
+            this.tour++;
+            console.log('tour : '+this.tour);
             this.affichage();
             this.option(grosseBlinde);
         }
@@ -158,4 +166,3 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
         /***********************************************/
     // }
 };
-
