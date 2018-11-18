@@ -28,6 +28,10 @@ Player.prototype.getMain = function(){
     return this.main;
 };
 
+Player.prototype.coucher = function(){
+    this.main=[];
+};
+
 Player.prototype.fold = function (mise) {
     if (mise <= this.jetons){
         this.jetons -= mise;
@@ -40,11 +44,8 @@ Player.prototype.allin = function () {
     this.jetons = 0;
 };
 
-Player.prototype.callCheck = function (mise) {
-    if (mise <= this.jetons){
-        this.jetons -= mise;
-        this.tas += mise;
-    }
+Player.prototype.callCheck = function () {
+
 };
 
 Player.prototype.raise = function (mise,miseJoueur) {

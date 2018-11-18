@@ -68,15 +68,65 @@ Game.prototype.affichage = function(){
  */
 Game.prototype.option = function(miseMin){
 
+    var actionPrec='check'; //action précedente autre que coucher pour déterminer possibilités des actions a jouer
+
     for (i=0;i<this.listePlayer.length;i++) {
         console.log(this.listePlayer[i].getNom()+' :');
-        var action = readlineSync.question('action : check, mise min(' + miseMin + '), relancer, all-in : ');
-        if (action === 'relancer') {
-            do {
-                var miseRel = readlineSync.question('mise Relance : ');
-            } while (miseRel >this.listePlayer[i].getJetons());
+        var action;
 
+
+        switch (actionPrec) {
+            case 'check':
+                do {
+                    action = readlineSync.question('action : coucher, check, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                }while (action!=='coucher' || action!=='check' || action!=='suivre' || action!=='relancer' || action!=='all-in');
+                break;
+            case 'suivre':
+                do {
+                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                }while (action!=='coucher' || action!=='suivre' || action!=='relancer' || action!=='all-in');
+                break;
+            case 'relancer':
+                do {
+                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
+                }while (action!=='coucher' || action!=='suivre' || action!=='all-in');
+                break;
+            case 'all-in':
+                do {
+                    action = readlineSync.question('action : coucher, all-in : ');
+                }while (action!=='coucher' || action!=='all-in');
+                break;
+            default:
+                console.log('coucher');
         }
+
+        switch (action) {
+            case 'coucher':
+                this.listePlayer[i].coucher();
+                break;
+            case 'check':
+                this.listePlayer[i].callCheck();
+                actionPrec = 'check';
+                break;
+            case 'suivre':
+                this.listePlayer[i].fold(miseMin);
+                actionPrec = 'suivre';
+                break;
+            case 'relancer':
+                do {
+                    var miseRel = readlineSync.question('mise Relance : ');
+                } while (miseRel >this.listePlayer[i].getJetons());
+                miseMin = miseRel;
+                actionPrec = 'relancer';
+                break;
+            case 'all-in':
+                this.listePlayer[i].allin();
+                actionPrec = 'all-in';
+                break;
+            default:
+                //
+        }
+
         console.log();
     }
 };
@@ -106,9 +156,11 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
             this.tapisCarte.push(this.cartes.giveCarte());
         }
 
-        this.tour=3;
-        this.affichage()
-        this.option(grosseBlinde);
+        for (i=3;i<=5;i++){
+            this.tour=i;
+            this.affichage();
+            this.option(grosseBlinde);
+        }
 
         /***********************************************/
     // }
