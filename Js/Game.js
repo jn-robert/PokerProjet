@@ -77,24 +77,17 @@ Game.prototype.option = function(miseMin){
 
         switch (actionPrec) {
             case 'check':
-                do {
-                    action = readlineSync.question('action : coucher, check, mise min/suivre(' + miseMin + '), relancer, all-in : ');
-                }while (action!=='coucher' || action!=='check' || action!=='suivre' || action!=='relancer' || action!=='all-in');
+                action = readlineSync.question('action : coucher, check, mise min/suivre(' + miseMin + '), relancer, all-in : ');
                 break;
             case 'suivre':
-                do {
-                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
-                }while (action!=='coucher' || action!=='suivre' || action!=='relancer' || action!=='all-in');
+                action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
                 break;
             case 'relancer':
-                do {
-                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
-                }while (action!=='coucher' || action!=='suivre' || action!=='all-in');
+                action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
                 break;
             case 'all-in':
-                do {
-                    action = readlineSync.question('action : coucher, all-in : ');
-                }while (action!=='coucher' || action!=='all-in');
+
+                action = readlineSync.question('action : coucher, all-in : ');
                 break;
             default:
                 console.log('coucher');
@@ -124,7 +117,7 @@ Game.prototype.option = function(miseMin){
                 actionPrec = 'all-in';
                 break;
             default:
-                //
+                console.log('Selectionner une action proposée');
         }
 
         console.log();
