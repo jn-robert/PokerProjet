@@ -58,7 +58,7 @@ Game.prototype.affichage = function(){
     console.log();
     console.log('Joueurs :');
     for (let i=0;i<this.listePlayer.length;i++){
-        console.log(+this.listePlayer[i].getNom()+" : "+this.listePlayer[i].getMain()+", "+this.listePlayer[i].getJetons()+" coins");
+        console.log(''+this.listePlayer[i].getNom()+" : "+this.listePlayer[i].getMain()+", "+this.listePlayer[i].getJetons()+" coins");
     }
 };
 
