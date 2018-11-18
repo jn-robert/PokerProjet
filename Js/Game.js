@@ -25,6 +25,7 @@ Game.prototype.reset = function() {
     for (let i=0; i<this.listePlayer.length; i++) {
         this.listePlayer[i].reset();
     }
+    this.tour=0;
 };
 
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
@@ -117,14 +118,12 @@ Game.prototype.option = function(miseMin){
             default:
                 console.log('Selectionner une action proposée');
         }
-
-        console.log(this.tour);
         console.log();
     }
 };
 
 Game.prototype.play = function (petiteBlinde, grosseBlinde) {
-    // while (this.listePlayer.length > 1){ sur affichage web oui mais pas sur console
+    while (this.listePlayer.length > 1){
         this.reset();
 
         // initialisation des blinds
@@ -164,5 +163,5 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
         }
 
         /***********************************************/
-    // }
+    }
 };
