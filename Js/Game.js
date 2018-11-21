@@ -47,6 +47,7 @@ Game.prototype.affichage = function(){
     console.log();
     console.log();
 
+    console.log('Pot : '+this.pot);
     console.log('Tapis : ');
 
     if (this.tour<=5) {
@@ -80,12 +81,21 @@ Game.prototype.option = function(miseMin){
                 action = readlineSync.question('action : coucher, check, mise min/suivre(' + miseMin + '), relancer, all-in : ');
                 break;
             case 'suivre':
-                action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                do{
+                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                }while (action==='check') ;
+
                 break;
             case 'relancer':
-                action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
+                do {
+                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
+                }while (action==='check' || action==='relancer');
+
                 break;
             case 'all-in':
+                do {
+
+                }while (action==='check' || action==='relancer' || action==='suivre');
                 action = readlineSync.question('action : coucher, all-in : ');
                 break;
             default:
@@ -151,13 +161,13 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
 
         this.tour++;
 
-        for (let i=0;i<5;i++){
+        /*for (let i=0;i<5;i++){
             console.log(this.tapisCarte[i]);
-        }
+        }*/
 
         for (let i=0;i<3;i++){
             this.tour++;
-            console.log('tour : '+this.tour);
+            /*console.log('tour : '+this.tour);*/
             this.affichage();
             this.option(grosseBlinde);
         }
