@@ -28,6 +28,10 @@ Player.prototype.getMain = function(){
     return this.main;
 };
 
+Player.prototype.getTas = function(){
+    return this.tas;
+};
+
 Player.prototype.coucher = function(){
     this.main=[];
 };

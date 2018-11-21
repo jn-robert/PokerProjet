@@ -87,16 +87,25 @@ Game.prototype.option = function(miseMin){
 
                 break;
             case 'relancer':
-                do {
-                    action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
-                }while (action==='check' || action==='relancer');
-
+                if (miseMin >this.listePlayer[i].getJetons()){
+                    do {
+                        action = readlineSync.question('action : coucher, all-in : ');
+                    } while (action === 'check' || action === 'relancer' || action ==='suivre');
+                }else if(miseMin === this.listePlayer[i].getJetons()){
+                    do {
+                        action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
+                    } while (action === 'check' || action === 'relancer');
+                } else {
+                    do {
+                        action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                    } while (action === 'check');
+                }
                 break;
             case 'all-in':
                 do {
-
+                    action = readlineSync.question('action : coucher, all-in : ');
                 }while (action==='check' || action==='relancer' || action==='suivre');
-                action = readlineSync.question('action : coucher, all-in : ');
+
                 break;
             default:
                 console.log('coucher');
@@ -112,17 +121,22 @@ Game.prototype.option = function(miseMin){
                 break;
             case 'suivre':
                 this.listePlayer[i].fold(miseMin);
+                this.pot+=miseMin;
                 actionPrec = 'suivre';
                 break;
             case 'relancer':
                 do {
                     var miseRel = readlineSync.question('mise Relance : ');
-                } while (miseRel >this.listePlayer[i].getJetons());
+                } while (miseRel >this.listePlayer[i].getJetons() || miseRel <= miseMin);
                 miseMin = miseRel;
+                this.fold(miseMin);
+                this.pot+=miseMin;
                 actionPrec = 'relancer';
                 break;
             case 'all-in':
                 this.listePlayer[i].allin();
+                miseMin = this.listePlayer[i].getTas();
+                this.pot += miseMin;
                 actionPrec = 'all-in';
                 break;
             default:
