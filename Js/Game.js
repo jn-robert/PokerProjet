@@ -150,7 +150,7 @@ Game.prototype.option = function(miseMin){
     }
 
     for (i=0;i<index.length;i++){
-        this.listePlayerGame.splice(i+1,1);
+        this.listePlayerGame.splice(index[i],1);
     }
 
 };
