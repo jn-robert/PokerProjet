@@ -149,7 +149,7 @@ Game.prototype.option = function(miseMin){
         console.log();
     }
 
-    for (i=0;i<index.length;i++){
+    for (let i=0;i<index.length;i++){
         this.listePlayerGame.splice(index[i],1);
     }
 
