@@ -6,6 +6,7 @@ function Player(id,name,jetons) {
     this.jetons = jetons;
     this.main = [];
     this.tas = 0;
+    this.valeurMain = 0;
 }
 
 Player.prototype.getNom = function(){
@@ -63,3 +64,11 @@ Player.prototype.reset = function () {
     this.main = [];
     this.tas = 0;
 };
+
+Player.prototype.setValeurMain = function (v) {
+    this.valeurMain = v;
+};
+
+Player.prototype.getValeurMain = function () {
+    return this.valeurMain;
+}
