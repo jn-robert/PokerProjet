@@ -1,0 +1,420 @@
+<html>
+<head>
+    <title>Poker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body >
+<Table border=5 bgcolor="#006726">
+    <div id="T1" style="top:300;left:800;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><img border=0 name=T1 ></P>
+    </div>
+    <div id="T2" style="top:300;left:700;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG BORDER=0 name=T2 ></P>
+    </div>
+    <div id="T3" style="top:300;left:600;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG BORDER=0 name=T3 ></P>
+    </div>
+
+    <div id="T4" style="top:300;left:500;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG BORDER=0 name=T4 ></P>
+    </div>
+
+    <div id="T5" style="top:300;left:400;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG BORDER=0 name=T5 ></P>
+    </div>
+
+    <div id="CarteJoueur1" style="top:575;left:525;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos.PNG" BORDER=0 name=CarteJoueur1></P>
+    </div>
+    <div id="CarteJoueur2" style="top:575;left:625;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos.PNG" BORDER=0 name=CarteJoueur2></P>
+    </div>
+
+    <div id="CarteJoueur3" style="top:275;left:1000;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos2.PNG" BORDER=0 name=CarteJoueur></P>
+    </div>
+    <div id="CarteJoueur4" style="top:375;left:1000;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos2.PNG" BORDER=0 name=CarteJoueur></P>
+    </div>
+
+    <div id="CarteJoueur5" style="top:275;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos2.PNG" BORDER=0 name=CarteJoueur></P>
+    </div>
+    <div id="CarteJoueur6" style="top:375;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><IMG SRC="image/dos2.PNG" BORDER=0 name=CarteJoueur></P>
+    </div>
+
+
+    <div id="texte" style="top:475;left:100;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><label id="label1">0 jeton</label></P>
+    </div>
+    <div id="texte2" style="top:240;left:1080;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><label id="label2">0 jeton</label></P>
+    </div>
+    <div id="texte3" style="top:675;left:725;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><label id="label0">0 jeton</label></P>
+    </div>
+    <div id="texte4" style="top:100;left:725;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+        <P ALIGN=center ><label id="pot">Pot : 0</label></P>
+    </div>
+
+    <TR><TD>
+        <TABLE width=1200 height=750>
+            <TR><TD valign="top" align="center" height="40">&nbsp;</TD></TR>
+                 <TR><TD valign="top" align="center">
+                    <input name="lancerJeu" type="button" value="Jouer" onClick="lance_jeu2()">
+                 </TD></TR>
+                <TR><TD valign="bottom" align="center">
+                    <input name="check" type="button" value="allin" onClick="allin()">
+                    <input name="check" type="button" value="check" onClick="">
+                    <input name="check" type="button" value="fold" onClick="fold()">
+                    <input name="raise" type="button" value="raise" onClick="raise()">
+                </TD></TR>
+
+        </TABLE>
+    </TD></TR>
+</TABLE>
+<script>
+
+    self.resizeTo(650,600);
+    //======================================================================================
+    var carte = [];
+    carte[0]='Ac'; carte[1]='Ah'; carte[2]='Ad'; carte[3]='As';
+    carte[4]='2c'; carte[5]='2h'; carte[6]='2d'; carte[7]='2s';
+    carte[8]='3c'; carte[9]='3h'; carte[10]='3d'; carte[11]='3s';
+    carte[12]='4c'; carte[13]='4h'; carte[14]='4d'; carte[15]='4s';
+    carte[16]='5c'; carte[17]='5h'; carte[18]='5d'; carte[19]='5s';
+    carte[20]='6c'; carte[21]='6h'; carte[22]='6d'; carte[23]='6s';
+    carte[24]='7c'; carte[25]='7h'; carte[26]='7d'; carte[27]='7s';
+    carte[28]='8c'; carte[29]='8h'; carte[30]='8d'; carte[31]='8s';
+    carte[32]='9c'; carte[33]='9h'; carte[34]='9d'; carte[35]='9s';
+    carte[36]='Tc'; carte[34]='Th'; carte[38]='Td'; carte[39]='Ts';
+    carte[40]='Jc'; carte[41]='Jh'; carte[42]='Jd'; carte[43]='Js';
+    carte[44]='Qc'; carte[45]='Qh'; carte[46]='Qd'; carte[47]='Qs';
+    carte[48]='Kc'; carte[49]='Kh'; carte[50]='Kd'; carte[51]='Ks';
+
+     function lance_jeu2() {
+         var game = new Game();
+
+         var petiteBlinde = 5;
+         var grosseBlinde = 10;
+
+         var nom1 = "jean";
+         var nom2 = "Eude";
+         var nom3 = "Pierre";
+
+         game.addPlayer(1,nom1,5000);
+         game.addPlayer(2,nom2,4000);
+         game.addPlayer(3,nom3,4000);
+
+
+         carte1 = carte[Math.floor(Math.random() * 52)];
+         carte2 = carte[Math.floor(Math.random() * 52)];
+         carte3 = carte[Math.floor(Math.random() * 52)];
+         document.T1.src = "image/" + carte1;
+         document.T2.src = "image/" + carte2 ;
+         document.T3.src = "image/" + carte3 ;
+
+
+         game.play(petiteBlinde,grosseBlinde);
+     }
+
+    function Player(id,name,jetons) {
+        this.id = id;
+        this.name = name;
+        this.jetons = jetons;
+        this.main = [];
+        this.tas = 0;
+    }
+    Player.prototype.getNom = function(){
+        return this.name;
+    };
+
+    Player.prototype.getAction = function(){
+
+    };
+
+    Player.prototype.getJetons = function(){
+        return this.jetons;
+    };
+
+    Player.prototype.addMain = function(carte){
+        this.main.push(carte);
+    };
+
+    Player.prototype.getMain = function(){
+        return this.main;
+    };
+
+    Player.prototype.getTas = function(){
+        return this.tas;
+    };
+
+    Player.prototype.coucher = function(){
+        this.main=[];
+    };
+
+    Player.prototype.fold = function (mise) {
+        if (mise <= this.jetons){
+            this.jetons -= mise;
+            this.tas += mise;
+        }
+    };
+
+    Player.prototype.allin = function () {
+        this.tas += this.jetons;
+        this.jetons = 0;
+    };
+
+    Player.prototype.callCheck = function () {
+
+    };
+
+    Player.prototype.raise = function (mise,miseJoueur) {
+        if (mise <= this.jetons && miseJoueur <= this.jetons && miseJoueur > mise ){
+            this.jetons -= miseJoueur;
+            this.tas += miseJoueur;
+        }
+    };
+
+    Player.prototype.reset = function () {
+        this.main = [];
+        this.tas = 0;
+    };
+
+    function Game() {
+        this.listePlayerTable = [];
+        this.listePlayerGame = [];
+        this.pot = 0;
+        this.cartes = new Cartes();
+        this.tapisCarte = [];
+        this.dealer = 0;
+        this.tour = 0;
+    }
+
+    Game.prototype.addPlayer = function(id,name,jetons) {
+        let newPlayer = new Player(id, name, jetons);
+        newPlayer.game = this;
+        this.listePlayerTable.push(newPlayer);
+        this.listePlayerGame.push(newPlayer);
+    };
+
+    Game.prototype.reset = function() {
+        this.pot = 0;
+        this.cartes = new Cartes();
+        for (let i=0; i<this.listePlayerGame.length; i++) {
+            this.listePlayerGame[i].reset();
+        }
+        this.tour=0;
+    };
+
+    Game.prototype.blind = function(petiteBlinde, grosseBlinde){
+
+        if (this.dealer>=this.listePlayerGame.length){
+            this.dealer=0;
+        }
+        this.listePlayerGame[this.dealer+1].fold(petiteBlinde);
+        if (this.dealer+2<this.listePlayerGame.length) {
+            this.listePlayerGame[this.dealer + 2].fold(grosseBlinde);
+        }else {
+            this.listePlayerGame[0].fold(grosseBlinde);
+        }
+        this.pot=petiteBlinde+grosseBlinde;
+        this.dealer++;
+    };
+
+    Game.prototype.affichage = function(){
+        var compteur = 0;
+        console.log();
+        console.log();
+
+        document.getElementById('pot').innerHTML ='Pot : ' +this.pot;
+        console.log('Pot : '+this.pot);
+        console.log('Tapis : ');
+
+        if (this.tour<=5) {
+            for (let i = 0; i<this.tour; i++){
+                console.log(this.tapisCarte[i]);
+            }
+        }
+        console.log();
+        console.log('Joueurs :');
+        for (let i=0;i<this.listePlayerGame.length;i++){
+            label = "label".concat(i.toString());
+            document.getElementById(label).innerHTML = this.listePlayerGame[i].getJetons().toString() + " jetons";
+            this.listePlayerGame[i].getMain().forEach(function (entry) {
+                switch (compteur) {
+                    case 0:
+                        document.CarteJoueur1.src = "image/" + entry ;
+                        compteur++;
+                        break;
+                    case 1:
+                        document.CarteJoueur2.src = "image/" + entry ;
+                        compteur++;
+                        break;
+                }
+            });
+            console.log(''+this.listePlayerGame[i].getNom()+" : "+this.listePlayerGame[i].getMain()+", "+this.listePlayerGame[i].getJetons()+" coins");
+        }
+    };
+
+    /**
+     * affiche les options mise, check, coucher, all-in
+     * selectionne l'option choisi et fait l'action liée
+     */
+    Game.prototype.option = function(miseMin){
+
+        let index =[];
+        let actionPrec = 'check'; //action précedente autre que coucher pour déterminer possibilités des actions a jouer
+
+        for (let i=0;i<this.listePlayerGame.length;i++) {
+            console.log(this.listePlayerGame[i].getNom()+' :');
+            let action;
+
+            switch (actionPrec) {
+                case 'check':
+                    action = readlineSync.question('action : coucher, check, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                    break;
+                case 'suivre':
+                    do{
+                        action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                    }while (action==='check') ;
+
+                    break;
+                case 'relancer':
+                    if (miseMin >this.listePlayerGame[i].getJetons()){
+                        do {
+                            action = readlineSync.question('action : coucher, all-in : ');
+                        } while (action === 'check' || action === 'relancer' || action ==='suivre');
+                    }else if(miseMin === this.listePlayerGame[i].getJetons()){
+                        do {
+                            action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), all-in : ');
+                        } while (action === 'check' || action === 'relancer');
+                    } else {
+                        do {
+                            action = readlineSync.question('action : coucher, mise min/suivre(' + miseMin + '), relancer, all-in : ');
+                        } while (action === 'check');
+                    }
+                    break;
+                case 'all-in':
+                    do {
+                        action = readlineSync.question('action : coucher, all-in : ');
+                    }while (action==='check' || action==='relancer' || action==='suivre');
+
+                    break;
+                default:
+                    console.log('coucher');
+            }
+
+            switch (action) {
+                case 'coucher':
+                    this.listePlayerGame[i].coucher();
+                    index.push(i);
+                    break;
+                case 'check':
+                    this.listePlayerGame[i].callCheck();
+                    actionPrec = 'check';
+                    break;
+                case 'suivre':
+                    this.listePlayerGame[i].fold(miseMin);
+                    this.pot+=miseMin;
+                    actionPrec = 'suivre';
+                    break;
+                case 'relancer':
+                    do {
+                        var miseRel = readlineSync.question('mise Relance : ');
+                    } while (miseRel >this.listePlayerGame[i].getJetons() || miseRel <= miseMin);
+                    miseMin = miseRel;
+                    this.fold(miseMin);
+                    this.pot+=miseMin;
+                    actionPrec = 'relancer';
+                    break;
+                case 'all-in':
+                    this.listePlayerGame[i].allin();
+                    miseMin = this.listePlayerGame[i].getTas();
+                    this.pot += miseMin;
+                    actionPrec = 'all-in';
+                    break;
+                default:
+                    console.log('Selectionner une action proposée');
+            }
+            console.log();
+        }
+        for (let i=0;i<index.length;i++){
+            this.listePlayerGame.splice(index[i],1);
+        }
+    };
+
+    Game.prototype.play = function (petiteBlinde, grosseBlinde) {
+        while (this.listePlayerGame.length > 1){
+            this.reset();
+
+            // initialisation des blinds
+            this.affichage();
+            this.blind(petiteBlinde,grosseBlinde);
+            this.affichage();
+
+            //initialisation main + affichage main joueur
+            for (let i=0 ; i<2 ;i++){
+                for (let j=0 ; j<this.listePlayerGame.length ;j++){
+                    this.listePlayerGame[j].addMain(this.cartes.giveCarte());
+                }
+            }
+            this.affichage();
+            this.option(grosseBlinde);
+            this.tour++;
+            for (let i=0; i<5 ;i++){
+                this.tapisCarte.push(this.cartes.giveCarte());
+            }
+            this.tour++;
+            for (let i=0;i<3;i++){
+                this.tour++;
+                this.affichage();
+                this.option(grosseBlinde);
+            }
+        }
+    };
+    function Cartes() {
+        this.suits = [ 's', 'h', 'd', 'c' ];
+        this.ranks = [ '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A' ];
+        this.cards = [];
+
+        this.init();
+        this.shuffle();
+    }
+
+    Cartes.prototype.giveCarte = function(){
+        var temp = this.cards[this.cards.length];
+        return this.cards.pop();
+        // return temp;
+    };
+
+    Cartes.prototype.init = function() {
+        var suitsLen = this.suits.length;
+        var ranksLen = this.ranks.length;
+        var i, j;
+
+        for (i=0; i<suitsLen; i++) {
+            for (j=0; j<ranksLen; j++) {
+                this.cards.push( this.ranks[j] + this.suits[i] );
+            }
+        }
+    };
+
+    Cartes.prototype.shuffle = function() {
+        var currentIndex = this.cards.length, temporaryValue, randomIndex ;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = this.cards[currentIndex];
+            this.cards[currentIndex] = this.cards[randomIndex];
+            this.cards[randomIndex] = temporaryValue;
+        }
+    };
+
+    Cartes.prototype.drawCard = function () {
+        return this.cards.pop();
+    };
+</script>
+</body>
+</html>

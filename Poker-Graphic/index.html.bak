@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script>
+
+        </script>
+  </head>
+  <body>
+    <h1>Poker</h1>
+    <button onclick="document.getElementById('myImage').src='image/AsPique.png'">Turn
+      on the light</button> <button onclick="document.getElementById('myImage').src='image/AsCoeur.png'">Turn
+      off the light</button>&nbsp; <img src="image/greenfelt.jpg"><img
+
+      id="myImage" src="image/AsCoeur.png">
+  </body>
+</html>
