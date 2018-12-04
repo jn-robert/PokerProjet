@@ -1,3 +1,4 @@
+var PokerEvaluator = require('poker-evaluator');
 module.exports = Game;
 
 var Player = require('./Player.js');
@@ -198,3 +199,15 @@ Game.prototype.play = function (petiteBlinde, grosseBlinde) {
         /***********************************************/
     }
 };
+
+Game.prototype.evalCarte = function () {
+
+    for (let i=0; i<this.listePlayerGame ;i++){
+        var listCarte = this.listePlayerGame[i].getMain();
+        for (let j=0; j<this.tapisCarte.length ;j++){
+            listCarte.add(this.tapisCarte[i]);
+        }
+        res = PokerEvaluator.evalHand(listCarte);
+        this.listePlayerGame[i].setValeurMain = res[3];
+    }
+}
