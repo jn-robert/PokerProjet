@@ -38,7 +38,6 @@ io.on('connection', (socket) => {
        */
     socket.on('playTurn', (data) => {
         socket.broadcast.to(data.room).emit('turnPlayed', {
-            tile: data.tile,
             room: data.room
         });
     });
