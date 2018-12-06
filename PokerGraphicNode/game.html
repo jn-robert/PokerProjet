@@ -3,7 +3,7 @@
 	<head>
 		<title>Poker</title>
 	</head>
-	<body>
+	<body onload="init()">
 		<div class="container">
 			<div class="menu">
 				<h1>Poker</h1>
@@ -22,7 +22,7 @@
 				<h2 id="userHello"></h2>
 				<h3 id="turn"></h3>
 				<Table border=5 bgcolor="#006726">
-					<div id="T1" style="top:300;left:800;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+					<!--<div id="T1" style="top:300;left:800;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><img border=0 name=T1 ></P>
 					</div>
 					<div id="T2" style="top:300;left:700;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
@@ -38,9 +38,9 @@
 
 					<div id="T5" style="top:300;left:400;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><IMG BORDER=0 name=T5 ></P>
-					</div>
+					</div>-->
 
-					<div id="CarteJoueur1" style="top:575;left:525;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+					<!--<div id="CarteJoueur1" style="top:575;left:525;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><IMG SRC="image/dos.PNG" BORDER=0 name=CarteJoueur1></P>
 					</div>
 					<div id="CarteJoueur2" style="top:575;left:625;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
@@ -59,19 +59,19 @@
 					</div>
 					<div id="CarteJoueur6" style="top:375;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><IMG SRC="image/dos2.PNG" BORDER=0 name=CarteJoueur></P>
-					</div>
+					</div>-->
 
 
-					<div id="texte" style="top:475;left:100;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+					<!--<div id="texte" style="top:475;left:100;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><label id="label1">0 jeton</label></P>
 					</div>
 					<div id="texte2" style="top:240;left:1080;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><label id="label2">0 jeton</label></P>
-					</div>
-					<div id="texte3" style="top:675;left:725;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+					</div>-->
+					<div id="texte3" style="top:475px;left:500px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><label id="label0">0 jeton</label></P>
 					</div>
-					<div id="texte4" style="top:100;left:725;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+					<div id="texte4" style="top:150px;left:450px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
 						<P ALIGN=center ><label id="pot">Pot : 0</label></P>
 					</div>
 
@@ -79,7 +79,7 @@
 						<TABLE width=900 height=500>
 							<TR><TD valign="top" align="center" height="40">&nbsp;</TD></TR>
 							<TR><TD valign="top" align="center">
-								<input name="lancerJeu" type="button" value="Jouer" onClick="lance_jeu2()">
+								<button onclick="" id="start">start</button>
 							</TD></TR>
 							<TR><TD valign="bottom" align="center">
 								<input name="allin" type="button" value="allin" onClick="">
@@ -87,6 +87,7 @@
 								<input name="suivre" type="button" value="suivre" onClick="">
 								<input name="fold" type="button" value="fold" onClick="">
 								<input name="raise" type="button" value="raise" onClick="">
+								<input name="exit" type="button" value="leave game" onclick="">
 							</TD></TR>
 						</TABLE>
 				</TABLE>
@@ -94,6 +95,7 @@
 		</div>
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script src="main.js"></script>
+		<script src="main.js">document.onload = init()</script>
+		<script src="Game.js"></script>
 	</body>
 </html>

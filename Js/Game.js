@@ -210,4 +210,4 @@ Game.prototype.evalCarte = function () {
         res = PokerEvaluator.evalHand(listCarte);
         this.listePlayerGame[i].setValeurMain = res[3];
     }
-}
+};
