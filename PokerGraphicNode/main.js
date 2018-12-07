@@ -11,8 +11,13 @@ class Player {
         this.id = id;
         this.name = name;
         this.jeton = jeton;
+        this.currentTurn=null;
     }
-
+    setCurrentTurn(turn) {
+        this.currentTurn = turn;
+        const message = turn ? 'A votre tour' : 'A votre adversaire';
+        $('#turn').text(message);
+    };
 }
 
 function init() {
@@ -68,6 +73,7 @@ function init() {
         // Create game for player 1
         game = new Game(); //data.room
         game.displayBoard(message);
+
     });
 
     /**
@@ -77,7 +83,7 @@ function init() {
     socket.on('player1', (data) => {
         const message = `Hello, ${data.name}`;
         $('#userHello').html(message);
-        // player.setCurrentTurn(true);
+        player.setCurrentTurn(true);
         // game.addPlayer(player.getId(), player.getPlayerName(), player.getJetons());
     });
 
@@ -91,7 +97,7 @@ function init() {
         // Create game for player 2
         game = new Game(); //data.room
         game.displayBoard(message);
-        // player.setCurrentTurn(false);
+        player.setCurrentTurn(false);
     });
 
     /**
@@ -122,7 +128,63 @@ function init() {
     });
 
     socket.on('1stR', (data) => {
+        document.getElementById('start').disabled=true;
         console.log(data.pot);
         document.getElementById('pot').innerHTML ="Pot : " +data.pot;
+        document.getElementById('texte').innerHTML =data.jetons1+" jetons";
+        document.getElementById('texte2').innerHTML =data.jetons2+" jetons";
+        document.CarteJoueur1.src = "image/" + data.cartes[0] +".PNG" ;
+        document.CarteJoueur2.src = "image/" + data.cartes[1] +".PNG" ;
+    });
+
+    $('#check').on('click', () =>{
+        const roomId = $('#room').val();
+        socket.emit('check', {room: roomId, playerName: player.name});
+    });
+
+    socket.on('resultAction', (data) => {
+        const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
+        // console.log(message);
+        document.getElementById('turn').innerHTML = message;
+        document.getElementById('pot').innerHTML ="Pot : " +data.pot;
+        document.getElementById('texte').innerHTML =data.jetons1+" jetons";
+        document.getElementById('texte2').innerHTML =data.jetons2+" jetons";
+        document.CarteJoueur1.src = "image/" + data.cartes[0] +".PNG" ;
+        document.CarteJoueur2.src = "image/" + data.cartes[1] +".PNG" ;
+
+        let compteur = 0;
+        let compteur2 = 0;
+        if (data.tour>2 && data.tour<=5) {
+            for (let i = 0; i<data.tour; i++){
+                console.log(data.cartesTapis[i]);
+            }
+            data.cartesTapis.forEach(function (entry) {
+                switch (compteur) {
+                    case 0:
+                        document.T1.src = "image/" + entry +".PNG" ;
+                        compteur++;
+                        break;
+                    case 1:
+                        document.T2.src = "image/" + entry +".PNG" ;
+                        compteur++;
+                        break;
+                    case 2:
+                        document.T3.src = "image/" + entry +".PNG" ;
+                        compteur++;
+                        break;
+                    case 3:
+                        if (compteur<data.tour) {
+                            document.T4.src = "image/" + entry + ".PNG";
+                            compteur++;
+                        }
+                        break;
+                    case 4:
+                        if (compteur<data.tour) {
+                            document.T5.src = "image/" + entry + ".PNG";
+                        }
+                        break;
+                }
+            });
+        }
     });
 }

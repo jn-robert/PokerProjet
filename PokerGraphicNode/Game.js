@@ -138,9 +138,27 @@ Game.prototype.affichage = function () {
         }
 };
 
-function joueJoueur(i) {
-
-}
+Game.prototype.joueJoueur = function(name, action, miseMin) {
+    let indice;
+    for (let i=0;i<this.listePlayerGame.length; i++){
+        if (this.listePlayerGame[i].getNom() === name){
+            indice=i;
+            this.listePlayerGame[indice].setAjoue(true);
+        }else {
+            this.listePlayerGame[i].setAjoue(false);
+        }
+        // console.log(this.listePlayerGame[i].getNom()+" "+this.listePlayerGame[i].getAjoue());
+    }
+    switch (action) {
+        case 'check':
+            console.log('check by '+name);
+            break;
+        default :
+            console.log('default');
+    }
+    this.tour++;
+    console.log(this.tour);
+};
 
 /**
      * affiche les options mise, check, coucher, all-in
@@ -254,12 +272,13 @@ function joueJoueur(i) {
                 }
             }
             this.affichage();
+            this.tour=2;
             /*this.option(grosseBlinde);
-            this.tour++;
+            this.tour++;*/
             for (let i=0; i<5 ;i++){
                 this.tapisCarte.push(this.cartes.giveCarte());
             }
-            this.tour++;
+            /*this.tour++;
             for (let i=0;i<3;i++){
                 this.tour++;
                 this.affichage();

@@ -16,6 +16,14 @@ function Player(id,name,jetons, idRoom) {
         $('#turn').text(message);
     };
 
+Player.prototype.setAjoue = function(value){
+    this.ajoue = value;
+};
+
+Player.prototype.getAjoue = function(){
+    return this.ajoue;
+};
+
     Player.prototype.getId = function(){
         return this.id;
     };
@@ -23,6 +31,7 @@ function Player(id,name,jetons, idRoom) {
     Player.prototype.getPlayerName = function() {
         return this.name;
     };
+
 
     Player.prototype.getCurrentTurn = function() {
         return this.currentTurn;
