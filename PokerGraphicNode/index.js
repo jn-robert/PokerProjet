@@ -64,12 +64,25 @@ io.on('connection', (socket) => {
 
 
 
-    socket.on('start', () => {
+    socket.on('start', (data) => {
         console.log(game.listePlayerGame[0].getJetons());
         game.play(10,20);
         // console.log(game.pot);
-        socket.emit('1stR', {tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[0].getJetons(), jetons2:game.listePlayerGame[1].getJetons(), cartes: game.listePlayerGame[0].getMain(), cartesTapis: game.getTapis()});
-        socket.broadcast.emit('1stR', {tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[1].getJetons(), jetons2:game.listePlayerGame[0].getJetons(), cartes: game.listePlayerGame[1].getMain(), cartesTapis: game.getTapis()});
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getNom() === data.playerName){
+            idJoueur1=0;
+            game.listePlayerGame[0].setAjoue(false);
+            idJoueur2=1;
+            game.listePlayerGame[1].setAjoue(true);
+        }else {
+            idJoueur1=1;
+            game.listePlayerGame[1].setAjoue(false);
+            idJoueur2=0;
+            game.listePlayerGame[0].setAjoue(true);
+        }
+        socket.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[0].getJetons(), jetons2:game.listePlayerGame[1].getJetons(), cartes: game.listePlayerGame[0].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[1].getJetons(), jetons2:game.listePlayerGame[0].getJetons(), cartes: game.listePlayerGame[1].getMain(), cartesTapis: game.getTapis()});
         // socket.setBroadcast(true);
     });
 

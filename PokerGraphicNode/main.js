@@ -124,11 +124,18 @@ function init() {
     $('#start').on('click', () => {
         // console.log(game.getPlayer());
         const roomID = $('#room').val();
-        socket.emit('start', { room: roomID });
+        socket.emit('start', { room: roomID, playerName: player.name });
     });
 
     socket.on('1stR', (data) => {
         document.getElementById('start').disabled=true;
+        //desactive les boutons tant que l'autre joueur n'a pas joué
+        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+        document.getElementById('check').disabled = !data.booleanCurrentTurn;
+        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+        document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
+
         console.log(data.pot);
         document.getElementById('pot').innerHTML ="Pot : " +data.pot;
         document.getElementById('texte').innerHTML =data.jetons1+" jetons";
@@ -144,7 +151,15 @@ function init() {
 
     socket.on('resultAction', (data) => {
         const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
-        // console.log(message);
+
+        //desactive les boutons tant que l'autre joueur n'a pas joué
+        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+        document.getElementById('check').disabled = !data.booleanCurrentTurn;
+        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+        document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
+
+        //affichage des variables
         document.getElementById('turn').innerHTML = message;
         document.getElementById('pot').innerHTML ="Pot : " +data.pot;
         document.getElementById('texte').innerHTML =data.jetons1+" jetons";
