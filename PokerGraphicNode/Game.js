@@ -3,15 +3,16 @@ var Player = require('./Player.js');
 var Cartes = require('./Cartes.js');
 
 function Game() {
-        this.roomId = 0;
-        this.listePlayerTable = [];
-        this.listePlayerGame = [];
-        this.pot = 0;
-        this.cartes = new Cartes();
-        this.tapisCarte = [];
-        this.dealer = 0;
-        this.tour = 0;
-
+    this.roomId = 0;
+    this.listePlayerTable = [];
+    this.listePlayerGame = [];
+    this.pot = 0;
+    this.cartes = new Cartes();
+    this.tapisCarte = [];
+    this.dealer = 0;
+    this.tour = 0;
+    this.actionPrec = null;
+    this.canPlay = false;
 }
 
 // Create the Game board by attaching event listeners to the buttons.
@@ -140,6 +141,24 @@ Game.prototype.affichage = function () {
 
 Game.prototype.joueJoueur = function(name, action, miseMin) {
     let indice;
+    switch (this.actionPrec) {
+        case null:
+            this.actionPrec = action;
+            break;
+        case "check":
+            if (action === "check"){
+                this.canPlay=true;
+            }
+            break;
+        case "suivre":
+            break;
+        case "relancer":
+            break;
+        case "all-in":
+            break;
+        case "coucher":
+            break;
+    }
     for (let i=0;i<this.listePlayerGame.length; i++){
         if (this.listePlayerGame[i].getNom() === name){
             indice=i;
@@ -156,7 +175,13 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
         default :
             console.log('default');
     }
-    this.tour++;
+
+
+    if (this.canPlay) {
+        this.tour++;
+        this.canPlay=false;
+        this.actionPrec=null;
+    }
     console.log(this.tour);
 };
 

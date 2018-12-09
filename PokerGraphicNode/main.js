@@ -150,23 +150,32 @@ function init() {
     });
 
     socket.on('resultAction', (data) => {
-        const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
-
         //desactive les boutons tant que l'autre joueur n'a pas joué
-        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-        document.getElementById('check').disabled = !data.booleanCurrentTurn;
-        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
-        document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
-        //affichage des variables
-        document.getElementById('turn').innerHTML = message;
-        document.getElementById('pot').innerHTML ="Pot : " +data.pot;
-        document.getElementById('texte').innerHTML =data.jetons1+" jetons";
-        document.getElementById('texte2').innerHTML =data.jetons2+" jetons";
-        document.CarteJoueur1.src = "image/" + data.cartes[0] +".PNG" ;
-        document.CarteJoueur2.src = "image/" + data.cartes[1] +".PNG" ;
+        if (data.tour <6) {
+            const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
+            document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+            document.getElementById('check').disabled = !data.booleanCurrentTurn;
+            document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+            document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+            document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
+            //affichage des variables
+            document.getElementById('turn').innerHTML = message;
+            document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+            document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
+            document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".PNG";
+            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".PNG";
+        }else {
+            document.getElementById('turn').innerHTML = "fin partie";
+            document.getElementById('all-in').disabled = true;
+            document.getElementById('check').disabled = true;
+            document.getElementById('suivre').disabled = true;
+            document.getElementById('fold').disabled = true;
+            document.getElementById('coucher').disabled = true;
+            // document.getElementById('start').disabled=false;
+        }
         let compteur = 0;
         let compteur2 = 0;
         if (data.tour>2 && data.tour<=5) {

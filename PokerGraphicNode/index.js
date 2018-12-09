@@ -81,8 +81,8 @@ io.on('connection', (socket) => {
             idJoueur2=0;
             game.listePlayerGame[0].setAjoue(true);
         }
-        socket.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[0].getJetons(), jetons2:game.listePlayerGame[1].getJetons(), cartes: game.listePlayerGame[0].getMain(), cartesTapis: game.getTapis()});
-        socket.broadcast.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[1].getJetons(), jetons2:game.listePlayerGame[0].getJetons(), cartes: game.listePlayerGame[1].getMain(), cartesTapis: game.getTapis()});
+        socket.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[idJoueur1].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2:game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('1stR', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot : game.pot, name: game.listePlayerGame[idJoueur2].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
         // socket.setBroadcast(true);
     });
 
@@ -98,8 +98,8 @@ io.on('connection', (socket) => {
             idJoueur1=1;
             idJoueur2=0;
         }
-        socket.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[0].getJetons(), jetons2: game.listePlayerGame[1].getJetons(), cartes: game.listePlayerGame[0].getMain(), cartesTapis: game.getTapis()});
-        socket.broadcast.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[1].getJetons(), jetons2:game.listePlayerGame[0].getJetons(), cartes: game.listePlayerGame[1].getMain(), cartesTapis: game.getTapis()});
+        socket.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
     });
 
 });
