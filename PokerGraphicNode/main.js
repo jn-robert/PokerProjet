@@ -61,6 +61,7 @@ function init() {
         socket.emit('joinGame', { name, room: roomID, jeton });
         player = new Player(id++,name, jeton);
         // game.addPlayer(id, name, jeton);
+
     });
 
     // New Game created by current client. Update the UI and create new Game var.
@@ -132,7 +133,7 @@ function init() {
         //desactive les boutons tant que l'autre joueur n'a pas joué
         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
         document.getElementById('check').disabled = !data.booleanCurrentTurn;
-        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+        document.getElementById('suivre').disabled = true;
         document.getElementById('fold').disabled = !data.booleanCurrentTurn;
         document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
@@ -149,15 +150,78 @@ function init() {
         socket.emit('check', {room: roomId, playerName: player.name});
     });
 
+    $('#suivre').on('click', () =>{
+        const roomId = $('#room').val();
+        socket.emit('suivre', {room: roomId, playerName: player.name});
+    });
+
+    $('#fold').on('click', () =>{
+        const roomId = $('#room').val();
+        socket.emit('fold', {room: roomId, playerName: player.name});
+    });
+
+    $('#all-in').on('click', () =>{
+        const roomId = $('#room').val();
+        socket.emit('all-in', {room: roomId, playerName: player.name});
+    });
+
+    $('#coucher').on('click', () =>{
+        const roomId = $('#room').val();
+        socket.emit('coucher', {room: roomId, playerName: player.name});
+    });
+
     socket.on('resultAction', (data) => {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
         if (data.tour <6) {
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
-            document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-            document.getElementById('check').disabled = !data.booleanCurrentTurn;
-            document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-            document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+            switch (data.choixJoueurs) {
+                case "check":
+                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('check').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('suivre').disabled = true;
+                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    break;
+                case "fold":
+                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('check').disabled = true;
+                    document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    break;
+                case "suivre":
+                    if (data.jetons1 > data.jetonsRecolt) {
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = true;
+                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    }else {
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = true;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('fold').disabled = true;
+                    }
+                    break;
+                case "all-in":
+                    if (data.jetons1 > data.jetonsRecolt){
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = true;
+                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    }else {
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = true;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('fold').disabled = true;
+                    }
+                    break;
+
+                default:
+                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('check').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+            }
+
             document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
             //affichage des variables

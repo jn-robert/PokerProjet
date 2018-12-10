@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
         var room = io.nsps['/'].adapter.rooms[data.room];
         if (room && room.length <= 9) {
             socket.join(data.room);
-            socket.broadcast.to(data.room).emit('player1', {});
+            socket.broadcast.emit('player1', {name: game.listePlayerGame[0].getNom()});
             socket.emit('player2', { name: data.name, room: data.room });
             game.addPlayer(id++, data.name, data.jeton);
         } else {
@@ -88,7 +88,8 @@ io.on('connection', (socket) => {
 
     socket.on('check', (data) => {
         console.log(data.playerName);
-        game.joueJoueur(data.playerName, 'check',10);
+        game.joueJoueur(data.playerName, "check",10);
+
         let idJoueur1;
         let idJoueur2;
         if (game.listePlayerGame[0].getNom() === data.playerName){
@@ -98,10 +99,77 @@ io.on('connection', (socket) => {
             idJoueur1=1;
             idJoueur2=0;
         }
-        socket.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
-        socket.broadcast.emit('resultAction', {booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
+        socket.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), choixJoueurs: game.actionPrec, booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
     });
 
+    socket.on('suivre', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "suivre",10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getNom() === data.playerName){
+            idJoueur1=0;
+            idJoueur2=1;
+        }else {
+            idJoueur1=1;
+            idJoueur2=0;
+        }
+        socket.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), choixJoueurs: game.actionPrec, booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
+    });
+
+    socket.on('fold', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "fold",10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getNom() === data.playerName){
+            idJoueur1=0;
+            idJoueur2=1;
+        }else {
+            idJoueur1=1;
+            idJoueur2=0;
+        }
+        socket.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), choixJoueurs: game.actionPrec, booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
+    });
+
+    socket.on('all-in', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "all-in",10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getNom() === data.playerName){
+            idJoueur1=0;
+            idJoueur2=1;
+        }else {
+            idJoueur1=1;
+            idJoueur2=0;
+        }
+        socket.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), choixJoueurs: game.actionPrec, booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
+    });
+
+    socket.on('coucher', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "coucher",10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getNom() === data.playerName){
+            idJoueur1=0;
+            idJoueur2=1;
+        }else {
+            idJoueur1=1;
+            idJoueur2=0;
+        }
+        socket.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur1].getJetons(), jetons2: game.listePlayerGame[idJoueur2].getJetons(), cartes: game.listePlayerGame[idJoueur1].getMain(), cartesTapis: game.getTapis()});
+        socket.broadcast.emit('resultAction', {jetonsRecolt: game.getRecoltJetons(), choixJoueurs: game.actionPrec, booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(), tour: game.getTour(), pot: game.pot, name: game.listePlayerGame[0].getPlayerName(), jetons1: game.listePlayerGame[idJoueur2].getJetons(), jetons2:game.listePlayerGame[idJoueur1].getJetons(), cartes: game.listePlayerGame[idJoueur2].getMain(), cartesTapis: game.getTapis()});
+    });
 });
 
 server.listen(process.env.PORT || 5000);

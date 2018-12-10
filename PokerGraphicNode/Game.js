@@ -13,6 +13,8 @@ function Game() {
     this.tour = 0;
     this.actionPrec = null;
     this.canPlay = false;
+    this.recoltJetons = 0;
+    this.misePrec = 0;
 }
 
 // Create the Game board by attaching event listeners to the buttons.
@@ -23,6 +25,9 @@ Game.prototype.displayBoard = function (message) {
     $('#userHello').html(message);
 };
 
+Game.prototype.getRecoltJetons = function(){
+    return this.recoltJetons;
+};
 
 Game.prototype.getRoomId = function () {
         return this.roomId;
@@ -144,17 +149,73 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
     switch (this.actionPrec) {
         case null:
             this.actionPrec = action;
+            if (action === "check"){
+                // this.canPlay=true;
+            }
+            if (action === "fold"){
+                this.actionPrec=action;
+                // this.canPlay=true;
+                this.misePrec = 10;
+            }
+            if (action === "all-in"){
+                this.actionPrec=action;
+                // this.canPlay=true;
+            }
             break;
         case "check":
             if (action === "check"){
                 this.canPlay=true;
             }
+            if (action === "fold"){
+                this.actionPrec=action;
+                this.canPlay=true;
+                this.misePrec = 10;
+            }
+            if (action === "all-in"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
             break;
         case "suivre":
+            if (action === "fold"){
+                this.actionPrec=action;
+                // this.canPlay=true;
+                this.misePrec = 10;
+            }
+            if (action === "all-in"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
             break;
-        case "relancer":
+        case "fold":
+            if (action==="suivre"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
+            if (action === "fold"){
+                this.actionPrec=action;
+                // this.canPlay=true;
+                this.misePrec = this.misePrec+10;
+            }
+            if (action === "all-in"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
             break;
         case "all-in":
+            if (action === "suivre"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
+            if (action === "fold"){
+                this.actionPrec=action;
+                this.canPlay=true;
+                this.misePrec = this.misePrec+10;
+            }
+            if (action === "all-in"){
+                this.actionPrec=action;
+                this.canPlay=true;
+            }
             break;
         case "coucher":
             break;
@@ -163,24 +224,28 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
         if (this.listePlayerGame[i].getNom() === name){
             indice=i;
             this.listePlayerGame[indice].setAjoue(true);
+            console.log(this.misePrec);
+            this.listePlayerGame[i].jetons=this.listePlayerGame[i].jetons-this.misePrec;
+            console.log(this.listePlayerGame[i].jetons);
         }else {
             this.listePlayerGame[i].setAjoue(false);
         }
-        // console.log(this.listePlayerGame[i].getNom()+" "+this.listePlayerGame[i].getAjoue());
     }
-    switch (action) {
+
+    /*switch (action) {
         case 'check':
             console.log('check by '+name);
             break;
         default :
-            console.log('default');
-    }
+            console.log(action);
+    }*/
 
 
     if (this.canPlay) {
         this.tour++;
         this.canPlay=false;
         this.actionPrec=null;
+        this.misePrec=0;
     }
     console.log(this.tour);
 };
