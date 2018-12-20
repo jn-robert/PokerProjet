@@ -11,8 +11,9 @@ class Player {
         this.id = id;
         this.name = name;
         this.jeton = jeton;
-        this.currentTurn=null;
+        this.currentTurn = null;
     }
+
     setCurrentTurn(turn) {
         this.currentTurn = turn;
         const message = turn ? 'A votre tour' : 'A votre adversaire';
@@ -34,7 +35,6 @@ function init() {
     // roomId Id of the room in which the game is running on the server.
 
 
-
     // Create a new game. Emit newGame event.
     /*var game;*/
     $('#new').on('click', () => {
@@ -45,7 +45,7 @@ function init() {
             alert('Erreur.');
             return;
         }
-        socket.emit('createGame', { name, jeton });
+        socket.emit('createGame', {name, jeton});
         player = new Player(id++, name, jeton);
     });
 
@@ -58,8 +58,8 @@ function init() {
             alert('Erreur.');
             return;
         }
-        socket.emit('joinGame', { name, room: roomID, jeton });
-        player = new Player(id++,name, jeton);
+        socket.emit('joinGame', {name, room: roomID, jeton});
+        player = new Player(id++, name, jeton);
         // game.addPlayer(id, name, jeton);
 
     });
@@ -125,11 +125,11 @@ function init() {
     $('#start').on('click', () => {
         // console.log(game.getPlayer());
         const roomID = $('#room').val();
-        socket.emit('start', { room: roomID, playerName: player.name });
+        socket.emit('start', {room: roomID, playerName: player.name});
     });
 
     socket.on('1stR', (data) => {
-        document.getElementById('start').disabled=true;
+        document.getElementById('start').disabled = true;
         //desactive les boutons tant que l'autre joueur n'a pas joué
         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
         document.getElementById('check').disabled = !data.booleanCurrentTurn;
@@ -138,40 +138,40 @@ function init() {
         document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
         console.log(data.pot);
-        document.getElementById('pot').innerHTML ="Pot : " +data.pot;
-        document.getElementById('texte').innerHTML =data.jetons1+" jetons";
-        document.getElementById('texte2').innerHTML =data.jetons2+" jetons";
-        document.CarteJoueur1.src = "image/" + data.cartes[0] +".png" ;
-        document.CarteJoueur2.src = "image/" + data.cartes[1] +".png" ;
-        document.T1.src="image/dos.png";
-        document.T2.src="image/dos.png";
-        document.T3.src="image/dos.png";
-        document.T4.src="image/dos.png";
-        document.T5.src="image/dos.png";
+        document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+        document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
+        document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+        document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
+        document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+        document.T1.src = "image/dos.png";
+        document.T2.src = "image/dos.png";
+        document.T3.src = "image/dos.png";
+        document.T4.src = "image/dos.png";
+        document.T5.src = "image/dos.png";
         document.getElementById('texteGagnant').innerHTML = "";
     });
 
-    $('#check').on('click', () =>{
+    $('#check').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('check', {room: roomId, playerName: player.name});
     });
 
-    $('#suivre').on('click', () =>{
+    $('#suivre').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('suivre', {room: roomId, playerName: player.name});
     });
 
-    $('#raise').on('click', () =>{
+    $('#raise').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('raise', {room: roomId, playerName: player.name});
     });
 
-    $('#all-in').on('click', () =>{
+    $('#all-in').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('all-in', {room: roomId, playerName: player.name});
     });
 
-    $('#coucher').on('click', () =>{
+    $('#coucher').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('coucher', {room: roomId, playerName: player.name});
     });
@@ -179,7 +179,7 @@ function init() {
     socket.on('resultAction', (data) => {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
-        if (data.tour <6) {
+        if (data.tour < 6) {
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
 
             // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
@@ -187,13 +187,13 @@ function init() {
 
             switch (data.choixJoueurs) {
                 case "check":
-                    if (data.jetons1>0) {
+                    if (data.jetons1 > 0) {
                         console.log("joueur check");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = !data.booleanCurrentTurn;
                         document.getElementById('suivre').disabled = true;
                         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    }else {
+                    } else {
                         console.log("joueur else check");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
@@ -202,13 +202,13 @@ function init() {
                     }
                     break;
                 case "raise":
-                    if (data.jetons1>0) {
+                    if (data.jetons1 > 0) {
                         console.log("joueur raise");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
                         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    }else {
+                    } else {
                         console.log("joueur else raise");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
@@ -217,13 +217,13 @@ function init() {
                     }
                     break;
                 case "suivre":
-                    if (data.jetons1>0) {
+                    if (data.jetons1 > 0) {
                         console.log("joueur suivre");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
                         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    }else {
+                    } else {
                         console.log("joueur else suivre");
                         document.getElementById('all-in').disabled = false;
                         document.getElementById('check').disabled = true;
@@ -232,13 +232,13 @@ function init() {
                     }
                     break;
                 case "all-in":
-                    if (data.jetons1>0){
+                    if (data.jetons1 > 0) {
                         console.log("joueur all-in");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
                         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    }else {
+                    } else {
                         console.log("joueur else all-in");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
@@ -249,12 +249,12 @@ function init() {
                     break;
 
                 default:
-                    if (data.jetons1>0) {
+                    if (data.jetons1 > 0) {
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = !data.booleanCurrentTurn;
                         document.getElementById('suivre').disabled = true;
                         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    }else {
+                    } else {
                         console.log("joueur else default");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
@@ -275,7 +275,7 @@ function init() {
             document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
             document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
             document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
-        }else {
+        } else {
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('all-in').disabled = true;
             document.getElementById('check').disabled = true;
@@ -287,47 +287,47 @@ function init() {
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            socket.emit('continueGame',{playerName: player.name});
+            socket.emit('continueGame', {playerName: player.name});
         }
         let compteur = 0;
         let compteur2 = 0;
-        if (data.tour>2 && data.tour<=6 && data.choixJoueurs !== 'coucher') {
-            for (let i = 0; i<data.tour; i++){
+        if (data.tour > 2 && data.tour <= 6 && data.choixJoueurs !== 'coucher') {
+            for (let i = 0; i < data.tour; i++) {
                 console.log(data.cartesTapis[i]);
             }
             data.cartesTapis.forEach(function (entry) {
                 switch (compteur) {
                     case 0:
-                        document.T1.src = "image/" + entry +".png" ;
+                        document.T1.src = "image/" + entry + ".png";
                         compteur++;
                         break;
                     case 1:
-                        document.T2.src = "image/" + entry +".png" ;
+                        document.T2.src = "image/" + entry + ".png";
                         compteur++;
                         break;
                     case 2:
-                        document.T3.src = "image/" + entry +".png" ;
+                        document.T3.src = "image/" + entry + ".png";
                         compteur++;
                         break;
                     case 3:
-                        if (compteur<data.tour) {
+                        if (compteur < data.tour) {
                             document.T4.src = "image/" + entry + ".png";
                             compteur++;
                         }
                         break;
                     case 4:
-                        if (compteur<data.tour) {
+                        if (compteur < data.tour) {
                             document.T5.src = "image/" + entry + ".png";
                         }
                         break;
                 }
             });
-        }else {
-            document.T1.src="image/dos.png";
-            document.T2.src="image/dos.png";
-            document.T3.src="image/dos.png";
-            document.T4.src="image/dos.png";
-            document.T5.src="image/dos.png";
+        } else {
+            document.T1.src = "image/dos.png";
+            document.T2.src = "image/dos.png";
+            document.T3.src = "image/dos.png";
+            document.T4.src = "image/dos.png";
+            document.T5.src = "image/dos.png";
             document.getElementById('texteGagnant').innerHTML = "";
         }
     });
