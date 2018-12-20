@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path('home.index') }}">POKER</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('home.index') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('jeu.index')}}">JOUER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Comment jouez ?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Programme fidélité</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notre offre</a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                {% block body %}{% endblock %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <p> Bonjour {{ app.user.username }}</p> {% if is_granted('ROLE_ADMIN') %} (role : Admin ) <br>{% endif %}
+                    {% if is_granted('ROLE_USER') %} (role : User ) <br>{% endif %}
+                    <a class="nav-link" href="{{ path('logout') }}"> deconnexion</a><br>
+                {% else %}
+                    <a class="nav-link" href="{{ path('login') }}"> se connecter</a><br>
+                {% endif %}
+                {% block javascripts %}{% endblock %}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user_registration') }}">S'inscrire</a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
