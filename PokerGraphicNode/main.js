@@ -134,15 +134,21 @@ function init() {
         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
         document.getElementById('check').disabled = !data.booleanCurrentTurn;
         document.getElementById('suivre').disabled = true;
-        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
         document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
         console.log(data.pot);
         document.getElementById('pot').innerHTML ="Pot : " +data.pot;
         document.getElementById('texte').innerHTML =data.jetons1+" jetons";
         document.getElementById('texte2').innerHTML =data.jetons2+" jetons";
-        document.CarteJoueur1.src = "image/" + data.cartes[0] +".PNG" ;
-        document.CarteJoueur2.src = "image/" + data.cartes[1] +".PNG" ;
+        document.CarteJoueur1.src = "image/" + data.cartes[0] +".png" ;
+        document.CarteJoueur2.src = "image/" + data.cartes[1] +".png" ;
+        document.T1.src="image/dos.png";
+        document.T2.src="image/dos.png";
+        document.T3.src="image/dos.png";
+        document.T4.src="image/dos.png";
+        document.T5.src="image/dos.png";
+        document.getElementById('texteGagnant').innerHTML = "";
     });
 
     $('#check').on('click', () =>{
@@ -155,9 +161,9 @@ function init() {
         socket.emit('suivre', {room: roomId, playerName: player.name});
     });
 
-    $('#fold').on('click', () =>{
+    $('#raise').on('click', () =>{
         const roomId = $('#room').val();
-        socket.emit('fold', {room: roomId, playerName: player.name});
+        socket.emit('raise', {room: roomId, playerName: player.name});
     });
 
     $('#all-in').on('click', () =>{
@@ -175,51 +181,87 @@ function init() {
 
         if (data.tour <6) {
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
+
+            // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
+
+
             switch (data.choixJoueurs) {
                 case "check":
-                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('check').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('suivre').disabled = true;
-                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    if (data.jetons1>0) {
+                        console.log("joueur check");
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+                    }else {
+                        console.log("joueur else check");
+                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('check').disabled = false;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = true;
+                    }
                     break;
-                case "fold":
-                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('check').disabled = true;
-                    document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
-                    break;
-                case "suivre":
-                    if (data.jetons1 > data.jetonsRecolt) {
+                case "raise":
+                    if (data.jetons1>0) {
+                        console.log("joueur raise");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     }else {
+                        console.log("joueur else raise");
+                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('check').disabled = false;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = true;
+                    }
+                    break;
+                case "suivre":
+                    if (data.jetons1>0) {
+                        console.log("joueur suivre");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('fold').disabled = true;
+                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+                    }else {
+                        console.log("joueur else suivre");
+                        document.getElementById('all-in').disabled = false;
+                        document.getElementById('check').disabled = true;
+                        document.getElementById('suivre').disabled = false;
+                        document.getElementById('raise').disabled = false;
                     }
                     break;
                 case "all-in":
-                    if (data.jetons1 > data.jetonsRecolt){
+                    if (data.jetons1>0){
+                        console.log("joueur all-in");
                         document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     }else {
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = true;
+                        console.log("joueur else all-in");
+                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('check').disabled = false;
                         document.getElementById('suivre').disabled = true;
-                        document.getElementById('fold').disabled = true;
+                        document.getElementById('raise').disabled = true;
+                        document.getElementById('coucher').disabled = true;
                     }
                     break;
 
                 default:
-                    document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('check').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                    document.getElementById('fold').disabled = !data.booleanCurrentTurn;
+                    if (data.jetons1>0) {
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+                    }else {
+                        console.log("joueur else default");
+                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('check').disabled = false;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = true;
+                        document.getElementById('coucher').disabled = true;
+                    }
             }
 
             document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
@@ -229,50 +271,64 @@ function init() {
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
             document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
             document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
-            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".PNG";
-            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".PNG";
+            document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
+            document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
+            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
+            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
         }else {
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('all-in').disabled = true;
             document.getElementById('check').disabled = true;
             document.getElementById('suivre').disabled = true;
-            document.getElementById('fold').disabled = true;
+            document.getElementById('raise').disabled = true;
             document.getElementById('coucher').disabled = true;
             // document.getElementById('start').disabled=false;
+
+            console.log(data.vainqueur);
+            document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
+            // console.log(data.combiVainq);
+            socket.emit('continueGame',{playerName: player.name});
         }
         let compteur = 0;
         let compteur2 = 0;
-        if (data.tour>2 && data.tour<=5) {
+        if (data.tour>2 && data.tour<=6 && data.choixJoueurs !== 'coucher') {
             for (let i = 0; i<data.tour; i++){
                 console.log(data.cartesTapis[i]);
             }
             data.cartesTapis.forEach(function (entry) {
                 switch (compteur) {
                     case 0:
-                        document.T1.src = "image/" + entry +".PNG" ;
+                        document.T1.src = "image/" + entry +".png" ;
                         compteur++;
                         break;
                     case 1:
-                        document.T2.src = "image/" + entry +".PNG" ;
+                        document.T2.src = "image/" + entry +".png" ;
                         compteur++;
                         break;
                     case 2:
-                        document.T3.src = "image/" + entry +".PNG" ;
+                        document.T3.src = "image/" + entry +".png" ;
                         compteur++;
                         break;
                     case 3:
                         if (compteur<data.tour) {
-                            document.T4.src = "image/" + entry + ".PNG";
+                            document.T4.src = "image/" + entry + ".png";
                             compteur++;
                         }
                         break;
                     case 4:
                         if (compteur<data.tour) {
-                            document.T5.src = "image/" + entry + ".PNG";
+                            document.T5.src = "image/" + entry + ".png";
                         }
                         break;
                 }
             });
+        }else {
+            document.T1.src="image/dos.png";
+            document.T2.src="image/dos.png";
+            document.T3.src="image/dos.png";
+            document.T4.src="image/dos.png";
+            document.T5.src="image/dos.png";
+            document.getElementById('texteGagnant').innerHTML = "";
         }
     });
 }

@@ -7,6 +7,9 @@ function Player(id,name,jetons, idRoom) {
         this.tas = 0;
         this.ajoue = false;
         this.idRoom = idRoom;
+        this.allIn = false;
+        this.valeurMain = 0;
+        this.actionPrec=null;
     }
 
     // Set the currentTurn for player to turn and update UI to reflect the same.
@@ -61,7 +64,7 @@ Player.prototype.coucher = function(){
         this.main=[];
     };
 
-Player.prototype.fold = function(mise) {
+Player.prototype.raise = function(mise) {
         if (mise <= this.jetons){
             this.jetons -= mise;
             this.tas += mise;
@@ -89,6 +92,14 @@ Player.prototype.reset = function() {
         this.tas = 0;
     };
 
-Player.prototype.getNom = function () {
+Player.prototype.getName = function(){
     return this.name;
+};
+
+Player.prototype.setValeurMain = function (v) {
+    this.valeurMain = v;
+};
+
+Player.prototype.getValeurMain = function () {
+    return this.valeurMain;
 };
