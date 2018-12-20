@@ -87,7 +87,7 @@ Player.prototype.raise = function(mise,miseJoueur) {
         }
     };
 
-Player.prototype.reset = function() {
+Player.prototype.resetPlayer = function() {
         this.main = [];
         this.tas = 0;
     };

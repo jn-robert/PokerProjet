@@ -20,6 +20,7 @@ function Game() {
     this.allCards= [];
     this.evalCards = [];
     this.combiGagnante= [];
+    this.start=true;
 }
 
 // Create the Game board by attaching event listeners to the buttons.
@@ -68,9 +69,12 @@ Game.prototype.getTour = function () {
 
 Game.prototype.reset = function () {
         this.pot = 0;
-        this.cartes = new Cartes();
+        if (!this.start){
+            this.cartes = new Cartes();
+            this.start=true;
+        }
         for (let i=0; i<this.listePlayerGame.length; i++) {
-            this.listePlayerGame[i].reset();
+            this.listePlayerGame[i].resetPlayer();
         }
         this.tour=0;
         // this.actionPrec = null;
@@ -78,81 +82,19 @@ Game.prototype.reset = function () {
 
 
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
-        if (this.dealer+1>=this.listePlayerGame.length){
+        if (this.dealer+2>=this.listePlayerGame.length){
             this.dealer=0;
-            this.listePlayerGame[this.dealer+1].jetons -= grosseBlinde;
-            this.listePlayerGame[this.dealer].jetons -= petiteBlinde;
-        }else {
-            this.listePlayerGame[this.dealer].jetons -= grosseBlinde;
             this.listePlayerGame[this.dealer+1].jetons -= petiteBlinde;
+            this.listePlayerGame[this.dealer].jetons -= grosseBlinde;
+        }else{
+            this.listePlayerGame[this.dealer+1].jetons -= grosseBlinde;
+            this.listePlayerGame[this.dealer+2].jetons -= petiteBlinde;
             // this.listePlayerGame[this.dealer+1].raise(grosseBlinde);
             // this.listePlayerGame[this.dealer].raise(petiteBlinde);
         }
         this.pot=petiteBlinde+grosseBlinde;
         this.dealer++;
 };
-
-// Game.prototype.affichage = function () {
-//         var compteur = 0;
-//         var compteur2 = 0;
-//         console.log();
-//         console.log();
-//
-//
-//
-//         // window.document.getElementById('pot').innerHTML ="Pot : " +this.pot;
-//         console.log('Pot : '+this.pot);
-//         console.log('Tapis : ');
-//
-//         if (this.tour<=5) {
-//             for (let i = 0; i<this.tour; i++){
-//                 console.log(this.tapisCarte[i]);
-//             }
-//             this.getTapis().forEach(function (entry) {
-//                 switch (compteur) {
-//                     case 0:
-//                         // document.T1.src = "image/" + entry +".PNG" ;
-//                         compteur++;
-//                         break;
-//                     case 1:
-//                         // document.T2.src = "image/" + entry +".PNG" ;
-//                         compteur++;
-//                         break;
-//                     case 2:
-//                         // document.T3.src = "image/" + entry +".PNG" ;
-//                         compteur++;
-//                         break;
-//                     case 3:
-//                         // document.T4.src = "image/" + entry +".PNG" ;
-//                         compteur++;
-//                         break;
-//                     case 4:
-//                         // document.T5.src = "image/" + entry +".PNG" ;
-//                         compteur++;
-//                         break;
-//                 }
-//             });
-//         }
-//         console.log();
-//         console.log('Joueurs :');
-//         for (let i=0;i<this.listePlayerGame.length;i++){
-//             label = "label".concat(i.toString());
-//             // document.getElementById(label).innerHTML = this.listePlayerGame[i].getJetons().toString() + " jetons";
-//             this.listePlayerGame[i].getMain().forEach(function (entry) {
-//                 switch (compteur2) {
-//                     case 0:
-//                         // document.CarteJoueur1.src = "image/" + entry +".PNG" ;
-//                         compteur2++;
-//                         break;
-//                     case 1:
-//                         // document.CarteJoueur2.src = "image/" + entry +".PNG" ;
-//                         compteur2++;
-//                         break;
-//                 }
-//             });
-//             console.log(''+this.listePlayerGame[i].getPlayerName()+" : "+this.listePlayerGame[i].getMain()+", "+this.listePlayerGame[i].getJetons()+" coins");
-//         }
-// };
 
 Game.prototype.joueJoueur = function(name, action, miseMin) {
     let indice;
@@ -223,7 +165,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                             }
                                         }
                                     }
-                                    this.continueGame(10,20);
+                                    // this.init(10,20);
                                 }
                             }else {
                                 if (this.listePlayerGame[j].getPlayerName() === name){
@@ -283,11 +225,11 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                         if (boolJoueur) {
                                             this.listePlayerGame.push(this.listePlayerTable[k]);
                                             boolJoueur=false;
-                                            this.canPlay=true;
+                                            // this.canPlay=true;
                                             this.actionPrec=null;
                                         }
                                     }
-                                    this.continueGame(10,20);
+                                    // this.init(10,20);
                                 }
                             }else {
                                 if (this.listePlayerGame[j].getPlayerName() === name){
@@ -339,7 +281,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                             boolJoueur=false;
                                         }
                                     }
-                                    this.continueGame(10,20);
+                                    // this.init(10,20);
                                 }
                             }else {
                                 if (this.listePlayerGame[j].getPlayerName() === name){
@@ -412,7 +354,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                             boolJoueur=false;
                                         }
                                     }
-                                    this.continueGame(10,20);
+                                    // this.init(10,20);
                                 }
                             }else {
                                 if (this.listePlayerGame[j].getPlayerName() === name){
@@ -468,6 +410,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                     if (this.listePlayerGame.length <3){
                         if (this.listePlayerGame[j].getPlayerName() !== name){
                             this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                            this.tour=6;
                             let boolJoueur = false;
                             for (let k =0; k<this.listePlayerTable.length; k++){
                                 for (let l = 0; l<this.listePlayerGame.length; l++){
@@ -480,7 +423,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                     boolJoueur=false;
                                 }
                             }
-                            this.continueGame(10,20);
+                            // this.init(10,20);
                         }
                     }else {
                         if (this.listePlayerGame[j].getPlayerName() === name){
@@ -551,6 +494,22 @@ Game.prototype.incrementeTour = function(){
     this.tour++;
 };
 
+Game.prototype.distribGains = function(name){
+    let testName=false;
+    for (let i=0; i<this.listePlayerGame.length;i++){
+        if(this.listePlayerGame[i].getPlayerName()=== name){
+            this.listePlayerGame[i].jetons+= this.pot+this.listePlayerGame[i].tas;
+            testName=true;
+        }
+    }
+    if (!testName){
+        for (let i=0;i<this.listePlayerGame.length;i++){
+            this.listePlayerGame[i].jetons+=this.pot/this.listePlayerGame.length + this.listePlayerGame[i].tas;
+        }
+    }
+    this.pot=0;
+};
+
 Game.prototype.evalCarte = function (){
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         this.allCards.push([
@@ -589,13 +548,10 @@ Game.prototype.evalCarte = function (){
 };
 
     Game.prototype.init = function(petiteBlinde, grosseBlinde) {
-        // while (this.listePlayerGame.length > 1){
             this.reset();
 
             // initialisation des blinds
-            // this.affichage();
             this.blind(petiteBlinde,grosseBlinde);
-            // this.affichage();
 
             //initialisation main + affichage main joueur
             for (let i=0 ; i<2 ;i++){
@@ -603,41 +559,10 @@ Game.prototype.evalCarte = function (){
                     this.listePlayerGame[j].addMain(this.cartes.giveCarte());
                 }
             }
-            // this.affichage();
             this.tour=2;
-            /*this.option(grosseBlinde);
-            this.tour++;*/
             for (let i=0; i<5 ;i++){
                 this.tapisCarte.push(this.cartes.giveCarte());
             }
-            /*this.tour++;
-            for (let i=0;i<3;i++){
-                this.tour++;
-                this.affichage();
-                this.option(grosseBlinde);
-            }*/
-        // }
-    };
-
-    Game.prototype.continueGame = function (petiteBlinde, grosseBlinde) {
-        this.reset();
-        // this.affichage();
-        this.blind(petiteBlinde,grosseBlinde);
-        // this.affichage();
-
-        //initialisation main + affichage main joueur
-        for (let i=0 ; i<2 ;i++){
-            for (let j=0 ; j<this.listePlayerGame.length ;j++){
-                this.listePlayerGame[j].addMain(this.cartes.giveCarte());
-            }
-        }
-        // this.affichage();
-        this.tour=2;
-        /*this.option(grosseBlinde);
-        this.tour++;*/
-        for (let i=0; i<5 ;i++){
-            this.tapisCarte.push(this.cartes.giveCarte());
-        }
     };
 
     Game.prototype.continueGameAfterTimeOut = function(){

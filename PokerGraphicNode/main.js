@@ -176,6 +176,10 @@ function init() {
         socket.emit('coucher', {room: roomId, playerName: player.name});
     });
 
+    $('#exit').on('click', () => {
+        location.reload();
+    });
+
     socket.on('resultAction', (data) => {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
@@ -276,6 +280,13 @@ function init() {
             document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
             document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
         } else {
+            document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+            document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
+            document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+            document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
+            document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
+            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
+            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('all-in').disabled = true;
             document.getElementById('check').disabled = true;
@@ -287,7 +298,7 @@ function init() {
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            socket.emit('continueGame', {playerName: player.name});
+            // socket.emit('continueGame', {playerName: player.name});
         }
         let compteur = 0;
         let compteur2 = 0;
