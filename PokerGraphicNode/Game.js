@@ -213,8 +213,14 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                         if (boolJoueur) {
                                             this.listePlayerGame.push(this.listePlayerTable[k]);
                                             boolJoueur=false;
-                                            this.canPlay=true;
+                                            // this.canPlay=true;
                                             this.actionPrec=null;
+                                            this.misePrec=0;
+                                            this.tasHaut=0;
+                                            boolTours=1;
+                                            for (let i=0; i<this.listePlayerGame.length;i++){
+                                                this.listePlayerGame[i].tas=0;
+                                            }
                                         }
                                     }
                                     this.continueGame(10,20);
