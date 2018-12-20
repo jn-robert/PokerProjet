@@ -2,57 +2,202 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="064dc569-5d1a-4394-a2a9-70e05f1fd430" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cartes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Js/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Js/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Poker/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Poker/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gitchat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../gitchat/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gitchat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../gitchat/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProTut1819.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.env.dist" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.env.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/Poker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/Poker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/css/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/css/carte.css" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/css/carte.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/assets/js/greet.js" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/assets/js/greet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/bin/console" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/bin/console" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/bin/phpunit" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/bin/phpunit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/commande" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/commande" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/composer.phar" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/composer.phar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/assets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/assets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/debug.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/debug.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/easy_log_handler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/easy_log_handler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/swiftmailer.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/dev/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/doctrine_migrations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/doctrine_migrations.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/prod/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/prod/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/prod/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/prod/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/sensio_framework_extra.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/sensio_framework_extra.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/swiftmailer.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/test/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/test/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/test/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/test/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/test/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/test/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/test/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/test/swiftmailer.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/test/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/test/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/translation.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/packages/validator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/packages/validator.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/routes/annotations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/routes/annotations.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/routes/dev/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/routes/dev/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/routes/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/routes/dev/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/phpunit.xml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/JeuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/JeuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/DataFixtures/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/DataFixtures/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Entity/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Entity/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Entity/Author.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Entity/Author.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Migrations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Migrations/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Repository/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Repository/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/emails/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/emails/registration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/jeu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/jeu.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/nav.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/pub.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/pub.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/tests/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/tests/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/translations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/translations/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poker/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Poker/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/Cartes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/Game.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/Player.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/game.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/2c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/2d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/2h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/2s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/3c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/3d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/3h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/3s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/4c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/4d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/4h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/4s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/5c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/5d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/5h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/5s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/6c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/6d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/6h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/6s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/7c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/7d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/7h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/7s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/8c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/8d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/8h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/8s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/9c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/9d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/9h.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/9s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Ac.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Ad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Ah.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/As.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Jc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Jd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Jh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Js.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Kc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Kd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Kh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Ks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Qc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Qd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Qh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Qs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Tc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Td.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/Ts.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/dos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/dos2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/greenfelt.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/image/jeton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PokerGraphicNode/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Stat/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stat/stat.html" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Stat/stat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stat/stat.js" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/Stat/stat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bdd_create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/bdd_create.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitchat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/gitchat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitchat/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/gitchat/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitchat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/gitchat/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitchat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/OLD/gitchat/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-816">
               <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="84" column="89" selection-start-line="84" selection-start-column="89" selection-end-line="84" selection-end-column="89" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+            <state relative-caret-position="-884">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -75,7 +220,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -93,11 +238,20 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="93" />
-    <option name="y" value="56" />
-    <option name="width" value="1618" />
-    <option name="height" value="892" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="526" />
+    <option name="y" value="-8" />
+    <option name="width" value="940" />
+    <option name="height" value="901" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -105,7 +259,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PokerProjet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PokerProjet" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -134,6 +300,49 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -150,45 +359,62 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10935000" />
+    <option name="totallyTimeSpent" value="11226000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="45" width="1294" height="713" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980111" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32932693" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32960895" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="right" id="Database" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2636218" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980111" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932693" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2636218" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/js/game.js" />
     <entry file="file://$PROJECT_DIR$/index.html" />
     <entry file="file://$PROJECT_DIR$/node_modules/gameBoard.html" />
     <entry file="file://$PROJECT_DIR$/main.css" />
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
@@ -199,10 +425,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816">
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+        <state relative-caret-position="-884">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
         </state>
       </provider>
     </entry>
