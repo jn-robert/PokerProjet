@@ -97,73 +97,71 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
 
     switch (this.actionPrec) {
         case null:
-            for (let i=0; i<this.listePlayerGame.length;i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn) {
-                    break;
-                } else {
-                    this.actionPrec = action;
-                    if (action === "check") {
-                        // this.canPlay=true;
+            this.actionPrec = action;
+            if (action === "check") {
+                // this.canPlay=true;
+            }
+            if (action === "raise") {
+                this.actionPrec = action;
+                this.misePrec = miseMin;
+                this.tasHaut = this.misePrec;
+                for (let j = 0; j < this.listePlayerGame.length; j++) {
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        // if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                            this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                            this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                        // }
+                    }else {
+                        this.listePlayerGame[j].tas = 0;
                     }
-                    if (action === "raise") {
-                        this.actionPrec = action;
-                        this.misePrec = miseMin;
+                }
+            }
+            if (action === "all-in") {
+                this.actionPrec = action;
+                for (let j = 0; j < this.listePlayerGame.length; j++) {
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.misePrec = this.listePlayerGame[j].jetons;
                         this.tasHaut = this.misePrec;
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (this.listePlayerGame[j].getPlayerName() === name) {
-                                // if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                                // }
-                            }else {
-                                this.listePlayerGame[j].tas = 0;
-                            }
-                        }
+                        this.listePlayerGame[j].tas += this.listePlayerGame[j].jetons;
+                        this.listePlayerGame[j].jetons = 0;
+                        this.listePlayerGame[j].allIn = true;
+                        console.log("name : "+this.listePlayerGame[j].getPlayerName());
+                        console.log("tasHaut : "+this.misePrec);
+                        console.log("canPlay : "+this.canPlay);
+                        break;
                     }
-                    if (action === "all-in") {
-                        this.actionPrec = action;
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (this.listePlayerGame[j].getPlayerName() === name) {
-                                this.misePrec = this.listePlayerGame[j].getJetons();
-                                this.tasHaut = this.misePrec;
-                                this.listePlayerGame[j].tas += this.listePlayerGame[j].jetons;
-                                this.listePlayerGame[j].jetons = 0;
-                                this.listePlayerGame[j].allIn = true;
-                            }
-                        }
-                    }
-                    if (action === "coucher"){
-                        for (let j=0;j<this.listePlayerGame.length; j++){
-                            if (this.listePlayerGame.length <3){
-                                if (this.listePlayerGame[j].getPlayerName() !== name){
-                                    this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                                    let boolJoueur = false;
-                                    for (let k =0; k<this.listePlayerTable.length; k++){
-                                        for (let l = 0; l<this.listePlayerGame.length; l++){
-                                            if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-                                                boolJoueur = true;
-                                            }
-                                        }
-                                        if (boolJoueur) {
-                                            this.listePlayerGame.push(this.listePlayerTable[k]);
-                                            boolJoueur=false;
-                                            // this.canPlay=true;
-                                            this.actionPrec=null;
-                                            this.misePrec=0;
-                                            this.tasHaut=0;
-                                            boolTours=1;
-                                            for (let i=0; i<this.listePlayerGame.length;i++){
-                                                this.listePlayerGame[i].tas=0;
-                                            }
-                                        }
+                }
+            }
+            if (action === "coucher"){
+                for (let j=0;j<this.listePlayerGame.length; j++){
+                    if (this.listePlayerGame.length <3){
+                        if (this.listePlayerGame[j].getPlayerName() !== name){
+                            this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                            let boolJoueur = false;
+                            for (let k =0; k<this.listePlayerTable.length; k++){
+                                for (let l = 0; l<this.listePlayerGame.length; l++){
+                                    if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
+                                        boolJoueur = true;
                                     }
-                                    // this.init(10,20);
                                 }
-                            }else {
-                                if (this.listePlayerGame[j].getPlayerName() === name){
-                                    this.listePlayerGame.splice(j,1);
+                                if (boolJoueur) {
+                                    this.listePlayerGame.push(this.listePlayerTable[k]);
+                                    boolJoueur=false;
+                                    // this.canPlay=true;
+                                    this.actionPrec=null;
+                                    this.misePrec=0;
+                                    this.tasHaut=0;
+                                    boolTours=1;
+                                    for (let i=0; i<this.listePlayerGame.length;i++){
+                                        this.listePlayerGame[i].tas=0;
+                                    }
                                 }
                             }
+                            // this.init(10,20);
+                        }
+                    }else {
+                        if (this.listePlayerGame[j].getPlayerName() === name){
+                            this.listePlayerGame.splice(j,1);
                         }
                     }
                 }
@@ -359,18 +357,32 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
             break;
         case "all-in":
             if (action === "suivre") {
+                // this.actionPrec = action;
+                // this.canPlay = true;
+                // this.tasHaut = this.misePrec;
+                // for (let i = 0; i < this.listePlayerGame.length; i++) {
+                //     if (this.listePlayerGame[i].getPlayerName() === name) {
+                //         if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                //             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                //             this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
+                //             boolTours = 6-this.tour;
+                //         }
+                //     }
+                // }
                 this.actionPrec = action;
-                this.canPlay = true;
                 this.tasHaut = this.misePrec;
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                            this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
-                            boolTours = 6-this.tour;
-                        }
+                        console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
+                        console.log("tasHAut : "+this.tasHaut);
+                        console.log("operation");
+                        this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                        this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                        boolTours = 6-this.tour;
+                        console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
                     }
                 }
+                this.canPlay = true;
             }
             if (action === "raise") {
                 this.actionPrec = action;
@@ -469,6 +481,10 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
     }
 
     if (this.canPlay) {
+        for (let i=0; i<this.listePlayerGame.length;i++){
+            this.pot+=this.listePlayerGame[i].getTas();
+            this.listePlayerGame[i].tas=0;
+        }
         for (let i=0; i<boolTours;i++){
             this.incrementeTour();
         }
@@ -478,13 +494,9 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
         this.misePrec=0;
         this.tasHaut=0;
         boolTours=1;
-        for (let i=0; i<this.listePlayerGame.length;i++){
-            this.pot+=this.listePlayerGame[i].getTas();
-            this.listePlayerGame[i].tas=0;
-        }
     }
     console.log(this.tour);
-    console.log(this.pot)
+    console.log(this.pot);
 };
 
 Game.prototype.incrementeTour = function(){
