@@ -125,10 +125,6 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                         this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
                         this.listePlayerGame[i].jetons = 0;
                         this.listePlayerGame[i].allIn = true;
-                        console.log("name : "+this.listePlayerGame[i].getPlayerName());
-                        console.log("tasHaut : "+this.misePrec);
-                        console.log("canPlay : "+this.canPlay);
-                        break;
                     }
                 }
             }
