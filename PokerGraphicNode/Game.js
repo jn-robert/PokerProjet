@@ -105,27 +105,27 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.actionPrec = action;
                 this.misePrec = miseMin;
                 this.tasHaut = this.misePrec;
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        // if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                            this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                            this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    if (this.listePlayerGame[i].getPlayerName() === name) {
+                        // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                         // }
                     }else {
-                        this.listePlayerGame[j].tas = 0;
+                        this.listePlayerGame[i].tas = 0;
                     }
                 }
             }
             if (action === "all-in") {
                 this.actionPrec = action;
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.misePrec = this.listePlayerGame[j].jetons;
+                for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    if (this.listePlayerGame[i].getPlayerName() === name) {
+                        this.misePrec = this.listePlayerGame[i].jetons;
                         this.tasHaut = this.misePrec;
-                        this.listePlayerGame[j].tas += this.listePlayerGame[j].jetons;
-                        this.listePlayerGame[j].jetons = 0;
-                        this.listePlayerGame[j].allIn = true;
-                        console.log("name : "+this.listePlayerGame[j].getPlayerName());
+                        this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                        this.listePlayerGame[i].jetons = 0;
+                        this.listePlayerGame[i].allIn = true;
+                        console.log("name : "+this.listePlayerGame[i].getPlayerName());
                         console.log("tasHaut : "+this.misePrec);
                         console.log("canPlay : "+this.canPlay);
                         break;
@@ -133,20 +133,20 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 }
             }
             if (action === "coucher"){
-                for (let j=0;j<this.listePlayerGame.length; j++){
+                for (let i=0;i<this.listePlayerGame.length; i++){
                     if (this.listePlayerGame.length <3){
-                        if (this.listePlayerGame[j].getPlayerName() !== name){
-                            this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                            let boolJoueur = false;
+                        if (this.listePlayerGame[i].getPlayerName() !== name){
+                            this.listePlayerGame[i].ietons += this.tasHaut + this.listePlayerGame[i].getTas();
+                            let boolioueur = false;
                             for (let k =0; k<this.listePlayerTable.length; k++){
                                 for (let l = 0; l<this.listePlayerGame.length; l++){
                                     if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-                                        boolJoueur = true;
+                                        boolioueur = true;
                                     }
                                 }
-                                if (boolJoueur) {
+                                if (boolioueur) {
                                     this.listePlayerGame.push(this.listePlayerTable[k]);
-                                    boolJoueur=false;
+                                    boolioueur=false;
                                     // this.canPlay=true;
                                     this.actionPrec=null;
                                     this.misePrec=0;
@@ -160,8 +160,8 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                             // this.init(10,20);
                         }
                     }else {
-                        if (this.listePlayerGame[j].getPlayerName() === name){
-                            this.listePlayerGame.splice(j,1);
+                        if (this.listePlayerGame[i].getPlayerName() === name){
+                            this.listePlayerGame.splice(i,1);
                         }
                     }
                 }
