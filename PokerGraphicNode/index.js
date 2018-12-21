@@ -118,12 +118,14 @@ io.on('connection', (socket) => {
 
         let name = "";
         let highestIndex=0;
+        let combi="";
         highestIndex = game.evalCarte();
         if (game.tour>5) {
             // console.log(game.listePlayerGame);
             console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
             } else {
                 name = "egalite";
             }
@@ -132,7 +134,7 @@ io.on('connection', (socket) => {
         }
         socket.emit('resultAction', {
             vainqueur: name,
-            combiVainq: game.evalCards[highestIndex].handName,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
@@ -150,7 +152,7 @@ io.on('connection', (socket) => {
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
-            combiVainq: game.evalCards[highestIndex].handName,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
             tasHaut: game.tasHaut,
@@ -182,22 +184,27 @@ io.on('connection', (socket) => {
             idJoueur1 = 1;
             idJoueur2 = 0;
         }
-        let highestIndex = 0;
-        if (game.tour > 5) {
-            game.evalCarte();
-            let highestVal = -999;
-            // let highestIndex = -1;
-            for (let i = 0; i < game.evalCards.length; i++) {
-                if (highestVal < game.evalCards[i].valeurMain) {
-                    highestVal = game.evalCards[i].valeurMain;
-                    highestIndex = i;
-                }
+
+        let name = "";
+        let highestIndex=0;
+        let combi="";
+        highestIndex = game.evalCarte();
+        if (game.tour>5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
             }
+            console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
+
         socket.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
@@ -214,8 +221,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
             tasHaut: game.tasHaut,
@@ -247,22 +254,27 @@ io.on('connection', (socket) => {
             idJoueur1 = 1;
             idJoueur2 = 0;
         }
-        let highestIndex = 0;
-        if (game.tour > 5) {
-            game.evalCarte();
-            let highestVal = -999;
-            // let highestIndex = -1;
-            for (let i = 0; i < game.listePlayerGame.length; i++) {
-                if (highestVal < game.evalCards[i].valeurMain) {
-                    highestVal = game.evalCards[i].valeurMain;
-                    highestIndex = i;
-                }
+
+        let name = "";
+        let highestIndex=0;
+        let combi="";
+        highestIndex = game.evalCarte();
+        if (game.tour>5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
             }
+            console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
+
         socket.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
@@ -279,8 +291,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
             tasHaut: game.tasHaut,
@@ -311,22 +323,27 @@ io.on('connection', (socket) => {
             idJoueur1 = 1;
             idJoueur2 = 0;
         }
-        let highestIndex = 0;
-        if (game.tour > 5) {
-            game.evalCarte();
-            let highestVal = -999;
-            // let highestIndex = -1;
-            for (let i = 0; i < game.evalCards.length; i++) {
-                if (highestVal < game.evalCards[i].value) {
-                    highestVal = game.evalCards[i].value;
-                    highestIndex = i;
-                }
+
+        let name = "";
+        let highestIndex=0;
+        let combi="";
+        highestIndex = game.evalCarte();
+        if (game.tour>5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
             }
+            console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
+
         socket.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
@@ -343,8 +360,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
-            vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
-            combiVainq: game.evalCards[highestIndex].handName,
+            vainqueur: name,
+            combiVainq: combi,
             allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
             allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
             tasHaut: game.tasHaut,
@@ -377,8 +394,25 @@ io.on('connection', (socket) => {
             idJoueur2 = 0;
         }
 
+        let name = "";
+        let highestIndex=0;
+        let combi="";
+        highestIndex = game.evalCarte();
+        if (game.tour>5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
         socket.emit('resultAction', {
-            vainqueur: game.listePlayerGame[idJoueur2].getPlayerName(),
+            vainqueur: name,
             tasHaut: game.tasHaut,
             tasJoueur1: game.listePlayerGame[idJoueur1].tas,
             tasJoueur2: game.listePlayerGame[idJoueur2].tas,
@@ -393,7 +427,7 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
-            vainqueur: game.listePlayerGame[idJoueur2].getPlayerName(),
+            vainqueur: name,
             tasHaut: game.tasHaut,
             tasJoueur1: game.listePlayerGame[idJoueur1].tas,
             tasJoueur2: game.listePlayerGame[idJoueur2].tas,

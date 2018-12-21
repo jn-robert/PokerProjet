@@ -297,7 +297,6 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                             if (this.listePlayerGame[i].getPlayerName() === name) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                                // this.listePlayerGame[i].raise(this.tasHaut - this.listePlayerGame[i].getTas());
                             }
                         }
                         this.canPlay = true;
@@ -368,10 +367,10 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                         if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
+                            boolTours = 6-this.tour;
                         }
                     }
                 }
-                boolTours = 6-this.tour;
             }
             if (action === "raise") {
                 this.actionPrec = action;
