@@ -193,6 +193,7 @@ io.on('connection', (socket) => {
                     highestIndex = i;
                 }
             }
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
         socket.emit('resultAction', {
             vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
@@ -257,6 +258,7 @@ io.on('connection', (socket) => {
                     highestIndex = i;
                 }
             }
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
         socket.emit('resultAction', {
             vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),
@@ -320,6 +322,7 @@ io.on('connection', (socket) => {
                     highestIndex = i;
                 }
             }
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
         socket.emit('resultAction', {
             vainqueur: game.listePlayerGame[highestIndex].getPlayerName(),

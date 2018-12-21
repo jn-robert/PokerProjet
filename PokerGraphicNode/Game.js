@@ -82,18 +82,10 @@ Game.prototype.reset = function () {
 
 
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
-        if (this.dealer+2>=this.listePlayerGame.length){
-            this.dealer=0;
-            this.listePlayerGame[this.dealer+1].jetons -= petiteBlinde;
-            this.listePlayerGame[this.dealer].jetons -= grosseBlinde;
-        }else{
-            this.listePlayerGame[this.dealer+1].jetons -= grosseBlinde;
-            this.listePlayerGame[this.dealer+2].jetons -= petiteBlinde;
-            // this.listePlayerGame[this.dealer+1].raise(grosseBlinde);
-            // this.listePlayerGame[this.dealer].raise(petiteBlinde);
-        }
-        this.pot=petiteBlinde+grosseBlinde;
-        this.dealer++;
+    this.listePlayerGame[this.dealer+1 % this.listePlayerGame.length].jetons -= petiteBlinde;
+    this.listePlayerGame[this.dealer +2 % this.listePlayerGame.length].jetons -= grosseBlinde;
+    this.pot=petiteBlinde+grosseBlinde;
+    this.dealer++;
 };
 
 Game.prototype.joueJoueur = function(name, action, miseMin) {
@@ -119,11 +111,11 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                         this.tasHaut = this.misePrec;
                         for (let j = 0; j < this.listePlayerGame.length; j++) {
                             if (this.listePlayerGame[j].getPlayerName() === name) {
-                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                // if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
                                     this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
                                     this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                                }
-                            } else {
+                                // }
+                            }else {
                                 this.listePlayerGame[j].tas = 0;
                             }
                         }
@@ -373,7 +365,8 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.tasHaut = this.misePrec;
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.listePlayerGame[i].raise(this.tasHaut - this.listePlayerGame[i].getTas());
+                        this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                        this.listePlayerGame[i].pot+=this.tasHaut - this.listePlayerGame[i].getTas();
                     }
                 }
                 boolTours = 6-this.tour;
@@ -428,6 +421,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                     }else {
                         if (this.listePlayerGame[j].getPlayerName() === name){
                             this.listePlayerGame.splice(j,1);
+                            this.pot+=this.listePlayerGame[j].getTas();
                         }
                     }
                 }
@@ -484,10 +478,12 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
         this.tasHaut=0;
         boolTours=1;
         for (let i=0; i<this.listePlayerGame.length;i++){
+            this.pot+=this.listePlayerGame[i].getTas();
             this.listePlayerGame[i].tas=0;
         }
     }
     console.log(this.tour);
+    console.log(this.pot)
 };
 
 Game.prototype.incrementeTour = function(){

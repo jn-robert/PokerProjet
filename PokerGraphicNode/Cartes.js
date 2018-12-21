@@ -10,8 +10,8 @@ function Cartes() {
 }
 
 Cartes.prototype.giveCarte = function () {
-    // return this.cards.pop();
-    return this.cards[Math.floor(Math.random() * (this.cards.length - 1))];
+    return this.cards.pop();
+    // return this.cards[Math.floor(Math.random() * (this.cards.length - 1))];
 };
 
 Cartes.prototype.init = function () {
