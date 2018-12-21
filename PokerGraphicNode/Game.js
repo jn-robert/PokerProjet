@@ -365,8 +365,10 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.tasHaut = this.misePrec;
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                        this.listePlayerGame[i].pot+=this.tasHaut - this.listePlayerGame[i].getTas();
+                        if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
+                        }
                     }
                 }
                 boolTours = 6-this.tour;
