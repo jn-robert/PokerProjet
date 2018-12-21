@@ -43,18 +43,20 @@ Game.prototype.getRoomId = function () {
         return this.roomId;
 };
 
-    // Send an update to the opponent to update their UI's tile
-
 Game.prototype.playTurn = function () {
     socket.emit('playTurn', {room: this.getRoomId()});
 };
-// Emit an event to update other player that you've played your turn.
 
-
+/**
+ * affiche le tapis de cartes
+ */
 Game.prototype.getTapis = function() {
     return this.tapisCarte;
 };
 
+/**
+ * ajoute un joueur avec son nom, ses jetons et son id
+ */
 Game.prototype.addPlayer = function(id, name, jetons) {
     let newPlayer = new Player(id, name, jetons);
     newPlayer.game = this;
@@ -62,11 +64,13 @@ Game.prototype.addPlayer = function(id, name, jetons) {
     this.listePlayerGame.push(newPlayer);
 };
 
-//test
 Game.prototype.getTour = function () {
     return this.tour;
 };
 
+/**
+ * reinitialise le jeu
+ * */
 Game.prototype.reset = function () {
         this.pot = 0;
         if (!this.start){
@@ -80,7 +84,9 @@ Game.prototype.reset = function () {
         // this.actionPrec = null;
 };
 
-
+/**
+ * initialise les blindes du debut de jeu
+ */
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
     this.listePlayerGame[this.dealer+1 % this.listePlayerGame.length].jetons -= petiteBlinde;
     this.listePlayerGame[this.dealer +2 % this.listePlayerGame.length].jetons -= grosseBlinde;
@@ -88,6 +94,9 @@ Game.prototype.blind = function(petiteBlinde, grosseBlinde){
     this.dealer++;
 };
 
+/**
+ * permet d'executer les actions demandees par le joueur
+ */
 Game.prototype.joueJoueur = function(name, action, miseMin) {
     let indice;
     let bool = false;
@@ -475,7 +484,9 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
             this.listePlayerGame[i].setAjoue(false);
         }
     }
-
+    /**
+     * reinitialise le tour apres que chaque joueurs aient fini
+     */
     if (this.canPlay) {
         for (let i=0; i<this.listePlayerGame.length;i++){
             this.pot+=this.listePlayerGame[i].getTas();
@@ -499,6 +510,9 @@ Game.prototype.incrementeTour = function(){
     this.tour++;
 };
 
+/**
+ * fait la distribution des gains pour le(s) vainqueur(s)
+ */
 Game.prototype.distribGains = function(name){
     let testName=false;
     for (let i=0; i<this.listePlayerGame.length;i++){
@@ -515,6 +529,9 @@ Game.prototype.distribGains = function(name){
     this.pot=0;
 };
 
+/**
+ * evalue les mains de chaque joueurs et retourne l'indice du joueur qui a la main la plus forte
+ */
 Game.prototype.evalCarte = function (){
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         this.allCards.push([
@@ -552,6 +569,9 @@ Game.prototype.evalCarte = function (){
     return highestIndex;
 };
 
+/**
+ * initialise le debut du jeu
+ */
     Game.prototype.init = function(petiteBlinde, grosseBlinde) {
             this.reset();
 

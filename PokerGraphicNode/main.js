@@ -29,14 +29,10 @@ function init() {
 
     let game;
 
-    // const socket = io.connect('http://tic-tac-toe-realtime.herokuapp.com'),
+    // const socket = io.connect('myip:5000');
     const socket = io.connect('http://localhost:5000');
 
-    // roomId Id of the room in which the game is running on the server.
-
-
     // Create a new game. Emit newGame event.
-    /*var game;*/
     $('#new').on('click', () => {
         // game = new Game($('#room').val());
         const name = $('#nameNew').val();
@@ -78,7 +74,7 @@ function init() {
     });
 
     /**
-     * If player creates the game, he'll be P1(X) and has the first turn.
+     * If player creates the game, he'll be P1 and has the first turn.
      * This event is received when opponent connects to the room.
      */
     socket.on('player1', (data) => {
@@ -89,7 +85,7 @@ function init() {
     });
 
     /**
-     * Joined the game, so player is P2(O).
+     * Joined the game, so player is P2.
      * This event is received when P2 successfully joins the game room.
      */
     socket.on('player2', (data) => {
@@ -177,9 +173,13 @@ function init() {
     });
 
     $('#exit').on('click', () => {
-        location.reload();
+        // socket.leave(data.room);
+        location.reload(); //retourne a la page d'accueil du jeu
     });
 
+    /**
+     * change l'affichage en fonction du resultat envoyer par le serveur
+     */
     socket.on('resultAction', (data) => {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 

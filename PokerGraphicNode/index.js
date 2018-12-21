@@ -21,6 +21,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'game.html'));
 });
 
+/**
+ * connection a la socket puis execution des demandes et renvoi de valeurs du jeu pour 2 personnes
+ */
 io.on('connection', (socket) => {
 
     // Create a new game room and notify the creator of game.
