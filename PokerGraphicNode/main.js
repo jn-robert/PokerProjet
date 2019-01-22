@@ -84,6 +84,10 @@ function init() {
 
 
 
+    //information de connection d'un nouveau membre
+    socket.on('nouveau_client', function(name) {
+        $('#zone_chat').prepend('<p><em>' + name + ' a rejoint la conversation</em></p>');
+    })
 
 
     /**
