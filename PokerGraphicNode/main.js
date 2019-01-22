@@ -90,6 +90,11 @@ function init() {
     })
 
 
+
+
+    //partie qui ajoute le message dans la zone de chat
+
+
     /**
      * Joined the game, so player is P2.
      * This event is received when P2 successfully joins the game room.
