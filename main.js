@@ -102,6 +102,16 @@ function init() {
     });
 
 
+    //partie qui ajoute le message dans la zone de chat
+    function insereMessage(name, message) {
+        $('#zone_chat').prepend('<p><strong>' + name + '</strong> ' + message + '</p>');
+    }
+    socket.on('player1', (data) => {
+        const message = `Hello, ${data.name}`;
+        $('#userHello').html(message);
+        player.setCurrentTurn(true);
+        // game.addPlayer(player.getId(), player.getPlayerName(), player.getJetons());
+    });
 
     /**
      * Joined the game, so player is P2.
