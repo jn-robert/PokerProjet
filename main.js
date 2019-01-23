@@ -77,35 +77,6 @@ function init() {
      * If player creates the game, he'll be P1 and has the first turn.
      * This event is received when opponent connects to the room.
      */
-    //affichage suite a reception
-    socket.on('message', function(data) {
-        insereMessage(data.name, data.message)
-    })
-
-
-
-    //information de connection d'un nouveau membre
-    socket.on('nouveau_client', function(name) {
-        $('#zone_chat').prepend('<p><em>' + name + ' a rejoint la conversation</em></p>');
-    })
-
-
-
-
-    //partie qui ajoute le message dans la zone de chat
-    $('#formulaire_chat').submit(function () {
-        var message = $('#message').val(); //cf doc socket.io
-        socket.emit('message', message);
-        insereMessage(name, message);
-        $('#message').val('').focus();
-        return false;
-    });
-
-
-    //partie qui ajoute le message dans la zone de chat
-    function insereMessage(name, message) {
-        $('#zone_chat').prepend('<p><strong>' + name + '</strong> ' + message + '</p>');
-    }
     socket.on('player1', (data) => {
         const message = `Hello, ${data.name}`;
         $('#userHello').html(message);
