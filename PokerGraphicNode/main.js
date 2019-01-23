@@ -77,6 +77,15 @@ function init() {
      * If player creates the game, he'll be P1 and has the first turn.
      * This event is received when opponent connects to the room.
      */
+
+
+    socket.on('player1', (data) => {
+        const message = `Hello, ${data.name}`;
+        $('#userHello').html(message);
+        player.setCurrentTurn(true);
+        // game.addPlayer(player.getId(), player.getPlayerName(), player.getJetons());
+    });
+    
     //affichage suite a reception
     socket.on('message', function(data) {
         insereMessage(data.name, data.message)
