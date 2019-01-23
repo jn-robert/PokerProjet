@@ -177,6 +177,15 @@ function init() {
         location.reload(); //retourne a la page d'accueil du jeu
     });
 
+    $('#envoi_message').on('click', () => {
+        var message = document.getElementById("message").value;
+        socket.emit('message', {pseudo: player.name, message: message});
+    });
+
+    socket.on('afficheMessage', (data) => {
+        $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+    });
+
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
      */
