@@ -102,8 +102,23 @@
 							</TD></TR>
 						</TABLE>
 				</TABLE>
+                <body>
+
+                <form action="/" method="post" id="formulaire_chat">
+                    <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" size="50" autofocus />
+                    <input type="submit" id="envoi_message" value="Send" />
+                </form>
+
+                <section id="zone_chat">
+                    <!--endroit ou les messages apparaissent-->
+                </section>
+
+                <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+                <script src="/socket.io/socket.io.js"></script>
+                </body>
 			</div>
 		</div>
+
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="main.js">document.onload = init()</script>
