@@ -1,9 +1,8 @@
-function traceStats() {
+function traceStats(pseudo) {
+    infoJoueur(pseudo);
+    statsMise(pseudo);
     new Morris.Line({
-        // ID of the element in which to draw the chart.
         element: 'statsPartie',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
         data: [
             { year: '2008', value: 20 },
             { year: '2009', value: 30 },
@@ -11,12 +10,8 @@ function traceStats() {
             { year: '2011', value: 40 },
             { year: '2012', value: 100 }
         ],
-        // The name of the data record attribute that contains x-values.
         xkey: 'year',
-        // A list of names of data record attributes that contain y-values.
         ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
         labels: ['Value']
     });
 
@@ -37,4 +32,24 @@ function traceStats() {
             {label: "Raise", value: 8},
         ]
     });
+}
+
+function infoJoueur(pseudo) {
+    var msg = "<table border='2'><tr><td>";
+    msg += "Pseudo : "+pseudo+"<br>";
+    msg += "Prenom : "+"<br>";
+    msg += "Nom : "+"<br>";
+    msg += "Date d'inscription : "+"<br>";
+    msg += "Nombre de jetons : "+"<br>";
+    msg += "</table></td></tr>";
+    document.getElementById("infoJoueur").innerHTML = msg;
+}
+
+function statsMise(pseudo) {
+    var miseMax = 0;
+    var miseMoyenne = 0;
+    var table = "<table border='2'><thead><tr><td>Mise moyenne</td><td>Mise max</td></tr></thead>";
+    table += "<tbody><tr><td>"+miseMoyenne+"</td><td>"+miseMax+"</td></tr></tbody>";
+    table += "</table>";
+    document.getElementById("statsMise").innerHTML = table;
 }

@@ -10,23 +10,20 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 <body>
-<a href="javascript:traceStats()">Test</a>
-<div id="statsPartie" style="height: 250px"></div>
-<div id="statsVictoire" style="height: 250px"></div>
-<div id="statsAction" style="height: 250px"></div>
-<div id="statsTableau">
-    <table>
-        <thead>
-            <tr>
-                <th>Mise moyenne</th><th>Mise max</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>0</th><th>0</th>
-            </tr>
-        </tbody>
-    </table>
+<div id="listeJoueur">
+    <script>
+        var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5"];
+        var msg = "";
+        for (var i = 0; i < tab.length ; i++) {
+            msg += "<button onclick='traceStats(\""+tab[i]+"\")'>"+ tab[i]+"</button><br>";
+        }
+        document.getElementById("listeJoueur").innerHTML = msg;
+    </script>
 </div>
+<div id="infoJoueur"></div>
+<div id="statsVictoire"></div>
+<div id="statsMise"></div>
+<div id="statsAction"></div>
+<div id="statsPartie"></div>
 </body>
 </html>
