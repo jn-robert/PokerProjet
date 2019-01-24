@@ -56,6 +56,7 @@ CREATE TABLE Action (
 	nbAllIn INT,
 	nbCheck INT,
 	nbFold INT,
+	nbRaise INT,
 	PRIMARY KEY(idPlayer, idPartie),
 	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer),
 	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
