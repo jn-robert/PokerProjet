@@ -183,7 +183,7 @@ function init() {
     });
 
     socket.on('afficheMessage', (data) => {
-        $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+        $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong>' + data.message + '</p>');
     });
 
     /**
