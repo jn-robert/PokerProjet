@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Poker</title>
+	</head>
+	<body onload="init()">
+		<div class="container">
+			<div class="menu">
+				<h1>Poker</h1>
+				<h4>Creer une partie</h4>
+				<input type="text" name="name" id="nameNew" placeholder="Nom joueur" required>
+				<input type="text" name="name" id="jetonNew" placeholder="Nombre jetons" required>
+				<button id="new">Nouvelle partie</button>
+				<br><br>
+				<h4>Rejoindre une partie</h4>
+				<input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required>
+				<input type="text" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required>
+				<input type="text" name="room" id="room" placeholder="No du salon" required>
+				<button id="join">Rejoindre une partie</button>
+			</div>
+			<div class="gameBoard" style="display: none;">
+				<h2 id="userHello"></h2>
+				<h3 id="turn">En attente d'aversaire</h3>
+				<Table border=5 bgcolor="#006726">
+					<div id="T1" style="top:230px;left:800px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><img border=0 name=T1 width=80px height=125px></P>
+					</div>
+					<div id="T2" style="top:230px;left:700px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG BORDER=0 name=T2 width=80px height=125px></P>
+					</div>
+					<div id="T3" style="top:230px;left:600px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG BORDER=0 name=T3 width=80px height=125px></P>
+					</div>
+
+					<div id="T4" style="top:230px;left:500px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG BORDER=0 name=T4 width=80px height=125px></P>
+					</div>
+
+					<div id="T5" style="top:230px;left:400px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG BORDER=0 name=T5 width=80px height=125px></P>
+					</div>
+
+					<div id="CarteJoueur1" style="top:400px;left:315px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur1 width=80px height=125px></P>
+					</div>
+					<div id="CarteJoueur2" style="top:400px;left:410px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur2 width=80px height=125px></P>
+					</div>
+
+					<div id="CarteJoueur3" style="top:140px;left:50px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=125px height=80px></P>
+					</div>
+					<div id="CarteJoueur4" style="top:245px;left:50px;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=125px height=80px></P>
+					</div>
+
+					<!--<div id="CarteJoueur5" style="top:275;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur></P>
+					</div>
+					<div id="CarteJoueur6" style="top:375;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur></P>
+					</div>-->
+
+
+					<div id="texte" style="top:475px;left:500px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><label id="label1">0 jetons</label></P>
+					</div>
+					<div id="texte3" style="top: 425px; left: 500px;border: 0px; background-color:#006726;visibility:visible;position:absolute">
+						<p ALIGN=center><label id="label3" ></label></p>
+					</div>
+
+					<div id="texte2" style="top:240px;left:200px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><label id="label2">0 jetons</label></P>
+					</div>
+					<div id="texte5" style="top: 270px; left: 200px;border: 0px; background-color:#006726;visibility:visible;position:absolute">
+							<p ALIGN=center><label id="label4" ></label></p>
+					</div>
+					<!--<div id="texte3" style="top:475px;left:500px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><label id="label0">0 jetons</label></P>
+					</div>-->
+					<div id="texte4" style="top:190px;left:450px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+						<P ALIGN=center ><label id="pot">Pot : 0</label></P>
+					</div>
+
+					<div id="texteGagnant" style="top:170px; left: 500px; border: 0px; background-color:#006726;visibility:visible;position:absolute">
+						<p align=center><label id="gagnant"></label></p>
+					</div>
+
+					<TR><TD>
+						<TABLE width=900 height=500>
+							<TR><TD valign="top" align="center" height="40">&nbsp;</TD></TR>
+							<TR><TD valign="top" align="center">
+								<button id="start">start</button>
+							</TD></TR>
+							<TR><TD valign="bottom" align="center">
+								<button id="all-in">all-in</button>
+								<button id="check">check</button>
+								<button id="suivre">suivre</button>
+								<button id="raise">relancer</button>
+								<button id="coucher">se coucher</button>
+								<button id="exit">quitter table</button>
+							</TD></TR>
+						</TABLE>
+				</TABLE>
+                <body>
+
+
+                <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" size="50" autofocus />
+				<input type="submit" id="envoi_message" value="Send" />
+
+                <section id="zone_chat">
+                    <!--endroit ou les messages apparaissent-->
+                </section>
+
+                <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+                <script src="/socket.io/socket.io.js"></script>
+                </body>
+			</div>
+		</div>
+
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="main.js">document.onload = init()</script>
+		<script src="Game.js"></script>
+	</body>
+</html>
