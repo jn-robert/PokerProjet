@@ -485,6 +485,14 @@ io.on('connection', (socket) => {
         });
         // socket.setBroadcast(true);
     });
+
+
+
+    socket.on('message', (data) => {
+        console.log(data.message);
+        socket.emit('afficheMessage', {pseudo : data.pseudo, message: data.message});
+        socket.broadcast.emit('afficheMessage', {pseudo : data.pseudo, message: data.message});
+    });
 });
 
 server.listen(process.env.PORT || 5000);
