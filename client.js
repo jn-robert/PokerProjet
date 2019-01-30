@@ -78,7 +78,6 @@ function init() {
         const message = `Hello, ${data.name}`;
         $('#userHello').html(message);
         player.setCurrentTurn(true);
-        // game.addPlayer(player.getId(), player.getPlayerName(), player.getJetons());
     });
 
     /**
@@ -135,11 +134,13 @@ function init() {
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+
         document.T1.src = "image/dos.png";
         document.T2.src = "image/dos.png";
         document.T3.src = "image/dos.png";
         document.T4.src = "image/dos.png";
         document.T5.src = "image/dos.png";
+
         document.getElementById('texteGagnant').innerHTML = "";
     });
 
