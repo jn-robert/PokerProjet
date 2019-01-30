@@ -34,7 +34,6 @@ function init() {
 
     // Create a new game. Emit newGame event.
     $('#new').on('click', () => {
-        // game = new Game($('#room').val());
         const name = $('#nameNew').val();
         const jeton = $('#jetonNew').val();
         if (!name || !jeton) {
@@ -63,13 +62,11 @@ function init() {
     // New Game created by current client. Update the UI and create new Game var.
     // game = new Game();
     socket.on('newGame', (data) => {
-        const message =
-            `Hello, ${data.name}. no du salon: 
-      ${data.room}`;
-
+        const message = `Hello, ${data.name}. no du salon: ${data.room}`;
         // Create game for player 1
         game = new Game(); //data.room
         game.displayBoard(message);
+
 
     });
 
@@ -88,10 +85,9 @@ function init() {
      * Joined the game, so player is P2.
      * This event is received when P2 successfully joins the game room.
      */
-    socket.on('player2', (data) => {
+    socket.on('player', (data) => {
         const message = `Hello, ${data.name}`;
-
-        // Create game for player 2
+        // Create game for player
         game = new Game(); //data.room
         game.displayBoard(message);
         player.setCurrentTurn(false);

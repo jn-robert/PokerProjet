@@ -4,9 +4,6 @@ var Game = require('./Game');
 const Cartes = require('./Cartes');
 const Player = require('./Player');
 
-let game = new Game();
-
-
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -14,6 +11,7 @@ io.set('log level', 1);
 
 let rooms = 0;
 let id = 0;
+let game;
 
 let compteurRestartGame=0;
 
@@ -31,19 +29,18 @@ io.on('connection', (socket) => {
     // Create a new game room and notify the creator of game.
     socket.on('createGame', (data) => {
         socket.join(`${++rooms}`);
-        socket.emit('newGame', {name: data.name, room: `${rooms}`});
-        // game = new Game();
+        game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
+        socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
 
-    // Connect the Player 2 to the room he requested. Show error if room full.
+    // Connect the Player to the room he requested. Show error if room full.
     socket.on('joinGame', function (data) {
         var room = io.nsps['/'].adapter.rooms[data.room];
         if (room && room.length <= 9) {
             socket.join(data.room);
-            socket.broadcast.emit('player1', {name: game.listePlayerGame[0].getPlayerName()});
-            socket.emit('player2', {name: data.name, room: data.room});
             game.addPlayer(id++, data.name, data.jeton);
+            socket.emit('player', {name: data.name, room: data.room});
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
         }
