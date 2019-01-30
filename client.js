@@ -136,6 +136,7 @@ function init() {
         */
         document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+        console.log(data.cartes[0] +" "+ data.cartes[1])
 
         document.T1.src = "image/dos.png";
         document.T2.src = "image/dos.png";
