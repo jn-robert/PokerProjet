@@ -88,10 +88,12 @@ Game.prototype.reset = function () {
  * initialise les blindes du debut de jeu
  */
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
-    this.listePlayerGame[this.dealer+1 % this.listePlayerGame.length].jetons -= petiteBlinde;
-    this.listePlayerGame[this.dealer +2 % this.listePlayerGame.length].jetons -= grosseBlinde;
+    console.log("dealer+1: " + this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons);
+    console.log("dealer+2: " + this.listePlayerGame[(this.dealer+2) % this.listePlayerGame.length].jetons);
+    this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons -= petiteBlinde;
+    this.listePlayerGame[(this.dealer +2) % this.listePlayerGame.length].jetons -= grosseBlinde;
     this.pot=petiteBlinde+grosseBlinde;
-    this.dealer++;
+    this.dealer=(this.dealer+1)%this.listePlayerGame.length;
 };
 
 /**
@@ -592,6 +594,7 @@ Game.prototype.evalCarte = function (){
 
     Game.prototype.continueGameAfterTimeOut = function(){
         // this.continueGame(10,20);
+        // this.init(10,20);
     };
 
     Game.prototype.miseEnAttenteFinGame = function () {

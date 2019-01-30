@@ -307,7 +307,7 @@ function init() {
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            // socket.emit('continueGame', {playerName: player.name});
+            socket.emit('continueGame', {playerName: player.name});
         }
         let compteur = 0;
         let compteur2 = 0;
