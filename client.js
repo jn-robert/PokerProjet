@@ -130,8 +130,10 @@ function init() {
 
         console.log(data.pot);
         document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+        /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+        */
         document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
 

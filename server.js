@@ -14,7 +14,7 @@ let id = 0;
 let game;
 let idJoueur = [];
 
-let compteurRestartGame=0;
+let compteurRestartGame = 0;
 
 app.use(express.static('.'));
 
@@ -104,77 +104,401 @@ io.on('connection', (socket) => {
         }
 
         for (let i = 0; i < game.listePlayerGame.length; i++) {
-                socket.emit('1stR', {
-                    booleanCurrentTurn: !game.listePlayerGame[idJoueur[0]].getAjoue(),
-                    tour: game.getTour(),
-                    pot: game.pot,
-                    name: game.listePlayerGame[idJoueur[0]].getPlayerName(),
+            socket.emit('1stR', {
+                booleanCurrentTurn: !game.listePlayerGame[idJoueur[0]].getAjoue(),
+                tour: game.getTour(),
+                pot: game.pot,
+                name: game.listePlayerGame[idJoueur[0]].getPlayerName(),
 
-                    jetons1: game.listePlayerGame[idJoueur[i]].getJetons(),
+                /*
+                jetons1: game.listePlayerGame[idJoueur[i]].getJetons(),
+                */
 
-                    cartes: game.listePlayerGame[idJoueur[0]].getMain(),
-                    cartesTapis: game.getTapis()
-                });
-        }
-
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            for (let j = 0; j < game.listePlayerGame.length; j++) {
-
-                socket.broadcast.emit('1stR', {
-                    booleanCurrentTurn: !game.listePlayerGame[idJoueur[i]].getAjoue(),
-                    tour: game.getTour(),
-                    pot: game.pot,
-                    name: game.listePlayerGame[idJoueur[i]].getPlayerName(),
-
-                    jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
-
-                    cartes: game.listePlayerGame[idJoueur[i]].getMain(),
-                    cartesTapis: game.getTapis()
-                });
-            }
-        }
-
+                cartes: game.listePlayerGame[idJoueur[0]].getMain(),
+                cartesTapis: game.getTapis()
             });
+            console.log("------card player " + game.listePlayerGame[idJoueur[i]].getPlayerName() + "-----")
+            console.log(game.listePlayerGame[idJoueur[i]].getMain())
 
-        socket.on('check', (data) => {
-            // console.log(data.playerName);
-            game.joueJoueur(data.playerName, "check", 10);
+        }
 
+        for (let i = 1; i < game.listePlayerGame.length; i++) {
+            socket.broadcast.emit('1stR', {
+                booleanCurrentTurn: !game.listePlayerGame[idJoueur[i]].getAjoue(),
+                tour: game.getTour(),
+                pot: game.pot,
+                name: game.listePlayerGame[idJoueur[i]].getPlayerName(),
+
+                /*
+                jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
+                */
+
+                cartes: game.listePlayerGame[idJoueur[i]].getMain(),
+                cartesTapis: game.getTapis()
+            });
+        }
+    });
+
+    socket.on('check', (data) => {
+        // console.log(data.playerName);
+        game.joueJoueur(data.playerName, "check", 10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            idJoueur1 = 0;
+            idJoueur2 = 1;
+        } else {
+            idJoueur1 = 1;
+            idJoueur2 = 0;
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.tour > 5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+        socket.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[idJoueur1].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
+            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            cartesTapis: game.getTapis()
+        });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[idJoueur2].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
+            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            cartesTapis: game.getTapis()
+        });
+    });
+
+    socket.on('suivre', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "suivre", 10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            idJoueur1 = 0;
+            idJoueur2 = 1;
+        } else {
+            idJoueur1 = 1;
+            idJoueur2 = 0;
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.tour > 5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
+        socket.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
+            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            cartesTapis: game.getTapis()
+        });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
+            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            cartesTapis: game.getTapis()
+        });
+    });
+
+    socket.on('raise', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "raise", 20);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            idJoueur1 = 0;
+            idJoueur2 = 1;
+        } else {
+            idJoueur1 = 1;
+            idJoueur2 = 0;
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.tour > 5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
+        socket.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
+            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            cartesTapis: game.getTapis()
+        });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur2].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur1].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
+            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            cartesTapis: game.getTapis()
+        });
+    });
+
+    socket.on('all-in', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "all-in", 10);
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            idJoueur1 = 0;
+            idJoueur2 = 1;
+        } else {
+            idJoueur1 = 1;
+            idJoueur2 = 0;
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.tour > 5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
+        socket.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
+            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            cartesTapis: game.getTapis()
+        });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
+            allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur2].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur1].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
+            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            cartesTapis: game.getTapis()
+        });
+    });
+
+    socket.on('coucher', (data) => {
+        console.log(data.playerName);
+        game.joueJoueur(data.playerName, "coucher", 10);
+
+        let idJoueur1;
+        let idJoueur2;
+        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            idJoueur1 = 0;
+            idJoueur2 = 1;
+        } else {
+            idJoueur1 = 1;
+            idJoueur2 = 0;
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.tour > 5) {
+            // console.log(game.listePlayerGame);
+            console.log(highestIndex);
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            console.log(name);
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
+        socket.emit('resultAction', {
+            vainqueur: name,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
+            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            cartesTapis: game.getTapis()
+        });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            tasHaut: game.tasHaut,
+            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            tour: game.getTour(),
+            pot: game.pot,
+            name: game.listePlayerGame[0].getPlayerName(),
+            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
+            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
+            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            cartesTapis: game.getTapis()
+        });
+    });
+    socket.on('continueGame', (data) => {
+        compteurRestartGame++;
+        if (compteurRestartGame === game.listePlayerTable.length) {
+            console.log(game.listePlayerGame[0].getJetons());
+            game.init(10, 20);
             let idJoueur1;
             let idJoueur2;
-            if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+            if (game.dealer === 0) {
                 idJoueur1 = 0;
+                game.listePlayerGame[0].setAjoue(false);
                 idJoueur2 = 1;
+                game.listePlayerGame[1].setAjoue(true);
             } else {
                 idJoueur1 = 1;
+                game.listePlayerGame[1].setAjoue(false);
                 idJoueur2 = 0;
+                game.listePlayerGame[0].setAjoue(true);
             }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.tour > 5) {
-                // console.log(game.listePlayerGame);
-                console.log(highestIndex);
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                console.log(name);
-                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-            }
-            socket.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
+            socket.emit('1stR', {
                 booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
                 tour: game.getTour(),
                 pot: game.pot,
@@ -184,16 +508,7 @@ io.on('connection', (socket) => {
                 cartes: game.listePlayerGame[idJoueur1].getMain(),
                 cartesTapis: game.getTapis()
             });
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
+            socket.broadcast.emit('1stR', {
                 booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
                 tour: game.getTour(),
                 pot: game.pot,
@@ -203,327 +518,15 @@ io.on('connection', (socket) => {
                 cartes: game.listePlayerGame[idJoueur2].getMain(),
                 cartesTapis: game.getTapis()
             });
-        });
-
-        socket.on('suivre', (data) => {
-            console.log(data.playerName);
-            game.joueJoueur(data.playerName, "suivre", 10);
-
-            let idJoueur1;
-            let idJoueur2;
-            if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-                idJoueur1 = 0;
-                idJoueur2 = 1;
-            } else {
-                idJoueur1 = 1;
-                idJoueur2 = 0;
-            }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.tour > 5) {
-                // console.log(game.listePlayerGame);
-                console.log(highestIndex);
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                console.log(name);
-                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-            }
-
-            socket.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-                cartes: game.listePlayerGame[idJoueur1].getMain(),
-                cartesTapis: game.getTapis()
-            });
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-                cartes: game.listePlayerGame[idJoueur2].getMain(),
-                cartesTapis: game.getTapis()
-            });
-        });
-
-        socket.on('raise', (data) => {
-            console.log(data.playerName);
-            game.joueJoueur(data.playerName, "raise", 20);
-
-            let idJoueur1;
-            let idJoueur2;
-            if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-                idJoueur1 = 0;
-                idJoueur2 = 1;
-            } else {
-                idJoueur1 = 1;
-                idJoueur2 = 0;
-            }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.tour > 5) {
-                // console.log(game.listePlayerGame);
-                console.log(highestIndex);
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                console.log(name);
-                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-            }
-
-            socket.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-                cartes: game.listePlayerGame[idJoueur1].getMain(),
-                cartesTapis: game.getTapis()
-            });
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur2].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur1].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-                cartes: game.listePlayerGame[idJoueur2].getMain(),
-                cartesTapis: game.getTapis()
-            });
-        });
-
-        socket.on('all-in', (data) => {
-            console.log(data.playerName);
-            game.joueJoueur(data.playerName, "all-in", 10);
-            let idJoueur1;
-            let idJoueur2;
-            if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-                idJoueur1 = 0;
-                idJoueur2 = 1;
-            } else {
-                idJoueur1 = 1;
-                idJoueur2 = 0;
-            }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.tour > 5) {
-                // console.log(game.listePlayerGame);
-                console.log(highestIndex);
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                console.log(name);
-                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-            }
-
-            socket.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-                cartes: game.listePlayerGame[idJoueur1].getMain(),
-                cartesTapis: game.getTapis()
-            });
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
-                allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur2].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur1].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-                cartes: game.listePlayerGame[idJoueur2].getMain(),
-                cartesTapis: game.getTapis()
-            });
-        });
-
-        socket.on('coucher', (data) => {
-            console.log(data.playerName);
-            game.joueJoueur(data.playerName, "coucher", 10);
-
-            let idJoueur1;
-            let idJoueur2;
-            if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-                idJoueur1 = 0;
-                idJoueur2 = 1;
-            } else {
-                idJoueur1 = 1;
-                idJoueur2 = 0;
-            }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.tour > 5) {
-                // console.log(game.listePlayerGame);
-                console.log(highestIndex);
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                console.log(name);
-                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-            }
-
-            socket.emit('resultAction', {
-                vainqueur: name,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-                cartes: game.listePlayerGame[idJoueur1].getMain(),
-                cartesTapis: game.getTapis()
-            });
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                tasHaut: game.tasHaut,
-                tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-                tasJoueur2: game.listePlayerGame[idJoueur2].tas,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[0].getPlayerName(),
-                jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-                jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-                cartes: game.listePlayerGame[idJoueur2].getMain(),
-                cartesTapis: game.getTapis()
-            });
-        });
-        socket.on('continueGame', (data) => {
-            compteurRestartGame++;
-            if (compteurRestartGame === game.listePlayerTable.length) {
-                console.log(game.listePlayerGame[0].getJetons());
-                game.init(10, 20);
-                let idJoueur1;
-                let idJoueur2;
-                if (game.dealer === 0) {
-                    idJoueur1 = 0;
-                    game.listePlayerGame[0].setAjoue(false);
-                    idJoueur2 = 1;
-                    game.listePlayerGame[1].setAjoue(true);
-                } else {
-                    idJoueur1 = 1;
-                    game.listePlayerGame[1].setAjoue(false);
-                    idJoueur2 = 0;
-                    game.listePlayerGame[0].setAjoue(true);
-                }
-                socket.emit('1stR', {
-                    booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
-                    tour: game.getTour(),
-                    pot: game.pot,
-                    name: game.listePlayerGame[idJoueur1].getPlayerName(),
-                    jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-                    jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-                    cartes: game.listePlayerGame[idJoueur1].getMain(),
-                    cartesTapis: game.getTapis()
-                });
-                socket.broadcast.emit('1stR', {
-                    booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
-                    tour: game.getTour(),
-                    pot: game.pot,
-                    name: game.listePlayerGame[idJoueur2].getPlayerName(),
-                    jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-                    jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-                    cartes: game.listePlayerGame[idJoueur2].getMain(),
-                    cartesTapis: game.getTapis()
-                });
-                compteurRestartGame = 0;
-            }
-        });
-
-
-        socket.on('message', (data) => {
-            console.log(data.message);
-            socket.emit('afficheMessage', {pseudo: data.pseudo, message: data.message});
-            socket.broadcast.emit('afficheMessage', {pseudo: data.pseudo, message: data.message});
-        });
+            compteurRestartGame = 0;
+        }
     });
+
+
+    socket.on('message', (data) => {
+        console.log(data.message);
+        socket.emit('afficheMessage', {pseudo: data.pseudo, message: data.message});
+        socket.broadcast.emit('afficheMessage', {pseudo: data.pseudo, message: data.message});
+    });
+});
 server.listen(process.env.PORT || 5000);
