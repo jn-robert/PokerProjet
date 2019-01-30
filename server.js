@@ -47,8 +47,6 @@ io.on('connection', (socket) => {
         }
     });
 
-    // console.log(game);
-
     /**
      * Handle the turn played by either player and notify the other.
      */
@@ -68,7 +66,7 @@ io.on('connection', (socket) => {
     socket.on('start', (data) => {
         console.log(game.listePlayerGame[0].getJetons());
         game.init(10, 20);
-        // console.log(game.pot);
+
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             idJoueur[i] = i;
         }
@@ -79,7 +77,6 @@ io.on('connection', (socket) => {
                 for (let i = 0; i < game.listePlayerGame.length && i !== 0; i++) {
                     game.listePlayerGame[i].setAjoue(true);
                 }
-
                 break;
             case game.listePlayerGame[1].getPlayerName():
                 game.listePlayerGame[1].setAjoue(false);
@@ -139,15 +136,14 @@ io.on('connection', (socket) => {
                 */
 
                 cartes: game.listePlayerGame[idJoueur[0]].getMain(),
-
                 cartesTapis: game.getTapis()
             });
             console.log("------card player " + game.listePlayerGame[idJoueur[i]].getPlayerName() + "-----")
             console.log(game.listePlayerGame[idJoueur[i]].getMain())
-
         }
 
         for (let i = 1; i < game.listePlayerGame.length; i++) {
+            //plus facile pour repartir les jetons apres je pense
             switch (i) {
                 case 1:
                     socket.broadcast.emit('1stR', {
