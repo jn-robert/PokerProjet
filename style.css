@@ -1,6 +1,6 @@
 
 #texte {
-top:500px;
+top:525px;
 left:-150px;
 border:0px;
 visibility:visible;
@@ -16,8 +16,8 @@ position:absolute;
 }
 
 #texte2{
- top:290px;
- left:-400px;
+ top:310px;
+ left:-375px;
  border:0px;
  visibility:visible;
  position:absolute;
@@ -32,7 +32,7 @@ position:absolute;
 }
 
 #texte4{
-top: 410px;
+top: 430px;
 left: 500px;
 border: 0px;
 visibility:visible;
@@ -46,6 +46,45 @@ border: 0px;
 visibility:visible;
 position:absolute;
 }
+
+#CarteJoueur1{
+ top:500px;
+ left:650px;
+ width:20px;
+ border:0px;
+ visibility:visible;
+ position:absolute;
+}
+
+#CarteJoueur2{
+ top:500px;
+ left:700px;
+ width:20px;
+ border:0px;
+ visibility:visible;
+ position:absolute;
+}
+
+#CarteJoueur3{
+ top:350px;
+ left:325px;
+ width:20px;
+ border:0px;
+ visibility:visible;
+ position:absolute;
+}
+
+#CarteJoueur4{
+ top:400px;
+ left:325px;
+ width:20px;
+ border:0px;
+ visibility:visible;
+ position:absolute;
+}
+
+
+
 
 
 

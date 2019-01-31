@@ -62,7 +62,7 @@ function init() {
     // New Game created by current client. Update the UI and create new Game var.
     // game = new Game();
     socket.on('newGame', (data) => {
-        const message = `Hello, ${data.name}. no du salon: ${data.room}`;
+        const message = `Hello, ${data.name}. Vous êtes dans le salon numéro: ${data.room}`;
         // Create game for player 1
         game = new Game(); //data.room
         game.displayBoard(message);

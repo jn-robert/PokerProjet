@@ -10,6 +10,46 @@
 	document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() +  " à " + start.getHours() + ":" +start.getMinutes();
 	}
 	</script>
+	<nav class="navbar navbar-inverse" role="navigation" >
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a   href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+					<li><a href="aboutus.html">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+					<li class="dropdown">
+						<a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="contactus.html#">Main Courses</a></li>
+							<li><a href="contactus.html#">Bootstrap</a></li>
+							<li><a href="contactus.html#">Asp</a></li>
+							<li><a href="contactus.html#">SQl</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">PHP</li>
+							<li><a href="contactus.html#">MySQl</a></li>
+
+						</ul>
+					</li>
+					<li><a href="#"><span class="fa fa-envelope-o"></span> Contact</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+				</ul>
+
+
+			</div>
+		</div>
+	</nav>
 </head>
 
 <body onload="init()">
@@ -28,8 +68,8 @@
 		<button id="join">Rejoindre une partie</button>
 	</div>
 	<div class="gameBoard" style="display: none;">
-		<h2 id="userHello"></h2>
-		<h3 id="turn">En attente d'aversaire</h3>
+		<h4 id="userHello"></h4>
+		<h5 id="turn">En attente d'aversaire</h5>
 		<Table border=5 table style="background-image:url(image/table.jpg); background-repeat:repeat; background-size: cover;">
 			<div id="T1" style="top:300px;left:875px;width:20px;border:0px;visibility:visible;position:absolute">
 				<P ALIGN=center ><img border=0 name=T1 width=40px height=60px></P>
@@ -49,17 +89,17 @@
 				<P ALIGN=center ><IMG BORDER=0 name=T5 width=40px height=60px></P>
 			</div>
 
-			<div id="CarteJoueur1" style="top:475px;left:650px;width:20px;border:0px;visibility:visible;position:absolute">
+			<div id="CarteJoueur1">
 				<P ALIGN=center ><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur1 width=40px height=60px></P>
 			</div>
-			<div id="CarteJoueur2" style="top:475px;left:700px;width:20px;border:0px;visibility:visible;position:absolute">
+			<div id="CarteJoueur2">
 				<P ALIGN=center ><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur2 width=40px height=60px></P>
 			</div>
 
-			<div id="CarteJoueur3" style="top:325px;left:325px;width:20px;border:0px;visibility:visible;position:absolute">
+			<div id="CarteJoueur3">
 				<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=60px height=40px></P>
 			</div>
-			<div id="CarteJoueur4" style="top:375px;left:325px;width:20px;border:0px;visibility:visible;position:absolute">
+			<div id="CarteJoueur4">
 				<P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=60px height=40px></P>
 			</div>
 
