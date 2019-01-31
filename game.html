@@ -4,6 +4,12 @@
 	<title>Poker</title>
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script>
+	function date(){
+	var start = new Date();
+	document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() +  " à " + start.getHours() + ":" +start.getMinutes();
+	}
+	</script>
 </head>
 
 <body onload="init()">
@@ -108,17 +114,22 @@
 
 
 		<input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" size="50" autofocus />
-		<input type="submit" id="envoi_message" value="Send" />
+		<input type="submit" id="envoi_message" value="Send" onclick="date()"/>
 
-		<section id="zone_chat">
-			<!--endroit ou les messages apparaissent-->
-		</section>
+
+			<div class="container darker">
+				<section id="zone_chat">
+				<span id="date"></span>
+				</section>
+			</div>
+
 
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		</body>
 	</div>
 </div>
+
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
