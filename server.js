@@ -142,7 +142,6 @@ io.on('connection', (socket) => {
         console.log(game.listePlayerGame[idJoueur[0]].getMain());
 
         for (let i = 1; i < game.listePlayerGame.length; i++) {
-
             socket.broadcast.emit('1stR', {
                 booleanCurrentTurn: !game.listePlayerGame[idJoueur[i]].getAjoue(),
                 tour: game.getTour(),
@@ -156,13 +155,13 @@ io.on('connection', (socket) => {
                 cartes: game.listePlayerGame[idJoueur[i]].getMain(),
                 cartesTapis: game.getTapis()
             });
+
             console.log("------card player " + game.listePlayerGame[idJoueur[i]].getPlayerName() + "-----");
             console.log(game.listePlayerGame[idJoueur[i]].getMain());
         }
     });
 
     socket.on('check', (data) => {
-        // console.log(data.playerName);
         game.joueJoueur(data.playerName, "check", 10);
 
         let idJoueur1;

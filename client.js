@@ -135,6 +135,7 @@ function init() {
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
 
+        console.log(data.cartes[0] + " " + data.cartes[1]);
         document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
 
