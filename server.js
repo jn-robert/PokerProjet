@@ -141,24 +141,25 @@ io.on('connection', (socket) => {
         console.log("------card player " + game.listePlayerGame[idJoueur[0]].getPlayerName() + "-----");
         console.log(game.listePlayerGame[idJoueur[0]].getMain());
 
-        for (let i = 1; i < game.listePlayerGame.length; i++) {
-            socket.broadcast.emit('1stR', {
-                booleanCurrentTurn: !game.listePlayerGame[idJoueur[i]].getAjoue(),
-                tour: game.getTour(),
-                pot: game.pot,
-                name: game.listePlayerGame[idJoueur[i]].getPlayerName(),
+        game.listePlayerGame.forEach(joueur => {
+            if(joueur !== game.listePlayerGame[idJoueur[0]]){
+                socket.broadcast.emit('1stR', {
+                    booleanCurrentTurn: !joueur.getAjoue(),
+                    tour: game.getTour(),
+                    pot: game.pot,
+                    name: joueur.getPlayerName(),
 
-                /*
-                jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
-                */
+                    /*
+                    jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
+                    */
 
-                cartes: game.listePlayerGame[idJoueur[i]].getMain(),
-                cartesTapis: game.getTapis()
-            });
-
-            console.log("------card player " + game.listePlayerGame[idJoueur[i]].getPlayerName() + "-----");
-            console.log(game.listePlayerGame[idJoueur[i]].getMain());
-        }
+                    cartes: joueur.getMain(),
+                    cartesTapis: game.getTapis()
+                });
+                console.log("------card player " + joueur.getPlayerName() + "-----");
+                console.log(joueur.getMain());
+            }
+        });
     });
 
     socket.on('check', (data) => {
