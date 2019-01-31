@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 /**
  * connection a la socket puis execution des demandes et renvoi de valeurs du jeu pour 2 personnes
  */
+
 io.on('connection', (socket) => {
 
     // Create a new game room and notify the creator of game.
@@ -62,6 +63,7 @@ io.on('connection', (socket) => {
     socket.on('gameEnded', (data) => {
         socket.broadcast.to(data.room).emit('gameEnd', data);
     });
+
 
     socket.on('start', (data) => {
         console.log(game.listePlayerGame[0].getJetons());
