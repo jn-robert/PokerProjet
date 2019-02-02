@@ -134,10 +134,19 @@ function init() {
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
-
-        console.log(data.cartes[0] + " " + data.cartes[1]);
-        document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
-        document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+        let cartes;
+        for (let i=0;i<data.nbJoueurs;i++){
+            console.log("test1");
+            if (data.name[i] === player.name){
+                cartes = data.cartes[i];
+                console.log("ok");
+            }
+        }
+        console.log(data.cartes);
+        console.log(data.name);
+        console.log(player.name);
+        document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
+        document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
 
         document.T1.src = "image/dos.png";
         document.T2.src = "image/dos.png";
