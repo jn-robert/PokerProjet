@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
         for (let i = 0; i < game.listePlayerGame.length;i++){
             listeCartes[i]=game.listePlayerGame[i].getMain();
             listeNoms[i]=game.listePlayerGame[i].getPlayerName();
-            listeJetons=game.listePlayerGame[i].getJetons();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
         console.log(listeCartes);
         switch (data.playerName) {
@@ -149,12 +149,8 @@ io.on('connection', (socket) => {
             pot: game.pot,
             name: listeNoms,
             nbJoueurs: game.listePlayerGame.length,
-
-            jetons1: game.listePlayerGame[indicePlayerStart].getJetons(),
-
-
             cartes: listeCartes,
-
+            jetons: listeJetons,
             cartesTapis: game.getTapis()
         });
 
@@ -167,9 +163,7 @@ io.on('connection', (socket) => {
             nbJoueurs: game.listePlayerGame.length,
             tour: game.getTour(),
             pot: game.pot,
-            jetons1: game.listePlayerGame[idJoueur[1]].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur[0]].getJetons(),
-            // jetons3: game.listePlayerGame[idJoueur[2]].getJetons(),
+            jetons: listeJetons,
             cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
