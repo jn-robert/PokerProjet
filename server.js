@@ -64,7 +64,6 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.room).emit('gameEnd', data);
     });
 
-
     socket.on('start', (data) => {
         game.init(10, 20);
         let indicePlayerStart;
@@ -167,6 +166,7 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
+
     });
 
     socket.on('check', (data) => {

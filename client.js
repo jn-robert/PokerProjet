@@ -41,7 +41,7 @@ function init() {
             return;
         }
         player = new Player(id++, name, jeton);
-        socket.emit('createGame', {name, jeton});
+        socket.emit('createGame', {name, jeton: jeton});
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -54,9 +54,8 @@ function init() {
             return;
         }
         player = new Player(id++, name, jeton);
-        socket.emit('joinGame', {name, room: roomID, jeton});
+        socket.emit('joinGame', {name, room: roomID, jeton: jeton});
         // game.addPlayer(id, name, jeton);
-
     });
 
     // New Game created by current client. Update the UI and create new Game var.
@@ -66,8 +65,6 @@ function init() {
         // Create game for player 1
         game = new Game(); //data.room
         game.displayBoard(message);
-
-
     });
 
     /**

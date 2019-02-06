@@ -564,8 +564,6 @@ Game.prototype.evalCarte = function (){
             }
         }
         console.log(highestVal);
-
-
     }
 
     return highestIndex;
