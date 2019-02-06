@@ -66,7 +66,6 @@ io.on('connection', (socket) => {
 
 
     socket.on('start', (data) => {
-        console.log(game.listePlayerGame[0].getJetons());
         game.init(10, 20);
         let indicePlayerStart;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
@@ -80,8 +79,11 @@ io.on('connection', (socket) => {
             listeCartes[i]=game.listePlayerGame[i].getMain();
             listeNoms[i]=game.listePlayerGame[i].getPlayerName();
             listeJetons[i]=game.listePlayerGame[i].getJetons();
+            console.log(listeJetons[i]);
+
         }
         console.log(listeCartes);
+
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
                 game.listePlayerGame[0].setAjoue(false);
@@ -167,25 +169,6 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
-        // game.listePlayerGame.forEach(joueur => {
-        //     if(joueur !== game.listePlayerGame[idJoueur[0]]){
-        //         socket.broadcast.emit('1stR', {
-        //             booleanCurrentTurn: !joueur.getAjoue(),
-        //             tour: game.getTour(),
-        //             pot: game.pot,
-        //             name: joueur.getPlayerName(),
-        //
-        //             /*
-        //             jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
-        //             */
-        //
-        //             cartes: joueur.getMain(),
-        //             cartesTapis: game.getTapis()
-        //         });
-        //         console.log("------card player " + joueur.getPlayerName() + "-----");
-        //         console.log(joueur.getMain());
-        //     }
-        // });
     });
 
     socket.on('check', (data) => {

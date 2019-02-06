@@ -128,23 +128,21 @@ function init() {
         document.getElementById('raise').disabled = !data.booleanCurrentTurn;
         document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
-        console.log(data.pot);
         document.getElementById('pot').innerHTML = "Pot : " + data.pot;
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
         let cartes;
+        let jetons;
         for (let i=0;i<data.nbJoueurs;i++){
-            console.log("test1");
             if (data.name[i] === player.name){
                 cartes = data.cartes[i];
-                console.log("ok");
+                jetons = data.jetons[i];
             }
         }
-        console.log(data.cartes);
-        console.log(data.name);
         console.log(player.name);
+        console.log(jetons);
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
 
