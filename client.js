@@ -40,8 +40,8 @@ function init() {
             alert('Erreur.');
             return;
         }
-        socket.emit('createGame', {name, jeton});
         player = new Player(id++, name, jeton);
+        socket.emit('createGame', {name, jeton});
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -53,8 +53,8 @@ function init() {
             alert('Erreur.');
             return;
         }
-        socket.emit('joinGame', {name, room: roomID, jeton});
         player = new Player(id++, name, jeton);
+        socket.emit('joinGame', {name, room: roomID, jeton});
         // game.addPlayer(id, name, jeton);
 
     });

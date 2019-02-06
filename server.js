@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     // Connect the Player to the room he requested. Show error if room full.
     socket.on('joinGame', function (data) {
         var room = io.nsps['/'].adapter.rooms[data.room];
-        if (room && room.length <= 9) {
+        if (room && room.length <= 8) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
             socket.emit('player', {name: data.name, room: data.room});
@@ -75,14 +75,15 @@ io.on('connection', (socket) => {
         let listeCartes = [];
         let listeNoms = [];
         let listeJetons = [];
+
         for (let i = 0; i < game.listePlayerGame.length;i++){
             listeCartes[i]=game.listePlayerGame[i].getMain();
             listeNoms[i]=game.listePlayerGame[i].getPlayerName();
             listeJetons[i]=game.listePlayerGame[i].getJetons();
-            console.log(listeJetons[i]);
-
         }
+
         console.log(listeCartes);
+        console.log(listeJetons);
 
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
@@ -155,9 +156,6 @@ io.on('connection', (socket) => {
             jetons: listeJetons,
             cartesTapis: game.getTapis()
         });
-
-        console.log("------card player " + game.listePlayerGame[idJoueur[0]].getPlayerName() + "-----");
-        console.log(game.listePlayerGame[idJoueur[0]].getMain());
 
         socket.broadcast.emit('1stR', {
             booleanCurrentTurn: !game.listePlayerGame[indicePlayerStart].getAjoue(),
