@@ -134,11 +134,6 @@ t8{
 
 
 
-
-
-
-
-
 #button_main_img {
 color:#FFF;
 line-height:1052px;
@@ -150,12 +145,6 @@ background-color: #212f60;
 color: white;
 }
 
-#img_chef {
-height:35px;
-margin-right:10px;
-text-align:center;
-width:auto;
-}
 
 #img_main {
     background:url(image/poker6.jpg) center center / cover no-repeat;
@@ -182,28 +171,7 @@ margin-bottom:2%;
 text-align:center;
 }
 
-#logo_restaurant {
-height:300px;
-margin-left:30%;
-margin-right:30%;
-}
 
-#maps {
-height:305px;
-overflow:hidden;
-position:relative;
-width:100%;
-}
-
-#menu_restaurant h1 {
-font-family:ReenieBeanie, "Arial Black", Arial, Verdana, sans-serif;
-margin-bottom:3%;
-text-align:center;
-}
-
-#operateurs {
-text-align:center;
-}
 
 .alert-box a.close {
 color:#eee;
@@ -281,16 +249,6 @@ margin-bottom:2%;
 margin-top:2%;
 }
 
-.icon_carte {
-height:auto;
-width:25px;
-}
-
-.identite_client {
-float:left;
-font-weight:700;
-margin-right:1%;
-}
 
 .image_menu {
 background:url(../img/menu1.png) center center / cover no-repeat;
