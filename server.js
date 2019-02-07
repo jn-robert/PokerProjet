@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     // Connect the Player to the room he requested. Show error if room full.
     socket.on('joinGame', function (data) {
         var room = io.nsps['/'].adapter.rooms[data.room];
-        if (room && room.length <= 8) {
+        if (room && room.length <= 9) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
             socket.emit('player', {name: data.name, room: data.room});
@@ -64,7 +64,9 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.room).emit('gameEnd', data);
     });
 
+
     socket.on('start', (data) => {
+        console.log(game.listePlayerGame[0].getJetons());
         game.init(10, 20);
         let indicePlayerStart;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
@@ -74,16 +76,12 @@ io.on('connection', (socket) => {
         let listeCartes = [];
         let listeNoms = [];
         let listeJetons = [];
-
         for (let i = 0; i < game.listePlayerGame.length;i++){
             listeCartes[i]=game.listePlayerGame[i].getMain();
             listeNoms[i]=game.listePlayerGame[i].getPlayerName();
             listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
-
         console.log(listeCartes);
-        console.log(listeJetons);
-
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
                 game.listePlayerGame[0].setAjoue(false);
@@ -151,10 +149,15 @@ io.on('connection', (socket) => {
             pot: game.pot,
             name: listeNoms,
             nbJoueurs: game.listePlayerGame.length,
-            cartes: listeCartes,
+
             jetons: listeJetons,
+            cartes: listeCartes,
+
             cartesTapis: game.getTapis()
         });
+
+        console.log("------card player " + game.listePlayerGame[idJoueur[0]].getPlayerName() + "-----");
+        console.log(game.listePlayerGame[idJoueur[0]].getMain());
 
         socket.broadcast.emit('1stR', {
             booleanCurrentTurn: !game.listePlayerGame[indicePlayerStart].getAjoue(),
@@ -166,7 +169,25 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
-
+        // game.listePlayerGame.forEach(joueur => {
+        //     if(joueur !== game.listePlayerGame[idJoueur[0]]){
+        //         socket.broadcast.emit('1stR', {
+        //             booleanCurrentTurn: !joueur.getAjoue(),
+        //             tour: game.getTour(),
+        //             pot: game.pot,
+        //             name: joueur.getPlayerName(),
+        //
+        //             /*
+        //             jetons1: game.listePlayerGame[idJoueur[j]].getJetons(),
+        //             */
+        //
+        //             cartes: joueur.getMain(),
+        //             cartesTapis: game.getTapis()
+        //         });
+        //         console.log("------card player " + joueur.getPlayerName() + "-----");
+        //         console.log(joueur.getMain());
+        //     }
+        // });
     });
 
     socket.on('check', (data) => {

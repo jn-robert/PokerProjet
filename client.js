@@ -139,6 +139,7 @@ function init() {
             }
         }
         console.log(player.name);
+        console.log(data.jetons);
         console.log(jetons);
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
