@@ -15,6 +15,11 @@ visibility:visible;
 position:absolute;
 }
 
+.table-sortable tbody tr {
+    cursor: move;
+}
+
+
 #texte2{
  top:310px;
  left:-375px;
