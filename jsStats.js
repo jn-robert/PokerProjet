@@ -1,4 +1,5 @@
 function traceStats(pseudo) {
+    resetStats();
     infoJoueur(pseudo);
     statsMise(pseudo);
     new Morris.Line({
@@ -52,4 +53,12 @@ function statsMise(pseudo) {
     table += "<tbody><tr><td>"+miseMoyenne+"</td><td>"+miseMax+"</td></tr></tbody>";
     table += "</table>";
     document.getElementById("statsMise").innerHTML = table;
+}
+
+function resetStats() {
+    document.getElementById("infoJoueur").innerHTML = "";
+    document.getElementById("statsVictoire").innerHTML = "";
+    document.getElementById("statsMise").innerHTML = "";
+    document.getElementById("statsAction").innerHTML = "";
+    document.getElementById("statsPartie").innerHTML = "";
 }

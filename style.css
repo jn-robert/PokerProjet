@@ -112,6 +112,37 @@ t8{
     left: 10%;
 }
 
+.infoJoueur{
+    position: absolute;
+    left: 10%;
+}
+
+.statsVictoire{
+    position: absolute;
+    right: 10%;
+    height: 200px;
+}
+
+.statsAction{
+    position: absolute;
+    right: 25%;
+    height: 200px;
+}
+
+.statsMise{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.statsPartie{
+    position: absolute;
+    bottom: 5%;
+    left: 25px;
+    right: 10%;
+}
+
+
 
 
 
