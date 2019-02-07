@@ -137,8 +137,8 @@ t8 {
 .statsPartie {
     position: absolute;
     bottom: 5%;
-    left: 25px;
-    right: 10%;
+    left: 10%;
+    right: 150px;
 }
 
 #button_main_img {
