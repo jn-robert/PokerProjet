@@ -8,17 +8,70 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<div id="listeJoueur">
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
+                                                             aria-hidden="true"></span> Home</a></li>
+                <li><a href="aboutus.html">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+                <li class="dropdown">
+                    <a href="game.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="contactus.html#">Main Courses</a></li>
+                        <li><a href="contactus.html#">Bootstrap</a></li>
+                        <li><a href="contactus.html#">Asp</a></li>
+                        <li><a href="contactus.html#">SQl</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">PHP</li>
+                        <li><a href="contactus.html#">MySQl</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#"><span class="fa fa-envelope-o"></span> Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" data-target="#loginModal"><span
+                        class="glyphicon glyphicon-log-in"></span> login</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+<div class="listJoueur" id="coin">
+    <div class="childrenListJoueur" id="listeJoueur">
     <script>
-        var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5"];
-        var msg = "";
+        var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1",
+            "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1"];
+        var msg = "<t8>Liste des joueurs</t8><br>";
         for (var i = 0; i < tab.length ; i++) {
             msg += "<button onclick='traceStats(\""+tab[i]+"\")'>"+ tab[i]+"</button><br>";
         }
+        msg += "<br><br>"
         document.getElementById("listeJoueur").innerHTML = msg;
     </script>
+    </div>
 </div>
 <div id="infoJoueur"></div>
 <div id="statsVictoire"></div>

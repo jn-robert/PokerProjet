@@ -88,6 +88,29 @@ position:absolute;
  position:absolute;
 }
 
+t8{
+    color: #cccccc;
+}
+
+.listJoueur {
+    right: 0%;
+    width: 150px;
+    height: 80%;
+    text-align: center;
+    line-height: 20px;
+    background-color: #222;
+    position: absolute;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.childrenListJoueur{
+    position: absolute;
+    left: 10%;
+}
 
 
 
