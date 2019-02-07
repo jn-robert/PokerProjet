@@ -9,7 +9,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 
@@ -61,16 +62,16 @@
 
 <div class="listJoueur" id="coin">
     <div class="childrenListJoueur" id="listeJoueur">
-    <script>
-        var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1",
-            "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1", "Joueur2", "Joueur3", "Joueur4","Joueur5","Joueur1"];
-        var msg = "<t8>Liste des joueurs</t8><br>";
-        for (var i = 0; i < tab.length ; i++) {
-            msg += "<button onclick='traceStats(\""+tab[i]+"\")'>"+ tab[i]+"</button><br>";
-        }
-        msg += "<br><br>"
-        document.getElementById("listeJoueur").innerHTML = msg;
-    </script>
+        <script>
+            var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1",
+                "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1"];
+            var msg = "<t8>Liste des joueurs</t8><br>";
+            for (var i = 0; i < tab.length; i++) {
+                msg += "<button onclick='traceStats(\"" + tab[i] + "\")'>" + tab[i] + "</button><br>";
+            }
+            msg += "<br><br>"
+            document.getElementById("listeJoueur").innerHTML = msg;
+        </script>
     </div>
 </div>
 <div id="infoJoueur" class="infoJoueur"></div>
