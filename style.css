@@ -162,18 +162,6 @@ line-height:1052px;
 text-align:center;
 }
 
-#image_menu1 {
-background:url(../img/plat1.jpg) center center / cover no-repeat;
-}
-
-#image_menu2 {
-background:url(../img/plat2.jpg) center center / cover no-repeat;
-}
-
-#image_menu3 {
-background:url(../img/entree2.jpg) center center / cover no-repeat;
-}
-
 .btn-purple:hover{
 background-color: #212f60;
 color: white;
