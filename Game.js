@@ -531,6 +531,7 @@ Game.prototype.distribGains = function(name){
     let testName=false;
     for (let i=0; i<this.listePlayerGame.length;i++){
         if(this.listePlayerGame[i].getPlayerName()=== name){
+            console.log("pot : "+this.pot);
             this.listePlayerGame[i].jetons+= this.pot+this.listePlayerGame[i].tas;
             testName=true;
         }

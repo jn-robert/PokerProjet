@@ -68,20 +68,20 @@
         <h1>Poker</h1>
         <h4>Creer une partie</h4>
         <input type="text" name="name" id="nameNew" placeholder="Nom joueur" required>
-        <input type="text" name="name" id="jetonNew" placeholder="Nombre jetons" required>
+        <input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required>
         <button id="new">Nouvelle partie</button>
         <br><br>
         <h4>Rejoindre une partie</h4>
         <input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required>
-        <input type="text" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required>
-        <input type="text" name="room" id="room" placeholder="No du salon" required>
+        <input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required>
+        <input type="number" name="room" id="room" placeholder="No du salon" required>
         <button id="join">Rejoindre une partie</button>
     </div>
     <div class="gameBoard" style="display: none;">
         <h4 id="userHello"></h4>
         <h5 id="turn">En attente d'aversaire</h5>
         <Table border=5 table
-               style="background-image:url(image/table.jpg); background-repeat:repeat; background-size: cover;">
+               style="background: url(image/table.jpg) repeat;background-size: cover;">
             <div id="T1" style="top:300px;left:875px;width:20px;border:0px;visibility:visible;position:absolute">
                 <P ALIGN=center><img border=0 name=T1 width=40px height=60px></P>
             </div>

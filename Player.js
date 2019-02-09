@@ -103,3 +103,11 @@ Player.prototype.setValeurMain = function (v) {
 Player.prototype.getValeurMain = function () {
     return this.valeurMain;
 };
+
+Player.prototype.setIdRoom = function (idRoom) {
+    this.idRoom = idRoom;
+};
+
+Player.prototype.getIdRoom = function () {
+    return this.idRoom;
+};
