@@ -175,12 +175,23 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
             }
             break;
         case "check":
-            for (let i=0; i<this.listePlayerGame.length;i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
-                    break;
-                } else {
+            // for (let i=0; i<this.listePlayerGame.length;i++) {
+            //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
+            //         break;
+            //     } else if (this.listePlayerGame[i].getPlayerName() === name && !this.listePlayerGame[i].allIn) {
                     if (action === "check") {
-                        this.canPlay = true;
+                        for (let j = 0; j < this.listePlayerGame.length; j++) {
+                            if (this.listePlayerGame[j].getPlayerName() === name) {
+                                if (j!== this.listePlayerGame.length-1) {
+                                    console.log("joueur n°" + j + " a joué");
+                                } else {
+                                    console.log("dernier joueur qui a joue");
+                                    this.canPlay = true;
+                                }
+                            }
+
+                        }
+
                     }
                     if (action === "raise") {
                         this.actionPrec = action;
@@ -234,8 +245,8 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                 }
                             }
                         }
-                    }
-                }
+                    // }
+                // }
             }
             break;
         case "suivre":
@@ -510,6 +521,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
 
 Game.prototype.incrementeTour = function(){
     this.tour++;
+    console.log("tour suivant");
 };
 
 /**

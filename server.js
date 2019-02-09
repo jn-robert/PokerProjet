@@ -147,9 +147,8 @@ io.on('connection', (socket) => {
             booleanCurrentTurn: !game.listePlayerGame[indicePlayerStart].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
-            name: listeNoms,
             nbJoueurs: game.listePlayerGame.length,
-
+            name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
 
@@ -203,6 +202,15 @@ io.on('connection', (socket) => {
             idJoueur2 = 0;
         }
 
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length;i++){
+            listeCartes[i]=game.listePlayerGame[i].getMain();
+            listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
+        }
+
         let name = "";
         let highestIndex = 0;
         let combi = "";
@@ -231,10 +239,9 @@ io.on('connection', (socket) => {
             booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[idJoueur1].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
@@ -250,10 +257,9 @@ io.on('connection', (socket) => {
             booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[idJoueur2].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
     });
@@ -270,6 +276,15 @@ io.on('connection', (socket) => {
         } else {
             idJoueur1 = 1;
             idJoueur2 = 0;
+        }
+
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length;i++){
+            listeCartes[i]=game.listePlayerGame[i].getMain();
+            listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
 
         let name = "";
@@ -342,6 +357,15 @@ io.on('connection', (socket) => {
             idJoueur2 = 0;
         }
 
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length;i++){
+            listeCartes[i]=game.listePlayerGame[i].getMain();
+            listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
+        }
+
         let name = "";
         let highestIndex = 0;
         let combi = "";
@@ -409,6 +433,15 @@ io.on('connection', (socket) => {
         } else {
             idJoueur1 = 1;
             idJoueur2 = 0;
+        }
+
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length;i++){
+            listeCartes[i]=game.listePlayerGame[i].getMain();
+            listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
 
         let name = "";
@@ -481,6 +514,15 @@ io.on('connection', (socket) => {
             idJoueur2 = 0;
         }
 
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length;i++){
+            listeCartes[i]=game.listePlayerGame[i].getMain();
+            listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+            listeJetons[i]=game.listePlayerGame[i].getJetons();
+        }
+
         let name = "";
         let highestIndex = 0;
         let combi = "";
@@ -548,6 +590,16 @@ io.on('connection', (socket) => {
                 idJoueur2 = 0;
                 game.listePlayerGame[0].setAjoue(true);
             }
+
+            let listeCartes = [];
+            let listeNoms = [];
+            let listeJetons = [];
+            for (let i = 0; i < game.listePlayerGame.length;i++){
+                listeCartes[i]=game.listePlayerGame[i].getMain();
+                listeNoms[i]=game.listePlayerGame[i].getPlayerName();
+                listeJetons[i]=game.listePlayerGame[i].getJetons();
+            }
+
             socket.emit('1stR', {
                 booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
                 tour: game.getTour(),
