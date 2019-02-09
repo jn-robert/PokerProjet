@@ -90,10 +90,12 @@ Game.prototype.reset = function () {
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
     //console.log("dealer+1: " + this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons);
     //console.log("dealer+2: " + this.listePlayerGame[(this.dealer+2) % this.listePlayerGame.length].jetons);
-    this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons -= petiteBlinde;
-    this.listePlayerGame[(this.dealer +2) % this.listePlayerGame.length].jetons -= grosseBlinde;
+    this.listePlayerTable[(this.dealer+1) % this.listePlayerTable.length].jetons -= petiteBlinde;
+    this.listePlayerTable[(this.dealer +2) % this.listePlayerTable.length].jetons -= grosseBlinde;
     this.pot=petiteBlinde+grosseBlinde;
-    this.dealer=(this.dealer+1)%this.listePlayerGame.length;
+    this.dealer=(this.dealer+1)%this.listePlayerTable.length;
+
+    console.log("dealer : "+this.listePlayerTable[this.dealer].getPlayerName());
 };
 
 /**
@@ -560,7 +562,7 @@ Game.prototype.evalCarte = function (){
         ])
     }
 
-    console.log(this.allCards);
+    //console.log(this.allCards);
 
     for (let i = 0; i < this.allCards.length; i++) {
         this.evalCards.push(PokerEvaluator.evalHand(this.allCards[i]));
