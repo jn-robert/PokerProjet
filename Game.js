@@ -88,8 +88,8 @@ Game.prototype.reset = function () {
  * initialise les blindes du debut de jeu
  */
 Game.prototype.blind = function(petiteBlinde, grosseBlinde){
-    console.log("dealer+1: " + this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons);
-    console.log("dealer+2: " + this.listePlayerGame[(this.dealer+2) % this.listePlayerGame.length].jetons);
+    //console.log("dealer+1: " + this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons);
+    //console.log("dealer+2: " + this.listePlayerGame[(this.dealer+2) % this.listePlayerGame.length].jetons);
     this.listePlayerGame[(this.dealer+1) % this.listePlayerGame.length].jetons -= petiteBlinde;
     this.listePlayerGame[(this.dealer +2) % this.listePlayerGame.length].jetons -= grosseBlinde;
     this.pot=petiteBlinde+grosseBlinde;
@@ -183,9 +183,9 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                         for (let j = 0; j < this.listePlayerGame.length; j++) {
                             if (this.listePlayerGame[j].getPlayerName() === name) {
                                 if (j!== this.listePlayerGame.length-1) {
-                                    console.log("joueur n°" + j + " a joué");
+                                    //console.log("joueur n°" + j + " a joué");
                                 } else {
-                                    console.log("dernier joueur qui a joue");
+                                    //console.log("dernier joueur qui a joue");
                                     this.canPlay = true;
                                 }
                             }
@@ -391,13 +391,13 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.tasHaut = this.misePrec;
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
-                        console.log("tasHAut : "+this.tasHaut);
-                        console.log("operation");
+                        //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
+                        //console.log("tasHAut : "+this.tasHaut);
+                        //console.log("operation");
                         this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                         this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                         boolTours = 6-this.tour;
-                        console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
+                        //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
                     }
                 }
                 this.canPlay = true;
@@ -515,13 +515,13 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
         this.tasHaut=0;
         boolTours=1;
     }
-    console.log(this.tour);
-    console.log(this.pot);
+    //console.log(this.tour);
+    //console.log(this.pot);
 };
 
 Game.prototype.incrementeTour = function(){
     this.tour++;
-    console.log("tour suivant");
+    //console.log("tour suivant");
 };
 
 /**
@@ -531,7 +531,7 @@ Game.prototype.distribGains = function(name){
     let testName=false;
     for (let i=0; i<this.listePlayerGame.length;i++){
         if(this.listePlayerGame[i].getPlayerName()=== name){
-            console.log("pot : "+this.pot);
+            //console.log("pot : "+this.pot);
             this.listePlayerGame[i].jetons+= this.pot+this.listePlayerGame[i].tas;
             testName=true;
         }
@@ -560,6 +560,8 @@ Game.prototype.evalCarte = function (){
         ])
     }
 
+    console.log(this.allCards);
+
     for (let i = 0; i < this.allCards.length; i++) {
         this.evalCards.push(PokerEvaluator.evalHand(this.allCards[i]));
     }
@@ -576,8 +578,10 @@ Game.prototype.evalCarte = function (){
                 highestIndex = i;
             }
         }
-        console.log(highestVal);
+        //console.log("game.js highestIndex : "+highestIndex);
     }
+
+    this.allCards=[];
 
     return highestIndex;
 };
