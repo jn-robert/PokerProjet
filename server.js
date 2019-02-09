@@ -211,6 +211,8 @@ io.on('connection', (socket) => {
             listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
 
+        console.log(listeCartes);
+
         let name = "";
         let highestIndex = 0;
         let combi = "";
@@ -239,6 +241,7 @@ io.on('connection', (socket) => {
             booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
+            nbJoueurs: game.listePlayerGame.length,
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
@@ -257,6 +260,7 @@ io.on('connection', (socket) => {
             booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
+            nbJoueurs: game.listePlayerGame.length,
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,

@@ -199,11 +199,14 @@ function init() {
     socket.on('resultAction', (data) => {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
+        /**
+         * récupère les variables jetobs et cartes du joueur
+         */
+
         if (data.tour < 6) {
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
 
             // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
-
 
             switch (data.choixJoueurs) {
                 case "check":
@@ -286,23 +289,45 @@ function init() {
 
             document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
+            let cartes;
+            let jetons;
+            for (let i=0;i<data.nbJoueurs;i++){
+                if (data.name[i] === player.name){
+                    cartes = data.cartes[i];
+                    jetons = data.jetons[i];
+                }
+            }
+
+            console.log(data.cartes);
+
             //affichage des variables
+
             document.getElementById('turn').innerHTML = message;
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
-            document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
+            document.getElementById('texte').innerHTML = jetons + " jetons";
             document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
             document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
             document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
-            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
-            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+            document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
+            document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
         } else {
+
+            let cartes;
+            let jetons;
+            for (let i=0;i<data.nbJoueurs;i++){
+                if (data.name[i] === player.name){
+                    cartes = data.cartes[i];
+                    jetons = data.jetons[i];
+                }
+            }
+
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
             document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
             document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
             document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
             document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
-            document.CarteJoueur1.src = "image/" + data.cartes[0] + ".png";
-            document.CarteJoueur2.src = "image/" + data.cartes[1] + ".png";
+            document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
+            document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('all-in').disabled = true;
             document.getElementById('check').disabled = true;
