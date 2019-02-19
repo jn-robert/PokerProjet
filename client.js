@@ -212,43 +212,43 @@ function init() {
                 case "check":
                     if (data.jetons1 > 0) {
                         console.log("joueur check");
-                        document.getElementById('all-in').disabled = false;
-                        document.getElementById('check').disabled = false;
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('check').disabled = !data.booleanCurrentTurn;
                         document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = false;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     } else {
                         console.log("joueur else check");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
                         document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = false;
+                        document.getElementById('raise').disabled = true;
                     }
                     break;
                 case "raise":
                     if (data.jetons1 > 0) {
                         console.log("joueur raise");
-                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = false;
-                        document.getElementById('raise').disabled = false;
+                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     } else {
                         console.log("joueur else raise");
                         document.getElementById('all-in').disabled = true;
-                        document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = false;
-                        document.getElementById('raise').disabled = false;
+                        document.getElementById('check').disabled = false;
+                        document.getElementById('suivre').disabled = true;
+                        document.getElementById('raise').disabled = true;
                     }
                     break;
                 case "suivre":
                     if (data.jetons1 > 0) {
                         console.log("joueur suivre");
-                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
                         document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = false;
-                        document.getElementById('raise').disabled = false;
+                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
+                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     } else {
                         console.log("joueur else suivre");
-                        document.getElementById('all-in').disabled = true;
+                        document.getElementById('all-in').disabled = false;
                         document.getElementById('check').disabled = true;
                         document.getElementById('suivre').disabled = false;
                         document.getElementById('raise').disabled = false;
@@ -272,19 +272,19 @@ function init() {
                     break;
 
                 default:
-                    if (data.jetons1 > 0) {
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    } else {
+                    // if (data.jetons1 > 0) {
+                    //     document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+                    //     document.getElementById('check').disabled = !data.booleanCurrentTurn;
+                    //     document.getElementById('suivre').disabled = true;
+                    //     document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+                    // } else {
                         console.log("joueur else default");
                         document.getElementById('all-in').disabled = true;
                         document.getElementById('check').disabled = false;
                         document.getElementById('suivre').disabled = true;
                         document.getElementById('raise').disabled = true;
                         document.getElementById('coucher').disabled = true;
-                    }
+                    // }
             }
 
             document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
