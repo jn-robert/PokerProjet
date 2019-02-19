@@ -116,6 +116,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 if (this.listePlayerGame[i].getPlayerName() === name) {
                     this.listePlayerGame[i].setAjoue(true);
                 }
+                console.log(this.listePlayerGame[i].getAjoue());
             }
             if (action === "check") {
 
@@ -204,9 +205,9 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                             }
                         }
                         if (!testTousJoue) {
-                            console.log("joueur n°" + j + " a joué");
+                            //console.log("joueur n°" + j + " a joué");
                         } else {
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             this.canPlay = true;
                         }
                     }
@@ -220,8 +221,9 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
+                        this.listePlayerGame[i].setAjoue(true);
+                        for (let j = 0; j < this.listePlayerGame.length; j++) {
+                            if (!this.listePlayerGame[j].getAjoue()) {
                                 testTousJoue=false;
                             }
                         }
@@ -230,13 +232,13 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             }
-                            console.log("joueur n°" + j + " a joué");
+                            //console.log("joueur n°" + i + " a joué");
                         } else {
                             if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             }
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             this.canPlay = true;
                         }
 
@@ -248,8 +250,8 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
+                        for (let j = 0; j < this.listePlayerGame.length; j++) {
+                            if (!this.listePlayerGame[j].getAjoue()) {
                                 testTousJoue=false;
                             }
                         }
@@ -260,7 +262,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                             this.listePlayerGame[i].jetons = 0;
                             this.listePlayerGame[i].allIn = true;
 
-                            console.log("joueur n°" + j + " a joué");
+                            //console.log("joueur n°" + i + " a joué");
                         } else {
                             this.misePrec = this.listePlayerGame[i].getJetons();
                             this.tasHaut = this.misePrec;
@@ -268,7 +270,7 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                             this.listePlayerGame[i].jetons = 0;
                             this.listePlayerGame[i].allIn = true;
 
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             this.canPlay = true;
                         }
 
@@ -331,14 +333,14 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                 this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
                             }
 
-                            console.log("joueur n°" + j + " a joué");
+                            //console.log("joueur n°" + j + " a joué");
                         } else {
                             if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
                                 this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
                                 this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
                             }
 
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             this.canPlay = true;
                         }
                     }
@@ -353,19 +355,19 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
+                        for (let j = 0; j < this.listePlayerGame.length; j++) {
+                            if (!this.listePlayerGame[j].getAjoue()) {
                                 testTousJoue=false;
                             }
                         }
                         if (!testTousJoue) {
-                            console.log("joueur n°" + i + " a joué");
+                            //console.log("joueur n°" + i + " a joué");
                             if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             }
                         } else {
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
@@ -426,29 +428,30 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
             //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
             //         this.canPlay=true;
             //     } else {
-            this.resetSetAjoue();
+            // this.resetSetAjoue();
             for (let i = 0; i < this.listePlayerGame.length; i++) {
                 if (this.listePlayerGame[i].getPlayerName() === name) {
                     this.listePlayerGame[i].setAjoue(true);
                 }
+                console.log(this.listePlayerGame[i].getAjoue());
             }
-
             if (action === "suivre") {
                 for (let j = 0; j < this.listePlayerGame.length; j++) {
                     if (this.listePlayerGame[j].getPlayerName() === name) {
                         for (let i = 0; i < this.listePlayerGame.length; i++) {
+                            console.log("2 "+this.listePlayerGame[i].getAjoue());
                             if (!this.listePlayerGame[i].getAjoue()) {
                                 testTousJoue=false;
                             }
                         }
                         if (!testTousJoue) {
-                            console.log("joueur n°" + j + " a joué");
+                            //console.log("joueur n°" + j + " a joué");
                             if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
                                 this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
                                 this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
                             }
                         } else {
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
                                 this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
                                 this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
@@ -466,8 +469,8 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                 this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
+                        for (let j = 0; j < this.listePlayerGame.length; j++) {
+                            if (!this.listePlayerGame[j].getAjoue()) {
                                 testTousJoue=false;
                             }
                         }
@@ -477,14 +480,14 @@ Game.prototype.joueJoueur = function(name, action, miseMin) {
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             }
 
-                            console.log("joueur n°" + i + " a joué");
+                            //console.log("joueur n°" + i + " a joué");
                         } else {
                             if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                                 this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                                 this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             }
 
-                            console.log("dernier joueur qui a joue");
+                            //console.log("dernier joueur qui a joue");
                             this.canPlay = true;
                         }
                     }
