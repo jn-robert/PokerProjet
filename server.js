@@ -81,7 +81,7 @@ io.on('connection', (socket) => {
             listeNoms[i]=game.listePlayerGame[i].getPlayerName();
             listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
-        console.log(listeCartes);
+        // console.log(listeCartes);
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
                 game.listePlayerGame[0].setAjoue(false);
@@ -218,7 +218,7 @@ io.on('connection', (socket) => {
             listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
 
-        console.log(listeCartes);
+        // console.log(listeCartes);
 
         let name = "";
         let highestIndex = 0;
@@ -564,7 +564,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            (name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
 
@@ -603,7 +603,7 @@ io.on('connection', (socket) => {
     socket.on('continueGame', (data) => {
         compteurRestartGame++;
         if (compteurRestartGame === game.listePlayerTable.length) {
-            console.log(game.listePlayerGame[0].getJetons());
+            (game.listePlayerGame[0].getJetons());
             game.init(10, 20);
             let idJoueur1;
             let idJoueur2;
