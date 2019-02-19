@@ -185,12 +185,16 @@ function init() {
     });
 
     $('#envoi_message').on('click', () => {
+        const roomId = $('#room').val();
         var message = document.getElementById("message").value;
-        socket.emit('message', {pseudo: player.name, message: message});
+        socket.emit('message', {room: roomId, pseudo: player.name, message: message});
     });
 
     socket.on('afficheMessage', (data) => {
-        $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong>' + data.message + '</p>');
+        const roomId = $('#room').val();
+        if (roomId===data.room){
+            $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+        }
     });
 
     /**
