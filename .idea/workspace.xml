@@ -4,8 +4,6 @@
     <list default="true" id="abd003bd-ce87-486a-9cba-6d07171f68e1" name="Default Changelist" comment="modifs dans suivre et relancer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="209" column="48" lean-forward="true" selection-start-line="209" selection-start-column="48" selection-end-line="209" selection-end-column="48" />
+            <state relative-caret-position="-1326">
+              <caret line="574" column="37" selection-start-line="574" selection-start-column="37" selection-end-line="574" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -220,7 +218,7 @@
       <workItem from="1548949655463" duration="5920000" />
       <workItem from="1549731805180" duration="10690000" />
       <workItem from="1550496668467" duration="534000" />
-      <workItem from="1550585219502" duration="9090000" />
+      <workItem from="1550585219502" duration="10089000" />
     </task>
     <task id="LOCAL-00001" summary="jeton issues (Bientot résolu)&#10;entrain de fix les cartes pour +2 joueurs">
       <created>1548877768463</created>
@@ -306,11 +304,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550588071360</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="modifs dans suivre et relancer">
+      <created>1550595179509</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1550595179509</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46278000" />
+    <option name="totallyTimeSpent" value="47277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1087" extended-state="0" />
@@ -595,8 +600,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="209" column="48" lean-forward="true" selection-start-line="209" selection-start-column="48" selection-end-line="209" selection-end-column="48" />
+        <state relative-caret-position="-1326">
+          <caret line="574" column="37" selection-start-line="574" selection-start-column="37" selection-end-line="574" selection-end-column="37" />
         </state>
       </provider>
     </entry>
