@@ -453,14 +453,21 @@ io.on('connection', (socket) => {
     socket.on('all-in', (data) => {
         console.log(data.playerName);
         game.joueJoueur(data.playerName, "all-in", 10);
-        let idJoueur1;
-        let idJoueur2;
-        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-            idJoueur1 = 0;
-            idJoueur2 = 1;
-        } else {
-            idJoueur1 = 1;
-            idJoueur2 = 0;
+        // let idJoueur1;
+        // let idJoueur2;
+        // if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+        //     idJoueur1 = 0;
+        //     idJoueur2 = 1;
+        // } else {
+        //     idJoueur1 = 1;
+        //     idJoueur2 = 0;
+        // }
+
+        let idJoueurCurrentBooleanTour;
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour=i;
+            }
         }
 
         let listeCartes = [];
@@ -532,14 +539,21 @@ io.on('connection', (socket) => {
         console.log(data.playerName);
         game.joueJoueur(data.playerName, "coucher", 10);
 
-        let idJoueur1;
-        let idJoueur2;
-        if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
-            idJoueur1 = 0;
-            idJoueur2 = 1;
-        } else {
-            idJoueur1 = 1;
-            idJoueur2 = 0;
+        // let idJoueur1;
+        // let idJoueur2;
+        // if (game.listePlayerGame[0].getPlayerName() === data.playerName) {
+        //     idJoueur1 = 0;
+        //     idJoueur2 = 1;
+        // } else {
+        //     idJoueur1 = 1;
+        //     idJoueur2 = 0;
+        // }
+
+        let idJoueurCurrentBooleanTour;
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour=i;
+            }
         }
 
         let listeCartes = [];
