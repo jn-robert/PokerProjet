@@ -344,6 +344,8 @@ function init() {
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
             socket.emit('continueGame', {playerName: player.name});
+            // const roomID = $('#room').val();
+            // socket.emit('start', {room: roomID, playerName: player.name});
         }
         let compteur = 0;
         let compteur2 = 0;

@@ -61,7 +61,7 @@ Game.prototype.addPlayer = function(id, name, jetons) {
     let newPlayer = new Player(id, name, jetons);
     newPlayer.game = this;
     this.listePlayerTable.push(newPlayer);
-    this.listePlayerGame.push(newPlayer);
+    // this.listePlayerGame.push(newPlayer);
 };
 
 Game.prototype.getTour = function () {
@@ -77,7 +77,11 @@ Game.prototype.reset = function () {
             this.cartes = new Cartes();
             this.start=true;
         }
-        for (let i=0; i<this.listePlayerGame.length; i++) {
+
+        for (let i=0; i<this.listePlayerTable.length; i++) {
+            if (i>=this.listePlayerGame.length){
+                this.listePlayerGame.push(this.listePlayerTable[i]);
+            }
             this.listePlayerGame[i].resetPlayer();
         }
         this.tour=0;
@@ -772,8 +776,9 @@ Game.prototype.evalCarte = function (){
  * initialise le debut du jeu
  */
     Game.prototype.init = function(petiteBlinde, grosseBlinde) {
+        console.log("init");
             this.reset();
-
+            console.log(this.cartes);
             // initialisation des blinds
             this.blind(petiteBlinde,grosseBlinde);
 
