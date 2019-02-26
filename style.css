@@ -111,7 +111,7 @@
 }
 
 #CarteJoueur1 {
-    top: 38%;
+    top: 36%;
     left: 60%;
     width: 20px;
     border: 0px;
@@ -120,7 +120,7 @@
 }
 
 #CarteJoueur2 {
-    top: 38%;
+    top: 36%;
     left: 56%;
     width: 20px;
     border: 0px;
@@ -130,7 +130,7 @@
 
 #CarteJoueur3 {
     top: 31%;
-    left: 20%;
+    left: 25%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -139,7 +139,7 @@
 
 #CarteJoueur4 {
     top: 27%;
-    left: 20%;
+    left: 25%;
     width: 20px;
     border: 0px;
     visibility: visible;
