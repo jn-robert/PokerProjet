@@ -2,6 +2,51 @@
     float: right;
 }
 
+#T1 {
+    top: 25%;
+    left: 60%;
+    width: 20px;
+    border:0px;
+    visibility:visible;
+    position:absolute;
+}
+
+#T2 {
+    top: 25%;
+    left: 56%;
+    width:20px;
+    border:0px;
+    visibility:visible;
+    position:absolute;
+}
+
+#T3 {
+    top: 25%;
+    left: 52%;
+    width:20px;
+    border:0px;
+    visibility:visible;
+    position:absolute;
+}
+
+#T4 {
+    top: 25%;
+    left: 48%;
+    width:20px;
+    border:0px;
+    visibility:visible;
+    position:absolute;
+}
+
+#T5 {
+    top: 25%;
+    left: 44%;
+    width:20px;
+    border:0px;
+    visibility:visible;
+    position:absolute;
+}
+
 #texte {
     top: 525px;
     left: -150px;
