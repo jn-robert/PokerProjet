@@ -1,5 +1,16 @@
-.chat {
-    float: right;
+/* Pattern styles */
+.container {
+    display: grid;
+}
+
+.left-half {
+    grid-column: 1;
+    text-align: center;
+}
+
+.right-half {
+    grid-column: 2;
+    text-align: center;
 }
 
 #T1 {
@@ -532,7 +543,6 @@ th {
 
 .chat {
     padding: 4%;
-    background: grey;
     margin-bottom: 1%;
 }
 

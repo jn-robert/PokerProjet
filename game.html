@@ -9,11 +9,10 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="fonction.js"></script>
     <script>
-	function date(){
-	var start = new Date();
-	document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() +  " à " + start.getHours() + ":" +start.getMinutes();
-	}
-
+        function date() {
+            var start = new Date();
+            document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
+        }
     </script>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
@@ -25,12 +24,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
-                                                                  aria-hidden="true"></span> Home</a></li>
+                                                                 aria-hidden="true"></span> Home</a></li>
                     <li><a href="aboutus.html">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
                     <li class="dropdown">
@@ -55,14 +53,13 @@
                     <li><a data-toggle="modal" data-target="#loginModal"><span
                             class="glyphicon glyphicon-log-in"></span> login</a></li>
                 </ul>
-
-
             </div>
         </div>
     </nav>
 </head>
 
 <body onload="init()">
+
 <div class="container">
     <div class="menu">
         <h1>Poker</h1>
@@ -77,199 +74,142 @@
         <input type="number" name="room" id="room" placeholder="No du salon" required>
         <button id="join">Rejoindre une partie</button>
     </div>
-    <div class="gameBoard" style="display: none;">
-        <h4 id="userHello"></h4>
-        <h5 id="turn">En attente d'aversaire</h5>
-        <Table border=5 table
-               style="background: url(image/table.jpg) repeat;background-size: cover;">
-            <div id="T1">
-                <P ALIGN=center><img border=0 name=T1 width=40px height=60px></P>
-            </div>
-            <div id="T2">
-                <P ALIGN=center><IMG BORDER=0 name=T2 width=40px height=60px></P>
-            </div>
-            <div id="T3">
-                <P ALIGN=center><IMG BORDER=0 name=T3 width=40px height=60px></P>
-            </div>
-
-            <div id="T4">
-                <P ALIGN=center><IMG BORDER=0 name=T4 width=40px height=60px></P>
-            </div>
-
-            <div id="T5">
-                <P ALIGN=center><IMG BORDER=0 name=T5 width=40px height=60px></P>
-            </div>
-
-            <div id="CarteJoueur1">
-                <P ALIGN=center><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur1 width=40px height=60px></P>
-            </div>
-            <div id="CarteJoueur2">
-                <P ALIGN=center><IMG SRC="image/dos.png" BORDER=0 name=CarteJoueur2 width=40px height=60px></P>
-            </div>
-
-            <div id="CarteJoueur3">
-                <P ALIGN=center><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=60px height=40px></P>
-            </div>
-            <div id="CarteJoueur4">
-                <P ALIGN=center><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur width=60px height=40px></P>
-            </div>
-
-            <!--<div id="CarteJoueur5" style="top:275;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
-                <P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur></P>
-            </div>
-            <div id="CarteJoueur6" style="top:375;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
-                <P ALIGN=center ><IMG SRC="image/dos2.png" BORDER=0 name=CarteJoueur></P>
-            </div>-->
-
-            <div id="texte">
-                <P ALIGN=center><label id="label1" style="color:white;">0 jetons </label><img src="image/jeton2.png"
-                                                                                              width="2%"></P>
-            </div>
-            <div id="texte3">
-                <p ALIGN=center><label id="label3"></label></p>
-            </div>
-
-            <div id="texte2">
-                <P ALIGN=center><label id="label2" style="color:white;">0 jetons </label><img src="image/jeton2.png"
-                                                                                              width="2%"></P>
-            </div>
-            <div id="texte5">
-                <p ALIGN=center><label id="label4"></label></p>
-            </div>
-            <!--<div id="texte3" style="top:475px;left:500px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
-                <P ALIGN=center ><label id="label0">0 jetons</label></P>
-            </div>-->
-            <div id="texte4">
-                <P ALIGN=center><label id="pot" style="color:white;">Pot : 0 </label><img src="image/pot.png"
-                                                                                          width="25%"></P>
-            </div>
-
-            <div id="texteGagnant" style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
-                <p align=center><label id="gagnant"></label></p>
-            </div>
-
-            <TR>
-                <TD>
-                    <TABLE width=1000 height=500>
-                        <TR>
-                            <TD valign="top" align="center" height="40">&nbsp;</TD>
-                        </TR>
-                        <TR>
-                            <TD valign="top" align="center">
-                                <button id="start"
-                                        style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">
-                                    START
-                                </button>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD valign="bottom" align="center">
-                                <button id="all-in">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    all-in
-                                </button>
-                                <button id="check">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    check
-                                </button>
-                                <button id="suivre">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    suivre
-                                </button>
-                                <button id="raise">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    relancer
-                                </button>
-                                <button id="coucher">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    se coucher
-                                </button>
-                                <button id="exit">
-                                        <!--style=" background-color: #4CAF50;border: none;color: white;padding: 8px 16px;text-decoration: none;margin: 4px 2px;cursor: pointer;">-->
-                                    quitter table
-                                </button>
-                            </TD>
-                        </TR>
-                    </TABLE>
-        </TABLE>
-        <!--chat-->
-        <div class="chat">
-            <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" size="50"
-                   autofocus/>
-            <input type="submit" id="envoi_message" value="Send" onclick="date()"/>
-        </div>
-
-        <div class="container darker">
-            <section id="zone_chat">
-                <span id="date"></span>
-            </section>
-        </div>
-
-
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-    </div>
 </div>
 
-<div class="ServeurJoin">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 table-responsive">
-                <table class="table table-bordered table-hover table-sortable" id="tab_logic">
-                    <thead>
-                    <tr >
-                        <th class="text-center">
-                            Id table
-                        </th>
-                        <th class="text-center">
-                            Nom
-                        </th>
-                        <th class="text-center">
-                            Place
-                        </th>
-                        <th class="text-center">
-                            Option
-                        </th>
-                        <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr id='addr0' data-id="0" class="hidden">
-                        <td data-name="name">
-                            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
-                        </td>
-                        <td data-name="mail">
-                            <input type="text" name='mail0' placeholder='Email' class="form-control"/>
-                        </td>
-                        <td data-name="desc">
-                            <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
-                        </td>
-                        <td data-name="sel">
-                            <select name="sel0">
-                                <option value="">Select Option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                        </td>
-                        <td data-name="del">
-                            <button nam="del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+<div class="gameBoard" style="display: none;">
+    <h4 id="userHello"></h4>
+    <h5 id="turn">En attente d'aversaire</h5>
+    <section class="container">
+        <div class="left-half">
+            <img style="width: 90%" src="image/table.jpg">
+            <div>
+                <div id="T1">
+                    <P ALIGN=center><img name=T1 width=40px height=60px></P>
+                </div>
+                <div id="T2">
+                    <P ALIGN=center><IMG name=T2 width=40px height=60px></P>
+                </div>
+                <div id="T3">
+                    <P ALIGN=center><IMG name=T3 width=40px height=60px></P>
+                </div>
+                <div id="T4">
+                    <P ALIGN=center><IMG name=T4 width=40px height=60px></P>
+                </div>
+                <div id="T5">
+                    <P ALIGN=center><IMG name=T5 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur1">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur1 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur2">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur2 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur3">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur width=60px height=40px></P>
+                </div>
+                <div id="CarteJoueur4">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur width=60px height=40px></P>
+                </div>
+
+                <!--<div id="CarteJoueur5" style="top:275;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+                    <P ALIGN=center ><IMG SRC="image/dos2.png"  name=CarteJoueur></P>
+                </div>
+                <div id="CarteJoueur6" style="top:375;left:100;width:20px;border:0px ;background-color:#006726;visibility:visible;position:absolute">
+                    <P ALIGN=center ><IMG SRC="image/dos2.png"  name=CarteJoueur></P>
+                </div>-->
+
+                <div id="texte">
+                    <P ALIGN=center><label id="label1" style="color:white;">0 jetons </label><img src="image/jeton2.png" width="2%"></P>
+                </div>
+                <div id="texte3">
+                    <p ALIGN=center><label id="label3"></label></p>
+                </div>
+                <div id="texte2">
+                    <P ALIGN=center><label id="label2" style="color:white;">0 jetons </label><img src="image/jeton2.png" width="2%"></P>
+                </div>
+                <div id="texte5">
+                    <p ALIGN=center><label id="label4"></label></p>
+                </div>
+                <div id="texte4">
+                    <P ALIGN=center><label id="pot" style="color:white;">Pot : 0 </label><img src="image/pot.png" width="25%"></P>
+                </div>
+                <div id="texteGagnant" style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
+                    <p align=center><label id="gagnant"></label></p>
+                </div>
+                <button id="start" style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">START</button>
+                <button id="all-in">all-in</button>
+                <button id="check">check</button>
+                <button id="suivre">suivre</button>
+                <button id="raise">relancer</button>
+                <button id="coucher">se coucher</button>
+                <button id="exit">quitter table</button>
+            </div>
+            <div class="ServeurJoin">
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-bordered table-hover table-sortable" id="tab_logic">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Id table</th>
+                                    <th class="text-center">Nom</th>
+                                    <th class="text-center">Place</th>
+                                    <th class="text-center">Option</th>
+                                    <th class="text-center"
+                                        style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id='addr0' data-id="0" class="hidden">
+                                    <td data-name="name">
+                                        <input type="text" name='name0' placeholder='Name' class="form-control"/>
+                                    </td>
+                                    <td data-name="mail">
+                                        <input type="text" name='mail0' placeholder='Email' class="form-control"/>
+                                    </td>
+                                    <td data-name="desc">
+                                        <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                                    </td>
+                                    <td data-name="sel">
+                                        <select name="sel0">
+                                            <option value="">Select Option</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                    </td>
+                                    <td data-name="del">
+                                        <button nam="del0"
+                                                class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a id="add_row" class="btn btn-default pull-right">Add Row</a>
+                </div>
             </div>
         </div>
-        <a id="add_row" class="btn btn-default pull-right">Add Row</a>
-    </div>
-
-
-</div>
-
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="client.js">document.onload = init()</script>
-<script src="Game.js"></script>
+        <div class="right-half">
+            <div class="chat">
+                <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir"
+                       size="50"
+                       autofocus/>
+                <input type="submit" id="envoi_message" value="Send" onclick="date()"/>
+                <div>
+                    <section id="zone_chat">
+                        <span id="date"></span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="client.js">document.onload = init()</script>
+    <script src="Game.js"></script>
 </body>
 </html>
