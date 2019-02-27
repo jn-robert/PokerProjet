@@ -24,6 +24,8 @@ class Player {
 function init() {
     // var Game = require('./Game');
     // var Player = require('./Player');
+    document.getElementsByClassName("BeforeGame")[0].style.display = "block";
+    document.getElementsByClassName("Game")[0].style.display = "none";
     let id = 0;
     let player;
 
@@ -34,6 +36,8 @@ function init() {
 
     // Create a new game. Emit newGame event.
     $('#new').on('click', () => {
+        document.getElementsByClassName("BeforeGame")[0].style.display = "none";
+        document.getElementsByClassName("Game")[0].style.display = "block";
         const name = $('#nameNew').val();
         const jeton = $('#jetonNew').val();
         if (!name || !jeton) {
@@ -46,6 +50,8 @@ function init() {
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
     $('#join').on('click', () => {
+        document.getElementsByClassName("BeforeGame")[0].style.display = "none";
+        document.getElementsByClassName("Game")[0].style.display = "block";
         const name = $('#nameJoin').val();
         const roomID = $('#room').val();
         const jeton = $('#jetonNewJoin').val();
