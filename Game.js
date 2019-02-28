@@ -111,15 +111,20 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     let boolTours = 1;
     let testTousJoue = true;
 
-
     switch (this.actionPrec) {
         case null:
             this.actionPrec = action;
+            console.log("name parametre : "+name);
+            for (let i = 0; i < this.listePlayerGame.length; i++) {
+                this.listePlayerGame[i].setAjoue(false);
+            }
             for (let i = 0; i < this.listePlayerGame.length; i++) {
                 if (this.listePlayerGame[i].getPlayerName() === name) {
                     this.listePlayerGame[i].setAjoue(true);
+                    console.log("test true");
                 }
-                console.log(this.listePlayerGame[i].getAjoue());
+                console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
+                console.log("");
             }
             if (action === "check") {
 
@@ -780,6 +785,10 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
     this.reset();
     //console.log(this.cartes);
     // initialisation des blinds
+    for (let i = 0; i < this.listePlayerGame.length; i++) {
+        console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
+        console.log("");
+    }
     this.blind(petiteBlinde, grosseBlinde);
 
     //initialisation main + affichage main joueur
