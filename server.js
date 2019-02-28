@@ -84,6 +84,7 @@ io.on('connection', (socket) => {
             listeJetons[i]=game.listePlayerGame[i].getJetons();
         }
         // console.log(listeCartes);
+        console.log("indice dealer : "+game.dealer);
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
                 game.listePlayerGame[0].setAjoue(false);
@@ -228,14 +229,14 @@ io.on('connection', (socket) => {
         highestIndex = game.evalCarte();
         if (game.tour > 5) {
             // console.log(game.listePlayerGame);
-            console.log("server.js highestIndex : "+highestIndex);
+            //console.log("server.js highestIndex : "+highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            //console.log(name);
             game.distribGains(name);
         }
         socket.emit('resultAction', {
@@ -314,7 +315,7 @@ io.on('connection', (socket) => {
         highestIndex = game.evalCarte();
         if (game.tour > 5) {
             // console.log(game.listePlayerGame);
-            console.log(highestIndex);
+            //console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
@@ -401,7 +402,7 @@ io.on('connection', (socket) => {
         highestIndex = game.evalCarte();
         if (game.tour > 5) {
             // console.log(game.listePlayerGame);
-            console.log(highestIndex);
+            //console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
@@ -487,7 +488,7 @@ io.on('connection', (socket) => {
         highestIndex = game.evalCarte();
         if (game.tour > 5) {
             // console.log(game.listePlayerGame);
-            console.log(highestIndex);
+            //console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
@@ -572,8 +573,8 @@ io.on('connection', (socket) => {
         let combi = "";
         highestIndex = game.evalCarte();
         if (game.tour > 5) {
-            // console.log(game.listePlayerGame);
-            console.log(highestIndex);
+            // //console.log(game.listePlayerGame);
+            //console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
@@ -635,6 +636,7 @@ io.on('connection', (socket) => {
                 listeJetons[i]=game.listePlayerGame[i].getJetons();
             }
             // console.log(listeCartes);
+            console.log("indice dealer : "+game.dealer);
             switch (data.playerName) {
                 case game.listePlayerGame[0].getPlayerName():
                     game.listePlayerGame[0].setAjoue(false);

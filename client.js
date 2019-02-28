@@ -138,9 +138,9 @@ function init() {
                 jetons = data.jetons[i];
             }
         }
-        console.log(player.name);
-        console.log(data.jetons);
-        console.log(jetons);
+        //console.log(player.name);
+        //console.log(data.jetons);
+        //console.log(jetons);
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
 
@@ -302,7 +302,7 @@ function init() {
                 }
             }
 
-            console.log(data.cartes);
+            //console.log(data.cartes);
 
             //affichage des variables
 
@@ -351,7 +351,7 @@ function init() {
         let compteur2 = 0;
         if (data.tour > 2 && data.tour <= 6 && data.choixJoueurs !== 'coucher') {
             for (let i = 0; i < data.tour; i++) {
-                console.log(data.cartesTapis[i]);
+                //console.log(data.cartesTapis[i]);
             }
             data.cartesTapis.forEach(function (entry) {
                 switch (compteur) {
