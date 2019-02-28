@@ -114,17 +114,17 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     switch (this.actionPrec) {
         case null:
             this.actionPrec = action;
-            console.log("name parametre : "+name);
+            // console.log("name parametre : "+name);
             for (let i = 0; i < this.listePlayerGame.length; i++) {
                 this.listePlayerGame[i].setAjoue(false);
             }
             for (let i = 0; i < this.listePlayerGame.length; i++) {
                 if (this.listePlayerGame[i].getPlayerName() === name) {
                     this.listePlayerGame[i].setAjoue(true);
-                    console.log("test true");
+                    // console.log("test true");
                 }
-                console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
-                console.log("");
+                // console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
+                // console.log("");
             }
             if (action === "check") {
 
