@@ -1,3 +1,10 @@
+function begin(){
+    document.getElementsByClassName("BeforeGame")[0].style.display = "none";
+    document.getElementsByClassName("Game")[0].style.display = "none";
+}
+
+
+/*
 $(document).ready(function() {
     $("#add_row").on("click", function() {
         // Dynamic Rows Code
@@ -40,14 +47,14 @@ $(document).ready(function() {
         });
 
         // add delete button and td
-        /*
+        *//*
         $("<td></td>").append(
             $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
                 .click(function() {
                     $(this).closest("tr").remove();
                 })
         ).appendTo($(tr));
-        */
+        *//*
 
         // add the new row
         $(tr).appendTo($('#tab_logic'));
@@ -82,3 +89,40 @@ $(document).ready(function() {
 
     $("#add_row").trigger("click");
 });
+
+
+
+$(document).ready(function(){
+
+
+    $("#submit").click(function{
+
+
+        $.post(
+
+            'connexion.php', // Un script PHP que l'on va créer juste après
+
+            {
+
+                username : $("#username").val(),  // Nous récupérons la valeur de nos inputs que l'on fait passer à connexion.php
+
+                password : $("#password").val()
+
+            },
+
+
+            function(data){ // Cette fonction ne fait rien encore, nous la mettrons à jour plus tard
+
+            },
+
+
+            'text' // Nous souhaitons recevoir "Success" ou "Failed", donc on indique text !
+
+         );
+
+
+    });
+
+
+});*/
+
