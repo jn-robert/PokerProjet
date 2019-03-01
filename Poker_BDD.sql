@@ -10,6 +10,7 @@ CREATE TABLE Player (
 	nom VARCHAR(20),
 	prenom VARCHAR(20),
 	pseudo VARCHAR(15),
+	password VARCHAR(20),
 	dateInscription DATE,
 	jetons INT,
 	PRIMARY KEY(idPlayer)
