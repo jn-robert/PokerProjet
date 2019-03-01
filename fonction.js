@@ -1,3 +1,11 @@
+
+function initialisation(){
+    document.getElementsByClassName("login")[0].style.display = "none";
+    document.getElementsByClassName("register")[0].style.display = "none";
+    document.getElementsByClassName("home")[0].style.display = "block";
+}
+
+
 function begin(){
     document.getElementsByClassName("BeforeGame")[0].style.display = "none";
     document.getElementsByClassName("Game")[0].style.display = "none";
