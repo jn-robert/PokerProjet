@@ -58,32 +58,28 @@
     position:absolute;
 }
 
-#texte {
-    top: 525px;
-    left: -150px;
-    border: 0px;
-    visibility: visible;
-    position: absolute;
-}
-
-#texte3 {
-    top: 425px;
-    left: 500px;
-    border: 0px;
-    visibility: visible;
-    position: absolute;
-}
-
 .table-sortable tbody tr {
     cursor: move;
 }
 
-#texte2 {
-    top: 310px;
-    left: -375px;
+
+#texte {
+    top: 525px;
+    left: 500px;
     border: 0px;
     visibility: visible;
     position: absolute;
+    color: white;
+}
+
+#texte2 {
+    top: 310px;
+    left: 200px;
+    border: 0px;
+    visibility: visible;
+    position: absolute;
+    color: white;
+
 }
 
 #texte3 {
@@ -92,6 +88,8 @@
     border: 0px;
     visibility: visible;
     position: absolute;
+    color: white;
+
 }
 
 #texte4 {
@@ -100,14 +98,18 @@
     border: 0px;
     visibility: visible;
     position: absolute;
+    color: white;
+
 }
 
 #texte5 {
     top: 270px;
-    left: 200px;
+    left: 250px;
     border: 0px;
     visibility: visible;
     position: absolute;
+    color: white;
+
 }
 
 #CarteJoueur1 {

@@ -34,11 +34,13 @@ const con = mysql.createConnection({
     host: 'localhost',
     database: 'poker',
     user: 'root',
+    port: '3306',
     password: '',
 });
 
 con.connect((err) => {
     if(err){
+        console.log(err);
         console.log('Error connecting to Db');
         return;
     }

@@ -138,9 +138,28 @@ function init() {
                 jetons = data.jetons[i];
             }
         }
-        //console.log(player.name);
-        //console.log(data.jetons);
-        //console.log(jetons);
+
+        if (data.nbJoueurs == 2){
+            document.getElementById("texte").hidden = false;
+            document.getElementById("texte2").hidden = false;
+            document.getElementById("texte3").hidden = true;
+            document.getElementById("texte5").hidden = true;
+        }
+
+        if (data.nbJoueurs == 3){
+            document.getElementById("texte").hidden = false;
+            document.getElementById("texte2").hidden = false;
+            document.getElementById("texte3").hidden = false;
+            document.getElementById("texte5").hidden = true;
+        }
+
+        if (data.nbJoueurs == 4){
+            document.getElementById("texte").hidden = false;
+            document.getElementById("texte2").hidden = false;
+            document.getElementById("texte3").hidden = false;
+            document.getElementById("texte5").hidden = false;
+        }
+
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
         document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
 
@@ -149,6 +168,11 @@ function init() {
         document.T3.src = "image/dos.png";
         document.T4.src = "image/dos.png";
         document.T5.src = "image/dos.png";
+
+
+        document.getElementById('label1').innerHTML = data.jetons[i];
+        document.getElementById('label3').innerHTML =  data.jetons[i+1];
+
 
         document.getElementById('texteGagnant').innerHTML = "";
 
