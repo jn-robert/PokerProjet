@@ -163,16 +163,22 @@ function init() {
         if (data.nbJoueurs == 2){
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
+            document.getElementById("texte3").hidden = true;
+            document.getElementById("texte5").hidden = true;
         }
 
         if (data.nbJoueurs == 3){
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
+            document.getElementById("texte3").hidden = false;
+            document.getElementById("texte5").hidden = true;
         }
 
         if (data.nbJoueurs == 4){
             document.getElementById("texte").hidden = false;
-            document.getElementById("texte2").hidden = false;
+            document.getElementById("texte2").hidden = false
+            document.getElementById("texte3").hidden = false;
+            document.getElementById("texte5").hidden = false;
 
         }
 
