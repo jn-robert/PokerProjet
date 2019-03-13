@@ -65,6 +65,7 @@ function init() {
     socket.on('newGame', (data) => {
         const message = `Hello, ${data.name}. Vous êtes dans le salon numéro: ${data.room}`;
         // Create game for player 1
+        room = `${data.room}`;
         game = new Game(); //data.room
         game.displayBoard(message);
     });
@@ -245,15 +246,16 @@ function init() {
         const roomId = $('#room').val();
         console.log("roomId : "+roomId);
         var message = document.getElementById("message").value;
-        socket.emit('message', {room: roomId, pseudo: player.name, message: message});
+        socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
     socket.on('afficheMessage', (data) => {
         console.log("room " +data.room);
-        const roomId = $('#room').val();
-        console.log(roomId);
+        console.log("roomId : "+ room);
+        // const roomId = $('#room').val();
+        // console.log(roomId);
 
-        if (room===`${data.room}`){
+        if (room ===`${data.room}`){
             console.log("test ok");
             $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
         }
