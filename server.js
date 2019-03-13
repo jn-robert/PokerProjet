@@ -1,27 +1,48 @@
 const express = require('express');
 const path = require('path');
-var Game = require('./Game');
-const Cartes = require('./Cartes');
-const Player = require('./Player');
-
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const mysql = require('mysql');
+const socket = require("socket.io");
+let Game = require('./Game');
 io.set('log level', 1);
 
 let rooms = 0;
 let id = 0;
 let game;
 let idJoueur = [];
-
 let compteurRestartGame = 0;
-
 let nombreJoueurPartiePrec=0;
 
 app.use(express.static('.'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'game.html'));
+    res.sendFile(path.join(__dirname, 'home.html'));
+});
+
+app.get('/stat', (req, res) => {
+    res.sendFile(path.join(__dirname, 'stats.html'));
+});
+
+
+/**
+ * Partie statistique
+ */
+
+const con = mysql.createConnection({
+    host: 'localhost',
+    database: 'poker',
+    user: 'root',
+    password: '',
+});
+
+con.connect((err) => {
+    if(err){
+        console.log('Error connecting to Db');
+        return;
+    }
+    console.log('Connection established');
 });
 
 /**

@@ -62,3 +62,5 @@ CREATE TABLE Action (
 	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer),
 	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
 );
+
+INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, 'j1Name', 'j1', 'Joueur1', '0000', '2019-03-01', '100'), (NULL, 'j2Name', 'j2', 'Joueur2', '0000', '2019-03-01', '100');

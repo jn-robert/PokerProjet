@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Statistique</title>
-    <script type="text/javascript" src="jsStats.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -59,17 +59,25 @@
         </div>
     </div>
 </nav>
+<a href="#" onclick="callServer()">TEST</a>
 
 <div class="listJoueur" id="coin">
     <div class="childrenListJoueur" id="listeJoueur">
+
         <script>
-            var tab = ["Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1",
-                "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1", "Joueur2", "Joueur3", "Joueur4", "Joueur5", "Joueur1"];
+            let tab = [];
+            let socket = io('http://localhost:8888');
+            socket.on('listJoueur', (data) => {
+                tab = data.tab
+            });
+            window.onload = function () {
+                socket.emit('callListJoueur');
+            };
             var msg = "<t8>Liste des joueurs</t8><br>";
             for (var i = 0; i < tab.length; i++) {
                 msg += "<button onclick='traceStats(\"" + tab[i] + "\")'>" + tab[i] + "</button><br>";
             }
-            msg += "<br><br>"
+            msg += "<br><br>";
             document.getElementById("listeJoueur").innerHTML = msg;
         </script>
     </div>
