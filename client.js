@@ -161,6 +161,8 @@ function init() {
         }
 
         if (data.nbJoueurs == 2){
+            document.getElementById("CarteJoueur3").hidden = false;
+            document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
             document.getElementById("texte3").hidden = true;
@@ -168,6 +170,8 @@ function init() {
         }
 
         if (data.nbJoueurs == 3){
+            document.getElementById("CarteJoueur3").hidden = false;
+            document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
             document.getElementById("texte3").hidden = false;
@@ -175,6 +179,8 @@ function init() {
         }
 
         if (data.nbJoueurs == 4){
+            document.getElementById("CarteJoueur3").hidden = false;
+            document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false
             document.getElementById("texte3").hidden = false;
