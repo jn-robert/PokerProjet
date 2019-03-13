@@ -28,6 +28,45 @@ function clear(){
 }
 
 
+$(document).ready(function () {
+    $(document).ready(function () {
+        $('#loginFormulaire').submit(function (e) {
+            e.preventDefault();
+
+            var nom = $("#name").val();
+            var pass = $("#password").val();
+
+            if (nom != "" && pass != "") {
+
+                $.ajax({
+                    type: "POST",
+                    url: 'login.php',
+                    data: {
+                        name: nom,
+                        password: pass
+                    },
+                    success: function (response) {
+                        var reponse = $.trim(response)
+                        console.log(response);
+                        if (reponse === "success") {
+                            checkAuth();
+                            user = nom;
+                            loginSuccess();
+                        }
+                        else {
+                            alert("Wrong Details");
+                        }
+                    }
+                });
+            }
+            else {
+                alert("Please Fill All The Details");
+            }
+            return false;
+        });
+    });
+});
+
 /*
 $(document).ready(function() {
     $("#add_row").on("click", function() {

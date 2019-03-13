@@ -5,7 +5,7 @@ if(isset($_POST['name']) && isset($_POST['password'])) // Si on a les deux champ
         sleep(2); // On laisse un chargement de deux secondes pour avoir le message du beforeSend
         $name = htmlspecialchars(trim($_POST['name'])); // On met $_POST['username'] dans une variable
 
-        $req = $db->prepare('SELECT * FROM USERNAME');
+        $req = $db->prepare('SELECT * FROM Player');
         $req->execute();
         $post = $req->fetchAll();
 
