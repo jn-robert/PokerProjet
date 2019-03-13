@@ -140,11 +140,13 @@ function init() {
                     document.getElementById('label2').innerHTML = data.jetons[i+1];
                     document.getElementById('label1').innerHTML = data.jetons[i+2];
                     document.getElementById('label3').innerHTML = data.jetons[i+3];
+                    console.log(data.jetons[i+1])
                 }
                 if (i == 1){
                     document.getElementById('label2').innerHTML = data.jetons[i-1];
                     document.getElementById('label1').innerHTML = data.jetons[i+1];
                     document.getElementById('label3').innerHTML = data.jetons[i+2];
+                    console.log(data.jetons[i-1])
                 }
                 if (i == 2){
                     document.getElementById('label2').innerHTML = data.jetons[i-2];
@@ -259,6 +261,38 @@ function init() {
          * récupère les variables jetobs et cartes du joueur
          */
 
+        let cartes;
+        for (let i=0;i<data.nbJoueurs;i++) {
+            if (data.name[i] === player.name) {
+                cartes = data.cartes[i];
+                jetons = data.jetons[i];
+                document.getElementById('label0').innerHTML = jetons;
+                if (i == 0){
+                    document.getElementById('label2').innerHTML = data.jetons[i+1];
+                    document.getElementById('label1').innerHTML = data.jetons[i+2];
+                    document.getElementById('label3').innerHTML = data.jetons[i+3];
+                    console.log(data.jetons[i+1])
+                }
+                if (i == 1){
+                    document.getElementById('label2').innerHTML = data.jetons[i-1];
+                    document.getElementById('label1').innerHTML = data.jetons[i+1];
+                    document.getElementById('label3').innerHTML = data.jetons[i+2];
+                    console.log(data.jetons[i-1])
+                }
+                if (i == 2){
+                    document.getElementById('label2').innerHTML = data.jetons[i-2];
+                    document.getElementById('label1').innerHTML = data.jetons[i-1];
+                    document.getElementById('label3').innerHTML = data.jetons[i+1];
+
+                }
+                if (i == 3){
+                    document.getElementById('label2').innerHTML = data.jetons[i-3];
+                    document.getElementById('label1').innerHTML = data.jetons[i-2];
+                    document.getElementById('label3').innerHTML = data.jetons[i-1];
+                }
+            }
+        }
+
         if (data.tour < 6) {
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
 
@@ -360,10 +394,6 @@ function init() {
 
             document.getElementById('turn').innerHTML = message;
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
-            document.getElementById('texte').innerHTML = jetons + " jetons";
-            document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
-            document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
-            document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
             document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
             document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
         } else {
@@ -378,10 +408,6 @@ function init() {
             }
 
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
-            document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
-            document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
-            document.getElementById('texte3').innerText = data.tasJoueur1 + " jetons";
-            document.getElementById('texte5').innerHTML = data.tasJoueur2 + " jetons";
             document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
             document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
             document.getElementById('turn').innerHTML = "fin partie";
