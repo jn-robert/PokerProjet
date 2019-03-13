@@ -245,10 +245,14 @@ function init() {
     });
 
     socket.on('afficheMessage', (data) => {
+        console.log("room" +data.room)
         const roomId = $('#room').val();
+        console.log(roomId)
+/*
         if (roomId===data.room){
+*/
             $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
-        }
+        /*}*/
     });
 
     /**
