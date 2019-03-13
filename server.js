@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
         if (room && room.length <= 9) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
-            socket.emit('player', {name: data.name, room: data.room});
+            socket.emit('player', {name: data.name, room: `${rooms}`});
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
         }
@@ -752,9 +752,9 @@ io.on('connection', (socket) => {
 
 
     socket.on('message', (data) => {
-        console.log("player : "+data.pseudo+", message : "+data.message);
-        socket.emit('afficheMessage', {room: data.room, pseudo: data.pseudo, message: data.message});
-        socket.broadcast.emit('afficheMessage', { pseudo: data.pseudo, message: data.message});
+        console.log("player : "+data.pseudo+", message : "+data.message+", room : "+ `${rooms}`);
+        socket.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
+        socket.broadcast.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
     });
 });
 server.listen(process.env.PORT || 5000);

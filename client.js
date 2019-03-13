@@ -29,6 +29,8 @@ function init() {
 
     let game;
 
+    let room;
+
     // const socket = io.connect('myip:5000');
     const socket = io.connect('http://localhost:5000');
 
@@ -85,6 +87,7 @@ function init() {
         const message = `Hello, ${data.name}`;
         // Create game for player
         game = new Game(); //data.room
+        room = `${data.room}`;
         game.displayBoard(message);
         player.setCurrentTurn(false);
     });
@@ -240,19 +243,20 @@ function init() {
 
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
+        console.log("roomId : "+roomId);
         var message = document.getElementById("message").value;
         socket.emit('message', {room: roomId, pseudo: player.name, message: message});
     });
 
     socket.on('afficheMessage', (data) => {
-        console.log("room" +data.room)
+        console.log("room " +data.room);
         const roomId = $('#room').val();
-        console.log(roomId)
-/*
-        if (roomId===data.room){
-*/
+        console.log(roomId);
+
+        if (room===`${data.room}`){
+            console.log("test ok");
             $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
-        /*}*/
+        }
     });
 
     /**
