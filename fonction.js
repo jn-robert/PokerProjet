@@ -40,7 +40,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: 'login.php',
+                    url: '/login.php',
                     data: {
                         name: nom,
                         password: pass
@@ -49,9 +49,6 @@ $(document).ready(function () {
                         var reponse = $.trim(response)
                         console.log(response);
                         if (reponse === "success") {
-                            checkAuth();
-                            user = nom;
-                            loginSuccess();
                         }
                         else {
                             alert("Wrong Details");

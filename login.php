@@ -1,3 +1,15 @@
+<?php
+
+
+$dbhost="localhost";
+$dbuser="root";
+$dbpass="";
+$dbname="POKER";
+
+$db = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+
+echo "tg";
+
 if(isset($_POST['name']) && isset($_POST['password'])) // Si on a les deux champs username et password
 {
     if(!empty($_POST['name']) && !empty($_POST['password'])) // Si ils ne sont pas vide
@@ -21,18 +33,14 @@ if(isset($_POST['name']) && isset($_POST['password'])) // Si on a les deux champ
             }
         }
         if($succes){
-            $_SESSION['name'] = $name;
-            $_SESSION['password'] = $password;
             echo "success";
         }
         else{
-            session_destroy();
             echo "erreur mdp ou name";
         }
 
     }
     else {
-        session_destroy();
         echo "Merci de remplir tous les champs .."; // Le message s'affichera dans la DIV #response
     }
 
