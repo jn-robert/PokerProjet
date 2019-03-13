@@ -131,33 +131,49 @@ function init() {
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
         let cartes;
-        let jetons;
-        for (let i=0;i<data.nbJoueurs;i++){
-            if (data.name[i] === player.name){
+        for (let i=0;i<data.nbJoueurs;i++) {
+            if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
                 jetons = data.jetons[i];
+                document.getElementById('label0').innerHTML = jetons;
+                if (i == 0){
+                    document.getElementById('label2').innerHTML = data.jetons[i+1];
+                    document.getElementById('label1').innerHTML = data.jetons[i+2];
+                    document.getElementById('label3').innerHTML = data.jetons[i+3];
+                }
+                if (i == 1){
+                    document.getElementById('label2').innerHTML = data.jetons[i-1];
+                    document.getElementById('label1').innerHTML = data.jetons[i+1];
+                    document.getElementById('label3').innerHTML = data.jetons[i+2];
+                }
+                if (i == 2){
+                    document.getElementById('label2').innerHTML = data.jetons[i-2];
+                    document.getElementById('label1').innerHTML = data.jetons[i-1];
+                    document.getElementById('label3').innerHTML = data.jetons[i+1];
+
+                }
+                if (i == 3){
+                    document.getElementById('label2').innerHTML = data.jetons[i-3];
+                    document.getElementById('label1').innerHTML = data.jetons[i-2];
+                    document.getElementById('label3').innerHTML = data.jetons[i-1];
+                }
             }
         }
 
         if (data.nbJoueurs == 2){
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
-            document.getElementById("texte3").hidden = true;
-            document.getElementById("texte5").hidden = true;
         }
 
         if (data.nbJoueurs == 3){
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
-            document.getElementById("texte3").hidden = false;
-            document.getElementById("texte5").hidden = true;
         }
 
         if (data.nbJoueurs == 4){
             document.getElementById("texte").hidden = false;
             document.getElementById("texte2").hidden = false;
-            document.getElementById("texte3").hidden = false;
-            document.getElementById("texte5").hidden = false;
+
         }
 
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
@@ -169,12 +185,6 @@ function init() {
         document.T4.src = "image/dos.png";
         document.T5.src = "image/dos.png";
 
-
-        document.getElementById('label1').innerHTML = data.jetons[i];
-        document.getElementById('label3').innerHTML =  data.jetons[i+1];
-
-
-        document.getElementById('texteGagnant').innerHTML = "";
 
     });
 
