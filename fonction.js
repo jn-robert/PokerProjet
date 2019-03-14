@@ -35,9 +35,8 @@ $(document).ready(function () {
 
             var nom = $("#name").val();
             var pass = $("#password").val();
-
             if (nom != "" && pass != "") {
-
+                console.log("cc");
                 $.ajax({
                     type: "POST",
                     url: '/login.php',
@@ -53,8 +52,12 @@ $(document).ready(function () {
                         else {
                             alert("Wrong Details");
                         }
+                    },
+                    error : function(resultat, statut, erreur) {
+                        alert("failed");
                     }
-                });
+
+            });
             }
             else {
                 alert("Please Fill All The Details");
@@ -64,125 +67,110 @@ $(document).ready(function () {
     });
 });
 
-/*
-$(document).ready(function() {
-    $("#add_row").on("click", function() {
-        // Dynamic Rows Code
 
-        // Get max row id and set new id
-        var newid = 0;
-        $.each($("#tab_logic tr"), function() {
-            if (parseInt($(this).data("id")) > newid) {
-                newid = parseInt($(this).data("id"));
+$(document).ready(function()
+{
+    $('#registerFormulaire').submit(function (e) {
+        e.preventDefault();
+
+        var nom = $("#nameRegister").val();
+        var pass = $("#passwordRegister").val();
+        var pseudo = $("#pseudo").val();
+        var secondPassword = $("#secondPassword").val();
+
+
+        if (nom != "" && pass != "" && pseudo != "" && secondPassword != "") {
+
+
+            document.getElementById("errorNom").innerHTML = "";
+            document.getElementById("errorNom").style.color = "white";
+
+
+            var user_textLength = nom.trim().length;
+            var pw_textLength = pass.trim().length;
+
+
+            if(user_textLength < 1){
+                document.getElementById("errorNom").innerHTML = "Veuillez saisir un nom contenant au minimum 2 caractères";
+                document.getElementById("errorNom").style.color = "red";
+                return false;
             }
-        });
-        newid++;
 
-        var tr = $("<tr></tr>", {
-            id: "addr"+newid,
-            "data-id": newid
-        });
-
-        // loop through each td and create new elements with name of newid
-        $.each($("#tab_logic tbody tr:nth(0) td"), function() {
-            var cur_td = $(this);
-
-            var children = cur_td.children();
-
-            // add new td and element if it has a nane
-            if ($(this).data("name") != undefined) {
-                var td = $("<td></td>", {
-                    "data-name": $(cur_td).data("name")
-                });
-
-                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                c.attr("name", $(cur_td).data("name") + newid);
-                c.appendTo($(td));
-                td.appendTo($(tr));
-            } else {
-                var td = $("<td></td>", {
-                    'text': $('#tab_logic tr').length
-                }).appendTo($(tr));
+            if(pw_textLength < 7){
+                document.getElementById("errorPas").innerHTML = "Veuillez saisir un mot de passe contenant au minimum 8 caractères";
+                document.getElementById("errorPas").style.color = "red";
+                return false;
             }
-        });
 
-        // add delete button and td
-        *//*
-        $("<td></td>").append(
-            $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
-                .click(function() {
-                    $(this).closest("tr").remove();
-                })
-        ).appendTo($(tr));
-        *//*
 
-        // add the new row
-        $(tr).appendTo($('#tab_logic'));
+            if(secondPassword != pass){
+                console.log(secondPassword);
+                console.log(pass);
+                //alert("erreur");
+                document.getElementById("errorPass").innerHTML = "veuillez mettre le meme mot de passe";
+                document.getElementById("errorPass").style.color = "red";
 
-        $(tr).find("td button.row-remove").on("click", function() {
-             $(this).closest("tr").remove();
-        });
-});
+                return false;
+            }
+            else{
+                document.getElementById("errorPass").innerHTML = "";
+                document.getElementById("errorPass").style.color = "white";
+            }
 
 
 
 
-    // Sortable Code
-    var fixHelperModified = function(e, tr) {
-        var $originals = tr.children();
-        var $helper = tr.clone();
+            var data = $("#registerFormulaire").serialize();
 
-        $helper.children().each(function(index) {
-            $(this).width($originals.eq(index).width())
-        });
+            $.ajax({
+                type: 'POST',
+                url: 'register.php',
+                data: data,
+                success: function (data) {
+                    if (data == 1) {
 
-        return $helper;
-    };
+                    }
+                    else if (data == "registered") {
+                        console.log("registered");
+                        initialisation();
+                    }
+                    else {
 
-    $(".table-sortable tbody").sortable({
-        helper: fixHelperModified
-    }).disableSelection();
+                    }
+                },
+                error : function(resultat, statut, erreur) {
+                    alert("failed");
+                }
 
-    $(".table-sortable thead").disableSelection();
+            });
 
+            return false;
+        }
 
+        if(nom == ""){
+            document.getElementById("errorNom").innerHTML = "veuillez saisir le nom";
+            document.getElementById("errorNom").style.color = "red";
+        }
+        else{
+            document.getElementById("errorNom").innerHTML = "";
+            document.getElementById("errorNom").style.color = "white";
+        }
+        if(pseudo == ""){
+            document.getElementById("errorEmail").innerHTML = "veuillez saisir le email";
+            document.getElementById("errorEmail").style.color = "red";
+        }
+        if(pass == ""){
+            document.getElementById("errorPas").innerHTML = "veuillez saisir le password";
+            document.getElementById("errorPas").style.color = "red";
+        }
+        if(secondPassword == ""){
+            document.getElementById("errorPass").innerHTML = "veuillez saisir le SecondPassword";
+            document.getElementById("errorPass").style.color = "red";
+        }
 
-    $("#add_row").trigger("click");
-});
-
-
-
-$(document).ready(function(){
-
-
-    $("#submit").click(function{
-
-
-        $.post(
-
-            'connexion.php', // Un script PHP que l'on va créer juste après
-
-            {
-
-                username : $("#username").val(),  // Nous récupérons la valeur de nos inputs que l'on fait passer à connexion.php
-
-                password : $("#password").val()
-
-            },
-
-
-            function(data){ // Cette fonction ne fait rien encore, nous la mettrons à jour plus tard
-
-            },
-
-
-            'text' // Nous souhaitons recevoir "Success" ou "Failed", donc on indique text !
-
-         );
-
+        //alert("Entrer toutes les valeurs")
 
     });
 
-
-});*/
+});
 
