@@ -29,11 +29,12 @@ let listener = socket.listen(server, {log: false});
 
 function start(socket){
     socket.on('callListJoueur', function (){
-        console.log("Requête reçue");
 
-        con.query('SELECT * FROM player', (err, rows) =>{
+        con.query("SELECT * FROM player", (err, rows) =>{
             if (err) throw err;
 
+            console.log("Requête envoyee");
+            console.log(rows);
             socket.emit('listJoueur', {
                 tab: rows
             });
