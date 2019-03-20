@@ -79,7 +79,7 @@
         <h5 id="turn">En attente d'aversaire</h5>
         <section class="container">
             <div class="left-half">
-                <img src="image/table.jpg" width=100%>
+                <img src="image/table.jpg" id="image">
                 <div>
                     <div id="T1">
                         <P ALIGN=center><img name=T1 width=40px height=60px></P>
@@ -121,19 +121,19 @@
                         <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur8 width=40px height=60px></P>
                     </div>
                     <div id="texte">
-                        <P ALIGN=center><label id="label0">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
+                        <P ALIGN=center><label id="label0">0 jetons </label><img src="image/jeton2.png" width="30px"></P>
                     </div>
                     <div id="texte2" hidden="">
-                        <p ALIGN=center><label id="label2">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
+                        <p ALIGN=center><label id="label2">0 jetons </label><img src="image/jeton2.png" width="30px"></P>
                     </div>
                     <div id="texte3" hidden="">
-                        <P ALIGN=center><label id="label1">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
+                        <P ALIGN=center><label id="label1">0 jetons </label><img src="image/jeton2.png" width="30px"></P>
                     </div>
                     <div id="texte5" hidden="">
-                        <p ALIGN=center><label id="label3">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
+                        <p ALIGN=center><label id="label3">0 jetons </label><img src="image/jeton2.png" width="30px"></P>
                     </div>
                     <div id="texte4">
-                        <P ALIGN=center><label id="pot">Pot : 0 </label><img src="image/pot.png" width="25%"></P>
+                        <P ALIGN=center><label id="pot">Pot : 0 </label><img src="image/pot.png" width="90px"></P>
                     </div>
                     <div id="texteGagnant"
                          style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
@@ -149,54 +149,6 @@
                     <button id="raise">relancer</button>
                     <button id="coucher">se coucher</button>
                     <button id="exit">quitter table</button>
-                </div>
-                <div class="ServeurJoin">
-                    <div class="container">
-                        <div class="row clearfix">
-                            <div class="col-md-12 table-responsive">
-                                <table class="table table-bordered table-hover table-sortable" id="tab_logic">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">Id table</th>
-                                        <th class="text-center">Nom</th>
-                                        <th class="text-center">Place</th>
-                                        <th class="text-center">Option</th>
-                                        <th class="text-center"
-                                            style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr id='addr0' data-id="0" class="hidden">
-                                        <td data-name="name">
-                                            <input type="text" name='name0' placeholder='Name' class="form-control"/>
-                                        </td>
-                                        <td data-name="mail">
-                                            <input type="text" name='mail0' placeholder='Email' class="form-control"/>
-                                        </td>
-                                        <td data-name="desc">
-                                            <textarea name="desc0" placeholder="Description"
-                                                      class="form-control"></textarea>
-                                        </td>
-                                        <td data-name="sel">
-                                            <select name="sel0">
-                                                <option value="">Select Option</option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                            </select>
-                                        </td>
-                                        <td data-name="del">
-                                            <button name="del0"
-                                                    class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <a id="add_row" class="btn btn-default pull-right">Add Row</a>
-                    </div>
                 </div>
             </div>
             <div class="right-half">
