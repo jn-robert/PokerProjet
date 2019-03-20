@@ -8,6 +8,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="fonction.js"></script>
+
     <script>
         function date() {
             var start = new Date();
@@ -133,7 +134,7 @@
                         <p ALIGN=center><label id="label2">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
                     </div>
                     <div id="texte3" hidden="">
-                        <P ALIGN=center><label id="label1" >0 jetons </label><img src="image/jeton2.png" width="5%"></P>
+                        <P ALIGN=center><label id="label1">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
                     </div>
                     <div id="texte5" hidden="">
                         <p ALIGN=center><label id="label3">0 jetons </label><img src="image/jeton2.png" width="5%"></P>
@@ -141,10 +142,14 @@
                     <div id="texte4">
                         <P ALIGN=center><label id="pot">Pot : 0 </label><img src="image/pot.png" width="25%"></P>
                     </div>
-                    <div id="texteGagnant" style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
+                    <div id="texteGagnant"
+                         style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
                         <p align=center><label id="gagnant"></label></p>
                     </div>
-                    <button id="start" style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">START</button>
+                    <button id="start"
+                            style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">
+                        START
+                    </button>
                     <button id="all-in">all-in</button>
                     <button id="check">check</button>
                     <button id="suivre">suivre</button>
@@ -177,7 +182,8 @@
                                             <input type="text" name='mail0' placeholder='Email' class="form-control"/>
                                         </td>
                                         <td data-name="desc">
-                                            <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                                            <textarea name="desc0" placeholder="Description"
+                                                      class="form-control"></textarea>
                                         </td>
                                         <td data-name="sel">
                                             <select name="sel0">
@@ -202,24 +208,24 @@
             </div>
             <div class="right-half">
                 <div class="chat">
-                    <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir"
-                           size="50"
-                           autofocus/>
-                    <input type="submit" id="envoi_message" value="Send" onclick="date()"/>
-                    <div>
+                    <div class="message">
                         <section id="zone_chat">
                             <span id="date"></span>
                         </section>
                     </div>
                 </div>
+                <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir"
+                       size="50"
+                       autofocus/>
+                <input type="submit" id="envoi_message" value="Send" onclick="date()"/>
             </div>
         </section>
     </div>
 </div>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="client.js">document.onload = init()</script>
-    <script src="Game.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="client.js">document.onload = init()</script>
+<script src="Game.js"></script>
 </body>
 </html>
