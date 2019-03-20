@@ -257,7 +257,7 @@ function init() {
 
         if (room ===`${data.room}`){
             console.log("test ok");
-            $('#zone_chat').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+            $('.message').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
         }
     });
 
