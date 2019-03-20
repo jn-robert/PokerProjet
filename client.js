@@ -21,6 +21,12 @@ class Player {
     };
 }
 
+
+function date() {
+    var start = new Date();
+    document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
+}
+
 function init() {
     // var Game = require('./Game');
     // var Player = require('./Player');
@@ -256,10 +262,8 @@ function init() {
         // console.log(roomId);
 
         if (room ===`${data.room}`){
-            console.log("test ok");
+            date();
             $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
-            var elem = document.getElementById('message');
-            elem.scrollTop = elem.scrollHeight
         }
     });
 

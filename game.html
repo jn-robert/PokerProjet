@@ -8,12 +8,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="fonction.js"></script>
-    <script>
-        function date() {
-            var start = new Date();
-            document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
-        }
-    </script>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -213,7 +207,7 @@
                 </div>
                 <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir"
                        size="40" autofocus/>
-                <input type="submit" id="envoi_message" value="Send" onclick="date()"/>
+                <input type="submit" id="envoi_message" value="Send" onclick=""/>
             </div>
         </section>
     </div>
