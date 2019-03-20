@@ -257,7 +257,9 @@ function init() {
 
         if (room ===`${data.room}`){
             console.log("test ok");
-            $('.message').prepend('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+            $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+            var elem = document.getElementById('message');
+            elem.scrollTop = elem.scrollHeight
         }
     });
 
