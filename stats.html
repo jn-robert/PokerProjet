@@ -61,27 +61,7 @@
 </nav>
 <a href="#" onclick="callServer()">TEST</a>
 
-<div class="listJoueur" id="coin">
-    <div class="childrenListJoueur" id="listeJoueur">
 
-        <script>
-            let tab = [];
-            let socket = io('http://localhost:8888');
-            socket.on('listJoueur', (data) => {
-                tab = data.tab
-            });
-            window.onload = function () {
-                socket.emit('callListJoueur');
-            };
-            var msg = "<t8>Liste des joueurs</t8><br>";
-            for (var i = 0; i < tab.length; i++) {
-                msg += "<button onclick='traceStats(\"" + tab[i] + "\")'>" + tab[i] + "</button><br>";
-            }
-            msg += "<br><br>";
-            document.getElementById("listeJoueur").innerHTML = msg;
-        </script>
-    </div>
-</div>
 <div id="infoJoueur" class="infoJoueur"></div>
 <div id="statsVictoire" class="statsVictoire"></div>
 <div id="statsMise" class="statsMise"></div>

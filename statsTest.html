@@ -4,25 +4,40 @@
     <meta charset="UTF-8">
     <title>Stats</title>
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<script>
-    let socket = io('http://localhost:8888');
 
-    socket.on('listJoueur', (data) => {
-        console.log(data.tab)
-    });
 
-    window.onload = function () {
-        socket.emit('callListJoueur');
-    };
+<div class="listJoueur" id="coin">
+    <div class="childrenListJoueur" id="listeJoueur">
 
-</script>
+        <script>
+            let socket = io('http://localhost:8888');
+            socket.on('listJoueur', (data) => {
+                let tab = data.tab;
 
-<h1>Test des notifications</h1>
+                let msg = "<t8>Liste des joueurs</t8><br>";
+                for (var i = 0; i < tab.length; i++) {
+                    msg += "<button onclick='traceStats(\"" + tab[i].nom + "\")'>" + tab[i].nom + "</button><br>";
+                }
+                msg += "<br><br>";
+                document.getElementById("listeJoueur").innerHTML = msg;
+            });
+            window.onload = function () {
+                socket.emit('callListJoueur');
+            };
+        </script>
+    </div>
+</div>
 
-<ul id="messages">
-</ul>
+
 
 </body>
 </html>
