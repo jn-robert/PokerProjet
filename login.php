@@ -1,9 +1,9 @@
 <?php
 
-$dbhost="localhost";
-$dbuser="root";
-$dbpass="";
-$dbname="poker";
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "";
+$dbname = "poker";
 echo "tg";
 
 try {
@@ -11,9 +11,7 @@ try {
     // set the PDO error mode to exception
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully";
-}
-catch(PDOException $e)
-{
+} catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
@@ -60,7 +58,7 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
     $stmt->execute();
     if ($stmt->rowCount() == 1) {
         echo "success";
-    }else{
+    } else {
         echo "non valide";
 
     }

@@ -732,7 +732,7 @@ Game.prototype.distribGains = function (name) {
         }
     }
     this.pot = 0;
-    this.dealer=(this.dealer+1)%this.listePlayerTable.length;
+    this.dealer = (this.dealer + 1) % this.listePlayerTable.length;
 };
 
 /**
@@ -786,7 +786,7 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
     //console.log(this.cartes);
     // initialisation des blinds
     for (let i = 0; i < this.listePlayerGame.length; i++) {
-        console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
+        console.log("joueur " + i + " : " + this.listePlayerGame[i].getAjoue());
         console.log("");
     }
     this.blind(petiteBlinde, grosseBlinde);
