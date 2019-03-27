@@ -141,38 +141,38 @@ function init() {
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
         let cartes;
-        for (let i=0;i<data.nbJoueurs;i++) {
+        for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
                 jetons = data.jetons[i];
                 document.getElementById('label0').innerHTML = jetons;
-                if (i == 0){
-                    document.getElementById('label2').innerHTML = data.jetons[i+1];
-                    document.getElementById('label1').innerHTML = data.jetons[i+2];
-                    document.getElementById('label3').innerHTML = data.jetons[i+3];
-                    console.log(data.jetons[i+1])
+                if (i == 0) {
+                    document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                    document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    console.log(data.jetons[i + 1])
                 }
-                if (i == 1){
-                    document.getElementById('label2').innerHTML = data.jetons[i-1];
-                    document.getElementById('label1').innerHTML = data.jetons[i+1];
-                    document.getElementById('label3').innerHTML = data.jetons[i+2];
-                    console.log(data.jetons[i-1])
+                if (i == 1) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                    document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    console.log(data.jetons[i - 1])
                 }
-                if (i == 2){
-                    document.getElementById('label2').innerHTML = data.jetons[i-2];
-                    document.getElementById('label1').innerHTML = data.jetons[i-1];
-                    document.getElementById('label3').innerHTML = data.jetons[i+1];
+                if (i == 2) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                    document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 1];
 
                 }
-                if (i == 3){
-                    document.getElementById('label2').innerHTML = data.jetons[i-3];
-                    document.getElementById('label1').innerHTML = data.jetons[i-2];
-                    document.getElementById('label3').innerHTML = data.jetons[i-1];
+                if (i == 3) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                    document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                    document.getElementById('label3').innerHTML = data.jetons[i - 1];
                 }
             }
         }
 
-        if (data.nbJoueurs == 2){
+        if (data.nbJoueurs == 2) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("texte").hidden = false;
@@ -181,7 +181,7 @@ function init() {
             document.getElementById("texte5").hidden = true;
         }
 
-        if (data.nbJoueurs == 3){
+        if (data.nbJoueurs == 3) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("CarteJoueur5").hidden = false;
@@ -192,7 +192,7 @@ function init() {
             document.getElementById("texte5").hidden = true;
         }
 
-        if (data.nbJoueurs == 4){
+        if (data.nbJoueurs == 4) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("CarteJoueur5").hidden = false;
@@ -250,18 +250,18 @@ function init() {
 
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
-        console.log("roomId : "+roomId);
+        console.log("roomId : " + roomId);
         var message = document.getElementById("message").value;
         socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
     socket.on('afficheMessage', (data) => {
-        console.log("room " +data.room);
-        console.log("roomId : "+ room);
+        console.log("room " + data.room);
+        console.log("roomId : " + room);
         // const roomId = $('#room').val();
         // console.log(roomId);
 
-        if (room ===`${data.room}`){
+        if (room === `${data.room}`) {
             date();
             $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
         }
@@ -278,33 +278,33 @@ function init() {
          */
 
         let cartes;
-        for (let i=0;i<data.nbJoueurs;i++) {
+        for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
                 jetons = data.jetons[i];
                 document.getElementById('label0').innerHTML = jetons;
-                if (i == 0){
-                    document.getElementById('label2').innerHTML = data.jetons[i+1];
-                    document.getElementById('label1').innerHTML = data.jetons[i+2];
-                    document.getElementById('label3').innerHTML = data.jetons[i+3];
-                    console.log(data.jetons[i+1])
+                if (i == 0) {
+                    document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                    document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    console.log(data.jetons[i + 1])
                 }
-                if (i == 1){
-                    document.getElementById('label2').innerHTML = data.jetons[i-1];
-                    document.getElementById('label1').innerHTML = data.jetons[i+1];
-                    document.getElementById('label3').innerHTML = data.jetons[i+2];
-                    console.log(data.jetons[i-1])
+                if (i == 1) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                    document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    console.log(data.jetons[i - 1])
                 }
-                if (i == 2){
-                    document.getElementById('label2').innerHTML = data.jetons[i-2];
-                    document.getElementById('label1').innerHTML = data.jetons[i-1];
-                    document.getElementById('label3').innerHTML = data.jetons[i+1];
+                if (i == 2) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                    document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                    document.getElementById('label3').innerHTML = data.jetons[i + 1];
 
                 }
-                if (i == 3){
-                    document.getElementById('label2').innerHTML = data.jetons[i-3];
-                    document.getElementById('label1').innerHTML = data.jetons[i-2];
-                    document.getElementById('label3').innerHTML = data.jetons[i-1];
+                if (i == 3) {
+                    document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                    document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                    document.getElementById('label3').innerHTML = data.jetons[i - 1];
                 }
             }
         }
@@ -384,21 +384,21 @@ function init() {
                     //     document.getElementById('suivre').disabled = true;
                     //     document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     // } else {
-                        console.log("joueur else default");
-                        document.getElementById('all-in').disabled = true;
-                        document.getElementById('check').disabled = false;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = true;
-                        document.getElementById('coucher').disabled = true;
-                    // }
+                    console.log("joueur else default");
+                    document.getElementById('all-in').disabled = true;
+                    document.getElementById('check').disabled = false;
+                    document.getElementById('suivre').disabled = true;
+                    document.getElementById('raise').disabled = true;
+                    document.getElementById('coucher').disabled = true;
+                // }
             }
 
             document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
             let cartes;
             let jetons;
-            for (let i=0;i<data.nbJoueurs;i++){
-                if (data.name[i] === player.name){
+            for (let i = 0; i < data.nbJoueurs; i++) {
+                if (data.name[i] === player.name) {
                     cartes = data.cartes[i];
                     jetons = data.jetons[i];
                 }
@@ -416,8 +416,8 @@ function init() {
 
             let cartes;
             let jetons;
-            for (let i=0;i<data.nbJoueurs;i++){
-                if (data.name[i] === player.name){
+            for (let i = 0; i < data.nbJoueurs; i++) {
+                if (data.name[i] === player.name) {
                     cartes = data.cartes[i];
                     jetons = data.jetons[i];
                 }
