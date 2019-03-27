@@ -1,27 +1,26 @@
-
-function initialisation(){
+function initialisation() {
     document.getElementsByClassName("login")[0].style.display = "none";
     document.getElementsByClassName("register")[0].style.display = "none";
     document.getElementsByClassName("home")[0].style.display = "block";
 }
 
 
-function begin(){
+function begin() {
     document.getElementsByClassName("BeforeGame")[0].style.display = "none";
     document.getElementsByClassName("Game")[0].style.display = "none";
 }
 
-function showLogin(){
+function showLogin() {
     clear();
     document.getElementsByClassName("login")[0].style.display = "block";
 }
 
-function showRegister(){
+function showRegister() {
     clear();
     document.getElementsByClassName("register")[0].style.display = "block";
 }
 
-function clear(){
+function clear() {
     document.getElementsByClassName("login")[0].style.display = "none";
     document.getElementsByClassName("register")[0].style.display = "none";
     document.getElementsByClassName("home")[0].style.display = "none";
@@ -53,11 +52,11 @@ $(document).ready(function () {
                             alert("Wrong Details");
                         }
                     },
-                    error : function(resultat, statut, erreur) {
+                    error: function (resultat, statut, erreur) {
                         alert("failed");
                     }
 
-            });
+                });
             }
             else {
                 alert("Please Fill All The Details");
@@ -68,8 +67,7 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function()
-{
+$(document).ready(function () {
     $('#registerFormulaire').submit(function (e) {
         e.preventDefault();
 
@@ -90,20 +88,20 @@ $(document).ready(function()
             var pw_textLength = pass.trim().length;
 
 
-            if(user_textLength < 1){
+            if (user_textLength < 1) {
                 document.getElementById("errorNom").innerHTML = "Veuillez saisir un nom contenant au minimum 2 caractères";
                 document.getElementById("errorNom").style.color = "red";
                 return false;
             }
 
-            if(pw_textLength < 7){
+            if (pw_textLength < 7) {
                 document.getElementById("errorPas").innerHTML = "Veuillez saisir un mot de passe contenant au minimum 8 caractères";
                 document.getElementById("errorPas").style.color = "red";
                 return false;
             }
 
 
-            if(secondPassword != pass){
+            if (secondPassword != pass) {
                 console.log(secondPassword);
                 console.log(pass);
                 //alert("erreur");
@@ -112,12 +110,10 @@ $(document).ready(function()
 
                 return false;
             }
-            else{
+            else {
                 document.getElementById("errorPass").innerHTML = "";
                 document.getElementById("errorPass").style.color = "white";
             }
-
-
 
 
             var data = $("#registerFormulaire").serialize();
@@ -138,7 +134,7 @@ $(document).ready(function()
 
                     }
                 },
-                error : function(resultat, statut, erreur) {
+                error: function (resultat, statut, erreur) {
                     alert("failed");
                 }
 
@@ -147,23 +143,23 @@ $(document).ready(function()
             return false;
         }
 
-        if(nom == ""){
+        if (nom == "") {
             document.getElementById("errorNom").innerHTML = "veuillez saisir le nom";
             document.getElementById("errorNom").style.color = "red";
         }
-        else{
+        else {
             document.getElementById("errorNom").innerHTML = "";
             document.getElementById("errorNom").style.color = "white";
         }
-        if(pseudo == ""){
+        if (pseudo == "") {
             document.getElementById("errorEmail").innerHTML = "veuillez saisir le email";
             document.getElementById("errorEmail").style.color = "red";
         }
-        if(pass == ""){
+        if (pass == "") {
             document.getElementById("errorPas").innerHTML = "veuillez saisir le password";
             document.getElementById("errorPas").style.color = "red";
         }
-        if(secondPassword == ""){
+        if (secondPassword == "") {
             document.getElementById("errorPass").innerHTML = "veuillez saisir le SecondPassword";
             document.getElementById("errorPass").style.color = "red";
         }
