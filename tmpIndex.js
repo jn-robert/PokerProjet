@@ -14,7 +14,7 @@ const con = mysql.createConnection({
 });
 
 con.connect((err) => {
-    if(err){
+    if (err) {
         console.log('Error connecting to Db');
         return;
     }
@@ -27,10 +27,10 @@ app.get('/', (req, res) => {
 
 let listener = socket.listen(server, {log: false});
 
-function start(socket){
-    socket.on('callListJoueur', function (){
+function start(socket) {
+    socket.on('callListJoueur', function () {
 
-        con.query("SELECT * FROM player", (err, rows) =>{
+        con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
 
             console.log("Requête envoyee");
@@ -42,13 +42,15 @@ function start(socket){
     });
 
 
-/*
-    socket.emit('listJoueur', {
-        tab: tab
-    });
-    */
+    /*
+        socket.emit('listJoueur', {
+            tab: tab
+        });
+        */
 }
 
-listener.sockets.on('connection', function (socket) {start(socket);});
+listener.sockets.on('connection', function (socket) {
+    start(socket);
+});
 
 server.listen(8888);
