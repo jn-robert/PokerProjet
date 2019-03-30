@@ -9,7 +9,7 @@ let Game = require('./Game');
 io.set('log level', 1);
 
 let rooms = 0;
-let id = 0;
+var id = 0;
 let game;
 let idJoueur = [];
 let compteurRestartGame = 0;
@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
-        con.query("INSERT INTO partie VALUES(null ,NULL ,NULL ,1)", (err, rows) =>{
+        con.query("INSERT INTO partie VALUES("+id+" ,NULL ,NULL ,1)", (err, rows) =>{
             if (err) throw err;
             console.log(rows);
         });
