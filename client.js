@@ -283,7 +283,7 @@ function init() {
         }
     });
 
-    socket.on('listJoueur', (data) => {
+    socket.on('partieJoueur', (data) => {
         var test = data.tab;
 
         $(test25).append("<tbody id='mainbody'>");
@@ -304,7 +304,7 @@ function init() {
     });
 
     $('#test').on('click', () => {
-        socket.emit('callListJoueur');
+        socket.emit('callPartie');
     });
 
 

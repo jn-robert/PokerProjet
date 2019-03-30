@@ -91,13 +91,13 @@ io.on('connection', (socket) => {
     /**
      * Get information for table join
      */
-    socket.on('callListJoueur', function (){
+    socket.on('callPartie', function (){
         console.log("Requête reçue");
 
         con.query('SELECT * FROM partie', (err, rows) =>{
             if (err) throw err;
             console.log(rows);
-            socket.emit('listJoueur', {
+            socket.emit('partieJoueur', {
                 tab: rows
             });
         });
