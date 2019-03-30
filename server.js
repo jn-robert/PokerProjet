@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
         });
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
-
+//
     // Connect the Player to the room he requested. Show error if room full.
     socket.on('joinGame', function (data) {
         var room = io.nsps['/'].adapter.rooms[data.room];
