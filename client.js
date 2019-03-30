@@ -303,7 +303,7 @@ function init() {
         $(test25).append("</tbody>");
     });
 
-    $('#test').on('click', () => {
+    $(document).ready(function () {
         socket.emit('callPartie');
     });
 
