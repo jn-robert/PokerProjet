@@ -1,15 +1,30 @@
-/* Pattern styles */
-.container {
-    display: grid;
+/* Split the screen in half */
+.splitScreen {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+}
+
+/* Control the left side */
+.leftScreen {
+    left: 0;
+    height: 100%;
+}
+
+/* Control the right side */
+.rightScreen {
+    right: 0;
+    height: 100%;
 }
 
 .chat {
     display: block;
-    width: 300px;
-    height: 600px;
+    width: 100%;
+    height: 50%;
     overflow-y: scroll;
     overflow-x: hidden;
-    background: #eee;
 }
 
 .chat .message div {
@@ -42,32 +57,13 @@
     border-color: transparent #fff transparent transparent;
 }
 
-.left-half {
-    grid-column: 1;
-    text-align: left;
-}
-
-.right-half {
-    grid-column: 2;
-    text-align: right;
-}
-
 #image {
     max-width: 100%;
     height: auto;
 }
 
 #T1 {
-    top: 240px;
-    left: 600px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
-    position: absolute;
-}
-
-#T2 {
-    top: 240px;
+    top: 100px;
     left: 550px;
     width: 20px;
     border: 0px;
@@ -75,8 +71,8 @@
     position: absolute;
 }
 
-#T3 {
-    top: 240px;
+#T2 {
+    top: 100px;
     left: 500px;
     width: 20px;
     border: 0px;
@@ -84,8 +80,8 @@
     position: absolute;
 }
 
-#T4 {
-    top: 240px;
+#T3 {
+    top: 100px;
     left: 450px;
     width: 20px;
     border: 0px;
@@ -93,9 +89,18 @@
     position: absolute;
 }
 
-#T5 {
-    top: 240px;
+#T4 {
+    top: 100px;
     left: 400px;
+    width: 20px;
+    border: 0px;
+    visibility: visible;
+    position: absolute;
+}
+
+#T5 {
+    top: 100px;
+    left: 350px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -107,8 +112,8 @@
 }
 
 #texte {
-    top: 410px;
-    left: 530px;
+    top: 270px;
+    left: 440px;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -116,8 +121,8 @@
 }
 
 #texte2 {
-    top: 250px;
-    left: 250px;
+    top: 130px;
+    left: 120px;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -126,8 +131,8 @@
 }
 
 #texte3 {
-    top: 250px;
-    left: 700px;
+    top: 130px;
+    left: 620px;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -136,8 +141,8 @@
 }
 
 #texte4 {
-    top: 340px;
-    left: 380px;
+    top: 180px;
+    left: 300px;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -146,8 +151,8 @@
 }
 
 #texte5 {
-    top: 410px;
-    left: 410px;
+    top: 270px;
+    left: 250px;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -156,8 +161,8 @@
 }
 
 #CarteJoueur1 {
-    top: 410px;
-    left: 650px;
+    top: 250px;
+    left: 500px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -165,8 +170,8 @@
 }
 
 #CarteJoueur2 {
-    top: 410px;
-    left: 600px;
+    top: 250px;
+    left: 550px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -174,8 +179,8 @@
 }
 
 #CarteJoueur3 {
-    top: 300px;
-    left: 200px;
+    top: 170px;
+    left: 110px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -183,8 +188,8 @@
 }
 
 #CarteJoueur4 {
-    top: 350px;
-    left: 200px;
+    top: 220px;
+    left: 110px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -192,8 +197,8 @@
 }
 
 #CarteJoueur5 {
-    top: 300px;
-    left: 715px;
+    top: 220px;
+    left: 630px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -201,8 +206,8 @@
 }
 
 #CarteJoueur6 {
-    top: 350px;
-    left: 715px;
+    top: 170px;
+    left: 630px;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -210,7 +215,7 @@
 }
 
 #CarteJoueur7 {
-    top: 410px;
+    top: 250px;
     left: 315px;
     width: 20px;
     border: 0px;
@@ -219,7 +224,7 @@
 }
 
 #CarteJoueur8 {
-    top: 410px;
+    top: 250px;
     left: 365px;
     width: 20px;
     border: 0px;
@@ -620,11 +625,6 @@ th {
     background: grey;
     margin-bottom: 2%;
 
-}
-
-.chat {
-    padding: 4%;
-    margin-bottom: 1%;
 }
 
 .vide {

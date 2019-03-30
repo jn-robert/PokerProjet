@@ -77,95 +77,93 @@
     <div class="gameBoard" style="display: none;">
         <h4 id="userHello"></h4>
         <h5 id="turn">En attente d'aversaire</h5>
-        <section class="container">
-            <div class="left-half">
+        <div class="splitScreen leftScreen">
+            <div>
                 <img src="image/table.jpg" id="image">
-                <div>
-                    <div id="T1">
-                        <P ALIGN=center><img name=T1 width=40px height=60px></P>
-                    </div>
-                    <div id="T2">
-                        <P ALIGN=center><IMG name=T2 width=40px height=60px></P>
-                    </div>
-                    <div id="T3">
-                        <P ALIGN=center><IMG name=T3 width=40px height=60px></P>
-                    </div>
-                    <div id="T4">
-                        <P ALIGN=center><IMG name=T4 width=40px height=60px></P>
-                    </div>
-                    <div id="T5">
-                        <P ALIGN=center><IMG name=T5 width=40px height=60px></P>
-                    </div>
-                    <div id="CarteJoueur1">
-                        <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur1 width=40px height=60px></P>
-                    </div>
-                    <div id="CarteJoueur2">
-                        <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur2 width=40px height=60px></P>
-                    </div>
-                    <div id="CarteJoueur3" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur3 width=60px height=40px></P>
-                    </div>
-                    <div id="CarteJoueur4" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur4 width=60px height=40px></P>
-                    </div>
-                    <div id="CarteJoueur5" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur5 width=60px height=40px></P>
-                    </div>
-                    <div id="CarteJoueur6" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur6 width=60px height=40px></P>
-                    </div>
-                    <div id="CarteJoueur7" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur7 width=40px height=60px></P>
-                    </div>
-                    <div id="CarteJoueur8" hidden="">
-                        <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur8 width=40px height=60px></P>
-                    </div>
-                    <div id="texte">
-                        <P ALIGN=center><label id="label0">0 jetons </label><img src="image/jeton2.png" width="30px">
-                        </P>
-                    </div>
-                    <div id="texte2" hidden="">
-                        <p ALIGN=center><label id="label2">0 jetons </label><img src="image/jeton2.png" width="30px">
-                        </P>
-                    </div>
-                    <div id="texte3" hidden="">
-                        <P ALIGN=center><label id="label1">0 jetons </label><img src="image/jeton2.png" width="30px">
-                        </P>
-                    </div>
-                    <div id="texte5" hidden="">
-                        <p ALIGN=center><label id="label3">0 jetons </label><img src="image/jeton2.png" width="30px">
-                        </P>
-                    </div>
-                    <div id="texte4">
-                        <P ALIGN=center><label id="pot">Pot : 0 </label><img src="image/pot.png" width="90px"></P>
-                    </div>
-                    <div id="texteGagnant"
-                         style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
-                        <p align=center><label id="gagnant"></label></p>
-                    </div>
-                    <button id="start"
-                            style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">
-                        START
-                    </button>
-                    <button id="all-in">all-in</button>
-                    <button id="check">check</button>
-                    <button id="suivre">suivre</button>
-                    <button id="raise">relancer</button>
-                    <button id="coucher">se coucher</button>
-                    <button id="exit">quitter table</button>
+                <div id="T1">
+                    <P ALIGN=center><img name=T1 width=40px height=60px></P>
                 </div>
-            </div>
-            <div class="right-half">
-                <div class="chat">
-                    <div class="message">
-                    </div>
-                    <span id="date"></span>
+                <div id="T2">
+                    <P ALIGN=center><IMG name=T2 width=40px height=60px></P>
                 </div>
-                <input type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir"
-                       size="40" autofocus/>
-                <input type="submit" id="envoi_message" value="Send" onclick=""/>
+                <div id="T3">
+                    <P ALIGN=center><IMG name=T3 width=40px height=60px></P>
+                </div>
+                <div id="T4">
+                    <P ALIGN=center><IMG name=T4 width=40px height=60px></P>
+                </div>
+                <div id="T5">
+                    <P ALIGN=center><IMG name=T5 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur1">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur1 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur2">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur2 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur3" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur3 width=60px height=40px></P>
+                </div>
+                <div id="CarteJoueur4" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur4 width=60px height=40px></P>
+                </div>
+                <div id="CarteJoueur5" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur5 width=60px height=40px></P>
+                </div>
+                <div id="CarteJoueur6" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos2.png" name=CarteJoueur6 width=60px height=40px></P>
+                </div>
+                <div id="CarteJoueur7" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur7 width=40px height=60px></P>
+                </div>
+                <div id="CarteJoueur8" hidden="">
+                    <P ALIGN=center><IMG SRC="image/dos.png" name=CarteJoueur8 width=40px height=60px></P>
+                </div>
+                <div id="texte">
+                    <P ALIGN=center><label id="label0">0 jetons </label><img src="image/jeton2.png" width="30px">
+                    </P>
+                </div>
+                <div id="texte2" hidden="">
+                    <p ALIGN=center><label id="label2">0 jetons </label><img src="image/jeton2.png" width="30px">
+                    </P>
+                </div>
+                <div id="texte3" hidden="">
+                    <P ALIGN=center><label id="label1">0 jetons </label><img src="image/jeton2.png" width="30px">
+                    </P>
+                </div>
+                <div id="texte5" hidden="">
+                    <p ALIGN=center><label id="label3">0 jetons </label><img src="image/jeton2.png" width="30px">
+                    </P>
+                </div>
+                <div id="texte4">
+                    <P ALIGN=center><label id="pot">Pot : 0 </label><img src="image/pot.png" width="90px"></P>
+                </div>
+                <div id="texteGagnant"
+                     style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
+                    <p align=center><label id="gagnant"></label></p>
+                </div>
+                <button id="start"
+                        style=" background-color: red;color: white;padding: 8px 50px;text-decoration: none;margin: 4px 2px;cursor: pointer;">
+                    START
+                </button>
+                <button id="all-in">all-in</button>
+                <button id="check">check</button>
+                <button id="suivre">suivre</button>
+                <button id="raise">relancer</button>
+                <button id="coucher">se coucher</button>
+                <button id="exit">quitter table</button>
             </div>
-        </section>
+        </div>
+        <div class="splitScreen rightScreen">
+            <div class="chat">
+                <div class="message"></div>
+                <span id="date"></span>
+            </div>
+            <div>
+                <input style="width:80%" type="text" name="message" id="message"  placeholder="Une mauvaise pioche faite le savoir" autofocus/>
+                <input style="width: 10%" type="submit" id="envoi_message" value="Send" onclick=""/>
+            </div>
+        </div>
     </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
