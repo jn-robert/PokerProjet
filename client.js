@@ -278,6 +278,8 @@ function init() {
         if (room === `${data.room}`) {
             date();
             $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
+            var elmnt = document.getElementById("chatScroll");
+            elmnt.scrollTop = elmnt.scrollHeight;
         }
     });
 
