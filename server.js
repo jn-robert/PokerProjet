@@ -58,6 +58,10 @@ io.on('connection', (socket) => {
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
+        con.query('INSERT INTO partie VALUES(NULL ,NULL ,NULL ,1)', (err, rows) =>{
+            if (err) throw err;
+            console.log(rows);
+        });
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
 
@@ -78,6 +82,21 @@ io.on('connection', (socket) => {
         con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
             console.log("Requête envoyee");
+            socket.emit('listJoueur', {
+                tab: rows
+            });
+        });
+    });
+
+    /**
+     * Get information for table join
+     */
+    socket.on('callListJoueur', function (){
+        console.log("Requête reçue");
+
+        con.query('SELECT * FROM partie', (err, rows) =>{
+            if (err) throw err;
+            console.log(rows);
             socket.emit('listJoueur', {
                 tab: rows
             });

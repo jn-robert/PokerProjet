@@ -283,6 +283,31 @@ function init() {
         }
     });
 
+    socket.on('listJoueur', (data) => {
+        var test = data.tab;
+
+        $(test25).append("<tbody id='mainbody'>");
+        for (var i = 0; i<test.length ;i++) {
+            var $newTr = $("<tr></tr>");
+            $newTr.attr('id', 'newTr' + i);
+            console.log("newTr" + i);
+            // console.log(newTr+i);
+            $(test25).append($newTr);
+            $($newTr).append("<td>"+ test[i].idPartie+"</td>");
+            $($newTr).append("<td>"+test[i].nbJoueur+"</td>");
+            $($newTr).append("<button id=\"join\" class=\"btn btn-primary\">Rejoindre une partie</button>");
+            $($newTr).append("<br>");
+            $(test25).append("</tr>");
+
+        }
+        $(test25).append("</tbody>");
+    });
+
+    $('#test').on('click', () => {
+        socket.emit('callListJoueur');
+    });
+
+
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
      */
