@@ -605,10 +605,10 @@ io.on('connection', (socket) => {
         //     idJoueur2 = 0;
         // }
 
-        let idJoueurCurrentBooleanTour;
+        let idJoueurCurrentBooleanTour=0;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = i;
+            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour = (i+1)%game.listePlayerGame.length;
             }
         }
 
@@ -625,7 +625,12 @@ io.on('connection', (socket) => {
         let highestIndex = 0;
         let combi = "";
         highestIndex = game.evalCarte();
-        if (game.tour > 5) {
+        if (game.listePlayerGame.length === 1) {
+            highestIndex = game.evalCarte();
+            name = game.afficheJoueurName(highestIndex);
+            combi = game.evalCards[highestIndex].handName;
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }else if (game.tour > 5 ) {
             // //console.log(game.listePlayerGame);
             //console.log(highestIndex);
             if (highestIndex < game.listePlayerGame.length) {
@@ -640,33 +645,40 @@ io.on('connection', (socket) => {
 
         socket.emit('resultAction', {
             vainqueur: name,
+            combiVainq: combi,
+            // allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            // allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
-            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            // tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            // tasJoueur2: game.listePlayerGame[idJoueur2].tas,
             jetonsRecolt: game.getRecoltJetons(),
-            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            choixJoueurs: game.actionPrec,
+            booleanCurrentTurn: !game.listePlayerTable[idJoueurCurrentBooleanTour].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[0].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            nbJoueurs: game.listePlayerGame.length,
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
+            combiVainq: combi,
+            // allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
+            // allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
-            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
+            // tasJoueur1: game.listePlayerGame[idJoueur1].tas,
+            // tasJoueur2: game.listePlayerGame[idJoueur2].tas,
             jetonsRecolt: game.getRecoltJetons(),
             choixJoueurs: game.actionPrec,
-            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            booleanCurrentTurn: !game.listePlayerTable[idJoueurCurrentBooleanTour].getAjoue(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[0].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            nbJoueurs: game.listePlayerGame.length,
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
     });
@@ -690,66 +702,72 @@ io.on('connection', (socket) => {
             }
             // console.log(listeCartes);
             console.log("indice dealer : " + game.dealer);
-            switch (data.playerName) {
-                case game.listePlayerGame[0].getPlayerName():
-                    game.listePlayerGame[0].setAjoue(false);
-                    indicePlayerStart = 0;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 0; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[1].getPlayerName():
-                    game.listePlayerGame[1].setAjoue(false);
-                    indicePlayerStart = 1;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 1; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[2].getPlayerName():
-                    game.listePlayerGame[2].setAjoue(false);
-                    indicePlayerStart = 2;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 2; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[3].getPlayerName():
-                    game.listePlayerGame[3].setAjoue(false);
-                    indicePlayerStart = 3;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 3; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[4].getPlayerName():
-                    game.listePlayerGame[4].setAjoue(false);
-                    indicePlayerStart = 4;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 4; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[5].getPlayerName():
-                    game.listePlayerGame[5].setAjoue(false);
-                    indicePlayerStart = 5;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 5; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[6].getPlayerName():
-                    game.listePlayerGame[6].setAjoue(false);
-                    indicePlayerStart = 6;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 6; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                case game.listePlayerGame[7].getPlayerName():
-                    game.listePlayerGame[7].setAjoue(false);
-                    indicePlayerStart = 7;
-                    for (let i = 0; i < game.listePlayerGame.length && i !== 7; i++) {
-                        game.listePlayerGame[i].setAjoue(true);
-                    }
-                    break;
-                default:
-                    break;
+            console.log("data.playerName : "+data.playerName);
+            game.listePlayerGame[game.dealer].setAjoue(false);
+            indicePlayerStart = game.dealer;
+            for (let i = 0; i < game.listePlayerGame.length && i !== game.dealer; i++) {
+                game.listePlayerGame[i].setAjoue(false);
             }
+            // switch (data.playerName) {
+            //     case game.listePlayerGame[0].getPlayerName():
+            //         game.listePlayerGame[0].setAjoue(false);
+            //         indicePlayerStart = 0;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 0; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[1].getPlayerName():
+            //         game.listePlayerGame[1].setAjoue(false);
+            //         indicePlayerStart = 1;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 1; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[2].getPlayerName():
+            //         game.listePlayerGame[2].setAjoue(false);
+            //         indicePlayerStart = 2;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 2; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[3].getPlayerName():
+            //         game.listePlayerGame[3].setAjoue(false);
+            //         indicePlayerStart = 3;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 3; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[4].getPlayerName():
+            //         game.listePlayerGame[4].setAjoue(false);
+            //         indicePlayerStart = 4;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 4; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[5].getPlayerName():
+            //         game.listePlayerGame[5].setAjoue(false);
+            //         indicePlayerStart = 5;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 5; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[6].getPlayerName():
+            //         game.listePlayerGame[6].setAjoue(false);
+            //         indicePlayerStart = 6;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 6; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     case game.listePlayerGame[7].getPlayerName():
+            //         game.listePlayerGame[7].setAjoue(false);
+            //         indicePlayerStart = 7;
+            //         for (let i = 0; i < game.listePlayerGame.length && i !== 7; i++) {
+            //             game.listePlayerGame[i].setAjoue(true);
+            //         }
+            //         break;
+            //     default:
+            //         break;
+            // }
 
             socket.emit('1stR', {
                 booleanCurrentTurn: !game.listePlayerGame[indicePlayerStart].getAjoue(),

@@ -78,6 +78,7 @@ Game.prototype.reset = function () {
         this.start = true;
     }
 
+    this.listePlayerGame = [];
     for (let i = 0; i < this.listePlayerTable.length; i++) {
         if (i >= this.listePlayerGame.length) {
             this.listePlayerGame.push(this.listePlayerTable[i]);
@@ -286,31 +287,35 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
             }
             if (action === "coucher") {
+                console.log("coucher");
                 for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame.length < 3) {
-                        if (this.listePlayerGame[j].getPlayerName() !== name) {
-                            this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                            let boolJoueur = false;
-                            for (let k = 0; k < this.listePlayerTable.length; k++) {
-                                for (let l = 0; l < this.listePlayerGame.length; l++) {
-                                    if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
-                                        boolJoueur = true;
-                                    }
-                                }
-                                if (boolJoueur) {
-                                    this.listePlayerGame.push(this.listePlayerTable[k]);
-                                    boolJoueur = false;
-                                    // this.canPlay=true;
-                                    this.actionPrec = null;
-                                }
-                            }
-                            // this.init(10,20);
-                        }
-                    } else {
-                        if (this.listePlayerGame[j].getPlayerName() === name) {
-                            this.listePlayerGame.splice(j, 1);
-                        }
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.listePlayerGame.splice(j, 1);
                     }
+                    // if (this.listePlayerGame.length < 3) {
+                    //     if (this.listePlayerGame[j].getPlayerName() !== name) {
+                    //         this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                    //         let boolJoueur = false;
+                    //         for (let k = 0; k < this.listePlayerTable.length; k++) {
+                    //             for (let l = 0; l < this.listePlayerGame.length; l++) {
+                    //                 if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
+                    //                     boolJoueur = true;
+                    //                 }
+                    //             }
+                    //             if (boolJoueur) {
+                    //                 this.listePlayerGame.push(this.listePlayerTable[k]);
+                    //                 boolJoueur = false;
+                    //                 // this.canPlay=true;
+                    //                 this.actionPrec = null;
+                    //             }
+                    //         }
+                    //         // this.init(10,20);
+                    //     }
+                    // } else {
+                    //     if (this.listePlayerGame[j].getPlayerName() === name) {
+                    //         this.listePlayerGame.splice(j, 1);
+                    //     }
+                    // }
                 }
                 // }
                 // }
@@ -385,11 +390,6 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
             }
-            // if (action === "raise") {
-            //     this.actionPrec = action;
-            //     this.misePrec = miseMin;
-            //     //a faire si plus de deux joueurs;
-            // }
             // if (action === "all-in") {
             //     this.actionPrec = action;
             //     // this.canPlay=true;
