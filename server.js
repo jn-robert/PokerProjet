@@ -71,6 +71,10 @@ io.on('connection', (socket) => {
         if (room && room.length <= 9) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
+            con.query("UPDATE partie SET nbJoueur = nbJoueur + 1 WHERE idPartie="+data.room, (err, rows) =>{
+                if (err) throw err;
+                console.log(rows);
+            });
             socket.emit('player', {name: data.name, room: `${rooms}`});
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
