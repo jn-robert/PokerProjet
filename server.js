@@ -45,6 +45,10 @@ con.connect((err) => {
         return;
     }
     console.log('Connection established');
+    con.query("DELETE FROM partie", (err, rows) =>{
+        if (err) throw err;
+        console.log(rows);
+    });
 });
 
 /**
