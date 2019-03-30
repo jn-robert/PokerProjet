@@ -9,7 +9,7 @@ let Game = require('./Game');
 io.set('log level', 1);
 
 let rooms = 0;
-let id = 0;
+var id = 0;
 let game;
 let idJoueur = [];
 let compteurRestartGame = 0;
@@ -58,19 +58,23 @@ io.on('connection', (socket) => {
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
-        con.query('INSERT INTO partie VALUES(NULL ,NULL ,NULL ,1)', (err, rows) =>{
+        con.query("INSERT INTO partie VALUES("+id+" ,NULL ,NULL ,1)", (err, rows) =>{
             if (err) throw err;
             console.log(rows);
         });
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
-
+//
     // Connect the Player to the room he requested. Show error if room full.
     socket.on('joinGame', function (data) {
         var room = io.nsps['/'].adapter.rooms[data.room];
         if (room && room.length <= 9) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
+            con.query("UPDATE partie SET nbJoueur = nbJoueur + 1 WHERE idPartie="+data.room, (err, rows) =>{
+                if (err) throw err;
+                console.log(rows);
+            });
             socket.emit('player', {name: data.name, room: `${rooms}`});
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
@@ -91,13 +95,13 @@ io.on('connection', (socket) => {
     /**
      * Get information for table join
      */
-    socket.on('callListJoueur', function (){
+    socket.on('callPartie', function (){
         console.log("Requête reçue");
 
         con.query('SELECT * FROM partie', (err, rows) =>{
             if (err) throw err;
             console.log(rows);
-            socket.emit('listJoueur', {
+            socket.emit('partieJoueur', {
                 tab: rows
             });
         });

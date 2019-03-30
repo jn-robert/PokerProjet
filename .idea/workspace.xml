@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="abd003bd-ce87-486a-9cba-6d07171f68e1" name="Default Changelist" comment="test bdd">
-      <change beforePath="$PROJECT_DIR$/.idea/PokerProjet2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PokerProjet2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-    </list>
+    <list default="true" id="abd003bd-ce87-486a-9cba-6d07171f68e1" name="Default Changelist" comment="ajout du hide pour la partie" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,86 +51,106 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-96697549">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="37" />
+          <entry key="js" value="103" />
+          <entry key="txt" value="111" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="37" />
+          <entry key="JavaScript" value="103" />
+          <entry key="PLAIN_TEXT" value="111" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="js" value="2" />
+          <entry key="php" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="JavaScript" value="2" />
+          <entry key="PHP" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="292" column="21" selection-start-line="292" selection-start-column="21" selection-end-line="292" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tmpIndex.js" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tmpIndex.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+            <state relative-caret-position="850">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jsStats.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="601">
+              <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="634" column="39" lean-forward="true" selection-start-line="634" selection-start-column="39" selection-end-line="634" selection-end-column="43" />
+            <state relative-caret-position="116">
+              <caret line="68" column="23" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.js" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="433" column="60" selection-start-line="433" selection-start-column="60" selection-end-line="433" selection-end-column="60" />
+            <state relative-caret-position="286">
+              <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fonction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fonction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="46" column="54" lean-forward="true" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Poker_BDD.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Poker_BDD.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.html" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cartes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cartes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Player.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            <state relative-caret-position="184">
+              <caret line="69" column="28" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -178,6 +191,8 @@
       <find>affiche</find>
       <find>player :</find>
       <find>chat</find>
+      <find>new</find>
+      <find>join</find>
     </findStrings>
     <replaceStrings>
       <replace>//console.log</replace>
@@ -191,22 +206,21 @@
       <list>
         <option value="$PROJECT_DIR$/Player.js" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/Game.js" />
         <option value="$PROJECT_DIR$/Poker_BDD.sql" />
         <option value="$PROJECT_DIR$/home.html" />
-        <option value="$PROJECT_DIR$/jsStats.js" />
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/statsP.php" />
         <option value="$PROJECT_DIR$/../chat/css/style.css" />
         <option value="$PROJECT_DIR$/../chat/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/game.html" />
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/statsTest.html" />
         <option value="$PROJECT_DIR$/tmpIndex.js" />
         <option value="$PROJECT_DIR$/stats.html" />
-        <option value="$PROJECT_DIR$/fonction.js" />
-        <option value="$PROJECT_DIR$/Game.js" />
+        <option value="$PROJECT_DIR$/jsStats.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/game.html" />
         <option value="$PROJECT_DIR$/client.js" />
       </list>
     </option>
@@ -226,9 +240,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1087" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
@@ -238,18 +253,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Ptut" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ptut" type="462c0819:PsiDirectoryNode" />
+              <item name="poker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poker" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -260,6 +275,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552515262191" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.12.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Console" />
   </component>
@@ -277,6 +293,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -369,676 +386,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/client.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/game.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/style.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tmpIndex.js</PATH>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" />
-            <option name="myStatusName" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" />
-          <option name="myStatusName" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" />
-        </FILE-GROUP>
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
@@ -1121,12 +468,12 @@
       <workItem from="1552411600488" duration="11539000" />
       <workItem from="1552431902304" duration="1866000" />
       <workItem from="1552467669441" duration="336000" />
-      <workItem from="1552499379749" duration="6947000" />
-      <workItem from="1552515996605" duration="2304000" />
-      <workItem from="1552827451245" duration="1814000" />
-      <workItem from="1553286930129" duration="610000" />
-      <workItem from="1553338340721" duration="602000" />
-      <workItem from="1553975052449" duration="3646000" />
+      <workItem from="1552499379749" duration="13196000" />
+      <workItem from="1553100692851" duration="6958000" />
+      <workItem from="1553109518255" duration="57000" />
+      <workItem from="1553109632014" duration="38000" />
+      <workItem from="1553971782728" duration="4878000" />
+      <workItem from="1553979387276" duration="2188000" />
     </task>
     <task id="LOCAL-00001" summary="jeton issues (Bientot résolu)&#10;entrain de fix les cartes pour +2 joueurs">
       <created>1548877768463</created>
@@ -1296,95 +643,166 @@
       <option name="project" value="LOCAL" />
       <updated>1552506262584</updated>
     </task>
-    <task id="LOCAL-00025" summary="bug affichage chat">
-      <created>1552517810219</created>
+    <task id="LOCAL-00025" summary="affichage 4 joueurs (en cours)">
+      <created>1552506520439</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1552517810219</updated>
+      <updated>1552506520439</updated>
     </task>
-    <task id="LOCAL-00026" summary="test bdd">
-      <created>1552762299858</created>
+    <task id="LOCAL-00026" summary="affichage 4 joueurs">
+      <created>1552507735314</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1552762299858</updated>
+      <updated>1552507735314</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="affichage 4 joueurs">
+      <created>1552508240699</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1552508240699</updated>
+    </task>
+    <task id="LOCAL-00028" summary="affichage 4 joueurs">
+      <created>1552512478793</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1552512478793</updated>
+    </task>
+    <task id="LOCAL-00029" summary="affichage 4 joueurs">
+      <created>1552515270154</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1552515270154</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Chat">
+      <created>1553102707518</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1553102707518</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Chat">
+      <created>1553102827394</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1553102827394</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Add test stat">
+      <created>1553718862158</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1553718862158</updated>
+    </task>
+    <task id="LOCAL-00033" summary="add table join">
+      <created>1553977589737</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1553977589737</updated>
+    </task>
+    <task id="LOCAL-00034" summary="hide tab when game is started">
+      <created>1553979915856</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1553979915856</updated>
+    </task>
+    <task id="LOCAL-00035" summary="correction mauvais commit">
+      <created>1553981021630</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1553981021630</updated>
+    </task>
+    <task id="LOCAL-00036" summary="ajout du hide pour la partie">
+      <created>1553981226968</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1553981226968</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112746000" />
+    <option name="totallyTimeSpent" value="116571000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09221748" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32876712" />
-      <window_info anchor="right" id="Database" order="8" weight="0.10372771" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25871313" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12405446" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49597314" visible="true" weight="0.2400835" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Maven" order="9" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" id="Palette" order="3" />
       <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Command Line Tools Console" order="10" weight="0.32925585" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="npm" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2590164" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49597314" visible="true" weight="0.3" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="10" weight="0.32925585" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32810047" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" weight="0.10372771" />
+      <window_info anchor="right" id="Maven" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Maven" order="9" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25921908" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49597314" weight="0.40296495" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Command Line Tools Console" order="10" weight="0.32925585" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32876712" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info id="npm" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32876712" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12750717" />
-      <window_info id="Learn" order="8" />
-      <window_info anchor="right" id="Database" order="8" weight="0.23280802" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12405446" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="npm" order="7" side_tool="true" />
+      <window_info id="Learn" order="8" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2590164" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49597314" visible="true" weight="0.2967213" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="10" weight="0.32925585" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32810047" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" weight="0.10372771" />
+      <window_info anchor="right" id="Maven" order="9" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1392,6 +810,9 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="jeton issues (Bientot résolu)&#10;entrain de fix les cartes pour +2 joueurs" />
@@ -1414,186 +835,13 @@
     <MESSAGE value="affichage 4 joueurs" />
     <MESSAGE value="Chat" />
     <MESSAGE value="Add test stat" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add test stat" />
+    <MESSAGE value="add table join" />
+    <MESSAGE value="hide tab when game is started" />
+    <MESSAGE value="correction mauvais commit" />
+    <MESSAGE value="ajout du hide pour la partie" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du hide pour la partie" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="27" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="105" column="21" lean-forward="true" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="139" column="9" lean-forward="true" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="20" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/has-binary/index.js" />
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2822">
-          <caret line="166" column="52" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/has-binary/index.js" />
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cartes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html" />
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fonction.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="21" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="127" column="13" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/has-binary/index.js" />
     <entry file="file://$PROJECT_DIR$/test.html" />
     <entry file="file://$PROJECT_DIR$/readme.md">
@@ -1609,20 +857,6 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fac34d89-8597-4a05-82e3-585ebbf1549b/console.sql" />
     <entry file="file://$PROJECT_DIR$/statsP.php" />
-    <entry file="file://$PROJECT_DIR$/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stats.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="74" column="14" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="74" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/image/jetons.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1636,24 +870,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="119" column="13" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fonction.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-357">
           <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18360">
-          <caret line="1080" column="5" selection-start-line="1080" selection-end-line="1080" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1664,59 +894,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/statsTest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jsStats.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Poker_BDD.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        <state relative-caret-position="1037">
+          <caret line="61" column="77" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image/dos.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../chat/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../chat/index.html" />
+    <entry file="file://$PROJECT_DIR$/statsTest.html" />
+    <entry file="file://$PROJECT_DIR$/stats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="80" column="7" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
+          <folding>
+            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tmpIndex.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+        <state relative-caret-position="850">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fonction.js">
+    <entry file="file://$PROJECT_DIR$/register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="54" lean-forward="true" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+        <state relative-caret-position="663">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game.js">
+    <entry file="file://$PROJECT_DIR$/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="292" column="21" selection-start-line="292" selection-start-column="21" selection-end-line="292" selection-end-column="21" />
+        <state relative-caret-position="408">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsStats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="69" column="28" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="634" column="39" lean-forward="true" selection-start-line="634" selection-start-column="39" selection-end-line="634" selection-end-column="43" />
+        <state relative-caret-position="116">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="433" column="60" selection-start-line="433" selection-start-column="60" selection-end-line="433" selection-end-column="60" />
+        <state relative-caret-position="286">
+          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>

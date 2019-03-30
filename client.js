@@ -78,6 +78,8 @@ function init() {
         player = new Player(id++, name, parseInt(jeton), roomID);
         socket.emit('joinGame', {name, room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
+        $('#tablejoinpart').hide();
+
     });
 
     // New Game created by current client. Update the UI and create new Game var.
@@ -88,6 +90,7 @@ function init() {
         room = `${data.room}`;
         game = new Game(); //data.room
         game.displayBoard(message);
+        $('#tablejoinpart').hide();
     });
 
     /**
@@ -214,7 +217,7 @@ function init() {
             document.getElementById("CarteJoueur7").hidden = false;
             document.getElementById("CarteJoueur8").hidden = false;
             document.getElementById("texte").hidden = false;
-            document.getElementById("texte2").hidden = false;
+            document.getElementById("texte2").hidden = false
             document.getElementById("texte3").hidden = false;
             document.getElementById("texte5").hidden = false;
 
@@ -282,6 +285,32 @@ function init() {
             elmnt.scrollTop = elmnt.scrollHeight;
         }
     });
+
+    socket.on('partieJoueur', (data) => {
+        var test = data.tab;
+
+        $(test25).append("<tbody id='mainbody'>");
+        for (var i = 0; i<test.length ;i++) {
+            var $newTr = $("<tr></tr>");
+            $newTr.attr('id', 'newTr' + i);
+            console.log("newTr" + i);
+            // console.log(newTr+i);
+            $(test25).append($newTr);
+            $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
+            $($newTr).append("<td>"+ test[i].idPartie+"</td>");
+            $($newTr).append("<td>"+test[i].nbJoueur+"</td>");
+            $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
+            $($newTr).append("<button id=\"join\" class=\"btn btn-primary\">Rejoindre une partie</button>");
+            $($newTr).append("<br>");
+            $(test25).append("</tr>");
+        }
+        $(test25).append("</tbody>");
+    });
+
+    $(document).ready(function () {
+        socket.emit('callPartie');
+    });
+
 
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
