@@ -88,6 +88,7 @@ function init() {
         room = `${data.room}`;
         game = new Game(); //data.room
         game.displayBoard(message);
+        $('#tablejoinpart').hide();
     });
 
     /**
