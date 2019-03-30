@@ -78,6 +78,8 @@ function init() {
         player = new Player(id++, name, parseInt(jeton), roomID);
         socket.emit('joinGame', {name, room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
+        $('#tablejoinpart').hide();
+
     });
 
     // New Game created by current client. Update the UI and create new Game var.
