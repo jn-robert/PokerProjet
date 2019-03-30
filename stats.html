@@ -59,7 +59,6 @@
         </div>
     </div>
 </nav>
-<a href="#" onclick="callServer()">TEST</a>
 
 <div class="listJoueur" id="coin">
     <div class="childrenListJoueur" id="listeJoueur">
@@ -79,6 +78,11 @@
             window.onload = function () {
                 socket.emit('callListJoueur');
             };
+
+            function test() {
+                console.log("test call");
+                socket.emit('callListJoueur');
+            }
         </script>
     </div>
 </div>
@@ -87,5 +91,7 @@
 <div id="statsMise" class="statsMise"></div>
 <div id="statsAction" class="statsAction"></div>
 <div id="statsPartie" class="statsPartie"></div>
+
+<input type="button" onclick="test()" value="TESTR">
 </body>
 </html>

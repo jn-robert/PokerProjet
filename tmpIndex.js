@@ -21,10 +21,6 @@ con.connect((err) => {
     console.log('Connection established');
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'statsTest.html'));
-});
-
 let listener = socket.listen(server, {log: false});
 
 function start(socket) {
