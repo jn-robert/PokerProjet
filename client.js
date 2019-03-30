@@ -354,7 +354,8 @@ function init() {
             }
         }
 
-        if (data.tour < 6) {
+        if (data.tour < 6 && data.nbJoueurs!==1) {
+
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
 
             // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
@@ -430,17 +431,17 @@ function init() {
                     //     document.getElementById('raise').disabled = !data.booleanCurrentTurn;
                     // } else {
                     console.log("joueur else default");
-                    document.getElementById('all-in').disabled = true;
+                    document.getElementById('all-in').disabled = false;
                     document.getElementById('check').disabled = false;
                     document.getElementById('suivre').disabled = true;
-                    document.getElementById('raise').disabled = true;
-                    document.getElementById('coucher').disabled = true;
+                    document.getElementById('raise').disabled = false;
+                    document.getElementById('coucher').disabled = false;
                 // }
             }
 
-            document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
+            document.getElementById('coucher').disabled = false;
 
-            let cartes;
+            let cartes=null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.name[i] === player.name) {
@@ -455,11 +456,16 @@ function init() {
 
             document.getElementById('turn').innerHTML = message;
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
-            document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
-            document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
+            if (cartes != null) {
+                document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
+                document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
+            }else {
+                document.CarteJoueur1.src = "image/dos.png";
+                document.CarteJoueur2.src = "image/dos.png";
+            }
         } else {
 
-            let cartes;
+            let cartes=null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.name[i] === player.name) {
@@ -469,8 +475,13 @@ function init() {
             }
 
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
-            document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
-            document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
+            if (cartes != null) {
+                document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
+                document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
+            }else {
+                document.CarteJoueur1.src = "image/dos.png";
+                document.CarteJoueur2.src = "image/dos.png";
+            }
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('all-in').disabled = true;
             document.getElementById('check').disabled = true;
