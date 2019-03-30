@@ -51,22 +51,6 @@ con.connect((err) => {
  * connection a la socket puis execution des demandes et renvoi de valeurs du jeu pour 2 personnes
  */
 
-
-// RISQUE DE BUG SUR LE JEU !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-io.on('callListJoueur', function () {
-    console.log("Call serveur");
-
-    con.query("SELECT * FROM player", (err, rows) => {
-        if (err) throw err;
-
-        console.log("Requête envoyee");
-        socket.emit('listJoueur', {
-            tab: rows
-        });
-    });
-});
-// RISQUE DE BUG SUR LE JEU !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 io.on('connection', (socket) => {
 
     // Create a new game room and notify the creator of game.
@@ -87,6 +71,17 @@ io.on('connection', (socket) => {
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
         }
+    });
+
+    socket.on('callListJoueur', function () {
+        console.log("Call serveur");
+        con.query("SELECT * FROM player", (err, rows) => {
+            if (err) throw err;
+            console.log("Requête envoyee");
+            socket.emit('listJoueur', {
+                tab: rows
+            });
+        });
     });
 
     /**

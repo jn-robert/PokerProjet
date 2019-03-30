@@ -21,10 +21,28 @@ class Player {
     };
 }
 
+const socket = io.connect('http://localhost:5000');
 
 function date() {
     var start = new Date();
     document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
+}
+
+function stat() {
+
+    $(document).ready(function () {
+        socket.emit('callListJoueur');
+    });
+
+    socket.on('listJoueur', (data) => {
+        let tab = data.tab;
+        let msg = "<t8>Liste des joueurs</t8><br>";
+        for (var i = 0; i < tab.length; i++) {
+            msg += "<button onclick='traceStats(\"" + tab[i].nom + "\")'>" + tab[i].nom + "</button><br>";
+        }
+        msg += "<br><br>";
+        document.getElementById("listeJoueur").innerHTML = msg;
+    });
 }
 
 function init() {
@@ -32,14 +50,10 @@ function init() {
     // var Player = require('./Player');
     let id = 0;
     let player;
-
     let game;
-
     let room;
 
     // const socket = io.connect('myip:5000');
-    const socket = io.connect('http://localhost:5000');
-
     // Create a new game. Emit newGame event.
     $('#new').on('click', () => {
         const name = $('#nameNew').val();
