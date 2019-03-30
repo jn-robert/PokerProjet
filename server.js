@@ -62,8 +62,6 @@ io.on('connection', (socket) => {
             if (err) throw err;
             console.log(rows);
         });
-
-
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
 
@@ -93,13 +91,13 @@ io.on('connection', (socket) => {
     /**
      * Get information for table join
      */
-    socket.on('callListPartie', function (){
+    socket.on('callPartie', function (){
         console.log("Requête reçue");
 
         con.query('SELECT * FROM partie', (err, rows) =>{
             if (err) throw err;
             console.log(rows);
-            socket.emit('listePartie', {
+            socket.emit('partieJoueur', {
                 tab: rows
             });
         });
