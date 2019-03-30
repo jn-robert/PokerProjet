@@ -815,6 +815,6 @@ io.on('connection', (socket) => {
 
     socket.on('exit', (data) => {
         game.exit(data.playerName);
-    })
+    });
 });
 server.listen(process.env.PORT || 5000);

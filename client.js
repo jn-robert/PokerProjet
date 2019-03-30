@@ -267,6 +267,7 @@ function init() {
         location.reload(); //retourne a la page d'accueil du jeu
     });
 
+
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
         console.log("roomId : " + roomId);

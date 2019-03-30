@@ -818,6 +818,7 @@ Game.prototype.exit = function (playerName) {
             this.listePlayerGame.splice(i, 1);
         }
     }
+
     for (let i = 0; i < this.listePlayerTable.length; i++) {
         if (this.listePlayerTable[i].getPlayerName() === playerName) {
             this.listePlayerTable.splice(i, 1);
