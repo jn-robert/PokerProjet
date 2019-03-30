@@ -295,10 +295,10 @@ function init() {
             $(test25).append($newTr);
             $($newTr).append("<td>"+ test[i].idPartie+"</td>");
             $($newTr).append("<td>"+test[i].nbJoueur+"</td>");
+            $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
             $($newTr).append("<button id=\"join\" class=\"btn btn-primary\">Rejoindre une partie</button>");
             $($newTr).append("<br>");
             $(test25).append("</tr>");
-
         }
         $(test25).append("</tbody>");
     });

@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
-        con.query('INSERT INTO partie VALUES(NULL ,NULL ,NULL ,1)', (err, rows) =>{
+        con.query("INSERT INTO partie VALUES(null ,NULL ,NULL ,1)", (err, rows) =>{
             if (err) throw err;
             console.log(rows);
         });
