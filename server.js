@@ -62,6 +62,8 @@ io.on('connection', (socket) => {
             if (err) throw err;
             console.log(rows);
         });
+
+
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
 
