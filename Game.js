@@ -811,3 +811,16 @@ Game.prototype.continueGameAfterTimeOut = function () {
 Game.prototype.miseEnAttenteFinGame = function () {
     setTimeout(this.continueGameAfterTimeOut, 5000);
 };
+
+Game.prototype.exit = function (playerName) {
+    for (let i = 0; i < this.listePlayerGame.length; i++) {
+        if (this.listePlayerGame[i].getPlayerName() === playerName) {
+            this.listePlayerGame.splice(i, 1);
+        }
+    }
+    for (let i = 0; i < this.listePlayerTable.length; i++) {
+        if (this.listePlayerTable[i].getPlayerName() === playerName) {
+            this.listePlayerTable.splice(i, 1);
+        }
+    }
+};

@@ -808,5 +808,9 @@ io.on('connection', (socket) => {
         socket.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
         socket.broadcast.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
     });
+
+    socket.on('exit', (data) => {
+        game.exit(data.playerName);
+    })
 });
 server.listen(process.env.PORT || 5000);

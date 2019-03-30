@@ -262,6 +262,8 @@ function init() {
 
     $('#exit').on('click', () => {
         // socket.leave(data.room);
+        const roomId = $('#room').val();
+        socket.emit("exit",{room: roomId, playerName : player.name});
         location.reload(); //retourne a la page d'accueil du jeu
     });
 
