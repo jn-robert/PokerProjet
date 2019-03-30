@@ -296,6 +296,7 @@ function init() {
             console.log("newTr" + i);
             // console.log(newTr+i);
             $(test25).append($newTr);
+            $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
             $($newTr).append("<td>"+ test[i].idPartie+"</td>");
             $($newTr).append("<td>"+test[i].nbJoueur+"</td>");
             $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
