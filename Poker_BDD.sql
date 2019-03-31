@@ -65,7 +65,7 @@ CREATE TABLE Action (
 
 INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, 'j1Name', 'j1', 'Joueur1', '0000', '2019-03-01', '100'), (NULL, 'j2Name', 'j2', 'Joueur2', '0000', '2019-03-01', '100');
 INSERT INTO `partie` (`idPartie`, `typePartie`, `nbTour`, `nbJoueur`) VALUES (NULL, 'normal', '10', '2');
-INSERT INTO `classement` (`idPartie`, `idPlayer`, `class`) VALUES ('1', '1', '1'), ('2', '1', '2')
+INSERT INTO `classement` (`idPartie`, `idPlayer`, `class`) VALUES ('1', '1', '1'), ('2', '1', '2');
 INSERT INTO `action` (`idPartie`, `idPlayer`, `nbAllIn`, `nbCheck`, `nbFold`, `nbRaise`) VALUES ('1', '1', '1', '1', '1', '1'), ('2', '1', '3', '3', '3', '3');
 
 
