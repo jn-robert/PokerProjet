@@ -159,36 +159,9 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
             }
             if (action === "coucher") {
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame.length < 3) {
-                        if (this.listePlayerGame[i].getPlayerName() !== name) {
-                            this.listePlayerGame[i].ietons += this.tasHaut + this.listePlayerGame[i].getTas();
-                            let boolioueur = false;
-                            for (let k = 0; k < this.listePlayerTable.length; k++) {
-                                for (let l = 0; l < this.listePlayerGame.length; l++) {
-                                    if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
-                                        boolioueur = true;
-                                    }
-                                }
-                                if (boolioueur) {
-                                    this.listePlayerGame.push(this.listePlayerTable[k]);
-                                    boolioueur = false;
-                                    // this.canPlay=true;
-                                    this.actionPrec = null;
-                                    this.misePrec = 0;
-                                    this.tasHaut = 0;
-                                    boolTours = 1;
-                                    for (let i = 0; i < this.listePlayerGame.length; i++) {
-                                        this.listePlayerGame[i].tas = 0;
-                                    }
-                                }
-                            }
-                            // this.init(10,20);
-                        }
-                    } else {
-                        if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.listePlayerGame.splice(i, 1);
-                        }
+                for (let j = 0; j < this.listePlayerGame.length; j++) {
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.listePlayerGame.splice(j, 1);
                     }
                 }
             }
@@ -403,7 +376,12 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             //         }
             //     }
             // }
-            // if (action === "coucher"){
+            if (action === "coucher"){
+                for (let j = 0; j < this.listePlayerGame.length; j++) {
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.listePlayerGame.splice(j, 1);
+                    }
+                }
             //     for (let j=0;j<this.listePlayerGame.length; j++){
             //         if (this.listePlayerGame.length <3){
             //             if (this.listePlayerGame[j].getPlayerName() !== name){
@@ -428,7 +406,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             //             }
             //         }
             //     }
-            // }
+            }
             break;
 
         case "raise":
@@ -515,7 +493,12 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
             }
-            // if (action === "coucher"){
+            if (action === "coucher"){
+                for (let j = 0; j < this.listePlayerGame.length; j++) {
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.listePlayerGame.splice(j, 1);
+                    }
+                }
             //     for (let j=0;j<this.listePlayerGame.length; j++){
             //         if (this.listePlayerGame.length <3){
             //             if (this.listePlayerGame[j].getPlayerName() !== name){
@@ -540,7 +523,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             //             }
             //         }
             //     }
-            // }
+            }
             break;
         case "all-in":
             this.resetSetAjoue();
@@ -608,37 +591,16 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             }
             if (action === "coucher") {
                 for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame.length < 3) {
-                        if (this.listePlayerGame[j].getPlayerName() !== name) {
-                            this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                            this.tour = 6;
-                            let boolJoueur = false;
-                            for (let k = 0; k < this.listePlayerTable.length; k++) {
-                                for (let l = 0; l < this.listePlayerGame.length; l++) {
-                                    if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
-                                        boolJoueur = true;
-                                    }
-                                }
-                                if (boolJoueur) {
-                                    this.listePlayerGame.push(this.listePlayerTable[k]);
-                                    boolJoueur = false;
-                                }
-                            }
-                            // this.init(10,20);
-                        }
-                    } else {
-                        if (this.listePlayerGame[j].getPlayerName() === name) {
-                            this.listePlayerGame.splice(j, 1);
-                            this.pot += this.listePlayerGame[j].getTas();
-                        }
+                    if (this.listePlayerGame[j].getPlayerName() === name) {
+                        this.listePlayerGame.splice(j, 1);
                     }
                 }
             }
             break;
         case "coucher":
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
+            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                if (this.listePlayerGame[j].getPlayerName() === name) {
+                    this.listePlayerGame.splice(j, 1);
                 }
             }
             // if (action === "coucher"){

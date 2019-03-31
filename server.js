@@ -301,7 +301,7 @@ io.on('connection', (socket) => {
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = i;
+                idJoueurCurrentBooleanTour = (i+1)%game.listePlayerGame.length;
             }
         }
 
@@ -335,14 +335,10 @@ io.on('connection', (socket) => {
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
-            // allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-            // allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
-            // tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-            // tasJoueur2: game.listePlayerGame[idJoueur2].tas,
             jetonsRecolt: game.getRecoltJetons(),
             choixJoueurs: game.actionPrec,
-            booleanCurrentTurn: !game.listePlayerGame[idJoueurCurrentBooleanTour].getAjoue(),
+            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
             tour: game.getTour(),
             pot: game.pot,
             nbJoueurs: game.listePlayerGame.length,
@@ -361,7 +357,7 @@ io.on('connection', (socket) => {
             // tasJoueur2: game.listePlayerGame[idJoueur2].tas,
             jetonsRecolt: game.getRecoltJetons(),
             choixJoueurs: game.actionPrec,
-            booleanCurrentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getAjoue(),
+            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
             tour: game.getTour(),
             pot: game.pot,
             nbJoueurs: game.listePlayerGame.length,

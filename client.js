@@ -91,9 +91,9 @@ function traceStats(id) {
             let raise = 0;
             for (let i = 0; i < data.tab.length; i++) {
                 allIn += data.tab[i].nbAllIn;
-                check +=data.tab[i].nbCheck;
+                check += data.tab[i].nbCheck;
                 fold += data.tab[i].nbFold;
-                raise +=data.tab[i].nbRaise;
+                raise += data.tab[i].nbRaise;
             }
             Morris.Donut({
                 element: 'statsAction',
@@ -401,6 +401,7 @@ function init() {
          */
 
         let cartes;
+        let jetons;
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
@@ -434,90 +435,78 @@ function init() {
 
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
-            const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
+            var message;
+            if (data.currentTurn === player.name) {
+
+                message = "A votre tour";
+
+                switch (data.choixJoueurs) {
+                    case "check":
+
+                        console.log("joueur check");
+                        document.getElementById('all-in').style.display = "inline";
+                        document.getElementById('check').style.display = "inline";
+                        document.getElementById('suivre').style.display = "none";
+                        document.getElementById('raise').style.display = "inline";
+                        document.getElementById('coucher').style.display = "inline";
+
+                        break;
+                    case "raise":
+
+                        console.log("joueur raise");
+                        document.getElementById('all-in').style.display = "inline";
+                        document.getElementById('check').style.display = "none";
+                        document.getElementById('suivre').style.display = "inline";
+                        document.getElementById('raise').style.display = "inline";
+                        document.getElementById('coucher').style.display = "inline";
+
+                        break;
+                    case "suivre":
+
+                        console.log("joueur suivre");
+                        document.getElementById('all-in').style.display = "inline";
+                        document.getElementById('check').style.display = "none";
+                        document.getElementById('suivre').style.display = "inline";
+                        document.getElementById('raise').style.display = "inline";
+                        document.getElementById('coucher').style.display = "inline";
+
+                        break;
+                    case "all-in":
+
+                        console.log("joueur all-in");
+                        document.getElementById('all-in').style.display = "inline";
+                        document.getElementById('check').style.display = "none";
+                        document.getElementById('suivre').style.display = "inline";
+                        document.getElementById('raise').style.display = "inline";
+                        document.getElementById('coucher').style.display = "inline";
+
+                        break;
+
+                    default:
+
+                        console.log("joueur default");
+                        document.getElementById('all-in').style.display = "inline";
+                        document.getElementById('check').style.display = "inline";
+                        document.getElementById('suivre').style.display = "none";
+                        document.getElementById('raise').style.display = "inline";
+                        document.getElementById('coucher').style.display = "inline";
+                }
+            } else {
+                message = "A votre adversaire";
+                document.getElementById('all-in').style.display = "none";
+                document.getElementById('check').style.display = "none";
+                document.getElementById('suivre').style.display = "none";
+                document.getElementById('raise').style.display = "none";
+                document.getElementById('coucher').style.display = "none";
+
+            }
+
+            // message = data.currentTurn ? 'A votre tour' : 'A votre adversaire';
 
             // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
 
-            switch (data.choixJoueurs) {
-                case "check":
-                    if (data.jetons1 > 0) {
-                        console.log("joueur check");
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    } else {
-                        console.log("joueur else check");
-                        document.getElementById('all-in').disabled = true;
-                        document.getElementById('check').disabled = false;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = true;
-                    }
-                    break;
-                case "raise":
-                    if (data.jetons1 > 0) {
-                        console.log("joueur raise");
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    } else {
-                        console.log("joueur else raise");
-                        document.getElementById('all-in').disabled = true;
-                        document.getElementById('check').disabled = false;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = true;
-                    }
-                    break;
-                case "suivre":
-                    if (data.jetons1 > 0) {
-                        console.log("joueur suivre");
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    } else {
-                        console.log("joueur else suivre");
-                        document.getElementById('all-in').disabled = false;
-                        document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = false;
-                        document.getElementById('raise').disabled = false;
-                    }
-                    break;
-                case "all-in":
-                    if (data.jetons1 > 0) {
-                        console.log("joueur all-in");
-                        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('check').disabled = true;
-                        document.getElementById('suivre').disabled = !data.booleanCurrentTurn;
-                        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    } else {
-                        console.log("joueur else all-in");
-                        document.getElementById('all-in').disabled = true;
-                        document.getElementById('check').disabled = false;
-                        document.getElementById('suivre').disabled = true;
-                        document.getElementById('raise').disabled = true;
-                        document.getElementById('coucher').disabled = true;
-                    }
-                    break;
 
-                default:
-                    // if (data.jetons1 > 0) {
-                    //     document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-                    //     document.getElementById('check').disabled = !data.booleanCurrentTurn;
-                    //     document.getElementById('suivre').disabled = true;
-                    //     document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-                    // } else {
-                    console.log("joueur else default");
-                    document.getElementById('all-in').disabled = false;
-                    document.getElementById('check').disabled = false;
-                    document.getElementById('suivre').disabled = true;
-                    document.getElementById('raise').disabled = false;
-                    document.getElementById('coucher').disabled = false;
-                // }
-            }
-
-            document.getElementById('coucher').disabled = false;
+            // document.getElementById('coucher').disabled = false;
 
             let cartes = null;
             let jetons;
