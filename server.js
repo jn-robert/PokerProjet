@@ -77,7 +77,6 @@ io.on('connection', (socket) => {
             game.addPlayer(id++, data.name, data.jeton);
             con.query("UPDATE partie SET nbJoueur = nbJoueur + 1 WHERE idPartie="+data.room, (err, rows) =>{
                 if (err) throw err;
-                console.log(rows);
             });
             socket.emit('player', {name: data.name, room: `${rooms}`});
         } else {
@@ -85,12 +84,45 @@ io.on('connection', (socket) => {
         }
     });
 
+    /**
+     * Socket pour les stats et les diff requetes
+     */
     socket.on('callListJoueur', function () {
         console.log("Call serveur");
         con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
             console.log("Requête envoyee");
             socket.emit('listJoueur', {
+                tab: rows
+            });
+        });
+    });
+
+    socket.on('getStatsPlayer', (pseudo) => {
+        let idPlayer = pseudo.id;
+        con.query("SELECT * FROM player WHERE idPlayer ="+idPlayer, (err, rows) => {
+            if (err) throw err;
+
+            socket.emit('ReturnStatsPlayer', {
+                tab: rows
+            })
+        });
+
+        con.query("SELECT COUNT(*) as vic FROM classement where idPlayer ="+idPlayer+" AND class=1", (err, rows) =>{
+            if (err) throw err;
+
+            con.query("SELECT COUNT(*) as nbgame FROM classement where idPlayer ="+idPlayer+" AND class!=1", (err2, rows2) =>{
+                if (err) throw err;
+
+                socket.emit('NumberVictoryAndLoose', {
+                    victory: rows,
+                    nbGame: rows2
+                })
+            });
+        });
+
+        con.query("SELECT * FROM action WHERE idPlayer="+idPlayer, (err, rows) =>{
+            socket.emit('ResturnStatsActionPlayer', {
                 tab: rows
             });
         });
