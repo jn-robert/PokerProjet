@@ -28,6 +28,9 @@ function date() {
     document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
 }
 
+/**
+ * Gestion de la page des stats
+ */
 function stat() {
 
     $(document).ready(function () {
