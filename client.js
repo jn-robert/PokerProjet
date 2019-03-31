@@ -38,12 +38,87 @@ function stat() {
         let tab = data.tab;
         let msg = "<t8>Liste des joueurs</t8><br>";
         for (var i = 0; i < tab.length; i++) {
-            msg += "<button onclick='traceStats(\"" + tab[i].nom + "\")'>" + tab[i].nom + "</button><br>";
+            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
         }
         msg += "<br><br>";
         document.getElementById("listeJoueur").innerHTML = msg;
     });
 }
+
+function traceStats(id) {
+    document.getElementById("infoJoueur").innerHTML = "";
+    document.getElementById("statsVictoire").innerHTML = "";
+    document.getElementById("statsAction").innerHTML = "";
+    document.getElementById("statsPartie").innerHTML = "";
+
+    socket.emit('getStatsPlayer', {id: id});
+
+    socket.on('ReturnStatsPlayer', (data) => {
+        let tabStats = data.tab[0];
+        infoJoueur(tabStats);
+        /* NON IMPLEMENTER
+        new Morris.Line({
+            element: 'statsPartie',
+            data: [
+                {year: '2008', value: 20},
+                {year: '2009', value: 30},
+                {year: '2010', value: 60},
+                {year: '2011', value: 40},
+                {year: '2012', value: 100}
+            ],
+            xkey: 'year',
+            ykeys: ['value'],
+            labels: ['Value']
+        });
+        */
+
+        socket.on('NumberVictoryAndLoose', (data) => {
+            let vic = data.victory[0].vic;
+            let loose = data.nbGame[0].nbgame;
+            Morris.Donut({
+                element: 'statsVictoire',
+                data: [
+                    {label: "Victoire", value: vic},
+                    {label: "Défaite", value: loose},
+                ]
+            });
+        });
+
+        socket.on('ResturnStatsActionPlayer', (data) => {
+            let allIn = 0;
+            let check = 0;
+            let fold = 0;
+            let raise = 0;
+            for (let i = 0; i < data.tab.length; i++) {
+                allIn += data.tab[i].nbAllIn;
+                check +=data.tab[i].nbCheck;
+                fold += data.tab[i].nbFold;
+                raise +=data.tab[i].nbRaise;
+            }
+            Morris.Donut({
+                element: 'statsAction',
+                data: [
+                    {label: "All-in", value: allIn},
+                    {label: "Check", value: check},
+                    {label: "Fold", value: fold},
+                    {label: "Raise", value: raise},
+                ]
+            });
+        });
+    });
+}
+
+function infoJoueur(tabStats) {
+    var msg = "<table border='2'><tr><td>";
+    msg += "Pseudo : " + tabStats.pseudo + "<br>";
+    msg += "Prenom : " + tabStats.prenom + "<br>";
+    msg += "Nom : " + tabStats.nom + "<br>";
+    msg += "Date d'inscription : " + tabStats.dateInscription + "<br>";
+    msg += "Nombre de jetons : " + tabStats.jetons + "<br>";
+    msg += "</table></td></tr>";
+    document.getElementById("infoJoueur").innerHTML = msg;
+}
+
 
 function init() {
     // var Game = require('./Game');
@@ -263,7 +338,7 @@ function init() {
     $('#exit').on('click', () => {
         // socket.leave(data.room);
         const roomId = $('#room').val();
-        socket.emit("exit",{room: roomId, playerName : player.name});
+        socket.emit("exit", {room: roomId, playerName: player.name});
         location.reload(); //retourne a la page d'accueil du jeu
     });
 
@@ -293,15 +368,15 @@ function init() {
         var test = data.tab;
 
         $(test25).append("<tbody id='mainbody'>");
-        for (var i = 0; i<test.length ;i++) {
+        for (var i = 0; i < test.length; i++) {
             var $newTr = $("<tr></tr>");
             $newTr.attr('id', 'newTr' + i);
             console.log("newTr" + i);
             // console.log(newTr+i);
             $(test25).append($newTr);
             $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
-            $($newTr).append("<td id=\"room\">"+ test[i].idPartie+"</td>");
-            $($newTr).append("<td>"+test[i].nbJoueur+"</td>");
+            $($newTr).append("<td id=\"room\">" + test[i].idPartie + "</td>");
+            $($newTr).append("<td>" + test[i].nbJoueur + "</td>");
             $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
             $($newTr).append("<button id='join'>Rejoindre une partie</button>");
             $($newTr).append("<br>");
@@ -357,7 +432,7 @@ function init() {
             }
         }
 
-        if (data.tour < 6 && data.nbJoueurs!==1) {
+        if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             const message = data.booleanCurrentTurn ? 'A votre tour' : 'A votre adversaire';
 
@@ -444,7 +519,7 @@ function init() {
 
             document.getElementById('coucher').disabled = false;
 
-            let cartes=null;
+            let cartes = null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.name[i] === player.name) {
@@ -462,13 +537,13 @@ function init() {
             if (cartes != null) {
                 document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
                 document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
-            }else {
+            } else {
                 document.CarteJoueur1.src = "image/dos.png";
                 document.CarteJoueur2.src = "image/dos.png";
             }
         } else {
 
-            let cartes=null;
+            let cartes = null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.name[i] === player.name) {
@@ -481,7 +556,7 @@ function init() {
             if (cartes != null) {
                 document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
                 document.CarteJoueur2.src = "image/" + cartes[1] + ".png";
-            }else {
+            } else {
                 document.CarteJoueur1.src = "image/dos.png";
                 document.CarteJoueur2.src = "image/dos.png";
             }
