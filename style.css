@@ -59,52 +59,43 @@
 
 #image {
     max-width: 100%;
+    min-width: 50%;
     height: auto;
 }
 
 #T1 {
-    top: 100px;
-    left: 550px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
     position: absolute;
+    top: 20%;
+    left: 30%;
+    visibility: visible;
 }
 
 #T2 {
-    top: 100px;
-    left: 500px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
     position: absolute;
+    top: 20%;
+    left: 38%;
+    visibility: visible;
 }
 
 #T3 {
-    top: 100px;
-    left: 450px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
     position: absolute;
+    top: 20%;
+    left: 46%;
+    visibility: visible;
 }
 
 #T4 {
-    top: 100px;
-    left: 400px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
     position: absolute;
+    top: 20%;
+    left: 54%;
+    visibility: visible;
 }
 
 #T5 {
-    top: 100px;
-    left: 350px;
-    width: 20px;
-    border: 0px;
-    visibility: visible;
     position: absolute;
+    top: 20%;
+    left: 62%;
+    visibility: visible;
 }
 
 .table-sortable tbody tr {
@@ -112,8 +103,8 @@
 }
 
 #texte {
-    top: 270px;
-    left: 440px;
+    top: 35%;
+    left: 52%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -121,8 +112,8 @@
 }
 
 #texte2 {
-    top: 130px;
-    left: 120px;
+    top: 18%;
+    left: 17%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -131,8 +122,8 @@
 }
 
 #texte3 {
-    top: 130px;
-    left: 620px;
+    top: 18%;
+    left: 83%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -141,18 +132,18 @@
 }
 
 #texte4 {
-    top: 180px;
-    left: 300px;
+    position: absolute;
+    top: 28%;
+    left: 42%;
     border: 0px;
     visibility: visible;
-    position: absolute;
     color: white;
 
 }
 
 #texte5 {
-    top: 270px;
-    left: 250px;
+    top: 8%;
+    left: 38%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -161,8 +152,8 @@
 }
 
 #CarteJoueur1 {
-    top: 250px;
-    left: 500px;
+    top: 33%;
+    left: 65%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -170,8 +161,8 @@
 }
 
 #CarteJoueur2 {
-    top: 250px;
-    left: 550px;
+    top: 33%;
+    left: 71%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -179,8 +170,8 @@
 }
 
 #CarteJoueur3 {
-    top: 170px;
-    left: 110px;
+    top: 22%;
+    left: 15%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -188,8 +179,8 @@
 }
 
 #CarteJoueur4 {
-    top: 220px;
-    left: 110px;
+    top: 28%;
+    left: 15%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -197,8 +188,8 @@
 }
 
 #CarteJoueur5 {
-    top: 220px;
-    left: 630px;
+    top: 22%;
+    left: 85%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -206,8 +197,8 @@
 }
 
 #CarteJoueur6 {
-    top: 170px;
-    left: 630px;
+    top: 28%;
+    left: 85%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -215,8 +206,8 @@
 }
 
 #CarteJoueur7 {
-    top: 250px;
-    left: 315px;
+    top: 5%;
+    left: 48%;
     width: 20px;
     border: 0px;
     visibility: visible;
@@ -224,8 +215,8 @@
 }
 
 #CarteJoueur8 {
-    top: 250px;
-    left: 365px;
+    top: 5%;
+    left: 54%;
     width: 20px;
     border: 0px;
     visibility: visible;
