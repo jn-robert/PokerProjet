@@ -28,6 +28,9 @@ function date() {
     document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
 }
 
+/**
+ * Gestion de la page des stats
+ */
 function stat() {
 
     $(document).ready(function () {
@@ -91,9 +94,9 @@ function traceStats(id) {
             let raise = 0;
             for (let i = 0; i < data.tab.length; i++) {
                 allIn += data.tab[i].nbAllIn;
-                check +=data.tab[i].nbCheck;
+                check += data.tab[i].nbCheck;
                 fold += data.tab[i].nbFold;
-                raise +=data.tab[i].nbRaise;
+                raise += data.tab[i].nbRaise;
             }
             Morris.Donut({
                 element: 'statsAction',
