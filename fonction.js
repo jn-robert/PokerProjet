@@ -26,6 +26,11 @@ function nav(){
     else{
         document.getElementsByClassName("navNoConnected")[0].style.display = "none";
         document.getElementsByClassName("navConnected")[0].style.display = "block";
+        document.getElementById("navMessage").innerText = "User : "  + getCookie("userCookie")+" ";
+        document.getElementById("navMessage").style.color = "white";
+
+
+
     }
 }
 
