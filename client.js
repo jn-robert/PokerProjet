@@ -136,9 +136,7 @@ function register(){
 
                 socket.emit('createNewUSer',{nomUser:nom, prenom:prenom, pseudo:pseudo, pass: pass});
 
-                socket.on('loginSucces', (data) => {
-                    nameUser = data.pseudo;
-                    setCookie("userCookie", nameUser, 1);
+                socket.on('RegisterSucces', (data) => {
                     window.location.href = "home.html";
                 });
             }
