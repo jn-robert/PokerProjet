@@ -1,12 +1,23 @@
 function initialisation() {
-    document.getElementsByClassName("login")[0].style.display = "none";
-    document.getElementsByClassName("register")[0].style.display = "none";
     document.getElementsByClassName("home")[0].style.display = "block";
+    nav();
 }
 
 
-function nav(){
+function logout(){
+    deleteCookie("userCookie");
+}
 
+function nav(){
+    console.log(getCookie("userCookie"));
+    if(getCookie("userCookie") == null){
+        document.getElementsByClassName("navConnected")[0].style.display = "none";
+        document.getElementsByClassName("navNoConnected")[0].style.display = "block";
+    }
+    else{
+        document.getElementsByClassName("navNoConnected")[0].style.display = "none";
+        document.getElementsByClassName("navConnected")[0].style.display = "block";
+    }
 }
 
 
@@ -15,29 +26,11 @@ function begin() {
     document.getElementsByClassName("Game")[0].style.display = "none";
 }
 
-function showLogin() {
-    clear();
-    document.getElementsByClassName("login")[0].style.display = "block";
-}
 
-function showRegister() {
-    clear();
-    document.getElementsByClassName("register")[0].style.display = "block";
-}
-
-function showLoginFromGame() {
-    window.location.href = "home.html";
-    showRegister();
-}
-
-function showRegisterFromGame() {
-    window.location.href = "home.html";
-    showLogin();
-}
 
 function clear() {
-    document.getElementsByClassName("login")[0].style.display = "none";
-    document.getElementsByClassName("register")[0].style.display = "none";
+    document.getElementsByClassName("navConnected")[0].style.display = "none";
+    document.getElementsByClassName("navNoConnected")[0].style.display = "none";
     document.getElementsByClassName("home")[0].style.display = "none";
 }
 

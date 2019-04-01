@@ -96,6 +96,8 @@ function login() {
  */
 function stat() {
 
+
+
     $(document).ready(function () {
         socket.emit('callListJoueur');
     });
