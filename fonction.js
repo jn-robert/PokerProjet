@@ -1,6 +1,14 @@
 function initialisation() {
-    document.getElementsByClassName("home")[0].style.display = "block";
-    nav();
+    if(getCookie("userCookie") == null){
+        begin();
+    }
+    else{
+        document.getElementsByClassName("BeforeGame")[0].style.display = "block";
+        document.getElementsByClassName("Game")[0].style.display = "block";
+        document.getElementById("tablejoinpart").style.display = "block";
+        document.getElementsByClassName("needLoged")[0].style.display = "none";
+        init();
+    }
 }
 
 
@@ -25,8 +33,9 @@ function nav(){
 function begin() {
     document.getElementsByClassName("BeforeGame")[0].style.display = "none";
     document.getElementsByClassName("Game")[0].style.display = "none";
+    document.getElementById("tablejoinpart").style.display = "none";
+    document.getElementsByClassName("needLoged")[0].style.display = "block";
 }
-
 
 
 function clear() {
