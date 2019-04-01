@@ -114,12 +114,22 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
 
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         if (this.listePlayerGame[i].getPlayerName() === name) {
-            if (this.listePlayerGame[i].allIn) {
+            if (this.listePlayerGame[i].getJetons()<=0) {
                 bool = true;
-                this.listePlayerGame[i].setAjoue(true);
             }else {
                 bool = false;
             }
+        }
+    }
+
+    if (bool) {
+        this.listePlayerGame[i].setAjoue(true);
+        if (this.actionPrec === "raise") {
+            this.actionPrec = "suivre";
+        }else if (this.actionPrec === "check") {
+            this.actionPrec = "check";
+        }else {
+            this.actionPrec = "check";
         }
     }
 
@@ -157,15 +167,17 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = action;
+                    this.actionPrec = "raise";
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.misePrec = this.listePlayerGame[i].jetons;
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
-                            console.log("all'in");
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -240,15 +252,16 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "all-in") {
                     this.actionPrec = "raise";
-                    this.resetSetAjoue();
-                    // this.canPlay=true;
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -357,16 +370,17 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = action;
-                    this.resetSetAjoue();
-                    // this.canPlay=true;
+                    this.actionPrec = "raise";
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -474,16 +488,17 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = action;
-                    this.resetSetAjoue();
-                    // this.canPlay=true;
+                    this.actionPrec = "raise";
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -571,16 +586,17 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = action;
-                    this.resetSetAjoue();
-                    // this.canPlay=true;
+                    this.actionPrec = "raise";
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -647,6 +663,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             this.pot += this.listePlayerGame[i].getTas();
             this.listePlayerGame[i].tas = 0;
             this.listePlayerGame[i].setAjoue(false);
+            this.listePlayerGame[i].allIn = false;
         }
         for (let i = 0; i < boolTours; i++) {
             this.incrementeTour();
