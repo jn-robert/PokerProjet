@@ -35,7 +35,7 @@ const con = mysql.createConnection({
     host: 'localhost',
     database: 'poker',
     user: 'root',
-    port: '3306',
+    port: '3308',
     password: '',
 });
 
@@ -826,6 +826,18 @@ io.on('connection', (socket) => {
 
     socket.on('exit', (data) => {
         game.exit(data.playerName);
+        con.query("UPDATE partie SET nbJoueur = nbJoueur - 1 WHERE idPartie="+`${rooms}`, (err, rows) =>{
+            if (err) throw err;
+        });
+
+        con.query("SELECT nbJoueur FROM partie WHERE idPartie="+`${rooms}`, (err, rows) =>{
+            if (err) throw err;
+            if(rows[0].nbJoueur == 0){
+                con.query("DELETE FROM partie WHERE idPartie="+`${rooms}`, (err, rows) =>{
+                    if (err) throw err;
+                });
+            }
+        });
     });
 });
 server.listen(process.env.PORT || 5000);
