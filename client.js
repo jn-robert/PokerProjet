@@ -468,6 +468,13 @@ function init() {
         var test = data.tab;
         for (var i = 0; i < test.length; i++) {
             $("#select").append("<option value=\""+test[i].idPartie+"\">" + test[i].idPartie + "</option>");
+            $("#tablePartie").append(
+                "<tr>"+
+                "<td>" + test[i].idPartie + "</td>" +
+                "<td>" + test[i].nbJoueur + "</td>" +
+                "</tr>"
+            );
+
         }
     });
 
