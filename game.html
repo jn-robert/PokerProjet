@@ -56,45 +56,51 @@
         nav();
     </script>
 </head>
-<body onload="init()">
+<body onload="initialisation()">
 <div class="BeforeGame">
     <div class="container">
         <div class="menu">
             <h1>Poker</h1>
             <h4>Creer une partie</h4>
-            <input type="text" name="name" id="nameNew" placeholder="Nom joueur" required>
-            <input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required>
-            <button id="new">Nouvelle partie</button>
+            <table class="table">
+                <tr>
+                    <td scope="col">Nom Joueur </td>
+                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">Action</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name" id="nameNew" placeholder="Nom joueur" required></td>
+                    <td><input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required></td>
+                    <td><button id="new">Nouvelle partie</button></td>
+                </tr>
+            </table>
             <br><br>
             <h4>Rejoindre une partie</h4>
-            <input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required>
-            <input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required>
-            <input type="number" name="room" id="room" placeholder="No du salon" required>
-            <button id="join">Rejoindre une partie</button>
+            <table class="table">
+                <tr>
+                    <td scope="col">Nom Joueur </td>
+                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">ID de la partie</td>
+                    <td scope="col">Action</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required></td>
+                    <td><input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required></td>
+                    <td><select id="select"></select></td>
+                    <td><button id="join">Rejoindre une partie</button></td>
+                </tr>
+            </table>
+            <h4>Liste des parties</h4>
+            <table id="tablePartie" class="table">
+                <tr>
+                    <td scope="col">ID de la partie</td>
+                    <td scope="col">Nombre de joueurs </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-<div id="tablejoinpart">
-<div class="ServeurJoin">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 table-responsive">
-                <table id="test25" class="table">
-                    <thead id="table">
-                    <tr>
-                        <td scope="col">Nom joueur</td>
-                        <td scope="col">idPartie </td>
-                        <td scope="col">Nombre de joueur </td>
-                        <td scope="col">Nombre de jetons </td>
-                        <td scope="col">Action</td>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+<div id="tablejoinpart"></div>
 
 <div class="Game">
     <div class="gameBoard" style="display: none;">
@@ -188,6 +194,13 @@
             </div>
         </div>
     </div>
+</div>
+<div class="needLoged">
+    <h3>
+        Veuillez vous connectez ça serait cool merci poto
+    </h3>
+    <a href="login.html">Pour se connecter cliquez ici !</a><br>
+    <a href="register.html">Pour s'inscrire cliquez ici !</a>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
