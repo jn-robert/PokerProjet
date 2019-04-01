@@ -117,8 +117,7 @@ let boolGraph = false;
 function traceStats(id) {
     if (boolGraph) {
         location.reload();
-    }
-    else {
+    } else {
         boolGraph = true;
         recpDonne(id);
     }
@@ -527,10 +526,26 @@ function init() {
             }
         }
 
+        console.log(jetons);
+        // let compteurAllIn = 0;
+        // if (jetons === 0) {
+        //     console.log("requete all-in");
+        //     const roomId = $('#room').val();
+        //     socket.emit('all-in', {room: roomId, playerName: player.name});
+        //     compteurAllIn = 1;
+        // }
+
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             var message;
             if (data.currentTurn === player.name) {
+
+                // if (jetons === 0) {
+                //     console.log("requete all-in");
+                //     const roomId = $('#room').val();
+                //     socket.emit('all-in', {room: roomId, playerName: player.name});
+                //     // compteurAllIn = 1;
+                // }
 
                 message = "A votre tour";
 
@@ -566,7 +581,6 @@ function init() {
 
                         break;
                     case "all-in":
-
                         console.log("joueur all-in");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "none";

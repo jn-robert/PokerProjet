@@ -112,526 +112,524 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     let boolTours = 1;
     let testTousJoue = true;
 
-    switch (this.actionPrec) {
-        case null:
-            this.actionPrec = action;
-            // console.log("name parametre : "+name);
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                this.listePlayerGame[i].setAjoue(false);
+    for (let i = 0; i < this.listePlayerGame.length; i++) {
+        if (this.listePlayerGame[i].getPlayerName() === name) {
+            if (this.listePlayerGame[i].allIn) {
+                bool = true;
+                this.listePlayerGame[i].setAjoue(true);
+            }else {
+                bool = false;
             }
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
-                    // console.log("test true");
-                }
-                // console.log("joueur "+i+" : "+this.listePlayerGame[i].getAjoue());
-                // console.log("");
-            }
-            if (action === "check") {
+        }
+    }
 
-            }
-
-            if (action === "raise") {
+    if (!bool) {
+        console.log("choix action");
+        switch (this.actionPrec) {
+            case null:
                 this.actionPrec = action;
-                this.misePrec = miseMin;
-                this.tasHaut = this.misePrec;
+                // console.log("name parametre : "+name);
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                        this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                        this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                        // }
-                    } else {
-                        this.listePlayerGame[i].tas = 0;
-                    }
+                    this.listePlayerGame[i].setAjoue(false);
                 }
-            }
-            if (action === "all-in") {
-                this.actionPrec = action;
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.misePrec = this.listePlayerGame[i].jetons;
-                        this.tasHaut = this.misePrec;
-                        this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                        this.listePlayerGame[i].jetons = 0;
-                        this.listePlayerGame[i].allIn = true;
-                    }
-                }
-            }
-            if (action === "coucher") {
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.listePlayerGame.splice(j, 1);
-                    }
-                }
-            }
-            break;
-        case "check":
-            // for (let i=0; i<this.listePlayerGame.length;i++) {
-            //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
-            //         break;
-            //     } else if (this.listePlayerGame[i].getPlayerName() === name && !this.listePlayerGame[i].allIn) {
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
-                }
-            }
-
-            if (action === "check") {
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
-                                testTousJoue = false;
-                            }
-                        }
-                        if (!testTousJoue) {
-                            //console.log("joueur n°" + j + " a joué");
-                        } else {
-                            //console.log("dernier joueur qui a joue");
-                            this.canPlay = true;
-                        }
-                    }
-
-                }
-            }
-            if (action === "raise") {
-                this.actionPrec = action;
-                this.misePrec = miseMin;
-                this.tasHaut = this.misePrec;
-                this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
                         this.listePlayerGame[i].setAjoue(true);
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (!this.listePlayerGame[j].getAjoue()) {
-                                testTousJoue = false;
-                            }
-                        }
-                        if (!testTousJoue) {
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            }
-                            //console.log("joueur n°" + i + " a joué");
-                        } else {
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            }
-                            //console.log("dernier joueur qui a joue");
-                            this.canPlay = true;
-                        }
-
                     }
                 }
-            }
-            if (action === "all-in") {
-                this.actionPrec = action;
-                this.resetSetAjoue();
+                if (action === "check") {
+
+                }
+
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // }
+                        } else {
+                            this.listePlayerGame[i].tas = 0;
+                        }
+                    }
+                }
+                if (action === "all-in") {
+                    this.actionPrec = action;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.misePrec = this.listePlayerGame[i].jetons;
+                            this.tasHaut = this.misePrec;
+                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                            this.listePlayerGame[i].jetons = 0;
+                            this.listePlayerGame[i].allIn = true;
+                            console.log("all'in");
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                    }
+                }
+                break;
+            case "check":
+                // for (let i=0; i<this.listePlayerGame.length;i++) {
+                //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
+                //         break;
+                //     } else if (this.listePlayerGame[i].getPlayerName() === name && !this.listePlayerGame[i].allIn) {
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (!this.listePlayerGame[j].getAjoue()) {
-                                testTousJoue = false;
+                        this.listePlayerGame[i].setAjoue(true);
+                    }
+                }
+
+                if (action === "check") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+
+                            for (let i = 0; i < this.listePlayerGame.length; i++) {
+                                if (!this.listePlayerGame[i].getAjoue()) {
+                                    testTousJoue = false;
+                                }
                             }
-                        }
-                        if (!testTousJoue) {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
-
-                            //console.log("joueur n°" + i + " a joué");
-                        } else {
-                            this.misePrec = this.listePlayerGame[i].getJetons();
-                            this.tasHaut = this.misePrec;
-                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                            this.listePlayerGame[i].jetons = 0;
-                            this.listePlayerGame[i].allIn = true;
-
-                            //console.log("dernier joueur qui a joue");
-                            this.canPlay = true;
+                            if (!testTousJoue) {
+                                //console.log("joueur n°" + j + " a joué");
+                            } else {
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
                         }
 
                     }
                 }
-            }
-            if (action === "coucher") {
-                console.log("coucher");
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.listePlayerGame.splice(j, 1);
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
+
+                        }
                     }
-                    // if (this.listePlayerGame.length < 3) {
-                    //     if (this.listePlayerGame[j].getPlayerName() !== name) {
-                    //         this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                    //         let boolJoueur = false;
-                    //         for (let k = 0; k < this.listePlayerTable.length; k++) {
-                    //             for (let l = 0; l < this.listePlayerGame.length; l++) {
-                    //                 if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
-                    //                     boolJoueur = true;
-                    //                 }
-                    //             }
-                    //             if (boolJoueur) {
-                    //                 this.listePlayerGame.push(this.listePlayerTable[k]);
-                    //                 boolJoueur = false;
-                    //                 // this.canPlay=true;
-                    //                 this.actionPrec = null;
-                    //             }
-                    //         }
-                    //         // this.init(10,20);
-                    //     }
-                    // } else {
-                    //     if (this.listePlayerGame[j].getPlayerName() === name) {
-                    //         this.listePlayerGame.splice(j, 1);
-                    //     }
+                }
+                if (action === "all-in") {
+                    this.actionPrec = "raise";
+                    this.resetSetAjoue();
+                    // this.canPlay=true;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.misePrec = this.listePlayerGame[i].getJetons();
+                            this.tasHaut = this.misePrec;
+                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                            this.listePlayerGame[i].jetons = 0;
+                            this.listePlayerGame[i].allIn = true;
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    console.log("coucher");
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                        // if (this.listePlayerGame.length < 3) {
+                        //     if (this.listePlayerGame[j].getPlayerName() !== name) {
+                        //         this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                        //         let boolJoueur = false;
+                        //         for (let k = 0; k < this.listePlayerTable.length; k++) {
+                        //             for (let l = 0; l < this.listePlayerGame.length; l++) {
+                        //                 if (this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()) {
+                        //                     boolJoueur = true;
+                        //                 }
+                        //             }
+                        //             if (boolJoueur) {
+                        //                 this.listePlayerGame.push(this.listePlayerTable[k]);
+                        //                 boolJoueur = false;
+                        //                 // this.canPlay=true;
+                        //                 this.actionPrec = null;
+                        //             }
+                        //         }
+                        //         // this.init(10,20);
+                        //     }
+                        // } else {
+                        //     if (this.listePlayerGame[j].getPlayerName() === name) {
+                        //         this.listePlayerGame.splice(j, 1);
+                        //     }
+                        // }
+                    }
+                    // }
                     // }
                 }
-                // }
-                // }
-            }
-            break;
-        case "suivre":
-            // for (let i=0; i< this.listePlayerGame.length;i++) {
-            //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
-            //         this.canPlay=true;
-            //     } else {
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
-                }
-            }
-
-            if (action === "suivre") {
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            if (!this.listePlayerGame[i].getAjoue()) {
-                                testTousJoue = false;
-                            }
-                        }
-                        if (!testTousJoue) {
-                            if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                                this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                                this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                            }
-
-                            //console.log("joueur n°" + j + " a joué");
-                        } else {
-                            if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                                this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                                this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                            }
-
-                            //console.log("dernier joueur qui a joue");
-                            this.canPlay = true;
-                        }
-                    }
-
-                }
-
-            }
-            if (action === "raise") {
-                this.actionPrec = action;
-                this.misePrec = miseMin;
-                this.tasHaut = this.misePrec;
-                this.resetSetAjoue();
+                break;
+            case "suivre":
+                // for (let i=0; i< this.listePlayerGame.length;i++) {
+                //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
+                //         this.canPlay=true;
+                //     } else {
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (!this.listePlayerGame[j].getAjoue()) {
-                                testTousJoue = false;
+                        this.listePlayerGame[i].setAjoue(true);
+                    }
+                }
+
+                if (action === "suivre") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            for (let i = 0; i < this.listePlayerGame.length; i++) {
+                                if (!this.listePlayerGame[i].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+
+                                //console.log("joueur n°" + j + " a joué");
+                            } else {
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
                             }
                         }
-                        if (!testTousJoue) {
-                            //console.log("joueur n°" + i + " a joué");
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+
+                    }
+
+                }
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
                             }
-                        } else {
-                            //console.log("dernier joueur qui a joue");
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            if (!testTousJoue) {
+                                //console.log("joueur n°" + i + " a joué");
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                            } else {
+                                //console.log("dernier joueur qui a joue");
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                                this.canPlay = true;
                             }
-                            this.canPlay = true;
                         }
                     }
                 }
-            }
-            // if (action === "all-in") {
-            //     this.actionPrec = action;
-            //     // this.canPlay=true;
-            //     for (let i = 0; i < this.listePlayerGame.length; i++) {
-            //         if (this.listePlayerGame[i].getPlayerName() === name) {
-            //             this.misePrec = this.listePlayerGame[i].getJetons();
-            //             this.tasHaut = this.misePrec;
-            //             this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-            //             this.listePlayerGame[i].jetons = 0;
-            //             this.listePlayerGame[i].allIn = true;
-            //         }
-            //     }
-            // }
-            if (action === "coucher"){
+                if (action === "all-in") {
+                    this.actionPrec = action;
+                    this.resetSetAjoue();
+                    // this.canPlay=true;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.misePrec = this.listePlayerGame[i].getJetons();
+                            this.tasHaut = this.misePrec;
+                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                            this.listePlayerGame[i].jetons = 0;
+                            this.listePlayerGame[i].allIn = true;
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                    }
+                    //     for (let j=0;j<this.listePlayerGame.length; j++){
+                    //         if (this.listePlayerGame.length <3){
+                    //             if (this.listePlayerGame[j].getPlayerName() !== name){
+                    //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                    //                 let boolJoueur = false;
+                    //                 for (let k =0; k<this.listePlayerTable.length; k++){
+                    //                     for (let l = 0; l<this.listePlayerGame.length; l++){
+                    //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
+                    //                             boolJoueur = true;
+                    //                         }
+                    //                     }
+                    //                     if (boolJoueur) {
+                    //                         this.listePlayerGame.push(this.listePlayerTable[k]);
+                    //                         boolJoueur=false;
+                    //                     }
+                    //                 }
+                    //                 // this.init(10,20);
+                    //             }
+                    //         }else {
+                    //             if (this.listePlayerGame[j].getPlayerName() === name){
+                    //                 this.listePlayerGame.splice(j,1);
+                    //             }
+                    //         }
+                    //     }
+                }
+                break;
+
+            case "raise":
+                // for (let i=0; i<this.listePlayerGame.length;i++) {
+                //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
+                //         this.canPlay=true;
+                //     } else {
+                // this.resetSetAjoue();
+                for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    if (this.listePlayerGame[i].getPlayerName() === name) {
+                        this.listePlayerGame[i].setAjoue(true);
+                    }
+                    console.log(this.listePlayerGame[i].getAjoue());
+                }
+                if (action === "suivre") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            for (let i = 0; i < this.listePlayerGame.length; i++) {
+                                console.log("2 " + this.listePlayerGame[i].getAjoue());
+                                if (!this.listePlayerGame[i].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                //console.log("joueur n°" + j + " a joué");
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+                            } else {
+                                //console.log("dernier joueur qui a joue");
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+                                this.canPlay = true;
+                            }
+                        }
+
+                    }
+                }
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.misePrec = miseMin;
+                    this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
+                        }
+                    }
+                }
+                if (action === "all-in") {
+                    this.actionPrec = action;
+                    this.resetSetAjoue();
+                    // this.canPlay=true;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.misePrec = this.listePlayerGame[i].getJetons();
+                            this.tasHaut = this.misePrec;
+                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                            this.listePlayerGame[i].jetons = 0;
+                            this.listePlayerGame[i].allIn = true;
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                    }
+                    //     for (let j=0;j<this.listePlayerGame.length; j++){
+                    //         if (this.listePlayerGame.length <3){
+                    //             if (this.listePlayerGame[j].getPlayerName() !== name){
+                    //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                    //                 let boolJoueur = false;
+                    //                 for (let k =0; k<this.listePlayerTable.length; k++){
+                    //                     for (let l = 0; l<this.listePlayerGame.length; l++){
+                    //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
+                    //                             boolJoueur = true;
+                    //                         }
+                    //                     }
+                    //                     if (boolJoueur) {
+                    //                         this.listePlayerGame.push(this.listePlayerTable[k]);
+                    //                         boolJoueur=false;
+                    //                     }
+                    //                 }
+                    //                 // this.init(10,20);
+                    //             }
+                    //         }else {
+                    //             if (this.listePlayerGame[j].getPlayerName() === name){
+                    //                 this.listePlayerGame.splice(j,1);
+                    //             }
+                    //         }
+                    //     }
+                }
+                break;
+            case "all-in":
+                for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    if (this.listePlayerGame[i].getPlayerName() === name) {
+                        this.listePlayerGame[i].setAjoue(true);
+                    }
+                    console.log(this.listePlayerGame[i].getAjoue());
+                }
+
+                if (action === "suivre") {
+                    // this.actionPrec = action;
+                    // this.canPlay = true;
+                    // this.tasHaut = this.misePrec;
+                    // for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    //     if (this.listePlayerGame[i].getPlayerName() === name) {
+                    //         if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                    //             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                    //             this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
+                    //             boolTours = 6-this.tour;
+                    //         }
+                    //     }
+                    // }
+                    this.actionPrec = action;
+                    this.tasHaut = this.misePrec;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
+                            //console.log("tasHAut : "+this.tasHaut);
+                            //console.log("operation");
+                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            // boolTours = 6 - this.tour;
+                            //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
+                        }
+                    }
+                    this.canPlay = true;
+                }
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.canPlay = true;
+                    this.misePrec = this.misePrec + miseMin;
+                    this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                            }
+                        }
+                    }
+                }
+                if (action === "all-in") {
+                    this.actionPrec = action;
+                    this.resetSetAjoue();
+                    // this.canPlay=true;
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.misePrec = this.listePlayerGame[i].getJetons();
+                            this.tasHaut = this.misePrec;
+                            this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
+                            this.listePlayerGame[i].jetons = 0;
+                            this.listePlayerGame[i].allIn = true;
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                    }
+                }
+                break;
+            case "coucher":
                 for (let j = 0; j < this.listePlayerGame.length; j++) {
                     if (this.listePlayerGame[j].getPlayerName() === name) {
                         this.listePlayerGame.splice(j, 1);
                     }
                 }
-            //     for (let j=0;j<this.listePlayerGame.length; j++){
-            //         if (this.listePlayerGame.length <3){
-            //             if (this.listePlayerGame[j].getPlayerName() !== name){
-            //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-            //                 let boolJoueur = false;
-            //                 for (let k =0; k<this.listePlayerTable.length; k++){
-            //                     for (let l = 0; l<this.listePlayerGame.length; l++){
-            //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-            //                             boolJoueur = true;
-            //                         }
-            //                     }
-            //                     if (boolJoueur) {
-            //                         this.listePlayerGame.push(this.listePlayerTable[k]);
-            //                         boolJoueur=false;
-            //                     }
-            //                 }
-            //                 // this.init(10,20);
-            //             }
-            //         }else {
-            //             if (this.listePlayerGame[j].getPlayerName() === name){
-            //                 this.listePlayerGame.splice(j,1);
-            //             }
-            //         }
-            //     }
-            }
-            break;
-
-        case "raise":
-            // for (let i=0; i<this.listePlayerGame.length;i++) {
-            //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
-            //         this.canPlay=true;
-            //     } else {
-            // this.resetSetAjoue();
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
-                }
-                console.log(this.listePlayerGame[i].getAjoue());
-            }
-            if (action === "suivre") {
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        for (let i = 0; i < this.listePlayerGame.length; i++) {
-                            console.log("2 " + this.listePlayerGame[i].getAjoue());
-                            if (!this.listePlayerGame[i].getAjoue()) {
-                                testTousJoue = false;
-                            }
-                        }
-                        if (!testTousJoue) {
-                            //console.log("joueur n°" + j + " a joué");
-                            if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                                this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                                this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                            }
-                        } else {
-                            //console.log("dernier joueur qui a joue");
-                            if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
-                                this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
-                                this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
-                            }
-                            this.canPlay = true;
-                        }
-                    }
-
-                }
-            }
-            if (action === "raise") {
-                this.actionPrec = action;
-                this.misePrec = miseMin;
-                this.tasHaut = this.misePrec;
-                this.resetSetAjoue();
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        for (let j = 0; j < this.listePlayerGame.length; j++) {
-                            if (!this.listePlayerGame[j].getAjoue()) {
-                                testTousJoue = false;
-                            }
-                        }
-                        if (!testTousJoue) {
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            }
-
-                            //console.log("joueur n°" + i + " a joué");
-                        } else {
-                            if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            }
-
-                            //console.log("dernier joueur qui a joue");
-                            this.canPlay = true;
-                        }
-                    }
-                }
-            }
-            if (action === "all-in") {
-                this.actionPrec = action;
-                this.resetSetAjoue();
-                // this.canPlay=true;
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.misePrec = this.listePlayerGame[i].getJetons();
-                        this.tasHaut = this.misePrec;
-                        this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                        this.listePlayerGame[i].jetons = 0;
-                        this.listePlayerGame[i].allIn = true;
-                    }
-                }
-            }
-            if (action === "coucher"){
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.listePlayerGame.splice(j, 1);
-                    }
-                }
-            //     for (let j=0;j<this.listePlayerGame.length; j++){
-            //         if (this.listePlayerGame.length <3){
-            //             if (this.listePlayerGame[j].getPlayerName() !== name){
-            //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-            //                 let boolJoueur = false;
-            //                 for (let k =0; k<this.listePlayerTable.length; k++){
-            //                     for (let l = 0; l<this.listePlayerGame.length; l++){
-            //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-            //                             boolJoueur = true;
-            //                         }
-            //                     }
-            //                     if (boolJoueur) {
-            //                         this.listePlayerGame.push(this.listePlayerTable[k]);
-            //                         boolJoueur=false;
-            //                     }
-            //                 }
-            //                 // this.init(10,20);
-            //             }
-            //         }else {
-            //             if (this.listePlayerGame[j].getPlayerName() === name){
-            //                 this.listePlayerGame.splice(j,1);
-            //             }
-            //         }
-            //     }
-            }
-            break;
-        case "all-in":
-            this.resetSetAjoue();
-            for (let i = 0; i < this.listePlayerGame.length; i++) {
-                if (this.listePlayerGame[i].getPlayerName() === name) {
-                    this.listePlayerGame[i].setAjoue(true);
-                }
-            }
-
-            if (action === "suivre") {
-                // this.actionPrec = action;
-                // this.canPlay = true;
-                // this.tasHaut = this.misePrec;
-                // for (let i = 0; i < this.listePlayerGame.length; i++) {
-                //     if (this.listePlayerGame[i].getPlayerName() === name) {
-                //         if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                //             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                //             this.listePlayerGame[i].pot += this.tasHaut - this.listePlayerGame[i].getTas();
-                //             boolTours = 6-this.tour;
+                // if (action === "coucher"){
+                //     for (let j=0;j<this.listePlayerGame.length; j++){
+                //         if (this.listePlayerGame.length <3){
+                //             if (this.listePlayerGame[j].getPlayerName() !== name){
+                //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
+                //                 let boolJoueur = false;
+                //                 for (let k =0; k<this.listePlayerTable.length; k++){
+                //                     for (let l = 0; l<this.listePlayerGame.length; l++){
+                //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
+                //                             boolJoueur = true;
+                //                         }
+                //                     }
+                //                     if (boolJoueur) {
+                //                         this.listePlayerGame.push(this.listePlayerTable[k]);
+                //                         boolJoueur=false;
+                //                     }
+                //                 }
+                //                 this.continueGame(10,20);
+                //             }
+                //         }else {
+                //             if (this.listePlayerGame[j].getPlayerName() === name){
+                //                 this.listePlayerGame.splice(j,1);
+                //             }
                 //         }
                 //     }
                 // }
-                this.actionPrec = action;
-                this.tasHaut = this.misePrec;
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
-                        //console.log("tasHAut : "+this.tasHaut);
-                        //console.log("operation");
-                        this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                        this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                        boolTours = 6 - this.tour;
-                        //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
-                    }
-                }
-                this.canPlay = true;
-            }
-            if (action === "raise") {
-                this.actionPrec = action;
-                this.canPlay = true;
-                this.misePrec = this.misePrec + miseMin;
-                this.tasHaut = this.misePrec;
-                this.resetSetAjoue();
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                        }
-                    }
-                }
-            }
-            if (action === "all-in") {
-                this.actionPrec = action;
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.misePrec = this.listePlayerGame[i].getJetons();
-                        this.tasHaut = this.misePrec;
-                        this.listePlayerGame[i].tas += this.listePlayerGame[i].jetons;
-                        this.listePlayerGame[i].jetons = 0;
-                        this.listePlayerGame[i].allIn = true;
-                    }
-                }
-                this.canPlay = true;
-            }
-            if (action === "coucher") {
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.listePlayerGame.splice(j, 1);
-                    }
-                }
-            }
-            break;
-        case "coucher":
-            for (let j = 0; j < this.listePlayerGame.length; j++) {
-                if (this.listePlayerGame[j].getPlayerName() === name) {
-                    this.listePlayerGame.splice(j, 1);
-                }
-            }
-            // if (action === "coucher"){
-            //     for (let j=0;j<this.listePlayerGame.length; j++){
-            //         if (this.listePlayerGame.length <3){
-            //             if (this.listePlayerGame[j].getPlayerName() !== name){
-            //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-            //                 let boolJoueur = false;
-            //                 for (let k =0; k<this.listePlayerTable.length; k++){
-            //                     for (let l = 0; l<this.listePlayerGame.length; l++){
-            //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-            //                             boolJoueur = true;
-            //                         }
-            //                     }
-            //                     if (boolJoueur) {
-            //                         this.listePlayerGame.push(this.listePlayerTable[k]);
-            //                         boolJoueur=false;
-            //                     }
-            //                 }
-            //                 this.continueGame(10,20);
-            //             }
-            //         }else {
-            //             if (this.listePlayerGame[j].getPlayerName() === name){
-            //                 this.listePlayerGame.splice(j,1);
-            //             }
-            //         }
-            //     }
-            // }
-            break;
+                break;
+
+        }
 
     }
+
 
     // for (let i = 0; i < this.listePlayerGame.length; i++) {
     //     if (this.listePlayerGame[i].getPlayerName() === name) {
@@ -658,6 +656,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
         this.actionPrec = null;
         this.misePrec = 0;
         this.tasHaut = 0;
+        bool = false;
         boolTours = 1;
         testTousJoue = true;
     }
