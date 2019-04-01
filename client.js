@@ -315,7 +315,7 @@ function init() {
     // Join an existing game on the entered roomId. Emit the joinGame event.
     $('#join').on('click', () => {
         const name = $('#nameJoin').val();
-        const roomID = $('#room').val();
+        const roomID = $('#select').val();
         const jeton = $('#jetonNewJoin').val();
         if (!roomID || !jeton) {
             alert('Erreur.');
@@ -560,14 +560,7 @@ function init() {
     socket.on('partieJoueur', (data) => {
         var test = data.tab;
         for (var i = 0; i < test.length; i++) {
-            $("#table").append("<tr>");
-            $("#table").append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
-            $("#table").append("<td id=\"room\">" + test[i].idPartie + "</td>");
-            $("#table").append("<td>" + test[i].nbJoueur + "</td>");
-            $("#table").append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
-            $("#table").append("<button id='join'>Rejoindre une partie</button>");
-            $("#table").append("</tr>");
-
+            $("#select").append("<option value=\""+test[i].idPartie+"\">" + test[i].idPartie + "</option>");
         }
     });
 
