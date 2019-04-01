@@ -582,7 +582,6 @@ function init() {
 
                         break;
                     case "all-in":
-
                         console.log("joueur all-in");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "none";
