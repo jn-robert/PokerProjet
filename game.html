@@ -62,12 +62,21 @@
         <div class="menu">
             <h1>Poker</h1>
             <h4>Creer une partie</h4>
-            <input type="text" name="name" id="nameNew" placeholder="Nom joueur" required>
-            <input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required>
-            <button id="new">Nouvelle partie</button>
+            <table class="table">
+                <tr>
+                    <td scope="col">Nom Joueur </td>
+                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">Action</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name" id="nameNew" placeholder="Nom joueur" required></td>
+                    <td><input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required></td>
+                    <td><button id="new">Nouvelle partie</button></td>
+                </tr>
+            </table>
             <br><br>
             <h4>Rejoindre une partie</h4>
-            <table id="test25" class="table">
+            <table class="table">
                 <tr>
                     <td scope="col">Nom Joueur </td>
                     <td scope="col">Nombre de jetons </td>
@@ -84,7 +93,8 @@
         </div>
     </div>
 </div>
-<div id="tablejoinpart"></div>
+<div id="tablejoinpart">
+</div>
 
 <div class="Game">
     <div class="gameBoard" style="display: none;">
