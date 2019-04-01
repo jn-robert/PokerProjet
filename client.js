@@ -422,23 +422,16 @@ function init() {
 
     socket.on('partieJoueur', (data) => {
         var test = data.tab;
-
-        $(test25).append("<tbody id='mainbody'>");
         for (var i = 0; i < test.length; i++) {
-            var $newTr = $("<tr></tr>");
-            $newTr.attr('id', 'newTr' + i);
-            console.log("newTr" + i);
-            // console.log(newTr+i);
-            $(test25).append($newTr);
-            $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
-            $($newTr).append("<td id=\"room\">" + test[i].idPartie + "</td>");
-            $($newTr).append("<td>" + test[i].nbJoueur + "</td>");
-            $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
-            $($newTr).append("<button id='join'>Rejoindre une partie</button>");
-            $($newTr).append("<br>");
-            $(test25).append("</tr>");
+            $("#table").append("<tr>");
+            $("#table").append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
+            $("#table").append("<td id=\"room\">" + test[i].idPartie + "</td>");
+            $("#table").append("<td>" + test[i].nbJoueur + "</td>");
+            $("#table").append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
+            $("#table").append("<button id='join'>Rejoindre une partie</button>");
+            $("#table").append("</tr>");
+
         }
-        $(test25).append("</tbody>");
     });
 
     $(document).ready(function () {
