@@ -26,7 +26,6 @@ function clear() {
     document.getElementsByClassName("home")[0].style.display = "none";
 }
 
-
 $(document).ready(function () {
     $('#registerFormulaire').submit(function (e) {
         e.preventDefault();
