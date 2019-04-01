@@ -216,8 +216,8 @@ function init() {
             return;
         }
 
-        player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
-        socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
+        player = new Player(id++, name, parseInt(jeton));
+        socket.emit('createGame', {name: name, jeton: parseInt(jeton)});
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -229,8 +229,8 @@ function init() {
             alert('Erreur.');
             return;
         }
-        player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
-        socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
+        player = new Player(id++, name, parseInt(jeton), roomID);
+        socket.emit('joinGame', {name: name, room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
         $('#tablejoinpart').hide();
 
@@ -499,7 +499,7 @@ function init() {
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
-                jetons = data.jetons[i];
+                jetons = parseInt(data.jetons[i]);
                 document.getElementById('label0').innerHTML = jetons;
                 if (i == 0) {
                     document.getElementById('label2').innerHTML = data.jetons[i + 1];
@@ -527,7 +527,7 @@ function init() {
             }
         }
 
-        console.log(jetons);
+        console.log("jetons joueur : "+jetons);
         // let compteurAllIn = 0;
         // if (jetons === 0) {
         //     console.log("requete all-in");
@@ -541,12 +541,21 @@ function init() {
             var message;
             if (data.currentTurn === player.name) {
 
-                // if (jetons === 0) {
-                //     console.log("requete all-in");
-                //     const roomId = $('#room').val();
-                //     socket.emit('all-in', {room: roomId, playerName: player.name});
-                //     // compteurAllIn = 1;
-                // }
+                let cartes = null;
+                let jetons;
+                for (let i = 0; i < data.nbJoueurs; i++) {
+                    if (data.name[i] === player.name) {
+                        cartes = data.cartes[i];
+                        jetons = data.jetons[i];
+                    }
+                }
+                console.log(jetons);
+                if (jetons === 0) {
+                    console.log("requete all-in");
+                    const roomId = $('#room').val();
+                    socket.emit('all-in', {room: roomId, playerName: player.name});
+                    // compteurAllIn = 1;
+                }
 
                 message = "A votre tour";
 
@@ -610,14 +619,7 @@ function init() {
 
             }
 
-            let cartes = null;
-            let jetons;
-            for (let i = 0; i < data.nbJoueurs; i++) {
-                if (data.name[i] === player.name) {
-                    cartes = data.cartes[i];
-                    jetons = data.jetons[i];
-                }
-            }
+
 
             //affichage des variables
 
