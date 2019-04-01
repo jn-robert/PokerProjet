@@ -67,34 +67,24 @@
             <button id="new">Nouvelle partie</button>
             <br><br>
             <h4>Rejoindre une partie</h4>
-            <input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required>
-            <input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required>
-            <input type="number" name="room" id="room" placeholder="No du salon" required>
-            <button id="join">Rejoindre une partie</button>
+            <table id="test25" class="table">
+                <tr>
+                    <td scope="col">Nom Joueur </td>
+                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">ID de la partie</td>
+                    <td scope="col">Action</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name" id="nameJoin" placeholder="Nom joueur" required></td>
+                    <td><input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required></td>
+                    <td><select id="select"></select></td>
+                    <td><button id="join">Rejoindre une partie</button></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-<div id="tablejoinpart">
-<div class="ServeurJoin">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 table-responsive">
-                <table id="test25" class="table">
-                    <thead id="table">
-                    <tr>
-                        <td scope="col">Nom joueur</td>
-                        <td scope="col">idPartie </td>
-                        <td scope="col">Nombre de joueur </td>
-                        <td scope="col">Nombre de jetons </td>
-                        <td scope="col">Action</td>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+<div id="tablejoinpart"></div>
 
 <div class="Game">
     <div class="gameBoard" style="display: none;">
