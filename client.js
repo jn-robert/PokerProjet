@@ -333,7 +333,6 @@ function init() {
         socket.emit('joinGame', {name: name, room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
         $('#tablejoinpart').hide();
-
     });
 
     // New Game created by current client. Update the UI and create new Game var.
@@ -443,13 +442,11 @@ function init() {
                     document.getElementById('label2').innerHTML = data.jetons[i + 1];
                     document.getElementById('label1').innerHTML = data.jetons[i + 2];
                     document.getElementById('label3').innerHTML = data.jetons[i + 3];
-                    console.log(data.jetons[i + 1])
                 }
                 if (i == 1) {
                     document.getElementById('label2').innerHTML = data.jetons[i - 1];
                     document.getElementById('label1').innerHTML = data.jetons[i + 1];
                     document.getElementById('label3').innerHTML = data.jetons[i + 2];
-                    console.log(data.jetons[i - 1])
                 }
                 if (i == 2) {
                     document.getElementById('label2').innerHTML = data.jetons[i - 2];
@@ -539,22 +536,17 @@ function init() {
     $('#exit').on('click', () => {
         // socket.leave(data.room);
         const roomId = $('#room').val();
-        console.log("room: "+roomId)
         socket.emit("exit", {room: roomId, playerName: player.name});
         location.reload(); //retourne a la page d'accueil du jeu
     });
 
-
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
-        console.log("roomId : " + roomId);
         var message = document.getElementById("message").value;
         socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
     socket.on('afficheMessage', (data) => {
-        console.log("room " + data.room);
-        console.log("roomId : " + room);
         // const roomId = $('#room').val();
         // console.log(roomId);
 
@@ -606,13 +598,11 @@ function init() {
                     document.getElementById('label2').innerHTML = data.jetons[i + 1];
                     document.getElementById('label1').innerHTML = data.jetons[i + 2];
                     document.getElementById('label3').innerHTML = data.jetons[i + 3];
-                    console.log(data.jetons[i + 1])
                 }
                 if (i == 1) {
                     document.getElementById('label2').innerHTML = data.jetons[i - 1];
                     document.getElementById('label1').innerHTML = data.jetons[i + 1];
                     document.getElementById('label3').innerHTML = data.jetons[i + 2];
-                    console.log(data.jetons[i - 1])
                 }
                 if (i == 2) {
                     document.getElementById('label2').innerHTML = data.jetons[i - 2];
@@ -628,7 +618,6 @@ function init() {
             }
         }
 
-        console.log("jetons joueur : "+jetons);
         // let compteurAllIn = 0;
         // if (jetons === 0) {
         //     console.log("requete all-in");
@@ -663,7 +652,6 @@ function init() {
                 switch (data.choixJoueurs) {
                     case "check":
 
-                        console.log("joueur check");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "inline";
                         document.getElementById('suivre').style.display = "none";
@@ -673,7 +661,6 @@ function init() {
                         break;
                     case "raise":
 
-                        console.log("joueur raise");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "none";
                         document.getElementById('suivre').style.display = "inline";
@@ -683,7 +670,6 @@ function init() {
                         break;
                     case "suivre":
 
-                        console.log("joueur suivre");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "none";
                         document.getElementById('suivre').style.display = "inline";
@@ -692,7 +678,6 @@ function init() {
 
                         break;
                     case "all-in":
-                        console.log("joueur all-in");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "none";
                         document.getElementById('suivre').style.display = "inline";
@@ -703,7 +688,6 @@ function init() {
 
                     default:
 
-                        console.log("joueur default");
                         document.getElementById('all-in').style.display = "inline";
                         document.getElementById('check').style.display = "inline";
                         document.getElementById('suivre').style.display = "none";

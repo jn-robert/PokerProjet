@@ -41,14 +41,12 @@ const con = mysql.createConnection({
 
 con.connect((err) => {
     if (err) {
-        console.log(err);
         console.log('Error connecting to Db');
         return;
     }
     console.log('Connection established');
     con.query("DELETE FROM partie", (err, rows) =>{
         if (err) throw err;
-        console.log(rows);
     });
 });
 
@@ -60,14 +58,12 @@ io.on('connection', (socket) => {
 
     // Create a new game room and notify the creator of game.
     socket.on('createGame', (data) => {
-        console.log(data.name);
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
         idPartie++;
         con.query("INSERT INTO partie VALUES("+idPartie+" ,NULL ,NULL ,1)", (err, rows) =>{
             if (err) throw err;
-            console.log(rows);
         });
         socket.emit('newGame', {name: data.name, room: `${rooms}`});
     });
@@ -106,7 +102,6 @@ io.on('connection', (socket) => {
             if (err) throw err;
             for (let i = 0; i < rows.length; i++) {
                 if((rows[i].pseudo == pseudo) && (rows[i].password == pass)){
-                    console.log("login Success");
                     socket.emit('loginSucces', {pseudo: pseudo});
                 }
             }
@@ -159,11 +154,9 @@ io.on('connection', (socket) => {
      * Get information for table join
      */
     socket.on('callPartie', function (){
-        console.log("Requête reçue");
 
         con.query('SELECT * FROM partie', (err, rows) =>{
             if (err) throw err;
-            console.log(rows);
             socket.emit('partieJoueur', {
                 tab: rows
             });
@@ -189,7 +182,6 @@ io.on('connection', (socket) => {
 
     socket.on('start', (data) => {
         game.init(10, 20);
-        console.log(game.listePlayerGame[0].getJetons());
         let indicePlayerStart;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             idJoueur[i] = i;
@@ -285,9 +277,6 @@ io.on('connection', (socket) => {
 
             cartesTapis: game.getTapis()
         });
-
-        console.log("------card player " + game.listePlayerGame[idJoueur[0]].getPlayerName() + "-----");
-        console.log(game.listePlayerGame[idJoueur[0]].getMain());
 
         socket.broadcast.emit('1stR', {
             currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
@@ -819,7 +808,6 @@ io.on('connection', (socket) => {
 
 
     socket.on('message', (data) => {
-        console.log("player : " + data.pseudo + ", message : " + data.message + ", room : " + `${rooms}`);
         socket.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
         socket.broadcast.emit('afficheMessage', {room: `${rooms}`, pseudo: data.pseudo, message: data.message});
     });
