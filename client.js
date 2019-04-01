@@ -22,6 +22,7 @@ class Player {
 }
 
 const socket = io.connect('http://localhost:5000');
+var nameUser;
 
 function date() {
     var start = new Date();
@@ -48,42 +49,60 @@ function stat() {
     });
 }
 
+function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+}
+
+function setCookie(name, value, days) {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+}
+
+function deleteCookie(name) {
+    setCookie(name, '', -1);
+}
+
 function login() {
     $(document).ready(function () {
-        $('#loginFormulaire').submit(function (e) {
-            e.preventDefault();
-            var errorNom = document.getElementById("errorNameLog");
-            var errorPwd = document.getElementById("errorPassLog");
-            var nom = $("#name").val();
-            var pass = $("#password").val();
-            console.log(pass);
-            console.log(nom);
-            if (nom != "" && pass != "") {
+        var errorNom = document.getElementById("errorNameLog");
+        var errorPwd = document.getElementById("errorPassLog");
+        var pseudo = $("#pseudoLog").val();
+        var pass = $("#password").val();
+        if (pseudo !== "" && pass !== "") {
+            errorNom.innerText = "";
+            errorPwd.innerText = "";
+
+            socket.emit('checkUserLogin',{pseudo:pseudo, pwd:pass});
+
+            socket.on('loginSucces', (data) => {
+                nameUser = data.pseudo;
+                setCookie("userCookie", nameUser, 1);
+                window.location.href = "home.html";
+            });
+
+        }
+        else {
+            if(pseudo !== ""){
                 errorNom.innerText = "";
+            }
+            else{
+                errorNom.innerText = "veuillez entrez un nom";
+                errorNom.style.color = "red";
+                errorNom.style.fontSize = "11px";
+            }
+            if (pass !== ""){
                 errorPwd.innerText = "";
-                socket.emit('checkUserLogin',{nom:nom, pwd:pass});
             }
-            else {
-                if(nom != ""){
-                    errorNom.innerText = "";
-                }
-                else{
-                    errorNom.innerText = "veuillez entrez un nom";
-                    errorNom.style.color = "red";
-                    errorNom.style.fontSize = "11px";
-                }
-                if (pass != ""){
-                    errorPwd.innerText = "";
-                }
-                else{
-                    errorPwd.innerText = "veuillez entrez un mdp";
-                    errorPwd.style.color = "red";
-                    errorPwd.style.fontSize = "11px";
-                }
-                //alert("Please Fill All The Details");
+            else{
+                errorPwd.innerText = "veuillez entrez un mdp";
+                errorPwd.style.color = "red";
+                errorPwd.style.fontSize = "11px";
             }
-            return false;
-        });
+            //alert("Please Fill All The Details");
+        }
+        return false;
     });
 
 }
@@ -176,12 +195,13 @@ function init() {
     $('#new').on('click', () => {
         const name = $('#nameNew').val();
         const jeton = $('#jetonNew').val();
-        if (!name || !jeton) {
+        if (!jeton) {
             alert('Erreur.');
             return;
         }
-        player = new Player(id++, name, parseInt(jeton));
-        socket.emit('createGame', {name, jeton: parseInt(jeton)});
+
+        player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
+        socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -189,12 +209,12 @@ function init() {
         const name = $('#nameJoin').val();
         const roomID = $('#room').val();
         const jeton = $('#jetonNewJoin').val();
-        if (!name || !roomID || !jeton) {
+        if (!roomID || !jeton) {
             alert('Erreur.');
             return;
         }
-        player = new Player(id++, name, parseInt(jeton), roomID);
-        socket.emit('joinGame', {name, room: roomID, jeton: parseInt(jeton)});
+        player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
+        socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
         $('#tablejoinpart').hide();
 
