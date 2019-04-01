@@ -26,47 +26,6 @@ function clear() {
     document.getElementsByClassName("home")[0].style.display = "none";
 }
 
-
-$(document).ready(function () {
-    $(document).ready(function () {
-        $('#loginFormulaire').submit(function (e) {
-            e.preventDefault();
-
-            var nom = $("#name").val();
-            var pass = $("#password").val();
-            if (nom != "" && pass != "") {
-                console.log("cc");
-                $.ajax({
-                    type: "POST",
-                    url: '/login.php',
-                    data: {
-                        name: nom,
-                        password: pass
-                    },
-                    success: function (response) {
-                        var reponse = $.trim(response)
-                        console.log(response);
-                        if (reponse === "success") {
-                        }
-                        else {
-                            alert("Wrong Details");
-                        }
-                    },
-                    error: function (resultat, statut, erreur) {
-                        alert("failed");
-                    }
-
-                });
-            }
-            else {
-                alert("Please Fill All The Details");
-            }
-            return false;
-        });
-    });
-});
-
-
 $(document).ready(function () {
     $('#registerFormulaire').submit(function (e) {
         e.preventDefault();

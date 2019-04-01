@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS Mise;
 DROP TABLE IF EXISTS Gain;
 DROP TABLE IF EXISTS Action;
 
-CREATE TABLE Player (
+CREATE TABLE player (
 	idPlayer INT AUTO_INCREMENT,
 	nom VARCHAR(20),
 	prenom VARCHAR(20),
@@ -16,7 +16,7 @@ CREATE TABLE Player (
 	PRIMARY KEY(idPlayer)
 );
 
-CREATE TABLE Partie (
+CREATE TABLE partie (
 	idPartie INT AUTO_INCREMENT,
 	typePartie VARCHAR(20),
 	nbTour INT,
@@ -24,7 +24,7 @@ CREATE TABLE Partie (
 	PRIMARY KEY(idPartie)
 );
 
-CREATE TABLE Classement (
+CREATE TABLE classement (
 	idPartie INT,
 	idPlayer INT,
 	class INT,
@@ -33,7 +33,7 @@ CREATE TABLE Classement (
 	CONSTRAINT fkClassPlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer)
 );
 
-CREATE TABLE Mise (
+CREATE TABLE mise (
 	idPlayer INT,
 	idPartie INT,
 	mise INT,
@@ -42,7 +42,7 @@ CREATE TABLE Mise (
 	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
 );
 
-CREATE TABLE Gain (
+CREATE TABLE gain (
 	idPartie INT,
 	idPlayer INT,
 	gain INT,
@@ -51,7 +51,7 @@ CREATE TABLE Gain (
 	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
 );
 
-CREATE TABLE Action (
+CREATE TABLE action (
 	idPartie INT,
 	idPlayer INT,
 	nbAllIn INT,

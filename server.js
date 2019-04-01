@@ -10,6 +10,7 @@ io.set('log level', 1);
 
 let rooms = 0;
 var id = 0;
+var idPartie = 0;
 let game;
 let idJoueur = [];
 let compteurRestartGame = 0;
@@ -31,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    database: 'poker',
-    user: 'root',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
     port: '3306',
-    password: '',
+    password: '1708',
 });
 
 con.connect((err) => {
@@ -62,7 +63,8 @@ io.on('connection', (socket) => {
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
-        con.query("INSERT INTO partie VALUES("+id+" ,NULL ,NULL ,1)", (err, rows) =>{
+        idPartie++;
+        con.query("INSERT INTO partie VALUES("+idPartie+" ,NULL ,NULL ,1)", (err, rows) =>{
             if (err) throw err;
             console.log(rows);
         });
@@ -88,7 +90,18 @@ io.on('connection', (socket) => {
      * Socket pour les stats et les diff requetes
      */
     socket.on('callListJoueur', function () {
+        con.query("SELECT * FROM player", (err, rows) => {
+            if (err) throw err;
+            socket.emit('listJoueur', {
+                tab: rows
+            });
+        });
+    });
+
+    socket.on('checkUserLogin', (data) => {
         console.log("Call serveur");
+        let pass = data.pwd;
+        let nom = data.nom;
         con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
             console.log("Requête envoyee");
@@ -97,6 +110,7 @@ io.on('connection', (socket) => {
             });
         });
     });
+
 
     socket.on('getStatsPlayer', (pseudo) => {
         let idPlayer = pseudo.id;

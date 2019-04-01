@@ -29,6 +29,50 @@ function date() {
 }
 
 /**
+ * Gestion login
+ */
+
+function login() {
+    $(document).ready(function () {
+        $('#loginFormulaire').submit(function (e) {
+            e.preventDefault();
+            var errorNom = document.getElementById("errorNameLog");
+            var errorPwd = document.getElementById("errorPassLog");
+            var nom = $("#name").val();
+            var pass = $("#password").val();
+            console.log(pass);
+            console.log(nom);
+            if (nom != "" && pass != "") {
+                errorNom.innerText = "";
+                errorPwd.innerText = "";
+                socket.emit('checkUserLogin',{nom:nom, pwd:pass});
+            }
+            else {
+                if(nom != ""){
+                    errorNom.innerText = "";
+                }
+                else{
+                    errorNom.innerText = "veuillez entrez un nom";
+                    errorNom.style.color = "red";
+                    errorNom.style.fontSize = "11px";
+                }
+                if (pass != ""){
+                    errorPwd.innerText = "";
+                }
+                else{
+                    errorPwd.innerText = "veuillez entrez un mdp";
+                    errorPwd.style.color = "red";
+                    errorPwd.style.fontSize = "11px";
+                }
+                //alert("Please Fill All The Details");
+            }
+            return false;
+        });
+    });
+
+}
+
+/**
  * Gestion de la page des stats
  */
 function stat() {
@@ -48,12 +92,21 @@ function stat() {
     });
 }
 
-function traceStats(id) {
-    document.getElementById("infoJoueur").innerHTML = "";
-    document.getElementById("statsVictoire").innerHTML = "";
-    document.getElementById("statsAction").innerHTML = "";
-    document.getElementById("statsPartie").innerHTML = "";
+let boolGraph = false;
 
+function traceStats(id) {
+    if (boolGraph) {
+        location.reload();
+    }
+    else {
+        boolGraph = true;
+        recpDonne(id);
+    }
+}
+
+function recpDonne(id) {
+    console.log("Affiche");
+    console.log(id);
     socket.emit('getStatsPlayer', {id: id});
 
     socket.on('ReturnStatsPlayer', (data) => {
@@ -391,23 +444,16 @@ function init() {
 
     socket.on('partieJoueur', (data) => {
         var test = data.tab;
-
-        $(test25).append("<tbody id='mainbody'>");
         for (var i = 0; i < test.length; i++) {
-            var $newTr = $("<tr></tr>");
-            $newTr.attr('id', 'newTr' + i);
-            console.log("newTr" + i);
-            // console.log(newTr+i);
-            $(test25).append($newTr);
-            $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
-            $($newTr).append("<td id=\"room\">" + test[i].idPartie + "</td>");
-            $($newTr).append("<td>" + test[i].nbJoueur + "</td>");
-            $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
-            $($newTr).append("<button id='join'>Rejoindre une partie</button>");
-            $($newTr).append("<br>");
-            $(test25).append("</tr>");
+            $("#table").append("<tr>");
+            $("#table").append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
+            $("#table").append("<td id=\"room\">" + test[i].idPartie + "</td>");
+            $("#table").append("<td>" + test[i].nbJoueur + "</td>");
+            $("#table").append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
+            $("#table").append("<button id='join'>Rejoindre une partie</button>");
+            $("#table").append("</tr>");
+
         }
-        $(test25).append("</tbody>");
     });
 
     $(document).ready(function () {
