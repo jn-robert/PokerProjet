@@ -316,8 +316,8 @@ function init() {
             return;
         }
 
-        player = new Player(id++, name, parseInt(jeton));
-        socket.emit('createGame', {name: name, jeton: parseInt(jeton)});
+        player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
+        socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -329,8 +329,8 @@ function init() {
             alert('Erreur.');
             return;
         }
-        player = new Player(id++, name, parseInt(jeton), roomID);
-        socket.emit('joinGame', {name: name, room: roomID, jeton: parseInt(jeton)});
+        player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
+        socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
         // game.addPlayer(id, name, jeton);
         $('#tablejoinpart').hide();
     });
