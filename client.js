@@ -30,24 +30,8 @@ function date() {
 }
 
 /**
- * Gestion de la page des stats
+ * Gestion login
  */
-function stat() {
-
-    $(document).ready(function () {
-        socket.emit('callListJoueur');
-    });
-
-    socket.on('listJoueur', (data) => {
-        let tab = data.tab;
-        let msg = "<t8>Liste des joueurs</t8><br>";
-        for (var i = 0; i < tab.length; i++) {
-            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
-        }
-        msg += "<br><br>";
-        document.getElementById("listeJoueur").innerHTML = msg;
-    });
-}
 
 function getCookie(name) {
     var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
@@ -107,12 +91,41 @@ function login() {
 
 }
 
-function traceStats(id) {
-    document.getElementById("infoJoueur").innerHTML = "";
-    document.getElementById("statsVictoire").innerHTML = "";
-    document.getElementById("statsAction").innerHTML = "";
-    document.getElementById("statsPartie").innerHTML = "";
+/**
+ * Gestion de la page des stats
+ */
+function stat() {
 
+    $(document).ready(function () {
+        socket.emit('callListJoueur');
+    });
+
+    socket.on('listJoueur', (data) => {
+        let tab = data.tab;
+        let msg = "<t8>Liste des joueurs</t8><br>";
+        for (var i = 0; i < tab.length; i++) {
+            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
+        }
+        msg += "<br><br>";
+        document.getElementById("listeJoueur").innerHTML = msg;
+    });
+}
+
+let boolGraph = false;
+
+function traceStats(id) {
+    if (boolGraph) {
+        location.reload();
+    }
+    else {
+        boolGraph = true;
+        recpDonne(id);
+    }
+}
+
+function recpDonne(id) {
+    console.log("Affiche");
+    console.log(id);
     socket.emit('getStatsPlayer', {id: id});
 
     socket.on('ReturnStatsPlayer', (data) => {
@@ -282,20 +295,42 @@ function init() {
     });
 
     socket.on('1stR', (data) => {
-        document.getElementById('start').disabled = true;
-        //desactive les boutons tant que l'autre joueur n'a pas joué
-        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-        document.getElementById('check').disabled = !data.booleanCurrentTurn;
-        document.getElementById('suivre').disabled = true;
-        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-        document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
+
+        var message;
+
+        if (data.currentTurn === player.name) {
+
+            message = "A votre tour";
+            document.getElementById('all-in').style.display = "inline";
+            document.getElementById('check').style.display = "inline";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "inline";
+            document.getElementById('coucher').style.display = "inline";
+        } else {
+            message = "A votre adversaire";
+            document.getElementById('all-in').style.display = "none";
+            document.getElementById('check').style.display = "none";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "none";
+            document.getElementById('coucher').style.display = "none";
+        }
+
+        // document.getElementById('start').disabled = true;
+        // //desactive les boutons tant que l'autre joueur n'a pas joué
+        // document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('check').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('suivre').disabled = true;
+        // document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
         document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+        document.getElementById('turn').innerHTML = message;
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
         let cartes;
+        let jetons;
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
@@ -355,7 +390,7 @@ function init() {
             document.getElementById("CarteJoueur7").hidden = false;
             document.getElementById("CarteJoueur8").hidden = false;
             document.getElementById("texte").hidden = false;
-            document.getElementById("texte2").hidden = false
+            document.getElementById("texte2").hidden = false;
             document.getElementById("texte3").hidden = false;
             document.getElementById("texte5").hidden = false;
 
@@ -429,23 +464,16 @@ function init() {
 
     socket.on('partieJoueur', (data) => {
         var test = data.tab;
-
-        $(test25).append("<tbody id='mainbody'>");
         for (var i = 0; i < test.length; i++) {
-            var $newTr = $("<tr></tr>");
-            $newTr.attr('id', 'newTr' + i);
-            console.log("newTr" + i);
-            // console.log(newTr+i);
-            $(test25).append($newTr);
-            $($newTr).append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
-            $($newTr).append("<td id=\"room\">" + test[i].idPartie + "</td>");
-            $($newTr).append("<td>" + test[i].nbJoueur + "</td>");
-            $($newTr).append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
-            $($newTr).append("<button id='join'>Rejoindre une partie</button>");
-            $($newTr).append("<br>");
-            $(test25).append("</tr>");
+            $("#table").append("<tr>");
+            $("#table").append("<td><input type=\"text\" name=\"name\" id=\"nameJoin\" placeholder=\"Nom joueur\" required></td>");
+            $("#table").append("<td id=\"room\">" + test[i].idPartie + "</td>");
+            $("#table").append("<td>" + test[i].nbJoueur + "</td>");
+            $("#table").append("<td><input type=\"number\" name=\"name\" id=\"jetonNewJoin\" placeholder=\"Nombre jetons\" required/></td>");
+            $("#table").append("<button id='join'>Rejoindre une partie</button>");
+            $("#table").append("</tr>");
+
         }
-        $(test25).append("</tbody>");
     });
 
     $(document).ready(function () {
@@ -564,13 +592,6 @@ function init() {
 
             }
 
-            // message = data.currentTurn ? 'A votre tour' : 'A votre adversaire';
-
-            // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
-
-
-            // document.getElementById('coucher').disabled = false;
-
             let cartes = null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
@@ -579,8 +600,6 @@ function init() {
                     jetons = data.jetons[i];
                 }
             }
-
-            //console.log(data.cartes);
 
             //affichage des variables
 
@@ -613,12 +632,6 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
             document.getElementById('turn').innerHTML = "fin partie";
-            document.getElementById('all-in').disabled = true;
-            document.getElementById('check').disabled = true;
-            document.getElementById('suivre').disabled = true;
-            document.getElementById('raise').disabled = true;
-            document.getElementById('coucher').disabled = true;
-            // document.getElementById('start').disabled=false;
 
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
