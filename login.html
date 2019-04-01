@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Statistique</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <title>Poker</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -56,30 +50,33 @@
             </div>
         </div>
     </nav>
-    <script src="client.js">document.onload = stat()</script>
-    <script src="fonction.js"></script>
-    <script>
-        nav();
-    </script>
 </head>
-<body onload="stat()">
+<body onload="nav()">
 
+<div class="login">
+    <div class="container">
+        <h3>Page de Connexion</h3>
 
-<div class="listJoueur" id="coin">
-    <div class="childrenListJoueur" id="listeJoueur">
+        <div class="form-group">
+            <label for="pseudoLog">Name</label>
+            <input type="text" class="form-control" id="pseudoLog" aria-describedby="emailHelp" placeholder="Enter name"
+                   name="pseudoLog">
+            <span id="errorNameLog"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.
+            </small><br>
+            <span id="errorPassLog"></span>
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary" onclick="login()">Login</button>
+
     </div>
 </div>
-<div id="resetStats">
-    <div id="infoJoueur" class="infoJoueur"></div>
-    <div id="statsVictoire" class="statsVictoire"></div>
-    <div id="statsMise" class="statsMise"></div>
-    <div id="statsAction" class="statsAction"></div>
-    <div id="statsPartie" class="statsPartie"></div>
-</div>
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="fonction.js"></script>
+<script src="client.js"></script>
 
 </body>
 </html>

@@ -5,9 +5,8 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="fonction.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -18,40 +17,44 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
-                                                                 aria-hidden="true"></span> Home</a></li>
-                    <li><a href="aboutus.html">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
-                    <li class="dropdown">
-                        <a href="game.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="contactus.html#">Main Courses</a></li>
-                            <li><a href="contactus.html#">Bootstrap</a></li>
-                            <li><a href="contactus.html#">Asp</a></li>
-                            <li><a href="contactus.html#">SQl</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">PHP</li>
-                            <li><a href="contactus.html#">MySQl</a></li>
-
-                        </ul>
+                <ul class="nav navbar-nav"><link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                     </li>
-                    <li><a href="/stats.html"><span class="fa fa-envelope-o"></span>Statistique</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal" onclick="showLogin()"><span
-                            class="glyphicon glyphicon-log-in"></span> login</a></li>
-                    <li><a data-toggle="modal" data-target="#loginModal" onclick="showRegister()"><span
-                            class="glyphicon glyphicon-log-in"></span> register</a></li>
+                <ul class="nav navbar-nav">
+                    <li><a href="game.html"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Jouer</a>
+                    </li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="stats.html" id="stat"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistique</a>
+                    </li>
+                </ul>
+                <div class="navConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><div><span id="navMessage"></span></div></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" onclick="logout()"><span
+                                class="glyphicon glyphicon-log-in"></span> se deconnecter</a></li>
+                    </ul>
+                </div>
+                <div class="navNoConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#loginModal" href="login.html"><span
+                                class="glyphicon glyphicon-log-in"></span> login</a></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" href="register.html"><span
+                                class="glyphicon glyphicon-log-out"></span> register</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
+    <script src="client.js">document.onload = init()</script>
+    <script src="fonction.js"></script>
+    <script>
+        nav();
+    </script>
 </head>
 <body onload="init()">
 <div class="BeforeGame">
@@ -189,7 +192,6 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="client.js">document.onload = init()</script>
 <script src="Game.js"></script>
 </body>
 </html>

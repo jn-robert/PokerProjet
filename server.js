@@ -60,6 +60,7 @@ io.on('connection', (socket) => {
 
     // Create a new game room and notify the creator of game.
     socket.on('createGame', (data) => {
+        console.log(data.name);
         socket.join(`${++rooms}`);
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
@@ -99,15 +100,16 @@ io.on('connection', (socket) => {
     });
 
     socket.on('checkUserLogin', (data) => {
-        console.log("Call serveur");
         let pass = data.pwd;
-        let nom = data.nom;
+        let pseudo = data.pseudo;
         con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
-            console.log("Requête envoyee");
-            socket.emit('listJoueur', {
-                tab: rows
-            });
+            for (let i = 0; i < rows.length; i++) {
+                if((rows[i].pseudo == pseudo) && (rows[i].password == pass)){
+                    console.log("login Success");
+                    socket.emit('loginSucces', {pseudo: pseudo});
+                }
+            }
         });
     });
 

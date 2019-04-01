@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
     <script>
         function date() {
             var start = new Date();
@@ -26,37 +28,33 @@
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
-                                                                 aria-hidden="true"></span> Home</a></li>
-                    <li><a href="aboutus.html">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
-                    <li class="dropdown">
-                        <a href="game.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="contactus.html#">Main Courses</a></li>
-                            <li><a href="contactus.html#">Bootstrap</a></li>
-                            <li><a href="contactus.html#">Asp</a></li>
-                            <li><a href="contactus.html#">SQl</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">PHP</li>
-                            <li><a href="contactus.html#">MySQl</a></li>
-
-                        </ul>
+                <ul class="nav navbar-nav"><link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                     </li>
-                    <li><a href="stats.html" id="stat"><span class="fa fa-envelope-o"></span>Statistique</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal" onclick="showLogin()"><span
-                            class="glyphicon glyphicon-log-in"></span> login</a></li>
-                    <li><a data-toggle="modal" data-target="#loginModal" onclick="showRegister()"><span
-                            class="glyphicon glyphicon-log-in"></span> register</a></li>
+                <ul class="nav navbar-nav">
+                    <li><a href="game.html"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Jouer</a>
+                    </li>
                 </ul>
-
-
+                <ul class="nav navbar-nav">
+                    <li><a href="stats.html" id="stat"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistique</a>
+                    </li>
+                </ul>
+                <div class="navConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><div><span id="navMessage"></span></div></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" onclick="logout()"><span
+                                class="glyphicon glyphicon-log-in"></span> se deconnecter</a></li>
+                    </ul>
+                </div>
+                <div class="navNoConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#loginModal" href="login.html"><span
+                                class="glyphicon glyphicon-log-in"></span> login</a></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" href="register.html"><span
+                                class="glyphicon glyphicon-log-out"></span> register</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -258,70 +256,6 @@
 
     </div>
 </div>
-
-<div class="login">
-    <div class="container">
-        <h3>Page de Connexion</h3>
-
-        <form id="loginFormulaire" action="#">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name"
-                       name="name">
-                <span id="errorNameLog"></span>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
-                <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.
-                </small><br>
-                <span id="errorPassLog"></span>
-            </div>
-            <button id="submit" type="submit" class="btn btn-primary" onclick="login()">Login</button>
-        </form>
-
-    </div>
-</div>
-
-
-<div class="register">
-    <div class="container">
-        <h3>Page d'inscription</h3>
-
-        <form action="register.php" method="POST" id="registerFormulaire">
-            <div class="form-group">
-                <label for="nameRegister">Nom</label>
-                <input type="text" class="form-control" id="nameRegister" placeholder="Enter nom" name="nameRegister">
-                <span id="errorNom"></span>
-            </div>
-            <div class="form-group">
-                <label for="prenom">Prenom</label>
-                <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="prenom">
-                <span id="errorPrenom"></span>
-            </div>
-            <div class="form-group">
-                <label for="pseudo">Pseudo</label>
-                <input type="text" class="form-control" id="pseudo" placeholder="Enter pseudo" name="pseudo">
-                <span id="errorPseudo"></span>
-            </div>
-            <div class="form-group">
-                <label for="passwordRegister">Password</label>
-                <input type="password" class="form-control" id="passwordRegister" placeholder="Enter Password"
-                       name="passwordRegister">
-                <span id="errorPas"></span>
-            </div>
-            <div class="form-group">
-                <label for="password">Second Password</label>
-                <input type="password" class="form-control" id="secondPassword" placeholder="Enter SecondPassword"
-                       name="secondPassword">
-                <span id="errorPass"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-
-    </div>
-</div>
-
 
 <div class="espace"></div>
 
