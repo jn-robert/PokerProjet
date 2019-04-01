@@ -48,6 +48,46 @@ function stat() {
     });
 }
 
+function login() {
+    $(document).ready(function () {
+        $('#loginFormulaire').submit(function (e) {
+            e.preventDefault();
+            var errorNom = document.getElementById("errorNameLog");
+            var errorPwd = document.getElementById("errorPassLog");
+            var nom = $("#name").val();
+            var pass = $("#password").val();
+            console.log(pass);
+            console.log(nom);
+            if (nom != "" && pass != "") {
+                errorNom.innerText = "";
+                errorPwd.innerText = "";
+                socket.emit('checkUserLogin',{nom:nom, pwd:pass});
+            }
+            else {
+                if(nom != ""){
+                    errorNom.innerText = "";
+                }
+                else{
+                    errorNom.innerText = "veuillez entrez un nom";
+                    errorNom.style.color = "red";
+                    errorNom.style.fontSize = "11px";
+                }
+                if (pass != ""){
+                    errorPwd.innerText = "";
+                }
+                else{
+                    errorPwd.innerText = "veuillez entrez un mdp";
+                    errorPwd.style.color = "red";
+                    errorPwd.style.fontSize = "11px";
+                }
+                //alert("Please Fill All The Details");
+            }
+            return false;
+        });
+    });
+
+}
+
 function traceStats(id) {
     document.getElementById("infoJoueur").innerHTML = "";
     document.getElementById("statsVictoire").innerHTML = "";
