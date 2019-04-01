@@ -5,6 +5,11 @@ function initialisation() {
 }
 
 
+function nav(){
+
+}
+
+
 function begin() {
     document.getElementsByClassName("BeforeGame")[0].style.display = "none";
     document.getElementsByClassName("Game")[0].style.display = "none";
@@ -18,6 +23,16 @@ function showLogin() {
 function showRegister() {
     clear();
     document.getElementsByClassName("register")[0].style.display = "block";
+}
+
+function showLoginFromGame() {
+    window.location.href = "home.html";
+    showRegister();
+}
+
+function showRegisterFromGame() {
+    window.location.href = "home.html";
+    showLogin();
 }
 
 function clear() {

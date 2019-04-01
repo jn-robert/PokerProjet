@@ -203,6 +203,8 @@ function init() {
     let game;
     let room;
 
+
+
     // const socket = io.connect('myip:5000');
     // Create a new game. Emit newGame event.
     $('#new').on('click', () => {

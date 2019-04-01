@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Poker</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
+                                                                 aria-hidden="true"></span> Home</a></li>
+                    <li><a href="aboutus.html">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+                    <li class="dropdown">
+                        <a href="game.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="contactus.html#">Main Courses</a></li>
+                            <li><a href="contactus.html#">Bootstrap</a></li>
+                            <li><a href="contactus.html#">Asp</a></li>
+                            <li><a href="contactus.html#">SQl</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">PHP</li>
+                            <li><a href="contactus.html#">MySQl</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="stats.html" id="stat"><span class="fa fa-envelope-o"></span>Statistique</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="modal" data-target="#loginModal" href="login.html"><span
+                            class="glyphicon glyphicon-log-in"></span> login</a></li>
+                    <li><a data-toggle="modal" data-target="#loginModal" href="register.html"><span
+                            class="glyphicon glyphicon-log-in"></span> register</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+</head>
+<body>
+
+<div class="login">
+    <div class="container">
+        <h3>Page de Connexion</h3>
+
+        <div class="form-group">
+            <label for="pseudoLog">Name</label>
+            <input type="text" class="form-control" id="pseudoLog" aria-describedby="emailHelp" placeholder="Enter name"
+                   name="pseudoLog">
+            <span id="errorNameLog"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.
+            </small><br>
+            <span id="errorPassLog"></span>
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary" onclick="login()">Login</button>
+
+    </div>
+</div>
+
+</body>
+</html>
