@@ -222,20 +222,42 @@ function init() {
     });
 
     socket.on('1stR', (data) => {
-        document.getElementById('start').disabled = true;
-        //desactive les boutons tant que l'autre joueur n'a pas joué
-        document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-        document.getElementById('check').disabled = !data.booleanCurrentTurn;
-        document.getElementById('suivre').disabled = true;
-        document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-        document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
+
+        var message;
+
+        if (data.currentTurn === player.name) {
+
+            message = "A votre tour";
+            document.getElementById('all-in').style.display = "inline";
+            document.getElementById('check').style.display = "inline";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "inline";
+            document.getElementById('coucher').style.display = "inline";
+        } else {
+            message = "A votre adversaire";
+            document.getElementById('all-in').style.display = "none";
+            document.getElementById('check').style.display = "none";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "none";
+            document.getElementById('coucher').style.display = "none";
+        }
+
+        // document.getElementById('start').disabled = true;
+        // //desactive les boutons tant que l'autre joueur n'a pas joué
+        // document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('check').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('suivre').disabled = true;
+        // document.getElementById('raise').disabled = !data.booleanCurrentTurn;
+        // document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
         document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+        document.getElementById('turn').innerHTML = message;
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         */
         let cartes;
+        let jetons;
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
@@ -295,7 +317,7 @@ function init() {
             document.getElementById("CarteJoueur7").hidden = false;
             document.getElementById("CarteJoueur8").hidden = false;
             document.getElementById("texte").hidden = false;
-            document.getElementById("texte2").hidden = false
+            document.getElementById("texte2").hidden = false;
             document.getElementById("texte3").hidden = false;
             document.getElementById("texte5").hidden = false;
 
@@ -504,13 +526,6 @@ function init() {
 
             }
 
-            // message = data.currentTurn ? 'A votre tour' : 'A votre adversaire';
-
-            // document.getElementById('raise').disabled = data.tasHaut - data.tasJoueur2 > data.jetons2;
-
-
-            // document.getElementById('coucher').disabled = false;
-
             let cartes = null;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
@@ -519,8 +534,6 @@ function init() {
                     jetons = data.jetons[i];
                 }
             }
-
-            //console.log(data.cartes);
 
             //affichage des variables
 
@@ -553,12 +566,6 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
             document.getElementById('turn').innerHTML = "fin partie";
-            document.getElementById('all-in').disabled = true;
-            document.getElementById('check').disabled = true;
-            document.getElementById('suivre').disabled = true;
-            document.getElementById('raise').disabled = true;
-            document.getElementById('coucher').disabled = true;
-            // document.getElementById('start').disabled=false;
 
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
