@@ -35,7 +35,7 @@ const con = mysql.createConnection({
     host: 'localhost',
     database: 'poker',
     user: 'root',
-    port: '3308',
+    port: '3306',
     password: '',
 });
 
