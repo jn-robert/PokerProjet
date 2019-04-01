@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'serveurmysql',
-    database: 'BDD_tnormant',
-    user: 'tnormant',
+    host: 'localhost',
+    database: 'poker',
+    user: 'root',
     port: '3306',
-    password: '1708',
+    password: '',
 });
 
 con.connect((err) => {
@@ -110,6 +110,18 @@ io.on('connection', (socket) => {
                     socket.emit('loginSucces', {pseudo: pseudo});
                 }
             }
+        });
+    });
+
+    socket.on('createNewUSer', (data) => {
+        console.log("add");
+        let nom = data.nomUser;
+        let prenom = data.prenom;
+        let pseudo = data.pseudo;
+        let pwd = data.pass;
+        con.query("INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, " + mysql.escape(nom) + ", " + mysql.escape(prenom) + ", " + mysql.escape(pseudo) + ", " + mysql.escape(pwd) + ", '2019-03-01', '100')", (err, rows) => {
+            if (err) throw err;
+            console.log("add");
         });
     });
 
