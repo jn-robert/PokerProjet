@@ -29,24 +29,8 @@ function date() {
 }
 
 /**
- * Gestion de la page des stats
+ * Gestion login
  */
-function stat() {
-
-    $(document).ready(function () {
-        socket.emit('callListJoueur');
-    });
-
-    socket.on('listJoueur', (data) => {
-        let tab = data.tab;
-        let msg = "<t8>Liste des joueurs</t8><br>";
-        for (var i = 0; i < tab.length; i++) {
-            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
-        }
-        msg += "<br><br>";
-        document.getElementById("listeJoueur").innerHTML = msg;
-    });
-}
 
 function login() {
     $(document).ready(function () {
@@ -88,12 +72,41 @@ function login() {
 
 }
 
-function traceStats(id) {
-    document.getElementById("infoJoueur").innerHTML = "";
-    document.getElementById("statsVictoire").innerHTML = "";
-    document.getElementById("statsAction").innerHTML = "";
-    document.getElementById("statsPartie").innerHTML = "";
+/**
+ * Gestion de la page des stats
+ */
+function stat() {
 
+    $(document).ready(function () {
+        socket.emit('callListJoueur');
+    });
+
+    socket.on('listJoueur', (data) => {
+        let tab = data.tab;
+        let msg = "<t8>Liste des joueurs</t8><br>";
+        for (var i = 0; i < tab.length; i++) {
+            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
+        }
+        msg += "<br><br>";
+        document.getElementById("listeJoueur").innerHTML = msg;
+    });
+}
+
+let boolGraph = false;
+
+function traceStats(id) {
+    if (boolGraph) {
+        location.reload();
+    }
+    else {
+        boolGraph = true;
+        recpDonne(id);
+    }
+}
+
+function recpDonne(id) {
+    console.log("Affiche");
+    console.log(id);
     socket.emit('getStatsPlayer', {id: id});
 
     socket.on('ReturnStatsPlayer', (data) => {

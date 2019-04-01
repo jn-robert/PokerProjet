@@ -90,10 +90,8 @@ io.on('connection', (socket) => {
      * Socket pour les stats et les diff requetes
      */
     socket.on('callListJoueur', function () {
-        console.log("Call serveur");
         con.query("SELECT * FROM player", (err, rows) => {
             if (err) throw err;
-            console.log("Requête envoyee");
             socket.emit('listJoueur', {
                 tab: rows
             });
