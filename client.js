@@ -45,21 +45,18 @@ function login() {
             if (nom != "" && pass != "") {
                 errorNom.innerText = "";
                 errorPwd.innerText = "";
-                socket.emit('checkUserLogin',{nom:nom, pwd:pass});
-            }
-            else {
-                if(nom != ""){
+                socket.emit('checkUserLogin', {nom: nom, pwd: pass});
+            } else {
+                if (nom != "") {
                     errorNom.innerText = "";
-                }
-                else{
+                } else {
                     errorNom.innerText = "veuillez entrez un nom";
                     errorNom.style.color = "red";
                     errorNom.style.fontSize = "11px";
                 }
-                if (pass != ""){
+                if (pass != "") {
                     errorPwd.innerText = "";
-                }
-                else{
+                } else {
                     errorPwd.innerText = "veuillez entrez un mdp";
                     errorPwd.style.color = "red";
                     errorPwd.style.fontSize = "11px";
@@ -97,8 +94,7 @@ let boolGraph = false;
 function traceStats(id) {
     if (boolGraph) {
         location.reload();
-    }
-    else {
+    } else {
         boolGraph = true;
         recpDonne(id);
     }
@@ -388,6 +384,12 @@ function init() {
 
     });
 
+    // $(function () {
+    //     if (){
+    //
+    //     }
+    // });
+
     $('#check').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('check', {room: roomId, playerName: player.name});
@@ -504,10 +506,26 @@ function init() {
             }
         }
 
+        console.log(jetons);
+        // let compteurAllIn = 0;
+        // if (jetons === 0) {
+        //     console.log("requete all-in");
+        //     const roomId = $('#room').val();
+        //     socket.emit('all-in', {room: roomId, playerName: player.name});
+        //     compteurAllIn = 1;
+        // }
+
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             var message;
             if (data.currentTurn === player.name) {
+
+                // if (jetons === 0) {
+                //     console.log("requete all-in");
+                //     const roomId = $('#room').val();
+                //     socket.emit('all-in', {room: roomId, playerName: player.name});
+                //     // compteurAllIn = 1;
+                // }
 
                 message = "A votre tour";
 

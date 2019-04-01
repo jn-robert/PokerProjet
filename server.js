@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'serveurmysql',
-    database: 'BDD_tnormant',
-    user: 'tnormant',
+    host: 'localhost',
+    database: 'poker',
+    user: 'root',
     port: '3306',
-    password: '1708',
+    password: '',
 });
 
 con.connect((err) => {
@@ -391,7 +391,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('suivre', (data) => {
-        console.log(data.playerName);
+        //console.log(data.playerName);
         game.joueJoueur(data.playerName, "suivre", 10);
 
         // let idJoueur1;
@@ -433,7 +433,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            //console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
 
@@ -478,7 +478,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('raise', (data) => {
-        console.log(data.playerName);
+        //console.log(data.playerName);
         game.joueJoueur(data.playerName, "raise", 20);
 
         // let idJoueur1;
@@ -520,7 +520,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            //console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
 
@@ -565,7 +565,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('all-in', (data) => {
-        console.log(data.playerName);
+        console.log("test"+data.playerName);
         game.joueJoueur(data.playerName, "all-in", 10);
         // let idJoueur1;
         // let idJoueur2;
@@ -577,10 +577,10 @@ io.on('connection', (socket) => {
         //     idJoueur2 = 0;
         // }
 
-        let idJoueurCurrentBooleanTour;
+        let idJoueurCurrentBooleanTour=0;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = i;
+            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour = (i+1)%game.listePlayerGame.length;
             }
         }
 
@@ -606,51 +606,44 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            //console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
 
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
-            allInJoueur1: game.listePlayerGame[idJoueur1].allIn,
-            allInJoueur2: game.listePlayerGame[idJoueur2].allIn,
             tasHaut: game.tasHaut,
-            tasJoueur1: game.listePlayerGame[idJoueur1].tas,
-            tasJoueur2: game.listePlayerGame[idJoueur2].tas,
             jetonsRecolt: game.getRecoltJetons(),
-            booleanCurrentTurn: !game.listePlayerGame[idJoueur1].getAjoue(),
+            choixJoueurs: game.actionPrec,
+            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[0].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur1].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur2].getJetons(),
-            cartes: game.listePlayerGame[idJoueur1].getMain(),
+            nbJoueurs: game.listePlayerGame.length,
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
-            allInJoueur1: game.listePlayerGame[idJoueur2].allIn,
-            allInJoueur2: game.listePlayerGame[idJoueur1].allIn,
             tasHaut: game.tasHaut,
-            tasJoueur1: game.listePlayerGame[idJoueur2].tas,
-            tasJoueur2: game.listePlayerGame[idJoueur1].tas,
             jetonsRecolt: game.getRecoltJetons(),
             choixJoueurs: game.actionPrec,
-            booleanCurrentTurn: !game.listePlayerGame[idJoueur2].getAjoue(),
+            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
             tour: game.getTour(),
             pot: game.pot,
-            name: game.listePlayerGame[0].getPlayerName(),
-            jetons1: game.listePlayerGame[idJoueur2].getJetons(),
-            jetons2: game.listePlayerGame[idJoueur1].getJetons(),
-            cartes: game.listePlayerGame[idJoueur2].getMain(),
+            nbJoueurs: game.listePlayerGame.length,
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
             cartesTapis: game.getTapis()
         });
     });
 
     socket.on('coucher', (data) => {
-        console.log(data.playerName);
+        //console.log(data.playerName);
         game.joueJoueur(data.playerName, "coucher", 10);
 
         // let idJoueur1;
@@ -697,7 +690,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            console.log(name);
+            //console.log(name);
             game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
         }
 
