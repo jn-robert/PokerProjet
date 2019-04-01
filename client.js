@@ -91,6 +91,99 @@ function login() {
 
 }
 
+
+function register(){
+    $(document).ready(function () {
+        var nom = $("#nameRegister").val();
+        var prenom = $("#prenom").val();
+        var pass = $("#passwordRegister").val();
+        var pseudo = $("#pseudo").val();
+        var secondPassword = $("#secondPassword").val();
+
+        if (nom != "" && prenom != "" && pass != "" && pseudo != "" && secondPassword != "") {
+
+            document.getElementById("errorNom").innerHTML = "";
+            document.getElementById("errorPrenom").innerHTML = "";
+            document.getElementById("errorPass").innerHTML = "";
+            document.getElementById("errorPas").innerHTML = "";
+            document.getElementById("errorPseudo").innerHTML = "";
+
+            var user_textLength = nom.trim().length;
+            var pw_textLength = pass.trim().length;
+
+            if (user_textLength < 1) {
+                document.getElementById("errorNom").innerHTML = "Veuillez saisir un nom contenant au minimum 2 caractères";
+                document.getElementById("errorNom").style.color = "red";
+                return false;
+            }
+
+            if (pw_textLength < 2) {
+                document.getElementById("errorPas").innerHTML = "Veuillez saisir un mot de passe contenant au minimum 2 caractères";
+                document.getElementById("errorPas").style.color = "red";
+                return false;
+            }
+
+
+            if (secondPassword != pass) {
+                document.getElementById("errorPass").innerHTML = "veuillez mettre le meme mot de passe";
+                document.getElementById("errorPass").style.color = "red";
+
+                return false;
+            }
+            else {
+                document.getElementById("errorPass").innerHTML = "";
+                document.getElementById("errorPass").style.color = "white";
+            }
+
+        }
+        else {
+
+            if (nom == "") {
+                document.getElementById("errorNom").innerHTML = "veuillez saisir le nom";
+                document.getElementById("errorNom").style.color = "red";
+            }
+            else {
+                document.getElementById("errorNom").innerHTML = "";
+                document.getElementById("errorNom").style.color = "white";
+            }
+            if (prenom == "") {
+                document.getElementById("errorPrenom").innerHTML = "veuillez saisir le pseudo";
+                document.getElementById("errorPrenom").style.color = "red";
+            }
+            else {
+                document.getElementById("errorPrenom").innerHTML = "";
+                document.getElementById("errorPrenom").style.color = "white";
+            }
+            if (pseudo == "") {
+                document.getElementById("errorPseudo").innerHTML = "veuillez saisir le pseudo";
+                document.getElementById("errorPseudo").style.color = "red";
+            }
+            else {
+                document.getElementById("errorPseudo").innerHTML = "";
+                document.getElementById("errorPseudo").style.color = "white";
+            }
+            if (pass == "") {
+                document.getElementById("errorPas").innerHTML = "veuillez saisir le password";
+                document.getElementById("errorPas").style.color = "red";
+            }
+            else {
+                document.getElementById("errorPas").innerHTML = "";
+                document.getElementById("errorPas").style.color = "white";
+            }
+            if (secondPassword == "") {
+                document.getElementById("errorPass").innerHTML = "veuillez saisir le SecondPassword";
+                document.getElementById("errorPass").style.color = "red";
+            }
+            else {
+                document.getElementById("errorPass").innerHTML = "";
+                document.getElementById("errorPass").style.color = "white";
+            }
+        }
+
+    });
+}
+
+
 /**
  * Gestion de la page des stats
  */
