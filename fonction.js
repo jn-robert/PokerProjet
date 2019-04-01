@@ -6,6 +6,7 @@ function initialisation() {
 
 function logout(){
     deleteCookie("userCookie");
+    window.location.href = "home.html";
 }
 
 function nav(){
