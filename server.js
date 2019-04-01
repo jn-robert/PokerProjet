@@ -100,6 +100,20 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('checkUserLogin', (data) => {
+        console.log("Call serveur");
+        let pass = data.pwd;
+        let nom = data.nom;
+        con.query("SELECT * FROM player", (err, rows) => {
+            if (err) throw err;
+            console.log("Requête envoyee");
+            socket.emit('listJoueur', {
+                tab: rows
+            });
+        });
+    });
+
+
     socket.on('getStatsPlayer', (pseudo) => {
         let idPlayer = pseudo.id;
         con.query("SELECT * FROM player WHERE idPlayer ="+idPlayer, (err, rows) => {
