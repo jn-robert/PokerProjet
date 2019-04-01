@@ -20,37 +20,33 @@
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
-                                                                 aria-hidden="true"></span> Home</a></li>
-                    <li><a href="aboutus.html">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
-                    <li class="dropdown">
-                        <a href="game.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Jouer <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="contactus.html#">Main Courses</a></li>
-                            <li><a href="contactus.html#">Bootstrap</a></li>
-                            <li><a href="contactus.html#">Asp</a></li>
-                            <li><a href="contactus.html#">SQl</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">PHP</li>
-                            <li><a href="contactus.html#">MySQl</a></li>
-
-                        </ul>
+                <ul class="nav navbar-nav"><link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                     </li>
-                    <li><a href="stats.html" id="stat"><span class="fa fa-envelope-o"></span>Statistique</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal" href="login.html"><span
-                            class="glyphicon glyphicon-log-in"></span> login</a></li>
-                    <li><a data-toggle="modal" data-target="#loginModal" href="register.html"><span
-                            class="glyphicon glyphicon-log-in"></span> register</a></li>
+                <ul class="nav navbar-nav">
+                    <li><a href="game.html"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Jouer</a>
+                    </li>
                 </ul>
-
-
+                <ul class="nav navbar-nav">
+                    <li><a href="stats.html" id="stat"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistique</a>
+                    </li>
+                </ul>
+                <div class="navConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><div><span id="navMessage"></span></div></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" onclick="logout()"><span
+                                class="glyphicon glyphicon-log-in"></span> se deconnecter</a></li>
+                    </ul>
+                </div>
+                <div class="navNoConnected">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#loginModal" href="login.html"><span
+                                class="glyphicon glyphicon-log-in"></span> login</a></li>
+                        <li><a data-toggle="modal" data-target="#loginModal" href="register.html"><span
+                                class="glyphicon glyphicon-log-out"></span> register</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
