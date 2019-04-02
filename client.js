@@ -318,7 +318,7 @@ function init() {
     socket.on('player1', (data) => {
         const message = `Hello, ${data.name}`;
         $('#userHello').html(message);
-        player.setCurrentTurn(true);
+        player.setCurrentTurn(false);
     });
 
     /**
@@ -332,6 +332,10 @@ function init() {
         room = `${data.room}`;
         game.displayBoard(message);
         player.setCurrentTurn(false);
+        if (data.nbJoueurs >= 2) {
+            const roomID = $('#room').val();
+            socket.emit('start', {room: roomID, playerName: player.name});
+        }
     });
 
     /**
