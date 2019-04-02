@@ -287,6 +287,11 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('messageAction', (data) => {
+        socket.emit('afficheAction', {playerName: data.playerName, action: data.action})
+        socket.broadcast.emit('afficheAction', {playerName: data.playerName, action: data.action})
+    });
+
     socket.on('check', (data) => {
         con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
             if (err) throw err;
@@ -339,7 +344,8 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "check"
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -354,7 +360,8 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "check"
         });
     });
 
@@ -410,7 +417,8 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "suivre"
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -425,7 +433,8 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "suivre"
         });
     });
 
@@ -480,7 +489,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "raise"
+
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -495,7 +506,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "raise"
+
         });
     });
 
@@ -559,7 +572,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "all-in"
+
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -574,7 +589,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "all-in"
+
         });
     });
 
@@ -635,7 +652,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "coucher"
+
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -650,7 +669,9 @@ io.on('connection', (socket) => {
             name: listeNoms,
             jetons: listeJetons,
             cartes: listeCartes,
-            cartesTapis: game.getTapis()
+            cartesTapis: game.getTapis(),
+            actionPrecedente: "coucher"
+
         });
     });
     socket.on('continueGame', (data) => {

@@ -298,6 +298,7 @@ function init() {
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
         socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "join"});
         $('#tablejoinpart').hide();
         $(window).on('unload', function () {
             socket.emit("exit", {room: roomId, playerName: player.name});
@@ -485,39 +486,55 @@ function init() {
     $('#check').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('check', {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "check"});
     });
 
     $('#suivre').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('suivre', {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "suivre"});
+
     });
 
     $('#raise').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('raise', {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "raise"});
+
     });
 
     $('#all-in').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('all-in', {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "all-in"});
+
     });
 
     $('#coucher').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('coucher', {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "fold"});
+
     });
 
     $('#exit').on('click', () => {
         // socket.leave(data.room);
         const roomId = $('#room').val();
         socket.emit("exit", {room: roomId, playerName: player.name});
+        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "exit"});
         window.location.href = "game.html"; //retourne a la page d'accueil du jeu
+
     });
 
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
         var message = document.getElementById("message").value;
         socket.emit('message', {room: room, pseudo: player.name, message: message});
+    });
+
+    socket.on("afficheAction", (data) => {
+        document.getElementById("messageGame").style.color = "red";
+        document.getElementById("messageGame").innerText = data.playerName + " a fait l'action : " + data.action;
     });
 
     socket.on('afficheMessage', (data) => {
@@ -567,6 +584,7 @@ function init() {
         /**
          * récupère les variables jetobs et cartes du joueur
          */
+
 
         let cartes;
         let jetons;
