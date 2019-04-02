@@ -113,7 +113,7 @@ io.on('connection', (socket) => {
         let prenom = data.prenom;
         let pseudo = data.pseudo;
         let pwd = data.pass;
-        con.query("INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, " + mysql.escape(nom) + ", " + mysql.escape(prenom) + ", " + mysql.escape(pseudo) + ", " + mysql.escape(pwd) + ", '2019-03-01', '100')", (err, rows) => {
+        con.query("INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, " + mysql.escape(nom) + ", " + mysql.escape(prenom) + ", " + mysql.escape(pseudo) + ", " + mysql.escape(pwd) + ", now(), '100')", (err, rows) => {
             if (err) throw err;
             socket.emit('RegisterSucces', {pseudo: pseudo, pass: pwd});
         });
