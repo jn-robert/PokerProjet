@@ -1,14 +1,14 @@
 /* Split the screen in half */
 .splitScreen {
     height: 100%;
-    width: 68%;
+    width: 80%;
     position: fixed;
     z-index: 1;
     overflow-x: hidden;
 }
 
 .elementTable{
-    width: 68%;
+    width: 75%;
     height: 100%;
     position: relative;
 }
@@ -21,10 +21,10 @@
 
 /* Control the right side */
 .rightScreen {
-    left: 50%;
+    left: 68%;
     height: 120%;
     right: 2%;
-    width: 45%;
+    width: 25%;
 
 ;}
 
@@ -79,17 +79,17 @@
 }
 
 .divButton{
-    width: 68%;
+    width: 75%;
     height: 100%;
     position: relative;
 }
 
 .divMessageGame{
-    width: 68%;
+    width: 75%;
     height: 100%;
     position: relative;
     background: #fdfdfd;
-    padding-bottom: 6%;
+    padding-bottom: 0%;
     border: black 1px solid;
 
 }
