@@ -332,7 +332,7 @@ function init() {
         room = `${data.room}`;
         game.displayBoard(message);
         player.setCurrentTurn(false);
-        if (data.nbJoueurs >= 2) {
+        if (data.nbJoueurs === 2) {
             const roomID = $('#room').val();
             socket.emit('start', {room: roomID, playerName: player.name});
         }
