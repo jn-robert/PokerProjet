@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    database: 'poker',
-    user: 'root',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
     port: '3306',
-    password: '',
+    password: '1708',
 });
 
 con.connect((err) => {
@@ -445,7 +445,7 @@ io.on('connection', (socket) => {
                 if (err) throw err;
             });
         });
-        game.joueJoueur(data.playerName, "raise", 20);
+        game.joueJoueur(data.playerName, "raise", parseInt(data.miseJeton));
         let idJoueurCurrentBooleanTour=0;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerTable[i].getPlayerName() === data.playerName) {

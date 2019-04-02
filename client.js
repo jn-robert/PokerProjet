@@ -278,10 +278,6 @@ function init() {
         $(window).on('unload', function () {
             socket.emit("exit", {room: roomId, playerName: player.name});
         });
-/*        $(window).on('beforeunload', function (event) {
-            event.preventDefault();
-            console.log(event.preventDefault())
-        });*/
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
@@ -495,8 +491,11 @@ function init() {
 
     $('#raise').on('click', () => {
         const roomId = $('#room').val();
-        socket.emit('raise', {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "raise"});
+        var mise = prompt("Veuillez entrer votre mise:");
+        if (mise !== null || mise !== "") {
+            socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
+            socket.emit('messageAction', {room: roomId, playerName: player.name, action: "raise"});
+        }
 
     });
 
