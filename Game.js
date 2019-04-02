@@ -115,6 +115,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         if (this.listePlayerGame[i].getPlayerName() === name) {
             if (this.listePlayerGame[i].getJetons()<=0) {
+                this.listePlayerGame[i].setAjoue(true);
                 bool = true;
             }else {
                 bool = false;
@@ -123,7 +124,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     }
 
     if (bool) {
-        this.listePlayerGame[i].setAjoue(true);
+
         if (this.actionPrec === "raise") {
             this.actionPrec = "suivre";
         }else if (this.actionPrec === "check") {
@@ -647,14 +648,6 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     }
 
 
-    // for (let i = 0; i < this.listePlayerGame.length; i++) {
-    //     if (this.listePlayerGame[i].getPlayerName() === name) {
-    //         indice = i;
-    //         this.listePlayerGame[indice].setAjoue(true);
-    //     } else {
-    //         this.listePlayerGame[i].setAjoue(false);
-    //     }
-    // }
     /**
      * reinitialise le tour apres que chaque joueurs aient fini
      */
@@ -665,9 +658,25 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             this.listePlayerGame[i].setAjoue(false);
             this.listePlayerGame[i].allIn = false;
         }
-        for (let i = 0; i < boolTours; i++) {
-            this.incrementeTour();
+        let test1SeulJoueurJetonsSup0 = 0;
+        for (let i = 0; i < this.listePlayerGame.length; i++) {
+            if (this.listePlayerGame[i].getJetons() > 0) {
+                test1SeulJoueurJetonsSup0++;
+            }
         }
+
+        if (test1SeulJoueurJetonsSup0 === 1) {
+            while (this.tour < 6) {
+                this.incrementeTour();
+                console.log("tour game : "+this.tour);
+            }
+        }else {
+            for (let i = 0; i < boolTours; i++) {
+                this.incrementeTour();
+            }
+        }
+
+
         // this.tour++;
         this.canPlay = false;
         this.actionPrec = null;

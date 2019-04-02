@@ -426,6 +426,7 @@ io.on('connection', (socket) => {
         let highestIndex = 0;
         let combi = "";
         highestIndex = game.evalCarte();
+        console.log("tour : "+game.tour);
         if (game.tour > 5) {
             // console.log(game.listePlayerGame);
             //console.log(highestIndex);
