@@ -41,6 +41,16 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
 
+function minutetest() {
+    test = new Date();
+    if (test.getMinutes()<10){
+        return "0"+test.getMinutes();
+    }else{
+        return test.getMinutes();
+    }
+    
+}
+
 function deleteCookie(name) {
     setCookie(name, '', -1);
 }
@@ -540,13 +550,10 @@ function init() {
         if (room === `${data.room}`) {
             if (data.message != "") {
                 var start = new Date();
-
-                $('.message').append('<p ><strong><span id="hour">' +'['+start.getHours() + ":" + start.getMinutes()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': ' + data.message + '</p>');
+                minutetest();
+                $('.message').append('<p ><strong><span id="hour">' +' '+'  ['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': ' + data.message + '</p>');
                 $("#message").remove();
                 $("#messageEmplacement").append('<input style="width:100%" type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" autofocus/>');
-
-
-
                 var elmnt = document.getElementById("chatScroll");
                 elmnt.scrollTop = elmnt.scrollHeight;
 
