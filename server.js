@@ -814,12 +814,10 @@ io.on('connection', (socket) => {
     });
 
     socket.on('exit', (data) => {
-        console.log("ca passe")
         game.exit(data.playerName);
         con.query("UPDATE partie SET nbJoueur = nbJoueur - 1 WHERE idPartie="+`${rooms}`, (err, rows) =>{
             if (err) throw err;
         });
-
         con.query("SELECT nbJoueur FROM partie WHERE idPartie="+`${rooms}`, (err, rows) =>{
             if (err) throw err;
             if(rows[0].nbJoueur == 0){
