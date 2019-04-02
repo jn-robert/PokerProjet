@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    database: 'poker',
-    user: 'root',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
     port: '3306',
-    password: '',
+    password: '1708',
 });
 
 con.connect((err) => {
@@ -45,9 +45,6 @@ con.connect((err) => {
         return;
     }
     console.log('Connection established');
-    con.query("DELETE FROM classement", (err, rows) =>{
-        if (err) throw err;
-    });
        con.query("DELETE FROM partie", (err, rows) =>{
         if (err) throw err;
     });
@@ -137,19 +134,6 @@ io.on('connection', (socket) => {
             socket.emit('ReturnStatsPlayer', {
                 tab: rows
             })
-        });
-
-        con.query("SELECT COUNT(*) as vic FROM classement where idPlayer ="+idPlayer+" AND class=1", (err, rows) =>{
-            if (err) throw err;
-
-            con.query("SELECT COUNT(*) as nbgame FROM classement where idPlayer ="+idPlayer+" AND class!=1", (err2, rows2) =>{
-                if (err) throw err;
-
-                socket.emit('NumberVictoryAndLoose', {
-                    victory: rows,
-                    nbGame: rows2
-                })
-            });
         });
 
         con.query("SELECT * FROM action WHERE idPlayer="+idPlayer, (err, rows) =>{

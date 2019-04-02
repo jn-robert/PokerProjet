@@ -222,34 +222,6 @@ function recpDonne(id) {
     socket.on('ReturnStatsPlayer', (data) => {
         let tabStats = data.tab[0];
         infoJoueur(tabStats);
-        /* NON IMPLEMENTER
-        new Morris.Line({
-            element: 'statsPartie',
-            data: [
-                {year: '2008', value: 20},
-                {year: '2009', value: 30},
-                {year: '2010', value: 60},
-                {year: '2011', value: 40},
-                {year: '2012', value: 100}
-            ],
-            xkey: 'year',
-            ykeys: ['value'],
-            labels: ['Value']
-        });
-        */
-
-        socket.on('NumberVictoryAndLoose', (data) => {
-            let vic = data.victory[0].vic;
-            let loose = data.nbGame[0].nbgame;
-            Morris.Donut({
-                element: 'statsVictoire',
-                data: [
-                    {label: "Victoire", value: vic},
-                    {label: "Défaite", value: loose},
-                ]
-            });
-        });
-
         socket.on('ResturnStatsActionPlayer', (data) => {
             let allIn = 0;
             let check = 0;
