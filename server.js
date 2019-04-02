@@ -731,6 +731,71 @@ io.on('connection', (socket) => {
                 });
             }
         });
+        let idJoueurCurrentBooleanTour=0;
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour = (i+1)%game.listePlayerGame.length;
+            }
+        }
+
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            listeCartes[i] = game.listePlayerGame[i].getMain();
+            listeNoms[i] = game.listePlayerGame[i].getPlayerName();
+            listeJetons[i] = game.listePlayerGame[i].getJetons();
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.listePlayerGame.length === 1) {
+            highestIndex = game.evalCarte();
+            name = game.afficheJoueurName(highestIndex);
+            combi = game.evalCards[highestIndex].handName;
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }else if (game.tour > 5 ) {
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+        }
+
+        // socket.emit('resultAction', {
+        //     vainqueur: name,
+        //     combiVainq: combi,
+        //     tasHaut: game.tasHaut,
+        //     jetonsRecolt: game.getRecoltJetons(),
+        //     choixJoueurs: game.actionPrec,
+        //     currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
+        //     tour: game.getTour(),
+        //     pot: game.pot,
+        //     nbJoueurs: game.listePlayerGame.length,
+        //     name: listeNoms,
+        //     jetons: listeJetons,
+        //     cartes: listeCartes,
+        //     cartesTapis: game.getTapis()
+        // });
+        socket.broadcast.emit('resultAction', {
+            vainqueur: name,
+            combiVainq: combi,
+            tasHaut: game.tasHaut,
+            jetonsRecolt: game.getRecoltJetons(),
+            choixJoueurs: game.actionPrec,
+            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
+            tour: game.getTour(),
+            pot: game.pot,
+            nbJoueurs: game.listePlayerGame.length,
+            name: listeNoms,
+            jetons: listeJetons,
+            cartes: listeCartes,
+            cartesTapis: game.getTapis()
+        });
     });
 });
 server.listen(process.env.PORT || 5000);
