@@ -502,9 +502,11 @@ function init() {
     $('#raise').on('click', () => {
         const roomId = $('#room').val();
         var mise = prompt("Veuillez entrer votre mise:");
-        if (mise !== null || mise !== "") {
+        if (mise !== null && mise !== "") {
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
             socket.emit('messageAction', {room: roomId, playerName: player.name, action: "raise"});
+        }else{
+
         }
 
     });
