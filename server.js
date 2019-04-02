@@ -77,7 +77,11 @@ io.on('connection', (socket) => {
             con.query("UPDATE partie SET nbJoueur = nbJoueur + 1 WHERE idPartie="+data.room, (err, rows) =>{
                 if (err) throw err;
             });
-            socket.emit('player', {name: data.name, room: `${rooms}`});
+            con.query("SELECT nbJoueur FROM partie WHERE idPartie="+data.room, (err, rowSelect) =>{
+                if (err) throw err;
+                socket.emit('player', {name: data.name, room: `${rooms}`, nbJoueurs: rowSelect[0].nbJoueur});
+            });
+
         } else {
             socket.emit('err', {message: 'La partie est pleine!'});
         }
