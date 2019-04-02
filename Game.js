@@ -73,10 +73,11 @@ Game.prototype.getTour = function () {
  * */
 Game.prototype.reset = function () {
     this.pot = 0;
-    if (!this.start) {
+    // if (!this.start) {
         this.cartes = new Cartes();
         this.start = true;
-    }
+        this.tapisCarte=[];
+    // }
 
     this.listePlayerGame = [];
     for (let i = 0; i < this.listePlayerTable.length; i++) {
