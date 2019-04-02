@@ -273,7 +273,7 @@ function init() {
         const jeton = $('#jetonNew').val();
         const roomId = $('#room').val();
         if (!jeton) {
-            alert('Erreur.');
+            alert('Veuillez entrer le nombre de jeton');
             return;
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
