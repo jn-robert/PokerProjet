@@ -710,7 +710,7 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
             document.getElementById('turn').innerHTML = "fin partie";
-            document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
+            document.getElementsByClassName('messageGame').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
 
             // else {

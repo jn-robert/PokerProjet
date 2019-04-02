@@ -34,7 +34,7 @@
     height: 50%;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #f2f2f2;
+    background: #fdfdfd;
     border: black 1px solid;
 
 }
@@ -87,7 +87,7 @@
     width: 68%;
     height: 100%;
     position: relative;
-    background: #f2f2f2;
+    background: #fdfdfd;
     padding-bottom: 8%;
     border: black 1px solid;
 
