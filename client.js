@@ -48,7 +48,7 @@ function minutetest() {
     }else{
         return test.getMinutes();
     }
-    
+
 }
 
 function deleteCookie(name) {
@@ -301,7 +301,7 @@ function init() {
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
         socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "join"});
+        socket.emit('messageGameExit', {room: roomId, playerName: player.name, action: "join"});
         $('#tablejoinpart').hide();
         $(window).on('unload', function () {
             socket.emit("exit", {room: roomId, playerName: player.name});
@@ -540,9 +540,14 @@ function init() {
         socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
-    socket.on("afficheAction", (data) => {
-        document.getElementById("messageGame").style.color = "red";
-        document.getElementById("messageGame").innerText = data.playerName + " a fait l'action : " + data.action;
+    // socket.on("afficheAction", (data) => {
+    //     document.getElementById("messageGameAction").style.color = "red";
+    //     document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.action;
+    // });
+
+    socket.on("afficheGameJoin", (data) => {
+        document.getElementById("messageGameJoin").style.color = "red";
+        document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.action;
     });
 
     socket.on('afficheMessage', (data) => {
@@ -593,6 +598,8 @@ function init() {
          * récupère les variables jetobs et cartes du joueur
          */
 
+        document.getElementById("messageGameAction").style.color = "red";
+        document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
 
         let cartes;
         let jetons;
