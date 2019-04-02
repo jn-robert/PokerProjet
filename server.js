@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    database: 'poker',
-    user: 'root',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
     port: '3306',
-    password: '',
+    password: '1708',
 });
 
 con.connect((err) => {
@@ -45,7 +45,10 @@ con.connect((err) => {
         return;
     }
     console.log('Connection established');
-    con.query("DELETE FROM partie", (err, rows) =>{
+    con.query("DELETE FROM classement", (err, rows) =>{
+        if (err) throw err;
+    });
+       con.query("DELETE FROM partie", (err, rows) =>{
         if (err) throw err;
     });
 });
