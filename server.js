@@ -555,11 +555,22 @@ io.on('connection', (socket) => {
             listeJetons[i] = game.listePlayerGame[i].getJetons();
         }
 
+        // let testAllAllIn = true;
+        // for (let i = 0; i < listeJetons.length; i++) {
+        //     if (listeJetons[i] !== 0) {
+        //         testAllAllIn=false;
+        //     }
+        // }
+        //
+        // if (testAllAllIn) {
+        //     game.tour=6;
+        // }
+
         let name = "";
         let highestIndex = 0;
         let combi = "";
         highestIndex = game.evalCarte();
-        if (game.tour > 5) {
+        if (game.tour > 5 ) {
             if (highestIndex < game.listePlayerGame.length) {
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
