@@ -273,7 +273,7 @@ function init() {
         const jeton = $('#jetonNew').val();
         const roomId = $('#room').val();
         if (!jeton) {
-            alert('Erreur.');
+            alert('Veuillez entrer le nombre de jeton');
             return;
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
@@ -403,6 +403,7 @@ function init() {
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+        document.getElementById('texte2').innerHTML = data.jetons2 + con" jetons";
         */
         let cartes;
         let jetons;
@@ -524,10 +525,13 @@ function init() {
         // console.log(roomId);
 
         if (room === `${data.room}`) {
-            date();
-            $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
-            var elmnt = document.getElementById("chatScroll");
-            elmnt.scrollTop = elmnt.scrollHeight;
+            if (data.message != "") {
+                var start = new Date();
+                date();
+                $('.message').append('<p><strong>'+ data.pseudo +' le '+  start.getDate() + "/" + start.getMonth() + "/" + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes()+'</strong> '+ ' : ' + data.message + '</p>');
+                var elmnt = document.getElementById("chatScroll");
+                elmnt.scrollTop = elmnt.scrollHeight;
+            }
         }
     });
 
@@ -710,7 +714,8 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
             document.getElementById('turn').innerHTML = "fin partie";
-            document.getElementsByClassName('messageGame').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
+            document.getElementById('messageGame').style.color = "red";
+            document.getElementById('messageGame').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
 
             // else {
@@ -758,7 +763,8 @@ function init() {
             document.T3.src = "image/dos.png";
             document.T4.src = "image/dos.png";
             document.T5.src = "image/dos.png";
-            document.getElementById('texteGagnant').innerHTML = "";
+            document.getElementById('messageGame').style.color = "black";
+            document.getElementById('messageGame').innerHTML = "En attente d'une action...";
         }
     });
 }
