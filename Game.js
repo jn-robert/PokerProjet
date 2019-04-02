@@ -647,13 +647,13 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
         console.log("");
     }
 
-    // let test = false;
-    // for (let i = 0; i < game.listePlayerTable.length; i++) {
-    //     if (this.listePlayerTable[i].getJetons() === 0) {
-    //         this.exit(this.listePlayerTable[i].getPlayerName());
-    //     }
+    let test = false;
+    for (let i = 0; i < this.listePlayerTable.length; i++) {
+        if (this.listePlayerTable[i].getJetons() === 0) {
+            this.exit(this.listePlayerTable[i].getPlayerName());
+        }
 
-    // }
+    }
 
 
     this.blind(petiteBlinde, grosseBlinde);
@@ -685,6 +685,10 @@ Game.prototype.exit = function (playerName) {
         if (this.listePlayerGame[i].getPlayerName() === playerName) {
             this.listePlayerGame[i].setAjoue(true);
         }
+    }
+
+    if (this.listePlayerTable[this.dealer].getPlayerName() === playerName) {
+        this.dealer = (this.dealer+1)%this.listePlayerTable.length;
     }
 
     for (let i = 0; i < this.listePlayerGame.length; i++) {
