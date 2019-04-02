@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    database: 'poker',
-    user: 'root',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
     port: '3306',
-    password: '',
+    password: '1708',
 });
 
 con.connect((err) => {
@@ -814,6 +814,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('exit', (data) => {
+        console.log("ca passe")
         game.exit(data.playerName);
         con.query("UPDATE partie SET nbJoueur = nbJoueur - 1 WHERE idPartie="+`${rooms}`, (err, rows) =>{
             if (err) throw err;
