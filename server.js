@@ -294,8 +294,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('check', (data) => {
-        game.joueJoueur(data.playerName, "check", 10);
+        con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
+            if (err) throw err;
+            con.query("UPDATE action SET nbCheck = nbCheck + 1 WHERE idPlayer="+rows[0].idPlayer, (err, rows) =>{
+                if (err) throw err;
+            });
+        });
 
+        game.joueJoueur(data.playerName, "check", 10);
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
@@ -358,8 +364,13 @@ io.on('connection', (socket) => {
     });
 
     socket.on('suivre', (data) => {
+        con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
+            if (err) throw err;
+            con.query("UPDATE action SET nbSuivre = nbSuivre + 1 WHERE idPlayer="+rows[0].idPlayer, (err, rows) =>{
+                if (err) throw err;
+            });
+        });
         game.joueJoueur(data.playerName, "suivre", 10);
-
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
@@ -424,9 +435,13 @@ io.on('connection', (socket) => {
     });
 
     socket.on('raise', (data) => {
+        con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
+            if (err) throw err;
+            con.query("UPDATE action SET nbRaise = nbRaise + 1 WHERE idPlayer="+rows[0].idPlayer, (err, rows) =>{
+                if (err) throw err;
+            });
+        });
         game.joueJoueur(data.playerName, "raise", 20);
-
-
         let idJoueurCurrentBooleanTour=0;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
@@ -490,6 +505,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('all-in', (data) => {
+        con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
+            if (err) throw err;
+            con.query("UPDATE action SET nbAllIn = nbAllIn + 1 WHERE idPlayer="+rows[0].idPlayer, (err, rows) =>{
+                if (err) throw err;
+            });
+        });
         console.log("test"+data.playerName);
         let mise;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
@@ -563,6 +584,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('coucher', (data) => {
+        con.query("SELECT idPlayer FROM player WHERE pseudo="+mysql.escape(data.playerName), (err, rows) =>{
+            if (err) throw err;
+            con.query("UPDATE action SET nbFold = nbFold + 1 WHERE idPlayer="+rows[0].idPlayer, (err, rows) =>{
+                if (err) throw err;
+            });
+        });
         game.joueJoueur(data.playerName, "coucher", 10);
 
         let idJoueurCurrentBooleanTour=0;

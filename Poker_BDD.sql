@@ -37,6 +37,7 @@ CREATE TABLE action (
 	nbCheck INT,
 	nbFold INT,
 	nbRaise INT,
+	nbSuivre INT,
 	PRIMARY KEY(idPlayer),
 	CONSTRAINT fkActionPlayer FOREIGN KEY (idPlayer) REFERENCES player(idPlayer)
 );
@@ -44,6 +45,6 @@ CREATE TABLE action (
 INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, 'j1Name', 'j1', 'Joueur1', '0000', '2019-03-01', '100'), (NULL, 'j2Name', 'j2', 'Joueur2', '0000', '2019-03-01', '100');
 INSERT INTO `partie` (`idPartie`, `typePartie`, `nbTour`, `nbJoueur`) VALUES (NULL, 'normal', '0', '1');
 INSERT INTO `classement` (`idPartie`, `idPlayer`, `class`) VALUES ('1', '1', '1');
-INSERT INTO `action` (`idPlayer`, `nbAllIn`, `nbCheck`, `nbFold`, `nbRaise`) VALUES ('1', '12', '16', '117', '14'), ('2', '3', '3', '3', '3');
+INSERT INTO `action` (`idPlayer`, `nbAllIn`, `nbCheck`, `nbFold`, `nbRaise`, `nbSuivre`) VALUES ('1', '12', '16', '117', '14', '14'), ('2', '3', '3', '3', '3', '14');
 
 
