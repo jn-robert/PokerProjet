@@ -23,6 +23,7 @@
 .rightScreen {
     left: 70%;
     height: 100%;
+    right: 5px;
 ;}
 
 .chat {
@@ -169,6 +170,25 @@
     color: white;
 }
 
+.bouton1 {
+    padding:6px 0 6px 0;
+    font:Bold 13px Arial;
+    background: #007f20;
+    color:#fff;
+    width:90px;
+    border-radius:2px;
+    border:none;
+}
+.bouton2 {
+    padding:6px 0 6px 0;
+    font:bold 13px Arial;
+    background:#d34836;
+
+    color:#fff;
+    border-radius:2px;
+    width:100px;
+    border:none;
+}
 
 
 #texte5 {
