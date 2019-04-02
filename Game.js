@@ -191,10 +191,6 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 break;
             case "check":
-                // for (let i=0; i<this.listePlayerGame.length;i++) {
-                //     if (this.listePlayerGame[i].getPlayerName() === name && this.listePlayerGame[i].allIn){
-                //         break;
-                //     } else if (this.listePlayerGame[i].getPlayerName() === name && !this.listePlayerGame[i].allIn) {
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
                         this.listePlayerGame[i].setAjoue(true);
