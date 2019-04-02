@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'serveurmysql',
-    database: 'BDD_tnormant',
-    user: 'tnormant',
+    host: 'localhost',
+    database: 'poker',
+    user: 'root',
     port: '3306',
-    password: '1708',
+    password: '',
 });
 
 con.connect((err) => {
