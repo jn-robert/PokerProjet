@@ -591,6 +591,8 @@ Game.prototype.distribGains = function (name) {
     }
     this.pot = 0;
     this.dealer = (this.dealer + 1) % this.listePlayerTable.length;
+
+    this.evalCards = [];
 };
 
 /**
@@ -631,6 +633,7 @@ Game.prototype.evalCarte = function () {
     }
 
     this.allCards = [];
+    // this.evalCards = [];
 
     return highestIndex;
 };
@@ -655,7 +658,6 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
         }
 
     }
-
 
     this.blind(petiteBlinde, grosseBlinde);
 
