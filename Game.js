@@ -163,25 +163,42 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
                             // }
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = "raise";
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec;
+                    // this.actionPrec = "raise";
+                    // this.misePrec = miseMin;
+                    // this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
+                    this.actionPrec = "raise";
+                    if (miseMin > this.misePrec) {
+                        this.misePrec = miseMin;
+                        this.tasHaut = this.misePrec;
+                    }
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].setAjoue(true);
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+
                             // }
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -251,20 +268,41 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = "raise";
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec;
+                    // this.actionPrec = "raise";
+                    // this.misePrec = miseMin;
+                    // this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
+                    this.actionPrec = "raise";
+                    if (miseMin > this.misePrec) {
+                        this.misePrec = miseMin;
+                        this.tasHaut = this.misePrec;
+                    }
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].setAjoue(true);
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+
                             // }
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
+                        console.log("tas : "+this.listePlayerGame[i].getTas());
+
                     }
                 }
                 if (action === "coucher") {
@@ -342,19 +380,38 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "all-in") {
-                    this.actionPrec = "raise";
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec + miseMin;
+                    // this.actionPrec = "raise";
+                    // this.misePrec = miseMin;
+                    // this.tasHaut = this.misePrec + miseMin;
                     this.resetSetAjoue();
+                    this.actionPrec = "raise";
+                    if (miseMin > this.misePrec) {
+                        this.misePrec = miseMin;
+                        this.tasHaut = this.misePrec;
+                    }
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].setAjoue(true);
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
-                            this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                            this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+
                             // }
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -436,8 +493,10 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "all-in") {
                     this.actionPrec = "raise";
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec;
+                    if (miseMin > this.misePrec) {
+                        this.misePrec = miseMin;
+                        this.tasHaut = this.misePrec;
+                    }
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].setAjoue(true);
@@ -447,13 +506,13 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                                 }
                             }
                             if (!testTousJoue) {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
 
                                 //console.log("joueur n°" + i + " a joué");
                             } else {
-                                this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                                this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
 
                                 //console.log("dernier joueur qui a joue");
                                 this.canPlay = true;
@@ -461,9 +520,9 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
 
                             // }
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
+                        console.log("tas : "+this.listePlayerGame[i].getTas());
+
                     }
                 }
                 if (action === "coucher") {
@@ -473,6 +532,8 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                         }
                     }
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        console.log("tas : "+this.listePlayerGame[j].getTas());
+
                         if (!this.listePlayerGame[j].getAjoue()) {
                             testTousJoue = false;
                         }
@@ -533,8 +594,6 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                        } else {
-                            this.listePlayerGame[i].tas = 0;
                         }
                     }
                 }
@@ -564,11 +623,14 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
      */
     if (this.canPlay) {
         for (let i = 0; i < this.listePlayerGame.length; i++) {
+            console.log("tas : "+this.listePlayerGame[i].getTas());
             this.pot += this.listePlayerGame[i].getTas();
             this.listePlayerGame[i].tas = 0;
             this.listePlayerGame[i].setAjoue(false);
             this.listePlayerGame[i].allIn = false;
         }
+
+        console.log("pot : "+this.pot);
         let test1SeulJoueurJetonsSup0 = 0;
         for (let i = 0; i < this.listePlayerGame.length; i++) {
             if (this.listePlayerGame[i].getJetons() > 0) {
@@ -577,7 +639,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
         }
 
         if (test1SeulJoueurJetonsSup0 <= 1) {
-            while (this.tour < 6) {
+            while (this.tour < 7) {
                 this.incrementeTour();
                 console.log("tour game : " + this.tour);
             }

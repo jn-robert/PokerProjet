@@ -403,7 +403,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+            game.distribGains(name);
         }
 
         socket.emit('resultAction', {
@@ -479,7 +479,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+            game.distribGains(name);
         }
 
         socket.emit('resultAction', {
@@ -577,7 +577,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+            game.distribGains(name);
         }
 
         socket.emit('resultAction', {
@@ -661,7 +661,7 @@ io.on('connection', (socket) => {
             } else {
                 name = "egalite";
             }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+            game.distribGains(name);
         }
 
         socket.emit('resultAction', {
