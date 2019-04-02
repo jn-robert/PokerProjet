@@ -191,12 +191,17 @@
                             <p align=center><label id="gagnant"></label></p>
                         </div>
                     </div>
-                    <button id="all-in" class="bouton1">all-in</button>
-                    <button id="check" class="bouton1">check</button>
-                    <button id="suivre" class="bouton1">suivre</button>
-                    <button id="raise" class="bouton1">relancer</button>
-                    <button id="coucher" class="bouton1">se coucher</button>
-                    <button id="exit" class="bouton2">quitter table</button>
+                    <div class="divButton">
+                        <button id="all-in" class="bouton1">all-in</button>
+                        <button id="check" class="bouton1">check</button>
+                        <button id="suivre" class="bouton1">suivre</button>
+                        <button id="raise" class="bouton1">relancer</button>
+                        <button id="coucher" class="bouton1">se coucher</button>
+                        <button id="exit" class="bouton2">quitter table</button>
+                    </div>
+                    <div class="divMessageGame">
+                        <span>Message</span>
+                    </div>
                 </div>
             </div>
             <div class="splitScreen rightScreen">
@@ -206,9 +211,9 @@
                     <span id="date"></span>
                 </div>
                 <div>
-                    <input style="width:34%" type="text" name="message" id="message"
+                    <input style="width:100%" type="text" name="message" id="message"
                            placeholder="Une mauvaise pioche faite le savoir" autofocus/>
-                    <input style="width: 9%;" type="submit" id="envoi_message" value="Send" onclick=""/>
+                    <input style="width: 100%; background: black; color: white;" type="submit" id="envoi_message" value="Send" onclick=""/>
                 </div>
             </div>
         </div>
