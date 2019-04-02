@@ -178,6 +178,9 @@
 
 }
 
+#hour{
+    font-size: 10px;
+}
 #name{
     color: red;
 }

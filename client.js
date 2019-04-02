@@ -24,10 +24,7 @@ class Player {
 const socket = io.connect('http://localhost:5000');
 var nameUser;
 
-function date() {
-    var start = new Date();
-    document.getElementById("date").innerHTML = "Dernier message le " + start.getDate() + " / " + start.getMonth() + " / " + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes();
-}
+
 
 /**
  * Gestion login
@@ -527,8 +524,8 @@ function init() {
         if (room === `${data.room}`) {
             if (data.message != "") {
                 var start = new Date();
-                date();
-                $('.message').append('<p ><strong >' + start.getHours() + ":" + start.getMinutes()+'  '+ data.pseudo +'</strong> '+ ': ' + data.message + '</p>');
+
+                $('.message').append('<p ><strong><span id="hour">' +'['+start.getHours() + ":" + start.getMinutes()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': ' + data.message + '</p>');
                 $("#message").text("test");
 
                 var elmnt = document.getElementById("chatScroll");
