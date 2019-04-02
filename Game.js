@@ -156,6 +156,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.actionPrec = action;
                     this.misePrec = miseMin;
                     this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
@@ -171,8 +172,10 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.actionPrec = "raise";
                     this.misePrec = miseMin;
                     this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
@@ -342,8 +345,10 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.actionPrec = "raise";
                     this.misePrec = miseMin;
                     this.tasHaut = this.misePrec + miseMin;
+                    this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
                             // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
