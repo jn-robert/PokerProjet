@@ -730,11 +730,8 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
             document.getElementById('turn').innerHTML = "fin partie";
-
-            console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            console.log("jetons apres distrib : "+ jetons);
 
             // else {
                 socket.emit('continueGame', {playerName: player.name});
