@@ -21,8 +21,11 @@
 
 /* Control the right side */
 .rightScreen {
-    left: 70%;
-    height: 100%;
+    left: 50%;
+    height: 120%;
+    right: 2%;
+    width: 45%;
+
 ;}
 
 .chat {
@@ -32,6 +35,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     background: #f2f2f2;
+    border: black 1px solid;
 
 }
 
@@ -71,6 +75,22 @@
     max-width: 100%;
     min-width: 50%;
     height: auto;
+}
+
+.divButton{
+    width: 68%;
+    height: 100%;
+    position: relative;
+}
+
+.divMessageGame{
+    width: 68%;
+    height: 100%;
+    position: relative;
+    background: #f2f2f2;
+    padding-bottom: 8%;
+    border: black 1px solid;
+
 }
 
 #T1 {
@@ -169,6 +189,26 @@
     color: white;
 }
 
+.bouton1 {
+    padding:6px 0 6px 0;
+    font:Bold 17px Arial;
+    background: #007f20;
+    color:#fff;
+    height: auto;
+    width:16%;
+    border-radius:2px;
+    border:none;
+}
+.bouton2 {
+    padding:6px 0 6px 0;
+    font:bold 17px Arial;
+    background:#d34836;
+    color:#fff;
+    height: 5%;
+    border-radius:2px;
+    width:16%;
+    border:none;
+}
 
 
 #texte5 {

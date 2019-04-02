@@ -281,6 +281,10 @@ function init() {
         $(window).on('unload', function () {
             socket.emit("exit", {room: roomId, playerName: player.name});
         });
+/*        $(window).on('beforeunload', function (event) {
+            event.preventDefault();
+            console.log(event.preventDefault())
+        });*/
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
