@@ -734,11 +734,8 @@ function init() {
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            if (jetons <= 0) {
-                const roomId = $('#room').val();
-                socket.emit("exit", {room: roomId, playerName: player.name});
-                window.location.href = "game.html";
-            }
+            console.log("jetons apres distrib : "+ jetons);
+
             // else {
                 socket.emit('continueGame', {playerName: player.name});
             // }

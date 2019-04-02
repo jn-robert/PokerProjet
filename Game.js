@@ -114,10 +114,10 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
 
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         if (this.listePlayerGame[i].getPlayerName() === name) {
-            if (this.listePlayerGame[i].getJetons()<=0) {
+            if (this.listePlayerGame[i].getJetons() <= 0) {
                 this.listePlayerGame[i].setAjoue(true);
                 bool = true;
-            }else {
+            } else {
                 bool = false;
             }
         }
@@ -127,15 +127,14 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
 
         if (this.actionPrec === "raise") {
             this.actionPrec = "suivre";
-        }else if (this.actionPrec === "check") {
+        } else if (this.actionPrec === "check") {
             this.actionPrec = "check";
-        }else {
+        } else {
             this.actionPrec = "check";
         }
     }
 
     if (!bool) {
-        console.log("choix action : "+action);
         switch (this.actionPrec) {
             case null:
                 this.actionPrec = action;
@@ -539,9 +538,9 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
         if (test1SeulJoueurJetonsSup0 === 1) {
             while (this.tour < 6) {
                 this.incrementeTour();
-                console.log("tour game : "+this.tour);
+                console.log("tour game : " + this.tour);
             }
-        }else {
+        } else {
             for (let i = 0; i < boolTours; i++) {
                 this.incrementeTour();
             }
@@ -647,6 +646,16 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
         console.log("joueur " + i + " : " + this.listePlayerGame[i].getAjoue());
         console.log("");
     }
+
+    // let test = false;
+    // for (let i = 0; i < game.listePlayerTable.length; i++) {
+    //     if (this.listePlayerTable[i].getJetons() === 0) {
+    //         this.exit(this.listePlayerTable[i].getPlayerName());
+    //     }
+
+    // }
+
+
     this.blind(petiteBlinde, grosseBlinde);
 
     //initialisation main + affichage main joueur
@@ -671,6 +680,13 @@ Game.prototype.miseEnAttenteFinGame = function () {
 };
 
 Game.prototype.exit = function (playerName) {
+
+    for (let i = 0; i < this.listePlayerGame.length; i++) {
+        if (this.listePlayerGame[i].getPlayerName() === playerName) {
+            this.listePlayerGame[i].setAjoue(true);
+        }
+    }
+
     for (let i = 0; i < this.listePlayerGame.length; i++) {
         if (this.listePlayerGame[i].getPlayerName() === playerName) {
             this.listePlayerGame.splice(i, 1);
