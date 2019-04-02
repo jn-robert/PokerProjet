@@ -528,9 +528,13 @@ function init() {
             if (data.message != "") {
                 var start = new Date();
                 date();
-                $('.message').append('<p><strong>'+ data.pseudo +' le '+  start.getDate() + "/" + start.getMonth() + "/" + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes()+'</strong> '+ ' : ' + data.message + '</p>');
+                $('.message').append('<p ><strong >' + start.getHours() + ":" + start.getMinutes()+'  '+ data.pseudo +'</strong> '+ ': ' + data.message + '</p>');
+                $("#message").text("test");
+
                 var elmnt = document.getElementById("chatScroll");
                 elmnt.scrollTop = elmnt.scrollHeight;
+
+
             }
         }
     });

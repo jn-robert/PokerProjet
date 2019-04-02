@@ -178,6 +178,9 @@
 
 }
 
+#name{
+    color: red;
+}
 #texte4 {
     position: absolute;
     top: 56%;
