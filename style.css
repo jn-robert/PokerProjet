@@ -1,23 +1,29 @@
 /* Split the screen in half */
 .splitScreen {
     height: 100%;
-    width: 50%;
+    width: 68%;
     position: fixed;
     z-index: 1;
     overflow-x: hidden;
 }
 
+.elementTable{
+    width: 68%;
+    height: 100%;
+    position: relative;
+}
+
 /* Control the left side */
 .leftScreen {
-    left: 0;
+    left: 2%;
     height: 100%;
 }
 
 /* Control the right side */
 .rightScreen {
-    right: 0;
+    left: 70%;
     height: 100%;
-}
+;}
 
 .chat {
     display: block;
@@ -25,12 +31,15 @@
     height: 50%;
     overflow-y: auto;
     overflow-x: hidden;
+    background: #f2f2f2;
+
 }
 
 .chat .message div {
     display: block;
     flex: 1;
     order: 2;
+
 }
 
 .chat .message div p {
@@ -43,6 +52,7 @@
     font-family: Monospace;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
 }
 
 .chat .message div:before {
@@ -65,37 +75,48 @@
 
 #T1 {
     position: absolute;
-    top: 20%;
-    left: 30%;
+    top: 35%;
+    left: 26%;
     visibility: visible;
+    width: 5%;
+    height: 15%;
+
 }
 
 #T2 {
     position: absolute;
-    top: 20%;
-    left: 38%;
+    top: 35%;
+    left: 36%;
     visibility: visible;
+    width: 5%;
+    height: 15%;
 }
 
 #T3 {
     position: absolute;
-    top: 20%;
-    left: 46%;
+    top: 35%;
+    left: 47%;
     visibility: visible;
+    width: 5%;
+    height: 15%;
 }
 
 #T4 {
     position: absolute;
-    top: 20%;
-    left: 54%;
+    top: 35%;
+    left: 57%;
     visibility: visible;
+    width: 5%;
+    height: 15%;
 }
 
 #T5 {
     position: absolute;
-    top: 20%;
-    left: 62%;
+    top: 35%;
+    left: 67%;
     visibility: visible;
+    width: 5%;
+    height: 15%;
 }
 
 .table-sortable tbody tr {
@@ -103,8 +124,10 @@
 }
 
 #texte {
-    top: 35%;
-    left: 52%;
+    top: 73%;
+    left: 56%;
+    width: 6%;
+    height: 10%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -112,8 +135,10 @@
 }
 
 #texte2 {
-    top: 18%;
-    left: 17%;
+    top: 30%;
+    left: 13%;
+    width: 6%;
+    height: 10%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -122,8 +147,10 @@
 }
 
 #texte3 {
-    top: 18%;
+    top: 30%;
     left: 83%;
+    width: 6%;
+    height: 10%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -133,17 +160,22 @@
 
 #texte4 {
     position: absolute;
-    top: 28%;
-    left: 42%;
+    top: 56%;
+    left: 46%;
+    width: 15%;
+    height: auto;
     border: 0px;
     visibility: visible;
     color: white;
-
 }
 
+
+
 #texte5 {
-    top: 8%;
+    top: 18%;
     left: 38%;
+    width: 6%;
+    height: 10%;
     border: 0px;
     visibility: visible;
     position: absolute;
@@ -152,72 +184,80 @@
 }
 
 #CarteJoueur1 {
-    top: 33%;
-    left: 65%;
-    width: 20px;
+    top: 70%;
+    left: 45%;
+    width: 4%;
+    height: 12%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur2 {
-    top: 33%;
-    left: 71%;
-    width: 20px;
+    top: 70%;
+    left: 50%;
+    width: 4%;
+    height: 12%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur3 {
-    top: 22%;
-    left: 15%;
-    width: 20px;
+    top: 40%;
+    left: 12%;
+    width: 7%;
+    height: 6%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur4 {
-    top: 28%;
-    left: 15%;
-    width: 20px;
+    top: 50%;
+    left: 12%;
+    width: 7%;
+    height: 6%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur5 {
-    top: 22%;
-    left: 85%;
-    width: 20px;
+    top: 40%;
+    left: 81%;
+    width: 7%;
+    height: 6%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur6 {
-    top: 28%;
-    left: 85%;
-    width: 20px;
+    top: 50%;
+    left: 81%;
+    width: 7%;
+    height: 6%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur7 {
-    top: 5%;
+    top: 18%;
     left: 48%;
-    width: 20px;
+    width: 4%;
+    height: 12%;
     border: 0px;
     visibility: visible;
     position: absolute;
 }
 
 #CarteJoueur8 {
-    top: 5%;
+    top: 18%;
     left: 54%;
-    width: 20px;
+    width: 4%;
+    height: 12%;
     border: 0px;
     visibility: visible;
     position: absolute;

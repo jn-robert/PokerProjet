@@ -390,7 +390,7 @@ function init() {
         // document.getElementById('raise').disabled = !data.booleanCurrentTurn;
         // document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
 
-        document.getElementById('pot').innerHTML = "Pot : " + data.pot;
+        document.getElementById('pot').innerHTML = data.pot;
         document.getElementById('turn').innerHTML = message;
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
