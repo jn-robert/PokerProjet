@@ -467,13 +467,8 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
-                            //console.log("tasHAut : "+this.tasHaut);
-                            //console.log("operation");
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            // boolTours = 6 - this.tour;
-                            //console.log("jetons : "+this.listePlayerGame[i].jetons+" tas : "+this.listePlayerGame[i].getTas());
                         }
                     }
                     this.canPlay = true;
@@ -499,10 +494,8 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.tasHaut = this.misePrec;
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            // }
                         } else {
                             this.listePlayerGame[i].tas = 0;
                         }
@@ -522,32 +515,6 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                         this.listePlayerGame.splice(j, 1);
                     }
                 }
-                // if (action === "coucher"){
-                //     for (let j=0;j<this.listePlayerGame.length; j++){
-                //         if (this.listePlayerGame.length <3){
-                //             if (this.listePlayerGame[j].getPlayerName() !== name){
-                //                 this.listePlayerGame[j].jetons += this.tasHaut + this.listePlayerGame[j].getTas();
-                //                 let boolJoueur = false;
-                //                 for (let k =0; k<this.listePlayerTable.length; k++){
-                //                     for (let l = 0; l<this.listePlayerGame.length; l++){
-                //                         if(this.listePlayerTable[k].getPlayerName() !== this.listePlayerGame[l].getPlayerName()){
-                //                             boolJoueur = true;
-                //                         }
-                //                     }
-                //                     if (boolJoueur) {
-                //                         this.listePlayerGame.push(this.listePlayerTable[k]);
-                //                         boolJoueur=false;
-                //                     }
-                //                 }
-                //                 this.continueGame(10,20);
-                //             }
-                //         }else {
-                //             if (this.listePlayerGame[j].getPlayerName() === name){
-                //                 this.listePlayerGame.splice(j,1);
-                //             }
-                //         }
-                //     }
-                // }
                 break;
 
         }
