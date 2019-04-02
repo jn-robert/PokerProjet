@@ -687,8 +687,10 @@ Game.prototype.exit = function (playerName) {
         }
     }
 
-    if (this.listePlayerTable[this.dealer].getPlayerName() === playerName) {
-        this.dealer = (this.dealer+1)%this.listePlayerTable.length;
+    for (let i = 0; i < this.listePlayerTable.length; i++) {
+        if (this.listePlayerTable[i].getPlayerName() === playerName) {
+            this.listePlayerTable.splice(i, 1);
+        }
     }
 
     for (let i = 0; i < this.listePlayerGame.length; i++) {
@@ -697,9 +699,7 @@ Game.prototype.exit = function (playerName) {
         }
     }
 
-    for (let i = 0; i < this.listePlayerTable.length; i++) {
-        if (this.listePlayerTable[i].getPlayerName() === playerName) {
-            this.listePlayerTable.splice(i, 1);
-        }
-    }
+    this.dealer = (this.dealer)%this.listePlayerTable.length;
+
+
 };
