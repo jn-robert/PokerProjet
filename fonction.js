@@ -35,6 +35,7 @@ function nav(){
 
 
 function begin() {
+    console.log("begin");
     document.getElementsByClassName("BeforeGame")[0].style.display = "none";
     document.getElementsByClassName("Game")[0].style.display = "none";
     document.getElementById("tablejoinpart").style.display = "none";

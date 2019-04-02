@@ -20,8 +20,10 @@
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"><link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                <ul class="nav navbar-nav">
+                    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+                    <li class="active"><a href="home.html"><span class="glyphicon glyphicon-home"
+                                                                 aria-hidden="true"></span> Home</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav">
@@ -29,12 +31,15 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li><a href="stats.html" id="stat"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistique</a>
+                    <li><a href="stats.html" id="stat"><span class="glyphicon glyphicon-stats"
+                                                             aria-hidden="true"></span> Statistique</a>
                     </li>
                 </ul>
                 <div class="navConnected">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><div><span id="navMessage"></span></div></li>
+                        <li>
+                            <div><span id="navMessage"></span></div>
+                        </li>
                         <li><a data-toggle="modal" data-target="#loginModal" onclick="logout()"><span
                                 class="glyphicon glyphicon-log-in"></span> se deconnecter</a></li>
                     </ul>
@@ -64,26 +69,30 @@
             <h4>Creer une partie</h4>
             <table class="table">
                 <tr>
-                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">Nombre de jetons</td>
                     <td scope="col">Action</td>
                 </tr>
                 <tr>
                     <td><input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required></td>
-                    <td><button id="new">Nouvelle partie</button></td>
+                    <td>
+                        <button id="new">Nouvelle partie</button>
+                    </td>
                 </tr>
             </table>
             <br><br>
             <h4>Rejoindre une partie</h4>
             <table class="table">
                 <tr>
-                    <td scope="col">Nombre de jetons </td>
+                    <td scope="col">Nombre de jetons</td>
                     <td scope="col">ID de la partie</td>
                     <td scope="col">Action</td>
                 </tr>
                 <tr>
                     <td><input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required></td>
                     <td><select id="select"></select></td>
-                    <td><button id="join">Rejoindre une partie</button></td>
+                    <td>
+                        <button id="join">Rejoindre une partie</button>
+                    </td>
                 </tr>
             </table>
             <br><br>
@@ -92,7 +101,7 @@
             <table id="tablePartie" class="table">
                 <tr>
                     <td scope="col">ID de la partie</td>
-                    <td scope="col">Nombre de joueurs </td>
+                    <td scope="col">Nombre de joueurs</td>
                 </tr>
             </table>
         </div>
@@ -103,92 +112,104 @@
 <div class="Game">
     <div class="gameBoard" style="display: none;">
         <div class="leftScreen">
-        <h4 style="margin-left: 2%;" id="userHello"></h4>
-        <h5 style="margin-left: 3%; color: red;" id="turn">En attente d'aversaire</h5>
-        <div class="splitScreen leftScreen">
-            <div>
-                <div class="elementTable">
-                    <img src="image/table.jpg" id="image">
-                    <div id="T1">
-                        <img id="cartetapis5" name=T1 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="T2">
-                        <IMG id="cartetapis4" name=T2 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="T3">
-                        <IMG id="cartetapis3" name=T3 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="T4">
-                        <IMG id="cartetapis2" name=T4 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="T5">
-                        <IMG id="cartetapis1" name=T5 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur1">
-                        <IMG SRC="image/dos.png" name=CarteJoueur1 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur2">
-                        <IMG SRC="image/dos.png" name=CarteJoueur2 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur3" hidden="">
-                        <IMG SRC="image/dos2.png" name=CarteJoueur3 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur4" hidden="">
-                        <IMG SRC="image/dos2.png" name=CarteJoueur4 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur5" hidden="">
-                        <IMG SRC="image/dos2.png" name=CarteJoueur5 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur6" hidden="">
-                        <IMG SRC="image/dos2.png" name=CarteJoueur6 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur7" hidden="">
-                        <IMG SRC="image/dos.png" name=CarteJoueur7 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="CarteJoueur8" hidden="">
-                        <IMG SRC="image/dos.png" name=CarteJoueur8 style="height: 100%; width: 100%;">
-                    </div>
-                    <div id="texte">
-                        <div style="height: auto; width: auto"><label id="label0" style="height: auto; width: 50%; font-size: 11px;">0</label><img src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
+            <h4 style="margin-left: 2%;" id="userHello"></h4>
+            <h5 style="margin-left: 3%; color: red;" id="turn">En attente d'aversaire</h5>
+            <div class="splitScreen leftScreen">
+                <div>
+                    <div class="elementTable">
+                        <img src="image/table.jpg" id="image">
+                        <div id="T1">
+                            <img id="cartetapis5" name=T1 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="T2">
+                            <IMG id="cartetapis4" name=T2 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="T3">
+                            <IMG id="cartetapis3" name=T3 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="T4">
+                            <IMG id="cartetapis2" name=T4 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="T5">
+                            <IMG id="cartetapis1" name=T5 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur1">
+                            <IMG SRC="image/dos.png" name=CarteJoueur1 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur2">
+                            <IMG SRC="image/dos.png" name=CarteJoueur2 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur3" hidden="">
+                            <IMG SRC="image/dos2.png" name=CarteJoueur3 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur4" hidden="">
+                            <IMG SRC="image/dos2.png" name=CarteJoueur4 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur5" hidden="">
+                            <IMG SRC="image/dos2.png" name=CarteJoueur5 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur6" hidden="">
+                            <IMG SRC="image/dos2.png" name=CarteJoueur6 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur7" hidden="">
+                            <IMG SRC="image/dos.png" name=CarteJoueur7 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="CarteJoueur8" hidden="">
+                            <IMG SRC="image/dos.png" name=CarteJoueur8 style="height: 100%; width: 100%;">
+                        </div>
+                        <div id="texte">
+                            <div style="height: auto; width: auto"><label id="label0"
+                                                                          style="height: auto; width: 50%; font-size: 11px;">0</label><img
+                                    src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
+                            </div>
+                        </div>
+                        <div id="texte2" hidden="">
+                            <div style="height: auto; width: auto"><label id="label2"
+                                                                          style="height: auto; width: 50%; font-size: 11px;">0</label><img
+                                    src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
+                            </div>
+                        </div>
+                        <div id="texte3" hidden="">
+                            <div style="height: auto; width: auto"><label id="label1"
+                                                                          style="height: auto; width: 50%; font-size: 11px;">0</label><img
+                                    src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
+                            </div>
+                        </div>
+                        <div id="texte5" hidden="">
+                            <div style="height: auto; width: auto"><label id="label3"
+                                                                          style="height: auto; width: 50%; font-size: 11px;">0</label><img
+                                    src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
+                            </div>
+                        </div>
+                        <div id="texte4">
+                            <div style="height: auto; width: auto"><span id="pot"
+                                                                         style="height: auto; width: 50%; font-size: 11px;">0</span><img
+                                    src="image/pot.png" style="height: auto; width: 50%; vertical-align:middle;"></div>
+                        </div>
+                        <div id="texteGagnant"
+                             style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
+                            <p align=center><label id="gagnant"></label></p>
                         </div>
                     </div>
-                    <div id="texte2" hidden="">
-                        <div style="height: auto; width: auto"><label id="label2" style="height: auto; width: 50%; font-size: 11px;">0</label><img src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
-                        </div>
-                    </div>
-                    <div id="texte3" hidden="">
-                        <div style="height: auto; width: auto"><label id="label1" style="height: auto; width: 50%; font-size: 11px;">0</label><img src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
-                        </div>
-                    </div>
-                    <div id="texte5" hidden="">
-                        <div style="height: auto; width: auto"><label id="label3" style="height: auto; width: 50%; font-size: 11px;">0</label><img src="image/jeton2.png" style="height: auto; width: 50%; vertical-align:middle;">
-                        </div>
-                    </div>
-                    <div id="texte4">
-                        <div style="height: auto; width: auto"><span id="pot" style="height: auto; width: 50%; font-size: 11px;">0</span><img src="image/pot.png" style="height: auto; width: 50%; vertical-align:middle;"></div>
-                    </div>
-                    <div id="texteGagnant"
-                         style="top:170px; left: 500px; border: 0px;visibility:visible;position:absolute">
-                        <p align=center><label id="gagnant"></label></p>
-                    </div>
+                    <button id="all-in" class="bouton1">all-in</button>
+                    <button id="check" class="bouton1">check</button>
+                    <button id="suivre" class="bouton1">suivre</button>
+                    <button id="raise" class="bouton1">relancer</button>
+                    <button id="coucher" class="bouton1">se coucher</button>
+                    <button id="exit" class="bouton2">quitter table</button>
                 </div>
-                <button id="all-in" class="bouton1">all-in</button>
-                <button id="check" class="bouton1">check</button>
-                <button id="suivre" class="bouton1">suivre</button>
-                <button id="raise" class="bouton1">relancer</button>
-                <button id="coucher" class="bouton1">se coucher</button>
-                <button id="exit" class="bouton2">quitter table</button>
             </div>
-        </div>
-        <div class="splitScreen rightScreen">
-            <h4 style="position: center;">Chat :</h4>
-            <div class="chat" id="chatScroll">
-                <div class="message" ></div>
-                <span id="date"></span>
-            </div>
-            <div>
-                <input style="width:34%" type="text" name="message" id="message"  placeholder="Une mauvaise pioche faite le savoir" autofocus/>
-                <input style="width: 9%;" type="submit" id="envoi_message" value="Send" onclick=""/>
+            <div class="splitScreen rightScreen">
+                <h4 style="position: center;">Chat :</h4>
+                <div class="chat" id="chatScroll">
+                    <div class="message"></div>
+                    <span id="date"></span>
+                </div>
+                <div>
+                    <input style="width:34%" type="text" name="message" id="message"
+                           placeholder="Une mauvaise pioche faite le savoir" autofocus/>
+                    <input style="width: 9%;" type="submit" id="envoi_message" value="Send" onclick=""/>
+                </div>
             </div>
         </div>
     </div>
@@ -204,5 +225,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="Game.js"></script>
+
+
 </body>
 </html>
