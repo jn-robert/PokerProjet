@@ -543,7 +543,10 @@ function init() {
                 var start = new Date();
 
                 $('.message').append('<p ><strong><span id="hour">' +'['+start.getHours() + ":" + start.getMinutes()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': ' + data.message + '</p>');
-                $("#message").text("test");
+                $("#message").remove();
+                $("#messageEmplacement").append('<input style="width:100%" type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" autofocus/>');
+
+
 
                 var elmnt = document.getElementById("chatScroll");
                 elmnt.scrollTop = elmnt.scrollHeight;
