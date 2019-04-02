@@ -403,6 +403,7 @@ function init() {
         /*
         document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
+        document.getElementById('texte2').innerHTML = data.jetons2 + con" jetons";
         */
         let cartes;
         let jetons;
@@ -524,10 +525,13 @@ function init() {
         // console.log(roomId);
 
         if (room === `${data.room}`) {
-            date();
-            $('.message').append('<p><strong>' + data.pseudo + '</strong> ' + data.message + '</p>');
-            var elmnt = document.getElementById("chatScroll");
-            elmnt.scrollTop = elmnt.scrollHeight;
+            if (data.message != "") {
+                var start = new Date();
+                date();
+                $('.message').append('<p><strong>'+ data.pseudo +' le '+  start.getDate() + "/" + start.getMonth() + "/" + start.getFullYear() + " à " + start.getHours() + ":" + start.getMinutes()+'</strong> '+ ' : ' + data.message + '</p>');
+                var elmnt = document.getElementById("chatScroll");
+                elmnt.scrollTop = elmnt.scrollHeight;
+            }
         }
     });
 
