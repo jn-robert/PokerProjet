@@ -29,8 +29,8 @@ CREATE TABLE classement (
 	idPlayer INT,
 	class INT,
 	PRIMARY KEY(idPartie, idPlayer),
-	CONSTRAINT fkClassPartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie),
-	CONSTRAINT fkClassPlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer)
+	CONSTRAINT fkClassPartie FOREIGN KEY (idPartie) REFERENCES partie(idPartie),
+	CONSTRAINT fkClassPlayer FOREIGN KEY (idPlayer) REFERENCES player(idPlayer)
 );
 
 CREATE TABLE mise (
@@ -38,8 +38,8 @@ CREATE TABLE mise (
 	idPartie INT,
 	mise INT,
 	PRIMARY KEY(idPlayer, idPartie),
-	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer),
-	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
+	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES player(idPlayer),
+	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES partie(idPartie)
 );
 
 CREATE TABLE gain (
@@ -47,8 +47,8 @@ CREATE TABLE gain (
 	idPlayer INT,
 	gain INT,
 	PRIMARY KEY(idPlayer, idPartie),
-	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer),
-	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
+	CONSTRAINT fkGainPlayer FOREIGN KEY (idPlayer) REFERENCES player(idPlayer),
+	CONSTRAINT fkGainPartie FOREIGN KEY (idPartie) REFERENCES partie(idPartie)
 );
 
 CREATE TABLE action (
@@ -59,8 +59,8 @@ CREATE TABLE action (
 	nbFold INT,
 	nbRaise INT,
 	PRIMARY KEY(idPlayer, idPartie),
-	CONSTRAINT fkMisePlayer FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer),
-	CONSTRAINT fkMisePartie FOREIGN KEY (idPartie) REFERENCES Partie(idPartie)
+	CONSTRAINT fkActionPlayer FOREIGN KEY (idPlayer) REFERENCES player(idPlayer),
+	CONSTRAINT fkActionPartie FOREIGN KEY (idPartie) REFERENCES partie(idPartie)
 );
 
 INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, 'j1Name', 'j1', 'Joueur1', '0000', '2019-03-01', '100'), (NULL, 'j2Name', 'j2', 'Joueur2', '0000', '2019-03-01', '100');
