@@ -40,7 +40,7 @@ function getCookie(name) {
 
 function setCookie(name, value, days) {
     var d = new Date;
-    d.setTime(d.getTime() + 24*60*60*1000*days);
+    d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
     document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
 
@@ -58,7 +58,7 @@ function login() {
             errorNom.innerText = "";
             errorPwd.innerText = "";
 
-            socket.emit('checkUserLogin',{pseudo:pseudo, pwd:pass});
+            socket.emit('checkUserLogin', {pseudo: pseudo, pwd: pass});
 
             socket.on('loginSucces', (data) => {
                 nameUser = data.pseudo;
@@ -66,20 +66,17 @@ function login() {
                 window.location.href = "home.html";
             });
 
-        }
-        else {
-            if(pseudo !== ""){
+        } else {
+            if (pseudo !== "") {
                 errorNom.innerText = "";
-            }
-            else{
+            } else {
                 errorNom.innerText = "veuillez entrez un nom";
                 errorNom.style.color = "red";
                 errorNom.style.fontSize = "11px";
             }
-            if (pass !== ""){
+            if (pass !== "") {
                 errorPwd.innerText = "";
-            }
-            else{
+            } else {
                 errorPwd.innerText = "veuillez entrez un mdp";
                 errorPwd.style.color = "red";
                 errorPwd.style.fontSize = "11px";
@@ -92,7 +89,7 @@ function login() {
 }
 
 
-function register(){
+function register() {
     $(document).ready(function () {
         var nom = $("#nameRegister").val();
         var prenom = $("#prenom").val();
@@ -129,12 +126,11 @@ function register(){
                 document.getElementById("errorPass").style.color = "red";
 
                 return false;
-            }
-            else {
+            } else {
                 document.getElementById("errorPass").innerHTML = "";
                 document.getElementById("errorPass").style.color = "white";
 
-                socket.emit('createNewUSer',{nomUser:nom, prenom:prenom, pseudo:pseudo, pass: pass});
+                socket.emit('createNewUSer', {nomUser: nom, prenom: prenom, pseudo: pseudo, pass: pass});
 
                 socket.on('RegisterSucces', (dat) => {
                     nameUser = dat.pseudo;
@@ -143,46 +139,40 @@ function register(){
                 });
             }
 
-        }
-        else {
+        } else {
 
             if (nom == "") {
                 document.getElementById("errorNom").innerHTML = "veuillez saisir le nom";
                 document.getElementById("errorNom").style.color = "red";
-            }
-            else {
+            } else {
                 document.getElementById("errorNom").innerHTML = "";
                 document.getElementById("errorNom").style.color = "white";
             }
             if (prenom == "") {
                 document.getElementById("errorPrenom").innerHTML = "veuillez saisir le pseudo";
                 document.getElementById("errorPrenom").style.color = "red";
-            }
-            else {
+            } else {
                 document.getElementById("errorPrenom").innerHTML = "";
                 document.getElementById("errorPrenom").style.color = "white";
             }
             if (pseudo == "") {
                 document.getElementById("errorPseudo").innerHTML = "veuillez saisir le pseudo";
                 document.getElementById("errorPseudo").style.color = "red";
-            }
-            else {
+            } else {
                 document.getElementById("errorPseudo").innerHTML = "";
                 document.getElementById("errorPseudo").style.color = "white";
             }
             if (pass == "") {
                 document.getElementById("errorPas").innerHTML = "veuillez saisir le password";
                 document.getElementById("errorPas").style.color = "red";
-            }
-            else {
+            } else {
                 document.getElementById("errorPas").innerHTML = "";
                 document.getElementById("errorPas").style.color = "white";
             }
             if (secondPassword == "") {
                 document.getElementById("errorPass").innerHTML = "veuillez saisir le SecondPassword";
                 document.getElementById("errorPass").style.color = "red";
-            }
-            else {
+            } else {
                 document.getElementById("errorPass").innerHTML = "";
                 document.getElementById("errorPass").style.color = "white";
             }
@@ -303,7 +293,6 @@ function init() {
     let player;
     let game;
     let room;
-
 
 
     // const socket = io.connect('myip:5000');
@@ -537,7 +526,7 @@ function init() {
         // socket.leave(data.room);
         const roomId = $('#room').val();
         socket.emit("exit", {room: roomId, playerName: player.name});
-        location.reload(); //retourne a la page d'accueil du jeu
+        window.location.href = "game.html"; //retourne a la page d'accueil du jeu
     });
 
     $('#envoi_message').on('click', () => {
@@ -561,9 +550,9 @@ function init() {
     socket.on('partieJoueur', (data) => {
         var test = data.tab;
         for (var i = 0; i < test.length; i++) {
-            $("#select").append("<option value=\""+test[i].idPartie+"\">" + test[i].idPartie + "</option>");
+            $("#select").append("<option value=\"" + test[i].idPartie + "\">" + test[i].idPartie + "</option>");
             $("#tablePartie").append(
-                "<tr>"+
+                "<tr>" +
                 "<td>" + test[i].idPartie + "</td>" +
                 "<td>" + test[i].nbJoueur + "</td>" +
                 "</tr>"
@@ -705,7 +694,6 @@ function init() {
             }
 
 
-
             //affichage des variables
 
             document.getElementById('turn').innerHTML = message;
@@ -741,7 +729,14 @@ function init() {
             console.log(data.vainqueur);
             document.getElementById('texteGagnant').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
             // console.log(data.combiVainq);
-            socket.emit('continueGame', {playerName: player.name});
+            if (jetons <= 0) {
+                const roomId = $('#room').val();
+                socket.emit("exit", {room: roomId, playerName: player.name});
+                window.location.href = "game.html";
+            }
+            // else {
+                socket.emit('continueGame', {playerName: player.name});
+            // }
             // const roomID = $('#room').val();
             // socket.emit('start', {room: roomID, playerName: player.name});
         }
