@@ -489,13 +489,11 @@ function init() {
     $('#check').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('check', {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "check"});
     });
 
     $('#suivre').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('suivre', {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "suivre"});
 
     });
 
@@ -504,7 +502,6 @@ function init() {
         var mise = prompt("Veuillez entrer votre mise:");
         if (mise !== null && mise !== "") {
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
-            socket.emit('messageAction', {room: roomId, playerName: player.name, action: "raise"});
         }else{
 
         }
@@ -514,14 +511,12 @@ function init() {
     $('#all-in').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('all-in', {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "all-in"});
 
     });
 
     $('#coucher').on('click', () => {
         const roomId = $('#room').val();
         socket.emit('coucher', {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "fold"});
 
     });
 
@@ -529,7 +524,6 @@ function init() {
         // socket.leave(data.room);
         const roomId = $('#room').val();
         socket.emit("exit", {room: roomId, playerName: player.name});
-        socket.emit('messageAction', {room: roomId, playerName: player.name, action: "exit"});
         window.location.href = "game.html"; //retourne a la page d'accueil du jeu
 
     });
