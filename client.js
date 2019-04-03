@@ -652,13 +652,6 @@ function init() {
             document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
         }
 
-        if(data.actionPrecedente === "exit"){
-            document.getElementById("messageGameJoin").style.color = "red";
-            document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
-        }
-
-
-
 
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
@@ -857,5 +850,42 @@ function init() {
             document.getElementById("messageGameAction").style.color = "red";
             document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
         }
+
+        if(data.actionPrecedente === "exit") {
+            document.getElementById("messageGameJoin").style.color = "red";
+            document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
+            console.log(data.indexPlayerLeave);
+            for (let i = 0; i < data.nbJoueurs; i++) {
+                if (data.nbJoueurs + 1 === 1) {
+                    document.getElementById('label2').innerHTML = "";
+                    document.jetonJoueur2.style.display = "none";
+                    document.CarteJoueur3.style.display = "none";
+                    document.CarteJoueur4.style.display = "none";
+                }
+                if (data.nbJoueurs + 1 === 2) {
+                    document.getElementById('label2').innerHTML = "";
+                    document.jetonJoueur2.style.display = "none";
+                    document.CarteJoueur3.style.display = "none";
+                    document.CarteJoueur4.style.display = "none";
+                }
+                if (data.nbJoueurs + 1 === 3) {
+                    document.getElementById('label1').innerHTML = "";
+                    document.jetonJoueur3.style.display = "none";
+                    document.CarteJoueur5.style.display = "none";
+                    document.CarteJoueur6.style.display = "none";
+                }
+                if (data.nbJoueurs + 1 === 4) {
+                    document.getElementById('label3').innerHTML = "";
+                    document.jetonJoueur4.style.display = "none";
+                    document.CarteJoueur7.style.display = "none";
+                    document.CarteJoueur8.style.display = "none";
+
+                }
+
+            }
+
+        }
+
+
     });
 }

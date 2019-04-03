@@ -32,16 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-/*    host: 'serveurmysql',
+    host: 'serveurmysql',
     database: 'BDD_tnormant',
     user: 'tnormant',
     port: '3306',
-    password: '1708',*/
-    host: 'localhost',
+    password: '1708',
+/*    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',
+    password: '',*/
 });
 
 con.connect((err) => {
@@ -824,6 +824,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('exit', (data) => {
+        let indexJoueurLeave;
+        for (let i = 0; i < game.listePlayerTable.length; i++) {
+            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                indexJoueurLeave = i;
+            }
+        }
         game.exit(data.playerName);
         if (game.listePlayerTable.length >= 1) {
             con.query("UPDATE partie SET nbJoueur = nbJoueur - 1 WHERE idPartie=" + `${rooms}`, (err, rows) => {
@@ -908,7 +914,8 @@ io.on('connection', (socket) => {
                 cartes: listeCartes,
                 cartesTapis: game.getTapis(),
                 actionPrecedente: "exit",
-                playerName: data.playerName
+                playerName: data.playerName,
+                indexPlayerLeave: indexJoueurLeave
             });
         }
     });
