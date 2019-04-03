@@ -636,6 +636,17 @@ function init() {
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             var message;
+
+            if(data.actionPrecedente === "raise"){
+                document.getElementById("messageGameRaise").style.color = "red";
+                document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé(e) : " + data.miseEnCours;
+            }
+            else{
+                document.getElementById("messageGameRaise").style.color = "red";
+                document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
+            }
+
+
             if (data.currentTurn === player.name) {
 
                 let cartes = null;
@@ -793,8 +804,8 @@ function init() {
             document.T3.src = "image/dos.png";
             document.T4.src = "image/dos.png";
             document.T5.src = "image/dos.png";
-            document.getElementById('messageGameAction').style.color = "black";
-            document.getElementById('messageGameAction').innerHTML = "En attente d'une action...";
+            document.getElementById("messageGameAction").style.color = "red";
+            document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
         }
     });
 }

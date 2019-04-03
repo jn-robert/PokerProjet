@@ -497,7 +497,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
-            playerName: data.playerName
+            playerName: data.playerName,
+            miseEnCours: data.miseJeton
 
 
         });
@@ -516,8 +517,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
-            playerName: data.playerName
-
+            playerName: data.playerName,
+            miseEnCours: data.miseJeton
 
         });
     });
