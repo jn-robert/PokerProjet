@@ -32,16 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-        host: 'serveurmysql',
-        database: 'BDD_tnormant',
-        user: 'tnormant',
-        port: '3306',
-        password: '1708',
-/*    host: 'localhost',
+    /*host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
+    port: '3306',
+    password: '1708',*/
+    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',*/
+    password: '',
 });
 
 con.connect((err) => {
@@ -176,10 +176,15 @@ io.on('connection', (socket) => {
      */
     socket.on('callPartie', function () {
 
+        let nbJoueurs = 0;
+        if (game !== undefined) {
+            nbJoueurs = game.listePlayerTable.length;
+        }
         con.query('SELECT * FROM partie', (err, rows) => {
             if (err) throw err;
             socket.emit('partieJoueur', {
-                tab: rows
+                tab: rows,
+                nbJoueurs: nbJoueurs
             });
         });
     });
@@ -705,7 +710,7 @@ io.on('connection', (socket) => {
             listeCartes[i] = game.listePlayerGame[i].getMain();
             listeNoms[i] = game.listePlayerGame[i].getPlayerName();
             listeJetons[i] = game.listePlayerGame[i].getJetons();
-            console.log("jetons : "+game.listePlayerTable[i].getJetons());
+            console.log("jetons : " + game.listePlayerTable[i].getJetons());
         }
 
         let name = "";
@@ -860,14 +865,13 @@ io.on('connection', (socket) => {
             }
         }
         game.exit(data.playerName);
-        console.log("taille table : "+game.listePlayerTable.length);
-        if (game.listePlayerTable.length >= 1) {
-            con.query("UPDATE partie SET nbJoueur = "+game.listePlayerTable.length+" WHERE idPartie=" + `${rooms}`, (err, rows) => {
+        console.log("taille table : " + game.listePlayerTable.length);
+            con.query("UPDATE partie SET nbJoueur = " + game.listePlayerTable.length + " WHERE idPartie=" + `${rooms}`, (err, rows) => {
                 if (err) throw err;
             });
             con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
                 if (err) throw err;
-                if (rows[0].nbJoueur == 0) {
+                if (rows[0].nbJoueur === 0) {
                     con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
                         if (err) throw err;
                     });
@@ -912,50 +916,29 @@ io.on('connection', (socket) => {
                 game.distribGains(name);
             }
 
-            // socket.emit('resultAction', {
-            //     vainqueur: name,
-            //     combiVainq: combi,
-            //     tasHaut: game.tasHaut,
-            //     jetonsRecolt: game.getRecoltJetons(),
-            //     choixJoueurs: game.actionPrec,
-            //     currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-            //     tour: game.getTour(),
-            //     pot: game.pot,
-            //     nbJoueurs: game.listePlayerGame.length,
-            //     name: listeNoms,
-            //     jetons: listeJetons,
-            //     cartes: listeCartes,
-            //     cartesTapis: game.getTapis()
-            // });
-
-
-            socket.broadcast.emit('resultAction', {
-                vainqueur: name,
-                combiVainq: combi,
-                tasHaut: game.tasHaut,
-                jetonsRecolt: game.getRecoltJetons(),
-                choixJoueurs: game.actionPrec,
-                currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-                tour: game.getTour(),
-                pot: game.pot,
-                nbJoueurs: game.listePlayerGame.length,
-                name: listeNoms,
-                jetons: listeJetons,
-                cartes: listeCartes,
-                cartesTapis: game.getTapis(),
-                actionPrecedente: "exit",
-                playerName: data.playerName,
-                indexPlayerLeave: indexJoueurLeave,
-                nbJoueursTable: game.listePlayerTable.length
-            });
-        } else {
-            con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                if (err) throw err;
-            });
-        }
+            if (game.listePlayerTable.length > 0) {
+                socket.broadcast.emit('resultAction', {
+                    vainqueur: name,
+                    combiVainq: combi,
+                    tasHaut: game.tasHaut,
+                    jetonsRecolt: game.getRecoltJetons(),
+                    choixJoueurs: game.actionPrec,
+                    currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
+                    tour: game.getTour(),
+                    pot: game.pot,
+                    nbJoueurs: game.listePlayerGame.length,
+                    name: listeNoms,
+                    jetons: listeJetons,
+                    cartes: listeCartes,
+                    cartesTapis: game.getTapis(),
+                    actionPrecedente: "exit",
+                    playerName: data.playerName,
+                    indexPlayerLeave: indexJoueurLeave,
+                    nbJoueursTable: game.listePlayerTable.length
+                });
+            }
     });
 
-    let compteurExit = 0;
     socket.on('exit2', (data) => {
         if (game.listePlayerGame.length === 0) {
             con.query("UPDATE player SET jetons = jetons + " + data.jetonP + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
@@ -1033,22 +1016,6 @@ io.on('connection', (socket) => {
             test: true
         });
 
-        // socket.emit('resultAction', {
-        //     vainqueur: name,
-        //     combiVainq: combi,
-        //     tasHaut: game.tasHaut,
-        //     jetonsRecolt: game.getRecoltJetons(),
-        //     choixJoueurs: game.actionPrec,
-        //     currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-        //     tour: game.getTour(),
-        //     pot: game.pot,
-        //     nbJoueurs: game.listePlayerGame.length,
-        //     name: listeNoms,
-        //     jetons: listeJetons,
-        //     cartes: listeCartes,
-        //     cartesTapis: game.getTapis()
-        // });
-
 
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -1069,91 +1036,7 @@ io.on('connection', (socket) => {
             indexPlayerLeave: indexJoueurLeave,
             nbJoueursTable: game.listePlayerTable.length
         });
-    // }
-
-
-    /*let listeJetons2 = [];
-    for (let i = 0; i < game.listePlayerGame.length; i++) {
-        listeJetons2[i] = game.listePlayerGame[i].getJetons();
-        if (game.listePlayerGame[i].getPlayerName() == data.playerName) {
-            con.query("UPDATE player SET jetons = jetons + " + listeJetons2[i] + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
-                if (err) throw err;
-            });
-        }
-    }
-    console.log("quit");
-    game.exit(data.playerName);
-    if (game.listePlayerTable.length >= 1) {
-        con.query("UPDATE partie SET nbJoueur = nbJoueur-1 WHERE idPartie=" + `${rooms}`, (err, rows) => {
-            if (err) throw err;
-        });
-        compteurExit = 0;
-
-        con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-            if (err) throw err;
-            if (rows[0].nbJoueur == 0) {
-                con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                    if (err) throw err;
-                });
-            }
-        });
-        let idJoueurCurrentBooleanTour = 0;
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
-            }
-        }
-
-        let listeCartes = [];
-        let listeNoms = [];
-        let listeJetons = [];
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            listeCartes[i] = game.listePlayerGame[i].getMain();
-            listeNoms[i] = game.listePlayerGame[i].getPlayerName();
-            listeJetons[i] = game.listePlayerGame[i].getJetons();
-        }
-
-        let name = "";
-        let highestIndex = 0;
-        let combi = "";
-        highestIndex = game.evalCarte();
-        if (game.listePlayerGame.length === 1) {
-            highestIndex = game.evalCarte();
-            name = game.afficheJoueurName(highestIndex);
-            combi = game.evalCards[highestIndex].handName;
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-        } else if (game.tour > 5) {
-            if (highestIndex < game.listePlayerGame.length) {
-                name = game.afficheJoueurName(highestIndex);
-                combi = game.evalCards[highestIndex].handName;
-            } else {
-                name = "egalite";
-            }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-        }
-
-        socket.emit('exit2r', {
-            test: true
-        });
-
-
-        socket.broadcast.emit('resultAction', {
-            vainqueur: name,
-            combiVainq: combi,
-            tasHaut: game.tasHaut,
-            jetonsRecolt: game.getRecoltJetons(),
-            choixJoueurs: game.actionPrec,
-            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-            tour: game.getTour(),
-            pot: game.pot,
-            nbJoueurs: game.listePlayerGame.length,
-            name: listeNoms,
-            jetons: listeJetons,
-            cartes: listeCartes,
-            cartesTapis: game.getTapis()
-        });
-    }*/
-});
+    });
 })
 ;
 
