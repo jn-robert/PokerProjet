@@ -32,7 +32,7 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-/*    host: 'serveurmysql',
+    /*host: 'serveurmysql',
     database: 'BDD_tnormant',
     user: 'tnormant',
     port: '3306',
@@ -808,11 +808,11 @@ io.on('connection', (socket) => {
                 if (err) throw err;
             });
         } else {
-        listeJetons = [];
+        let listeJetons2 = [];
             for (let i = 0; i < game.listePlayerGame.length; i++) {
-                listeJetons[i] = game.listePlayerGame[i].getJetons();
+                listeJetons2[i] = game.listePlayerGame[i].getJetons();
                 if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
-                    con.query("UPDATE player SET jetons = jetons + " + listeJetons[i] + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    con.query("UPDATE player SET jetons = jetons + " + listeJetons2[i] + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
                         if (err) throw err;
                     });
                 }
@@ -915,11 +915,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on('exit2', (data) => {
-        listeJetons = []
+        let listeJetons2 = [];
         for (let i = 0; i < game.listePlayerGame.length; i++) {
-            listeJetons[i] = game.listePlayerGame[i].getJetons();
+            listeJetons2[i] = game.listePlayerGame[i].getJetons();
             if (game.listePlayerGame[i].getPlayerName() == data.playerName){
-                con.query("UPDATE player SET jetons = jetons + "+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                con.query("UPDATE player SET jetons = jetons + "+ listeJetons2[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
                     if (err) throw err;
                 });
             }

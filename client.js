@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect('http://localhost:5000'); // 172.20.178.95
 var nameUser;
 
 
