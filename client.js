@@ -275,13 +275,10 @@ function init() {
 
     // const socket = io.connect('myip:5000');
     // Create a new game. Emit newGame event.
-    $('#new').on('click', () => {
+
+    $("#formNew").submit(function(event) {
         const jeton = $('#jetonNew').val();
         const roomId = $('#room').val();
-        if (!jeton || jeton < 100) {
-            alert('Nombre de jetons incorrecte');
-            return;
-        }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
         socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
         $(window).on('unload', function () {
@@ -290,14 +287,10 @@ function init() {
     });
 
     // Join an existing game on the entered roomId. Emit the joinGame event.
-    $('#join').on('click', () => {
+    $("#formJoin").submit(function(event) {
         const roomID = $('#select').val();
         const jeton = $('#jetonNewJoin').val();
         const roomId = $('#room').val();
-        if (!roomID || !jeton || jeton < 100) {
-            alert('Nombre de jetons incorrecte.');
-            return;
-        }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
         socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
         socket.emit('messageGameExit', {room: roomId, playerName: player.name, action: "join"});
