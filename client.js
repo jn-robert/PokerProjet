@@ -502,21 +502,8 @@ function init() {
             document.getElementById('coucher').style.display = "none";
         }
 
-        // document.getElementById('start').disabled = true;
-        // //desactive les boutons tant que l'autre joueur n'a pas joué
-        // document.getElementById('all-in').disabled = !data.booleanCurrentTurn;
-        // document.getElementById('check').disabled = !data.booleanCurrentTurn;
-        // document.getElementById('suivre').disabled = true;
-        // document.getElementById('raise').disabled = !data.booleanCurrentTurn;
-        // document.getElementById('coucher').disabled = !data.booleanCurrentTurn;
-
         document.getElementById('pot').innerHTML = data.pot;
         document.getElementById('turn').innerHTML = message;
-        /*
-        document.getElementById('texte').innerHTML = data.jetons1 + " jetons";
-        document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
-        document.getElementById('texte2').innerHTML = data.jetons2 + con" jetons";
-        */
 
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
@@ -621,16 +608,13 @@ function init() {
         //     window.location.href = "game.html";
         // }
 
-        console.log(cartes);
+        console.log(jetons);
 
-        if (cartes === undefined) {
+        if (jetons === undefined) {
+            console.log("undefined client");
             const roomId = $('#room').val();
             socket.emit("exit2", {room: roomId, playerName: player.name});
-            socket.on("exit2r", (data)=>{
-                if (data.test) {
-                    window.location.href = "game.html";
-                }
-            });
+
             // window.location.href = "game.html";
         }
 
@@ -644,6 +628,13 @@ function init() {
         document.T5.src = "image/dos.png";
 
 
+    });
+
+    socket.on("exit2r", (data)=>{
+        if (data.test) {
+            console.log("test");
+            window.location.href = "game.html";
+        }
     });
 
     $('#check').on('click', () => {
@@ -665,7 +656,7 @@ function init() {
         const roomId = $('#room').val();
         var mise = prompt("Veuillez entrer votre mise:");
         if (mise !== null && mise !== "" && data.jeton >= mise) {
-            console.log("ok")
+            console.log("ok");
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
         }else{
 

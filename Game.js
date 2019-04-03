@@ -883,17 +883,17 @@ Game.prototype.init = function (petiteBlinde, grosseBlinde) {
     this.reset();
     //console.log(this.cartes);
     // initialisation des blinds
-    for (let i = 0; i < this.listePlayerGame.length; i++) {
-        console.log("joueur " + i + " : " + this.listePlayerGame[i].getAjoue());
-        console.log("");
-    }
+
 
     let test = false;
     for (let i = 0; i < this.listePlayerTable.length; i++) {
         if (this.listePlayerTable[i].getJetons() === 0) {
             this.exit(this.listePlayerTable[i].getPlayerName());
         }
-
+    }
+    for (let i = 0; i < this.listePlayerGame.length; i++) {
+        console.log("joueur " + i + " : " + this.listePlayerGame[i].getAjoue());
+        console.log("");
     }
 
     this.blind(petiteBlinde, grosseBlinde);
