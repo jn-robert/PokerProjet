@@ -658,14 +658,18 @@ function init() {
     });
 
     $('#raise').on('click', () => {
+        socket.emit('raiseVerif', {playerName: player.name});
+    });
+
+    socket.on("raise", (data) => {
         const roomId = $('#room').val();
         var mise = prompt("Veuillez entrer votre mise:");
-        if (mise !== null && mise !== "") {
+        if (mise !== null && mise !== "" && data.jeton >= mise) {
+            console.log("ok")
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
         }else{
 
         }
-
     });
 
     $('#all-in').on('click', () => {
