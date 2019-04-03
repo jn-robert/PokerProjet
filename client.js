@@ -367,6 +367,7 @@ function init() {
         document.getElementById('suivre').style.display = "none";
         document.getElementById('raise').style.display = "none";
         document.getElementById('coucher').style.display = "none";
+
         if (data.nbJoueurs === 2) {
             const roomID = $('#room').val();
             socket.emit('start', {room: roomID, playerName: player.name});
@@ -643,12 +644,16 @@ function init() {
         document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
 
 
-        if(data.actionPrecedente === "raise"){
+        if(data.actionPrecedente === "suivre"){
             document.getElementById("messageGameRaise").style.color = "red";
-            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé(e) : " + data.miseEnCours;
+            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a suivi : " + data.jetonsActuellementMiser;
+        }
+        else if(data.actionPrecedente === "raise"){
+            document.getElementById("messageGameRaise").style.color = "red";
+            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé : " + data.miseEnCours;
         }
         else{
-            document.getElementById("messageGameRaise").style.color = "red";
+            document.getElementById("messageGameRaise").style.color = "black";
             document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
         }
 
