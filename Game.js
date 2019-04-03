@@ -171,10 +171,12 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     // this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
                     this.actionPrec = "raise";
+
                     if (miseMin > this.misePrec) {
                         this.misePrec = miseMin;
                         this.tasHaut = this.misePrec;
                     }
+
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
                             this.listePlayerGame[i].setAjoue(true);
