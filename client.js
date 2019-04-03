@@ -393,8 +393,19 @@ function init() {
 
         if (data.nbJoueurs === 2) {
             const roomID = $('#room').val();
+            document.CarteJoueur3.style.display = "block";
+            document.CarteJoueur4.style.display = "block";
+            document.jetonJoueur2.style.display = "block"
             socket.emit('start', {room: roomID, playerName: player.name});
         }
+
+        if (data.nbJoueurs === 3) {
+            document.CarteJoueur5.style.display = "block";
+            document.CarteJoueur6.style.display = "block";
+            document.jetonJoueur3.style.display = "block"
+        }
+
+
     });
 
     /**
@@ -464,25 +475,49 @@ function init() {
 
                 document.getElementById('label0').innerHTML = jetons;
                 if (i == 0) {
-                    document.getElementById('label2').innerHTML = data.jetons[i + 1];
-                    document.getElementById('label1').innerHTML = data.jetons[i + 2];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                    }
+                    if (data.jetons[i + 2] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                    }
+                    if (data.jetons[i + 3] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    }
                 }
                 if (i == 1) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 1];
-                    document.getElementById('label1').innerHTML = data.jetons[i + 1];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                    }
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                    }
+                    if (data.jetons[i + 2] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    }
                 }
                 if (i == 2) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 2];
-                    document.getElementById('label1').innerHTML = data.jetons[i - 1];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                    if (data.jetons[i - 2] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                    }
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                    }
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                    }
 
                 }
                 if (i == 3) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 3];
-                    document.getElementById('label1').innerHTML = data.jetons[i - 2];
-                    document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                    if (data.jetons[i - 3] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                    }
+                    if (data.jetons[i - 2] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                    }
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                    }
                 }
             }
         }
@@ -599,14 +634,10 @@ function init() {
         socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
-    // socket.on("afficheAction", (data) => {
-    //     document.getElementById("messageGameAction").style.color = "red";
-    //     document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.action;
-    // });
 
     socket.on("afficheGameJoin", (data) => {
         document.getElementById("messageGameJoin").style.color = "red";
-        document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.action;
+        document.getElementById("messageGameJoin").innerText = "Connexion / Deconnexion : " + data.playerName + " a fait l'action : " + data.action;
     });
 
     socket.on('afficheMessage', (data) => {
@@ -691,25 +722,49 @@ function init() {
                 jetons = parseInt(data.jetons[i]);
                 document.getElementById('label0').innerHTML = jetons;
                 if (i == 0) {
-                    document.getElementById('label2').innerHTML = data.jetons[i + 1];
-                    document.getElementById('label1').innerHTML = data.jetons[i + 2];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                    }
+                    if (data.jetons[i + 2] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                    }
+                    if (data.jetons[i + 3] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                    }
                 }
                 if (i == 1) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 1];
-                    document.getElementById('label1').innerHTML = data.jetons[i + 1];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                    }
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                    }
+                    if (data.jetons[i + 2] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                    }
                 }
                 if (i == 2) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 2];
-                    document.getElementById('label1').innerHTML = data.jetons[i - 1];
-                    document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                    if (data.jetons[i - 2] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                    }
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                    }
+                    if (data.jetons[i + 1] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                    }
 
                 }
                 if (i == 3) {
-                    document.getElementById('label2').innerHTML = data.jetons[i - 3];
-                    document.getElementById('label1').innerHTML = data.jetons[i - 2];
-                    document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                    if (data.jetons[i - 3] !== undefined) {
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                    }
+                    if (data.jetons[i - 2] !== undefined) {
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                    }
+                    if (data.jetons[i - 1] !== undefined) {
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                    }
                 }
             }
         }
