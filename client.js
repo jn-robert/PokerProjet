@@ -470,13 +470,15 @@ function init() {
         document.CarteJoueur3.style.display = "block";
         document.CarteJoueur4.style.display = "block";
 
-        if(data.nbJoueurs === 2){
+        console.log(data.nbJoueurs);
+
+        if(data.nbJoueurs === 3){
             document.jetonJoueur3.style.display = "block";
             document.CarteJoueur5.style.display = "block";
             document.CarteJoueur6.style.display = "block";
         }
 
-        if(data.nbJoueurs === 3){
+        if(data.nbJoueurs === 4){
             document.jetonJoueur4.style.display = "block";
             document.CarteJoueur7.style.display = "block";
             document.CarteJoueur8.style.display = "block";
@@ -656,14 +658,18 @@ function init() {
     });
 
     $('#raise').on('click', () => {
+        socket.emit('raiseVerif', {playerName: player.name});
+    });
+
+    socket.on("raise", (data) => {
         const roomId = $('#room').val();
         var mise = prompt("Veuillez entrer votre mise:");
-        if (mise !== null && mise !== "") {
+        if (mise !== null && mise !== "" && data.jeton >= mise) {
+            console.log("ok")
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
         }else{
 
         }
-
     });
 
     $('#all-in').on('click', () => {
