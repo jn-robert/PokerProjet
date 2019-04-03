@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('localhost:5000');
+const socket = io.connect('172.20.178.95:5000');
 let nameUser;
 
 
@@ -771,13 +771,14 @@ function init() {
 
         let cartes;
         let jetons;
-        for (let i = 0; i < data.nbJoueurs; i++) {
+        for (let i = 0; i < data.nbJoueursTable; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
                 jetons = parseInt(data.jetons[i]);
                 document.getElementById('label0').innerHTML = jetons;
                 if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
+                        console.log("jetons i+1 : "+data.jetons[i+1]);
                         document.getElementById('label2').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {

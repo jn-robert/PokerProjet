@@ -32,16 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-        /*host: 'serveurmysql',
+        host: 'serveurmysql',
         database: 'BDD_tnormant',
         user: 'tnormant',
         port: '3306',
-        password: '1708',*/
-    host: 'localhost',
+        password: '1708',
+/*    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',
+    password: '',*/
 });
 
 con.connect((err) => {
@@ -389,7 +389,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "check",
-            playerName: data.playerName
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
         });
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
@@ -406,7 +407,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "check",
-            playerName: data.playerName
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
         });
     });
 
@@ -466,7 +468,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
             playerName: data.playerName,
-            jetonsActuellementMiser: jetonsActuellementMiser
+            jetonsActuellementMiser: jetonsActuellementMiser,
+            nbJoueursTable: game.listePlayerTable.length
 
         });
         socket.broadcast.emit('resultAction', {
@@ -485,7 +488,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
             playerName: data.playerName,
-            jetonsActuellementMiser: jetonsActuellementMiser
+            jetonsActuellementMiser: jetonsActuellementMiser,
+            nbJoueursTable: game.listePlayerTable.length
 
         });
     });
@@ -544,7 +548,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
             playerName: data.playerName,
-            miseEnCours: data.miseJeton
+            miseEnCours: data.miseJeton,
+            nbJoueursTable: game.listePlayerTable.length
 
 
         });
@@ -564,7 +569,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
             playerName: data.playerName,
-            miseEnCours: data.miseJeton
+            miseEnCours: data.miseJeton,
+            nbJoueursTable: game.listePlayerTable.length
 
         });
     });
@@ -650,7 +656,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "all-in",
-            playerName: data.playerName
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
         });
 
         socket.broadcast.emit('resultAction', {
@@ -668,7 +675,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "all-in",
-            playerName: data.playerName
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
 
 
         });
@@ -697,6 +705,7 @@ io.on('connection', (socket) => {
             listeCartes[i] = game.listePlayerGame[i].getMain();
             listeNoms[i] = game.listePlayerGame[i].getPlayerName();
             listeJetons[i] = game.listePlayerGame[i].getJetons();
+            console.log("jetons : "+game.listePlayerTable[i].getJetons());
         }
 
         let name = "";
@@ -738,8 +747,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "coucher",
-            playerName: data.playerName
-
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
 
         });
         socket.broadcast.emit('resultAction', {
@@ -757,7 +766,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "coucher",
-            playerName: data.playerName
+            playerName: data.playerName,
+            nbJoueursTable: game.listePlayerTable.length
 
 
         });
@@ -850,6 +860,7 @@ io.on('connection', (socket) => {
             }
         }
         game.exit(data.playerName);
+        console.log("taille table : "+game.listePlayerTable.length);
         if (game.listePlayerTable.length >= 1) {
             con.query("UPDATE partie SET nbJoueur = "+game.listePlayerTable.length+" WHERE idPartie=" + `${rooms}`, (err, rows) => {
                 if (err) throw err;
@@ -934,7 +945,12 @@ io.on('connection', (socket) => {
                 cartesTapis: game.getTapis(),
                 actionPrecedente: "exit",
                 playerName: data.playerName,
-                indexPlayerLeave: indexJoueurLeave
+                indexPlayerLeave: indexJoueurLeave,
+                nbJoueursTable: game.listePlayerTable.length
+            });
+        } else {
+            con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
+                if (err) throw err;
             });
         }
     });
@@ -1050,7 +1066,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "exit",
             playerName: data.playerName,
-            indexPlayerLeave: indexJoueurLeave
+            indexPlayerLeave: indexJoueurLeave,
+            nbJoueursTable: game.listePlayerTable.length
         });
     // }
 

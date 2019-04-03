@@ -679,6 +679,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
                             for (let j = 0; j < this.listePlayerGame.length; j++) {
                                 if (!this.listePlayerGame[j].getAjoue()) {
                                     testTousJoue = false;
