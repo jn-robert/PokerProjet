@@ -32,7 +32,7 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-/*        host: 'serveurmysql',
+        /*host: 'serveurmysql',
         database: 'BDD_tnormant',
         user: 'tnormant',
         port: '3306',

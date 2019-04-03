@@ -464,6 +464,13 @@ function init() {
 
         console.log(data.nbJoueurs);
 
+        if(data.nbJoueurs === 2){
+            document.jetonJoueur3.style.display = "none";
+            document.CarteJoueur5.style.display = "none";
+            document.CarteJoueur6.style.display = "none";
+        }
+
+
         if(data.nbJoueurs === 3){
             document.jetonJoueur3.style.display = "block";
             document.CarteJoueur5.style.display = "block";
@@ -518,47 +525,47 @@ function init() {
                 document.getElementById('label0').innerHTML = jetons;
                 if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
                     }
                     if (data.jetons[i + 3] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3] +" ("+ data.name[i+3] + ")";
                     }
                 }
                 if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
                     }
                 }
                 if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
 
                 }
                 if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3] +" ("+ data.name[i-3] + ")";
                     }
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                 }
             }
@@ -780,47 +787,47 @@ function init() {
                 document.getElementById('label0').innerHTML = jetons;
                 if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 2];
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
                     }
                     if (data.jetons[i + 3] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 3];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3] +" ("+ data.name[i+3] + ")";
                     }
                 }
                 if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 2];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
                     }
                 }
                 if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 2];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 1];
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
                     }
 
                 }
                 if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 3];
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3] +" ("+ data.name[i-3] + ")";
                     }
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 2];
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i - 1];
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
                     }
                 }
             }
@@ -999,7 +1006,7 @@ function init() {
 
         if(data.actionPrecedente === "exit") {
             document.getElementById("messageGameJoin").style.color = "red";
-            document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
+            document.getElementById("messageGameJoin").innerText = "Connexion / Deconnexion : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
             console.log(data.indexPlayerLeave);
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.nbJoueurs + 1 === 1) {
