@@ -67,7 +67,6 @@
         <div class="menu">
             <h1>Poker</h1>
             <h4>Creer une partie</h4>
-            <form method="#" action="#" id="formNew">
             <table class="table">
                 <tr>
                     <td scope="col">Nombre de jetons</td>
@@ -78,15 +77,12 @@
                     <td><input type="number" min="100" name="name" id="jetonNew" placeholder="Minimum 100" required></td>
                     <td id="jetonDispo"></td>
                     <td>
-                        <input type="submit" value="Rejoindre une partie" id="new">
+                        <button id="new">Nouvelle partie</button>
                     </td>
                 </tr>
             </table>
-            </form>
-
             <br><br>
             <h4>Rejoindre une partie</h4>
-            <form method="#" action="#" id="formJoin">
             <table class="table">
                 <tr>
                     <td scope="col">Nombre de jetons</td>
@@ -97,11 +93,10 @@
                     <td><input type="number" min="100" name="name" id="jetonNewJoin" placeholder="Minimum 100" required></td>
                     <td><select id="select"></select></td>
                     <td>
-                        <input type="submit" value="Rejoindre une partie" id="join">
+                        <button id="join">Rejoindre une partie</button>
                     </td>
                 </tr>
             </table>
-            </form>
             <br><br>
 
             <h4>Liste des parties</h4>
