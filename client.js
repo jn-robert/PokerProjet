@@ -280,7 +280,7 @@ function init() {
         $('#new').on('click', () => {
             const jeton = $('#jetonNew').val();
             const roomId = $('#room').val();
-            if (!jeton || jeton <= 100 || jeton >= data.jeton) {
+            if (!jeton || jeton < 100 || jeton > data.jeton) {
                 alert('Nombre de jetons incorrecte');
                 return;
             }
@@ -295,7 +295,7 @@ function init() {
             const roomID = $('#select').val();
             const jeton = $('#jetonNewJoin').val();
             const roomId = $('#room').val();
-            if (!roomID || !jeton || jeton <= 100 || jeton >= data.jeton) {
+            if (!roomID || !jeton || jeton < 100 || jeton > data.jeton) {
                 alert('Nombre de jetons incorrecte.');
                 return;
             }
