@@ -730,7 +730,7 @@ function init() {
             $("#tablePartie").append(
                 "<tr>" +
                 "<td>" + test[i].idPartie + "</td>" +
-                "<td>" + test[i].nbJoueur + "</td>" +
+                "<td>" + test[i].nbJoueur + "/4 </td>" +
                 "</tr>"
             );
 

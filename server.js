@@ -32,16 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-        host: 'serveurmysql',
+/*        host: 'serveurmysql',
         database: 'BDD_tnormant',
         user: 'tnormant',
         port: '3306',
-        password: '1708',
-/*    host: 'localhost',
+        password: '1708',*/
+    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',*/
+    password: '',
 });
 
 con.connect((err) => {
@@ -234,7 +234,6 @@ io.on('connection', (socket) => {
         }
         // console.log(listeCartes);
         console.log("indice dealer : " + game.dealer);
-        console.log("Liste joueur : " + game.listePlayerGame);
 
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
