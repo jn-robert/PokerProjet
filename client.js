@@ -470,13 +470,15 @@ function init() {
         document.CarteJoueur3.style.display = "block";
         document.CarteJoueur4.style.display = "block";
 
-        if(data.nbJoueurs === 2){
+        console.log(data.nbJoueurs);
+
+        if(data.nbJoueurs === 3){
             document.jetonJoueur3.style.display = "block";
             document.CarteJoueur5.style.display = "block";
             document.CarteJoueur6.style.display = "block";
         }
 
-        if(data.nbJoueurs === 3){
+        if(data.nbJoueurs === 4){
             document.jetonJoueur4.style.display = "block";
             document.CarteJoueur7.style.display = "block";
             document.CarteJoueur8.style.display = "block";
