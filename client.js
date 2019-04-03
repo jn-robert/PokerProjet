@@ -22,7 +22,7 @@ class Player {
 }
 
 const socket = io.connect('localhost:5000');
-var nameUser;
+let nameUser;
 
 
 
@@ -31,12 +31,12 @@ var nameUser;
  */
 
 function getCookie(name) {
-    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    let v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return v ? v[2] : null;
 }
 
 function setCookie(name, value, days) {
-    var d = new Date;
+    let d = new Date;
     d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
     document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
@@ -57,10 +57,10 @@ function deleteCookie(name) {
 
 function login() {
     $(document).ready(function () {
-        var errorNom = document.getElementById("errorNameLog");
-        var errorPwd = document.getElementById("errorPassLog");
-        var pseudo = $("#pseudoLog").val();
-        var pass = $("#password").val();
+        let errorNom = document.getElementById("errorNameLog");
+        let errorPwd = document.getElementById("errorPassLog");
+        let pseudo = $("#pseudoLog").val();
+        let pass = $("#password").val();
         if (pseudo !== "" && pass !== "") {
             errorNom.innerText = "";
             errorPwd.innerText = "";
@@ -97,13 +97,13 @@ function login() {
 
 function register() {
     $(document).ready(function () {
-        var nom = $("#nameRegister").val();
-        var prenom = $("#prenom").val();
-        var pass = $("#passwordRegister").val();
-        var pseudo = $("#pseudo").val();
-        var secondPassword = $("#secondPassword").val();
+        let nom = $("#nameRegister").val();
+        let prenom = $("#prenom").val();
+        let pass = $("#passwordRegister").val();
+        let pseudo = $("#pseudo").val();
+        let secondPassword = $("#secondPassword").val();
 
-        if (nom != "" && prenom != "" && pass != "" && pseudo != "" && secondPassword != "") {
+        if (nom !== "" && prenom !== "" && pass !== "" && pseudo !== "" && secondPassword !== "") {
 
             document.getElementById("errorNom").innerHTML = "";
             document.getElementById("errorPrenom").innerHTML = "";
@@ -111,8 +111,8 @@ function register() {
             document.getElementById("errorPas").innerHTML = "";
             document.getElementById("errorPseudo").innerHTML = "";
 
-            var user_textLength = nom.trim().length;
-            var pw_textLength = pass.trim().length;
+            let user_textLength = nom.trim().length;
+            let pw_textLength = pass.trim().length;
 
             if (user_textLength < 1) {
                 document.getElementById("errorNom").innerHTML = "Veuillez saisir un nom contenant au minimum 2 caractères";
@@ -127,7 +127,7 @@ function register() {
             }
 
 
-            if (secondPassword != pass) {
+            if (secondPassword !== pass) {
                 document.getElementById("errorPass").innerHTML = "veuillez mettre le meme mot de passe";
                 document.getElementById("errorPass").style.color = "red";
 
@@ -147,35 +147,35 @@ function register() {
 
         } else {
 
-            if (nom == "") {
+            if (nom === "") {
                 document.getElementById("errorNom").innerHTML = "veuillez saisir le nom";
                 document.getElementById("errorNom").style.color = "red";
             } else {
                 document.getElementById("errorNom").innerHTML = "";
                 document.getElementById("errorNom").style.color = "white";
             }
-            if (prenom == "") {
+            if (prenom === "") {
                 document.getElementById("errorPrenom").innerHTML = "veuillez saisir le pseudo";
                 document.getElementById("errorPrenom").style.color = "red";
             } else {
                 document.getElementById("errorPrenom").innerHTML = "";
                 document.getElementById("errorPrenom").style.color = "white";
             }
-            if (pseudo == "") {
+            if (pseudo === "") {
                 document.getElementById("errorPseudo").innerHTML = "veuillez saisir le pseudo";
                 document.getElementById("errorPseudo").style.color = "red";
             } else {
                 document.getElementById("errorPseudo").innerHTML = "";
                 document.getElementById("errorPseudo").style.color = "white";
             }
-            if (pass == "") {
+            if (pass === "") {
                 document.getElementById("errorPas").innerHTML = "veuillez saisir le password";
                 document.getElementById("errorPas").style.color = "red";
             } else {
                 document.getElementById("errorPas").innerHTML = "";
                 document.getElementById("errorPas").style.color = "white";
             }
-            if (secondPassword == "") {
+            if (secondPassword === "") {
                 document.getElementById("errorPass").innerHTML = "veuillez saisir le SecondPassword";
                 document.getElementById("errorPass").style.color = "red";
             } else {
@@ -201,7 +201,7 @@ function stat() {
     socket.on('listJoueur', (data) => {
         let tab = data.tab;
         let msg = "<t8>Liste des joueurs</t8><br><br>";
-        for (var i = 0; i < tab.length; i++) {
+        for (let i = 0; i < tab.length; i++) {
             msg += "<button class='btn btn-primary' onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br><br>";
         }
         msg += "<br><br>";
@@ -262,7 +262,7 @@ function tailleChat(message) {
         for (let i =1;i<nbLignePourPhrase;i++){
             if (i === 1) {
                 if (message[31] !== " " && message[33] !== " ") {
-                    test = "<br>" + message.substring(0, 32) + "-<br>";
+                    test = "<br>" + message.substring(0, 32) + "-"+"<br>";
                 } else {
                     test = "<br>" + message.substring(0, 32) + "<br>";
                 }
@@ -274,7 +274,7 @@ function tailleChat(message) {
                 }
             }else if (i >1) {
                 if (message[(30*i)-1]!==" "&& message[(30*i)+1]!==" ") {
-                    test +=  message.substring(30*i,(30*(i+1)))+ "-<br>";
+                    test +=  message.substring(30*i,(30*(i+1)))+ "-"+"<br>";
                 }else {
                     test +=  message.substring(30*i,(30*(i+1)))+ "<br>";
                 }
@@ -291,17 +291,9 @@ function tailleChat(message) {
 
 
 function infoJoueur(tabStats) {
-    // var msg =
-    //     "<table border='2'><tr><td>";
-    // msg += "Pseudo : " + tabStats.pseudo + "<br>";
-    // msg += "Prenom : " + tabStats.prenom + "<br>";
-    // msg += "Nom : " + tabStats.nom + "<br>";
-    // msg += "Date d'inscription : " + tabStats.dateInscription + "<br>";
-    // msg += "Nombre de jetons : " + tabStats.jetons + "<br>";
-    // msg += "</table></td></tr>";
-    // document.getElementById("infoJoueur").innerHTML = msg;
 
-    var pseudo = tabStats.pseudo;
+
+    let pseudo = tabStats.pseudo;
     $('#infoJoueur').append(
         "<ul class=\"list-group\">\n" +
         "  <li class=\"list-group-item active\" style='text-align: center;'>"+pseudo+"</li>\n" +
@@ -318,8 +310,8 @@ function infoJoueur(tabStats) {
 
 
 function init() {
-    // var Game = require('./Game');
-    // var Player = require('./Player');
+    // let Game = require('./Game');
+    // let Player = require('./Player');
     let id = 0;
     let player;
     let game;
@@ -463,7 +455,7 @@ function init() {
 
     socket.on('1stR', (data) => {
 
-        var message;
+        let message;
         let cartes;
         let jetons;
         document.jetonJoueur2.style.display = "block";
@@ -524,7 +516,7 @@ function init() {
                 jetons = data.jetons[i];
 
                 document.getElementById('label0').innerHTML = jetons;
-                if (i == 0) {
+                if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i + 1];
                     }
@@ -535,7 +527,7 @@ function init() {
                         document.getElementById('label3').innerHTML = data.jetons[i + 3];
                     }
                 }
-                if (i == 1) {
+                if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 1];
                     }
@@ -546,7 +538,7 @@ function init() {
                         document.getElementById('label3').innerHTML = data.jetons[i + 2];
                     }
                 }
-                if (i == 2) {
+                if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 2];
                     }
@@ -558,7 +550,7 @@ function init() {
                     }
 
                 }
-                if (i == 3) {
+                if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 3];
                     }
@@ -582,7 +574,7 @@ function init() {
             document.getElementById('coucher').style.display = "none";
         }
 
-        if (data.nbJoueurs == 2) {
+        if (data.nbJoueurs === 2) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("texte").hidden = false;
@@ -591,7 +583,7 @@ function init() {
             document.getElementById("texte5").hidden = true;
         }
 
-        if (data.nbJoueurs == 3) {
+        if (data.nbJoueurs === 3) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("CarteJoueur5").hidden = false;
@@ -602,7 +594,7 @@ function init() {
             document.getElementById("texte5").hidden = true;
         }
 
-        if (data.nbJoueurs == 4) {
+        if (data.nbJoueurs === 4) {
             document.getElementById("CarteJoueur3").hidden = false;
             document.getElementById("CarteJoueur4").hidden = false;
             document.getElementById("CarteJoueur5").hidden = false;
@@ -663,9 +655,9 @@ function init() {
 
     socket.on("raise", (data) => {
         const roomId = $('#room').val();
-        var mise = prompt("Veuillez entrer votre mise:");
+        let mise = prompt("Veuillez entrer votre mise:");
         if (mise !== null && mise !== "" && data.jeton >= mise) {
-            console.log("ok")
+            console.log("ok");
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
         }else{
 
@@ -694,7 +686,7 @@ function init() {
 
     $('#envoi_message').on('click', () => {
         const roomId = $('#room').val();
-        var message = document.getElementById("message").value;
+        let message = document.getElementById("message").value;
         socket.emit('message', {room: room, pseudo: player.name, message: message});
     });
 
@@ -709,13 +701,13 @@ function init() {
         // console.log(roomId);
 
         if (room === `${data.room}`) {
-            if (data.message != ""){
-                var start = new Date();
+            if (data.message !== ""){
+                let start = new Date();
                 minutetest();
-                $('.message').append('<p ><strong><span id="hour">' +' '+'  ['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': '+tailleChat(data.message)+'</p>');
+                $('.message').append('<p ><strong><span id="hour">' +'['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': '+tailleChat(data.message)+'</p>');
                 $("#message").remove();
                 $("#messageEmplacement").append('<input style="width:100%" type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" autofocus/>');
-                var elmnt = document.getElementById("chatScroll");
+                let elmnt = document.getElementById("chatScroll");
                 elmnt.scrollTop = elmnt.scrollHeight;
 
 
@@ -724,8 +716,8 @@ function init() {
     });
 
     socket.on('partieJoueur', (data) => {
-        var test = data.tab;
-        for (var i = 0; i < test.length; i++) {
+        let test = data.tab;
+        for (let i = 0; i < test.length; i++) {
             $("#select").append("<option value=\"" + test[i].idPartie + "\">" + test[i].idPartie + "</option>");
             $("#tablePartie").append(
                 "<tr>" +
@@ -775,7 +767,7 @@ function init() {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
         /**
-         * récupère les variables jetons et cartes du joueur
+         * récupère les letiables jetons et cartes du joueur
          */
 
 
@@ -786,7 +778,7 @@ function init() {
                 cartes = data.cartes[i];
                 jetons = parseInt(data.jetons[i]);
                 document.getElementById('label0').innerHTML = jetons;
-                if (i == 0) {
+                if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i + 1];
                     }
@@ -797,7 +789,7 @@ function init() {
                         document.getElementById('label3').innerHTML = data.jetons[i + 3];
                     }
                 }
-                if (i == 1) {
+                if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 1];
                     }
@@ -808,7 +800,7 @@ function init() {
                         document.getElementById('label3').innerHTML = data.jetons[i + 2];
                     }
                 }
-                if (i == 2) {
+                if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 2];
                     }
@@ -820,7 +812,7 @@ function init() {
                     }
 
                 }
-                if (i == 3) {
+                if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
                         document.getElementById('label2').innerHTML = data.jetons[i - 3];
                     }
@@ -836,7 +828,7 @@ function init() {
 
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
-            var message;
+            let message;
 
             if (data.currentTurn === player.name) {
 
@@ -915,7 +907,7 @@ function init() {
 
 
 
-            //affichage des variables
+            //affichage des letiables
 
             document.getElementById('turn').innerHTML = message;
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
