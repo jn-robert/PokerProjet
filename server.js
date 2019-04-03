@@ -176,6 +176,12 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.room).emit('gameEnd', data);
     });
 
+    socket.on('nombreJetonJoueur', (data) => {
+        con.query("SELECT jetons FROM player WHERE pseudo ="+mysql.escape(data.pseudo), (err, rows) => {
+            if (err) throw err;
+            socket.emit('nombreJetonJoueurAffichage', {jeton: rows[0].jetons});
+        });
+    });
 
     socket.on('start', (data) => {
         game.init(10, 20);

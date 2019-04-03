@@ -72,7 +72,6 @@ function login() {
                 setCookie("userCookie", nameUser, 1);
                 window.location.href = "home.html";
             });
-
         } else {
             if (pseudo !== "") {
                 errorNom.innerText = "";
@@ -580,7 +579,14 @@ function init() {
         socket.emit('callPartie');
     });
 
+    $(document).ready(function () {
+        socket.emit('nombreJetonJoueur', {pseudo: getCookie("userCookie")});
+    });
 
+    socket.on('nombreJetonJoueurAffichage', (data) => {
+        document.getElementById("jetonDispo").innerText = data.jeton;
+
+    });
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
      */
