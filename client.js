@@ -591,14 +591,36 @@ function init() {
      * change l'affichage en fonction du resultat envoyer par le serveur
      */
     socket.on('resultAction', (data) => {
+
+        // traitement des messages
+
+        document.getElementById("messageGameAction").style.color = "red";
+        document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
+
+
+        if(data.actionPrecedente === "raise"){
+            document.getElementById("messageGameRaise").style.color = "red";
+            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé(e) : " + data.miseEnCours;
+        }
+        else{
+            document.getElementById("messageGameRaise").style.color = "red";
+            document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
+        }
+
+        if(data.actionPrecedente === "exit"){
+            document.getElementById("messageGameJoin").style.color = "red";
+            document.getElementById("messageGameJoin").innerText = "Connexion / Deconnection : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
+        }
+
+
+
+
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
         /**
          * récupère les variables jetobs et cartes du joueur
          */
 
-        document.getElementById("messageGameAction").style.color = "red";
-        document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
 
         let cartes;
         let jetons;
@@ -642,16 +664,6 @@ function init() {
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             var message;
-
-            if(data.actionPrecedente === "raise"){
-                document.getElementById("messageGameRaise").style.color = "red";
-                document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé(e) : " + data.miseEnCours;
-            }
-            else{
-                document.getElementById("messageGameRaise").style.color = "red";
-                document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
-            }
-
 
             if (data.currentTurn === player.name) {
 

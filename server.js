@@ -854,7 +854,9 @@ io.on('connection', (socket) => {
                 name: listeNoms,
                 jetons: listeJetons,
                 cartes: listeCartes,
-                cartesTapis: game.getTapis()
+                cartesTapis: game.getTapis(),
+                actionPrecedente: "exit",
+                playerName: data.playerName
             });
         }
     });
