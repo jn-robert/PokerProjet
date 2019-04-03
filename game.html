@@ -72,12 +72,16 @@
                     <td scope="col">Nombre de jetons</td>
                     <td scope="col">Jetons disponible</td>
                     <td scope="col">Action</td>
+                    <td scope="col" class="remettreJeton">Recharger votre compte</td>
                 </tr>
                 <tr>
-                    <td><input type="number" min="100" name="name" id="jetonNew" placeholder="Minimum 100" required></td>
-                    <td id="jetonDispo"></td>
-                    <td>
+                    <td scope="col" ><input type="number" min="100" name="name" id="jetonNew" placeholder="Minimum 100" required></td>
+                    <td scope="col" id="jetonDispo"></td>
+                    <td scope="col">
                         <button id="new">Nouvelle partie</button>
+                    </td >
+                    <td>
+                        <div><button id="remettreJeton" class="remettreJeton">Recharger 1000 jetons</button></div>
                     </td>
                 </tr>
             </table>
@@ -90,9 +94,9 @@
                     <td scope="col">Action</td>
                 </tr>
                 <tr>
-                    <td><input type="number" min="100" name="name" id="jetonNewJoin" placeholder="Minimum 100" required></td>
-                    <td><select id="select"></select></td>
-                    <td>
+                    <td scope="col"><input type="number" min="100" name="name" id="jetonNewJoin" placeholder="Minimum 100" required></td>
+                    <td scope="col"><select id="select"></select></td>
+                    <td scope="col">
                         <button id="join">Rejoindre une partie</button>
                     </td>
                 </tr>

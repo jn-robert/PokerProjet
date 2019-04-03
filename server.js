@@ -32,7 +32,7 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    /*host: 'serveurmysql',
+/*    host: 'serveurmysql',
     database: 'BDD_tnormant',
     user: 'tnormant',
     port: '3306',
@@ -109,6 +109,19 @@ io.on('connection', (socket) => {
             });
         });
     });
+
+    socket.on('remettreJeton', (data) => {
+        con.query("UPDATE player SET jetons = jetons + 1000 WHERE pseudo=" + mysql.escape(data.pseudo), (err, rows) => {
+            if (err) throw err;
+        });
+    });
+
+    socket.on('remettreJetonJoueur', (data) => {
+        con.query("SELECT jetons FROM player WHERE pseudo=" + mysql.escape(data.pseudo), (err, rows) => {
+            socket.emit('affichageBouton', {jeton: rows[0].jetons});
+        });
+    });
+
 
     socket.on('checkUserLogin', (data) => {
         let pass = data.pwd;

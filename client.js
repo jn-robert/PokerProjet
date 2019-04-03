@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('http://localhost:5000'); // 172.20.178.95
+const socket = io.connect('http://172.20.178.95:5000'); // 172.20.178.95
 var nameUser;
 
 
@@ -342,6 +342,24 @@ function init() {
             $(window).on('unload', function () {
                 socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jeton)});
             });
+        });
+
+        socket.on('affichageBouton', (data) => {
+            if (data.jeton > 100) {
+                $('.remettreJeton').hide();
+            }else{
+                $('.remettreJeton').show();
+            }
+        });
+
+        $(document).ready(function () {
+            socket.emit('remettreJetonJoueur', {pseudo: getCookie("userCookie")});
+        });
+
+        $('#remettreJeton').on('click', () => {
+            console.log("coucou")
+            socket.emit('remettreJeton',{pseudo: getCookie("userCookie")});
+            location.reload();
         });
 
         $('#join').on('click', () => {
