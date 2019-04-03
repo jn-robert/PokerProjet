@@ -200,9 +200,9 @@ function stat() {
 
     socket.on('listJoueur', (data) => {
         let tab = data.tab;
-        let msg = "<t8>Liste des joueurs</t8><br>";
+        let msg = "<t8>Liste des joueurs</t8><br><br>";
         for (var i = 0; i < tab.length; i++) {
-            msg += "<button onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br>";
+            msg += "<button class='btn btn-primary' onclick='traceStats(\"" + tab[i].idPlayer + "\")'>" + tab[i].nom + "</button><br><br>";
         }
         msg += "<br><br>";
         document.getElementById("listeJoueur").innerHTML = msg;
@@ -214,9 +214,13 @@ let boolGraph = false;
 function traceStats(id) {
     if (boolGraph) {
         location.reload();
+        console.log("test");
+
+
     } else {
         boolGraph = true;
         recpDonne(id);
+        console.log("test2");
     }
 }
 
@@ -224,7 +228,6 @@ function recpDonne(id) {
     console.log("Affiche");
     console.log(id);
     socket.emit('getStatsPlayer', {id: id});
-
     socket.on('ReturnStatsPlayer', (data) => {
         let tabStats = data.tab[0];
         infoJoueur(tabStats);
@@ -253,14 +256,29 @@ function recpDonne(id) {
 }
 
 function infoJoueur(tabStats) {
-    var msg = "<table border='2'><tr><td>";
-    msg += "Pseudo : " + tabStats.pseudo + "<br>";
-    msg += "Prenom : " + tabStats.prenom + "<br>";
-    msg += "Nom : " + tabStats.nom + "<br>";
-    msg += "Date d'inscription : " + tabStats.dateInscription + "<br>";
-    msg += "Nombre de jetons : " + tabStats.jetons + "<br>";
-    msg += "</table></td></tr>";
-    document.getElementById("infoJoueur").innerHTML = msg;
+    // var msg =
+    //     "<table border='2'><tr><td>";
+    // msg += "Pseudo : " + tabStats.pseudo + "<br>";
+    // msg += "Prenom : " + tabStats.prenom + "<br>";
+    // msg += "Nom : " + tabStats.nom + "<br>";
+    // msg += "Date d'inscription : " + tabStats.dateInscription + "<br>";
+    // msg += "Nombre de jetons : " + tabStats.jetons + "<br>";
+    // msg += "</table></td></tr>";
+    // document.getElementById("infoJoueur").innerHTML = msg;
+
+    var pseudo = tabStats.pseudo;
+    $('#infoJoueur').append(
+        "<ul class=\"list-group\">\n" +
+        "  <li class=\"list-group-item active\" style='text-align: center;'>"+pseudo+"</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Prenom :"+tabStats.prenom+"</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Nom :"+tabStats.nom+"</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Date d'inscription :"+tabStats.dateInscription+"</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Nombre de jetons : " + tabStats.jetons+"</li>\n" +
+        "</ul>"
+        // "<table border='2'><tr><td>Pseudo : " + pseudo + "<br>Prenom :"  + tabStats.prenom + "<br> Nom : " + tabStats.nom + " + <br>Date d'inscription :  "+ tabStats.dateInscription + '<br>'+ "Nombre de jetons :  + tabStats.jetons + <br>"+ "</table></td></tr>"
+
+    );
+
 }
 
 
