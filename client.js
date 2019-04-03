@@ -546,29 +546,36 @@ function init() {
         let message;
         let cartes;
         let jetons;
-        document.jetonJoueur2.style.display = "block";
-        document.CarteJoueur3.style.display = "block";
-        document.CarteJoueur4.style.display = "block";
+
 
         console.log(data.nbJoueurs);
 
         if(data.nbJoueurs === 2){
-            document.jetonJoueur3.style.display = "none";
-            document.CarteJoueur5.style.display = "none";
-            document.CarteJoueur6.style.display = "none";
+            document.jetonJoueur2.style.visibility = "visible";
+            document.CarteJoueur3.style.visibility = "visible";
+            document.CarteJoueur4.style.visibility = "visible";
+            document.jetonJoueur3.style.visibility = "hidden";
+            document.CarteJoueur5.style.visibility = "hidden";
+            document.CarteJoueur6.style.visibility = "hidden";
         }
 
 
         if(data.nbJoueurs === 3){
-            document.jetonJoueur3.style.display = "block";
-            document.CarteJoueur5.style.display = "block";
-            document.CarteJoueur6.style.display = "block";
+            document.jetonJoueur2.style.visibility = "visible";
+            document.CarteJoueur3.style.visibility = "visible";
+            document.CarteJoueur4.style.visibility = "visible";
+            document.jetonJoueur3.style.visibility = "visible";
+            document.CarteJoueur5.style.visibility = "visible";
+            document.CarteJoueur6.style.visibility = "visible";
         }
 
         if(data.nbJoueurs === 4){
-            document.jetonJoueur4.style.display = "block";
-            document.CarteJoueur7.style.display = "block";
-            document.CarteJoueur8.style.display = "block";
+            document.jetonJoueur3.style.visibility = "visible";
+            document.CarteJoueur5.style.visibility = "visible";
+            document.CarteJoueur6.style.visibility = "visible";
+            document.jetonJoueur4.style.visibility = "visible";
+            document.CarteJoueur7.style.visibility = "visible";
+            document.CarteJoueur8.style.visibility = "visible";
         }
 
 
@@ -1130,27 +1137,27 @@ function init() {
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.nbJoueurs + 1 === 1) {
                     document.getElementById('label2').innerHTML = "";
-                    document.jetonJoueur2.style.display = "none";
-                    document.CarteJoueur3.style.display = "none";
-                    document.CarteJoueur4.style.display = "none";
+                    document.jetonJoueur2.style.visibility = "hidden";
+                    document.CarteJoueur3.style.visibility = "hidden";
+                    document.CarteJoueur4.style.visibility = "hidden";
                 }
                 if (data.nbJoueurs + 1 === 2) {
                     document.getElementById('label2').innerHTML = "";
-                    document.jetonJoueur2.style.display = "none";
-                    document.CarteJoueur3.style.display = "none";
-                    document.CarteJoueur4.style.display = "none";
+                    document.jetonJoueur2.style.visibility = "hidden";
+                    document.CarteJoueur3.style.visibility = "hidden";
+                    document.CarteJoueur4.style.visibility = "hidden";
                 }
                 if (data.nbJoueurs + 1 === 3) {
                     document.getElementById('label1').innerHTML = "";
-                    document.jetonJoueur3.style.display = "none";
-                    document.CarteJoueur5.style.display = "none";
-                    document.CarteJoueur6.style.display = "none";
+                    document.jetonJoueur3.style.visibility = "hidden";
+                    document.CarteJoueur5.style.visibility = "hidden";
+                    document.CarteJoueur6.style.visibility = "hidden";
                 }
                 if (data.nbJoueurs + 1 === 4) {
                     document.getElementById('label3').innerHTML = "";
-                    document.jetonJoueur4.style.display = "none";
-                    document.CarteJoueur7.style.display = "none";
-                    document.CarteJoueur8.style.display = "none";
+                    document.jetonJoueur4.style.visibility = "hidden";
+                    document.CarteJoueur7.style.visibility = "hidden";
+                    document.CarteJoueur8.style.visibility = "hidden";
 
                 }
 
