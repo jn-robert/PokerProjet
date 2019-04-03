@@ -943,77 +943,77 @@ io.on('connection', (socket) => {
             }
         }
         console.log("quit");
-        compteurExit++;
-        if (compteurExit === game.listePlayerTable.length+1) {
+        game.exit(data.playerName);
+        if (game.listePlayerTable.length >= 1) {
             con.query("UPDATE partie SET nbJoueur = nbJoueur-1 WHERE idPartie=" + `${rooms}`, (err, rows) => {
                 if (err) throw err;
             });
-            compteurExit=0;
-        }
-        con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-            if (err) throw err;
-            if (rows[0].nbJoueur == 0) {
-                con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                    if (err) throw err;
-                });
-            }
-        });
-        let idJoueurCurrentBooleanTour = 0;
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
-            }
-        }
+            compteurExit = 0;
 
-        let listeCartes = [];
-        let listeNoms = [];
-        let listeJetons = [];
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            listeCartes[i] = game.listePlayerGame[i].getMain();
-            listeNoms[i] = game.listePlayerGame[i].getPlayerName();
-            listeJetons[i] = game.listePlayerGame[i].getJetons();
-        }
+            con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
+                if (err) throw err;
+                if (rows[0].nbJoueur == 0) {
+                    con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
+                        if (err) throw err;
+                    });
+                }
+            });
+            let idJoueurCurrentBooleanTour = 0;
+            for (let i = 0; i < game.listePlayerGame.length; i++) {
+                if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                    idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
+                }
+            }
 
-        let name = "";
-        let highestIndex = 0;
-        let combi = "";
-        highestIndex = game.evalCarte();
-        if (game.listePlayerGame.length === 1) {
+            let listeCartes = [];
+            let listeNoms = [];
+            let listeJetons = [];
+            for (let i = 0; i < game.listePlayerGame.length; i++) {
+                listeCartes[i] = game.listePlayerGame[i].getMain();
+                listeNoms[i] = game.listePlayerGame[i].getPlayerName();
+                listeJetons[i] = game.listePlayerGame[i].getJetons();
+            }
+
+            let name = "";
+            let highestIndex = 0;
+            let combi = "";
             highestIndex = game.evalCarte();
-            name = game.afficheJoueurName(highestIndex);
-            combi = game.evalCards[highestIndex].handName;
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
-        } else if (game.tour > 5) {
-            if (highestIndex < game.listePlayerGame.length) {
+            if (game.listePlayerGame.length === 1) {
+                highestIndex = game.evalCarte();
                 name = game.afficheJoueurName(highestIndex);
                 combi = game.evalCards[highestIndex].handName;
-            } else {
-                name = "egalite";
+                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+            } else if (game.tour > 5) {
+                if (highestIndex < game.listePlayerGame.length) {
+                    name = game.afficheJoueurName(highestIndex);
+                    combi = game.evalCards[highestIndex].handName;
+                } else {
+                    name = "egalite";
+                }
+                game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
             }
-            game.distribGains(game.listePlayerGame[highestIndex].getPlayerName());
+
+            socket.emit('exit2r', {
+                test: true
+            });
+
+
+            socket.broadcast.emit('resultAction', {
+                vainqueur: name,
+                combiVainq: combi,
+                tasHaut: game.tasHaut,
+                jetonsRecolt: game.getRecoltJetons(),
+                choixJoueurs: game.actionPrec,
+                currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
+                tour: game.getTour(),
+                pot: game.pot,
+                nbJoueurs: game.listePlayerGame.length,
+                name: listeNoms,
+                jetons: listeJetons,
+                cartes: listeCartes,
+                cartesTapis: game.getTapis()
+            });
         }
-
-        socket.emit('exit2r', {
-            test: true
-        });
-
-
-        socket.broadcast.emit('resultAction', {
-            vainqueur: name,
-            combiVainq: combi,
-            tasHaut: game.tasHaut,
-            jetonsRecolt: game.getRecoltJetons(),
-            choixJoueurs: game.actionPrec,
-            currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-            tour: game.getTour(),
-            pot: game.pot,
-            nbJoueurs: game.listePlayerGame.length,
-            name: listeNoms,
-            jetons: listeJetons,
-            cartes: listeCartes,
-            cartesTapis: game.getTapis()
-        });
-
     });
 });
 server.listen(process.env.PORT || 5000);
