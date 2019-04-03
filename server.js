@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    // host: 'serveurmysql',
-    // database: 'BDD_tnormant',
-    // user: 'tnormant',
-    // port: '3306',
-    // password: '1708',
+  /*  host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
+    port: '3306',
+    password: '1708',*/
     host: 'localhost',
     database: 'poker',
     user: 'root',
@@ -393,6 +393,7 @@ io.on('connection', (socket) => {
             });
         });
         game.joueJoueur(data.playerName, "suivre", 10);
+        var jetonsActuellementMiser = game.tasHaut;
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
@@ -447,7 +448,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
-            playerName: data.playerName
+            playerName: data.playerName,
+            jetonsActuellementMiser: jetonsActuellementMiser
 
         });
         socket.broadcast.emit('resultAction', {
@@ -465,7 +467,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
-            playerName: data.playerName
+            playerName: data.playerName,
+            jetonsActuellementMiser: jetonsActuellementMiser
 
         });
     });
