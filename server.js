@@ -32,11 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-    host: 'localhost',
+    host: 'serveurmysql',
+    database: 'BDD_tnormant',
+    user: 'tnormant',
+    port: '3306',
+    password: '1708',
+/*    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',
+    password: '',*/
 });
 
 con.connect((err) => {
@@ -117,7 +122,7 @@ io.on('connection', (socket) => {
         let prenom = data.prenom;
         let pseudo = data.pseudo;
         let pwd = data.pass;
-        con.query("INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, " + mysql.escape(nom) + ", " + mysql.escape(prenom) + ", " + mysql.escape(pseudo) + ", " + mysql.escape(pwd) + ", now(), '100')", (err, rows) => {
+        con.query("INSERT INTO `player` (`idPlayer`, `nom`, `prenom`, `pseudo`, `password`, `dateInscription`, `jetons`) VALUES (NULL, " + mysql.escape(nom) + ", " + mysql.escape(prenom) + ", " + mysql.escape(pseudo) + ", " + mysql.escape(pwd) + ", now(), '5000')", (err, rows) => {
             if (err) throw err;
             socket.emit('RegisterSucces', {pseudo: pseudo, pass: pwd});
         });
@@ -176,6 +181,12 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.room).emit('gameEnd', data);
     });
 
+    socket.on('nombreJetonJoueur', (data) => {
+        con.query("SELECT jetons FROM player WHERE pseudo ="+mysql.escape(data.pseudo), (err, rows) => {
+            if (err) throw err;
+            socket.emit('nombreJetonJoueurAffichage', {jeton: rows[0].jetons});
+        });
+    });
 
     socket.on('start', (data) => {
         game.init(10, 20);
@@ -299,7 +310,6 @@ io.on('connection', (socket) => {
                 if (err) throw err;
             });
         });
-
         game.joueJoueur(data.playerName, "check", 10);
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
@@ -329,6 +339,14 @@ io.on('connection', (socket) => {
                 name = "egalite";
             }
             game.distribGains(name);
+        }
+
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
+                con.query("UPDATE player SET jetons = jetons -"+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    if (err) throw err;
+                });
+            }
         }
 
         socket.emit('resultAction', {
@@ -406,6 +424,13 @@ io.on('connection', (socket) => {
             game.distribGains(name);
         }
 
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
+                con.query("UPDATE player SET jetons = jetons -"+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    if (err) throw err;
+                });
+            }
+        }
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
@@ -482,6 +507,14 @@ io.on('connection', (socket) => {
             game.distribGains(name);
         }
 
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
+                con.query("UPDATE player SET jetons = jetons -"+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    if (err) throw err;
+                });
+            }
+        }
+
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
@@ -497,7 +530,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
-            playerName: data.playerName
+            playerName: data.playerName,
+            miseEnCours: data.miseJeton
 
 
         });
@@ -516,8 +550,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "raise",
-            playerName: data.playerName
-
+            playerName: data.playerName,
+            miseEnCours: data.miseJeton
 
         });
     });
@@ -580,6 +614,14 @@ io.on('connection', (socket) => {
             game.distribGains(name);
         }
 
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
+                con.query("UPDATE player SET jetons = jetons -"+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    if (err) throw err;
+                });
+            }
+        }
+
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
@@ -596,9 +638,8 @@ io.on('connection', (socket) => {
             cartesTapis: game.getTapis(),
             actionPrecedente: "all-in",
             playerName: data.playerName
-
-
         });
+
         socket.broadcast.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
@@ -667,6 +708,14 @@ io.on('connection', (socket) => {
             }
             console.log("name :" + name);
             game.distribGains(name);
+        }
+
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
+                con.query("UPDATE player SET jetons = jetons -"+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+                    if (err) throw err;
+                });
+            }
         }
 
         socket.emit('resultAction', {
@@ -856,7 +905,9 @@ io.on('connection', (socket) => {
                 name: listeNoms,
                 jetons: listeJetons,
                 cartes: listeCartes,
-                cartesTapis: game.getTapis()
+                cartesTapis: game.getTapis(),
+                actionPrecedente: "exit",
+                playerName: data.playerName
             });
         }
     });

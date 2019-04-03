@@ -70,10 +70,12 @@
             <table class="table">
                 <tr>
                     <td scope="col">Nombre de jetons</td>
+                    <td scope="col">Jetons disponible</td>
                     <td scope="col">Action</td>
                 </tr>
                 <tr>
-                    <td><input type="number" name="name" id="jetonNew" placeholder="Nombre jetons" required></td>
+                    <td><input type="number" min="100" name="name" id="jetonNew" placeholder="Minimum 100" required></td>
+                    <td id="jetonDispo"></td>
                     <td>
                         <button id="new">Nouvelle partie</button>
                     </td>
@@ -88,7 +90,7 @@
                     <td scope="col">Action</td>
                 </tr>
                 <tr>
-                    <td><input type="number" name="name" id="jetonNewJoin" placeholder="Nombre jetons" required></td>
+                    <td><input type="number" min="100" name="name" id="jetonNewJoin" placeholder="Minimum 100" required></td>
                     <td><select id="select"></select></td>
                     <td>
                         <button id="join">Rejoindre une partie</button>
@@ -202,9 +204,9 @@
                         </div>
                     </div>
                     <div class="divMessageGame">
-                        <span id="messageGameAction" style="font-size: 14px;">En attente d'une action...</span><br>
-                        <span id="messageGameRise" style="font-size: 14px;">En attente d'une mise...</span><br>
-                        <span id="messageGameJoin" style="font-size: 14px;">En attente d'une deconnection ou connexion...</span>
+                        <span id="messageGameAction" style="font-size: 12px;">En attente d'une action...</span><br>
+                        <span id="messageGameRaise" style="font-size: 12px;">En attente d'une mise...</span><br>
+                        <span id="messageGameJoin" style="font-size: 12px;">En attente d'une deconnection ou connexion...</span>
 
                     </div>
                 </div>
@@ -220,7 +222,7 @@
                     <input style="width:100%" type="text" name="message" id="message"
                            placeholder="Une mauvaise pioche faite le savoir" autofocus/>
                     </div>
-                    <input style="width: 100%; background: black; color: white;" type="submit" id="envoi_message" value="Send" onclick=""/>
+                    <input style="width: 100%; background: black; color: white;" type="submit" id="envoi_message" value="Envoyer" onclick=""/>
                 </div>
             </div>
         </div>
