@@ -32,11 +32,11 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-/*    host: 'serveurmysql',
-    database: 'BDD_tnormant',
-    user: 'tnormant',
-    port: '3306',
-    password: '1708',*/
+    /*    host: 'serveurmysql',
+        database: 'BDD_tnormant',
+        user: 'tnormant',
+        port: '3306',
+        password: '1708',*/
     host: 'localhost',
     database: 'poker',
     user: 'root',
@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
         game = new Game();
         game.addPlayer(id++, data.name, data.jeton);
         idPartie++;
-        con.query("UPDATE player SET jetons = jetons - "+ data.jeton +" WHERE pseudo=" + mysql.escape(data.name), (err, rows) => {
+        con.query("UPDATE player SET jetons = jetons - " + data.jeton + " WHERE pseudo=" + mysql.escape(data.name), (err, rows) => {
             if (err) throw err;
         });
         con.query("INSERT INTO partie VALUES(" + idPartie + " ,NULL ,NULL ,1)", (err, rows) => {
@@ -82,7 +82,7 @@ io.on('connection', (socket) => {
         if (room && room.length <= 9) {
             socket.join(data.room);
             game.addPlayer(id++, data.name, data.jeton);
-            con.query("UPDATE player SET jetons = jetons - "+ data.jeton +" WHERE pseudo=" + mysql.escape(data.name), (err, rows) => {
+            con.query("UPDATE player SET jetons = jetons - " + data.jeton + " WHERE pseudo=" + mysql.escape(data.name), (err, rows) => {
                 if (err) throw err;
             });
             con.query("UPDATE partie SET nbJoueur = nbJoueur + 1 WHERE idPartie=" + data.room, (err, rows) => {
@@ -201,7 +201,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('nombreJetonJoueur', (data) => {
-        con.query("SELECT jetons FROM player WHERE pseudo ="+mysql.escape(data.pseudo), (err, rows) => {
+        con.query("SELECT jetons FROM player WHERE pseudo =" + mysql.escape(data.pseudo), (err, rows) => {
             if (err) throw err;
             socket.emit('nombreJetonJoueurAffichage', {jeton: rows[0].jetons});
         });
@@ -332,12 +332,16 @@ io.on('connection', (socket) => {
             });
         });
         game.joueJoueur(data.playerName, "check", 10);
-        let idJoueurCurrentBooleanTour;
+
+        let idJoueurCurrentBooleanTour = 0;
+        console.log("nbjoueurs : " + game.listePlayerGame.length);
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
                 idJoueurCurrentBooleanTour = (i + 1) % game.listePlayerGame.length;
             }
         }
+
+        console.log("idJoueurCurrentBooleanTour : " + idJoueurCurrentBooleanTour);
 
         let listeCartes = [];
         let listeNoms = [];
@@ -616,8 +620,8 @@ io.on('connection', (socket) => {
         }
 
         for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
-                con.query("UPDATE player SET jetons = jetons - "+ listeJetons[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName) {
+                con.query("UPDATE player SET jetons = jetons - " + listeJetons[i] + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
                     if (err) throw err;
                 });
             }
@@ -821,7 +825,7 @@ io.on('connection', (socket) => {
                 if (err) throw err;
             });
         } else {
-        let listeJetons2 = [];
+            let listeJetons2 = [];
             for (let i = 0; i < game.listePlayerGame.length; i++) {
                 listeJetons2[i] = game.listePlayerGame[i].getJetons();
                 if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
@@ -830,7 +834,7 @@ io.on('connection', (socket) => {
                     });
                 }
             }
-    }
+        }
         let indexJoueurLeave;
         for (let i = 0; i < game.listePlayerTable.length; i++) {
             if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
@@ -875,7 +879,7 @@ io.on('connection', (socket) => {
                 if (highestIndex < game.listePlayerGame.length) {
                     name = game.afficheJoueurName(highestIndex);
                     combi = game.evalCards[highestIndex].handName;
-                }else {
+                } else {
                     name = "egalite";
                 }
                 game.distribGains(name);
@@ -927,20 +931,25 @@ io.on('connection', (socket) => {
         }
     });
 
+    let compteurExit = 0;
     socket.on('exit2', (data) => {
         let listeJetons2 = [];
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             listeJetons2[i] = game.listePlayerGame[i].getJetons();
-            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
-                con.query("UPDATE player SET jetons = jetons + "+ listeJetons2[i] +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
+            if (game.listePlayerGame[i].getPlayerName() == data.playerName) {
+                con.query("UPDATE player SET jetons = jetons + " + listeJetons2[i] + " WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
                     if (err) throw err;
                 });
             }
         }
         console.log("quit");
-        con.query("UPDATE partie SET nbJoueur = nbJoueur WHERE idPartie=" + `${rooms}`, (err, rows) => {
-            if (err) throw err;
-        });
+        compteurExit++;
+        if (compteurExit === game.listePlayerTable.length+1) {
+            con.query("UPDATE partie SET nbJoueur = nbJoueur-1 WHERE idPartie=" + `${rooms}`, (err, rows) => {
+                if (err) throw err;
+            });
+            compteurExit=0;
+        }
         con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
             if (err) throw err;
             if (rows[0].nbJoueur == 0) {
@@ -985,7 +994,7 @@ io.on('connection', (socket) => {
         }
 
         socket.emit('exit2r', {
-            test:true
+            test: true
         });
 
 

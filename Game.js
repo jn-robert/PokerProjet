@@ -633,10 +633,118 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 break;
             case "coucher":
-                for (let j = 0; j < this.listePlayerGame.length; j++) {
-                    if (this.listePlayerGame[j].getPlayerName() === name) {
-                        this.listePlayerGame.splice(j, 1);
+                for (let i = 0; i < this.listePlayerGame.length; i++) {
+                    if (this.listePlayerGame[i].getPlayerName() === name) {
+                        this.listePlayerGame[i].setAjoue(true);
                     }
+                }
+
+                if (action === "check") {
+                    this.actionPrec=action;
+                }
+
+                if (action === "suivre") {
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            for (let i = 0; i < this.listePlayerGame.length; i++) {
+                                if (!this.listePlayerGame[i].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+
+                                //console.log("joueur n°" + j + " a joué");
+                            } else {
+                                if (this.tasHaut - this.listePlayerGame[j].getTas() <= this.listePlayerGame[j].jetons) {
+                                    this.listePlayerGame[j].jetons -= this.tasHaut - this.listePlayerGame[j].getTas();
+                                    this.listePlayerGame[j].tas += this.tasHaut - this.listePlayerGame[j].getTas();
+                                }
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
+                        }
+
+                    }
+
+                }
+                if (action === "raise") {
+                    this.actionPrec = action;
+                    this.misePrec += miseMin;
+                    this.tasHaut = this.misePrec;
+                    this.resetSetAjoue();
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                //console.log("joueur n°" + i + " a joué");
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                            } else {
+                                //console.log("dernier joueur qui a joue");
+                                if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                                    this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
+                                    this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
+                                }
+                                this.canPlay = true;
+                            }
+                        }
+                    }
+                }
+                if (action === "all-in") {
+                    // this.actionPrec = "raise";
+                    // this.misePrec = miseMin;
+                    // this.tasHaut = this.misePrec + miseMin;
+                    this.resetSetAjoue();
+                    this.actionPrec = "raise";
+                    if (miseMin > this.misePrec) {
+                        this.misePrec = miseMin;
+                        this.tasHaut = this.misePrec;
+                    }
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
+                            for (let j = 0; j < this.listePlayerGame.length; j++) {
+                                if (!this.listePlayerGame[j].getAjoue()) {
+                                    testTousJoue = false;
+                                }
+                            }
+                            if (!testTousJoue) {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("joueur n°" + i + " a joué");
+                            } else {
+                                this.listePlayerGame[i].jetons -= miseMin;
+                                this.listePlayerGame[i].tas += miseMin;
+
+                                //console.log("dernier joueur qui a joue");
+                                this.canPlay = true;
+                            }
+                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+
+                            // }
+                        }
+                    }
+                }
+                if (action === "coucher") {
+                    this.actionPrec = action;
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame.splice(j, 1);
+                        }
+                    }
+
                 }
                 break;
 

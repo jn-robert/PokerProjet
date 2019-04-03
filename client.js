@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('http://172.20.178.95:5000'); // 172.20.178.95
+const socket = io.connect('http://localhost:5000'); // 172.20.178.95
 var nameUser;
 
 
@@ -327,8 +327,8 @@ function init() {
 
     socket.on('nombreJetonJoueurAffichage', (data) => {
         document.getElementById("jetonDispo").innerText = data.jeton;
-        $("#jetonNew").attr({"max" : data.jeton,})
-        $("#jetonNewJoin").attr({"max" : data.jeton,})
+        $("#jetonNew").attr({"max" : data.jeton,});
+        $("#jetonNewJoin").attr({"max" : data.jeton,});
 
         $('#new').on('click', () => {
             const jeton = $('#jetonNew').val();
@@ -357,7 +357,7 @@ function init() {
         });
 
         $('#remettreJeton').on('click', () => {
-            console.log("coucou")
+            console.log("coucou");
             socket.emit('remettreJeton',{pseudo: getCookie("userCookie")});
             location.reload();
         });
@@ -391,6 +391,17 @@ function init() {
         document.getElementById('suivre').style.display = "none";
         document.getElementById('raise').style.display = "none";
         document.getElementById('coucher').style.display = "none";
+
+        if (data.nbJoueurs === 1) {
+            let message = "En attente d'adversaire";
+            document.getElementById('turn').innerHTML = message;
+            document.getElementById('all-in').style.display = "none";
+            document.getElementById('check').style.display = "none";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "none";
+            document.getElementById('coucher').style.display = "none";
+        }
+
         $('#tablejoinpart').hide();
     });
 
@@ -541,6 +552,16 @@ function init() {
                     }
                 }
             }
+        }
+
+        if (data.nbJoueurs === 1) {
+            message = "En attente d'adversaire";
+            document.getElementById('turn').innerHTML = message;
+            document.getElementById('all-in').style.display = "none";
+            document.getElementById('check').style.display = "none";
+            document.getElementById('suivre').style.display = "none";
+            document.getElementById('raise').style.display = "none";
+            document.getElementById('coucher').style.display = "none";
         }
 
         if (data.nbJoueurs == 2) {
@@ -883,6 +904,7 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
         } else {
+
             let cartes;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
@@ -890,6 +912,16 @@ function init() {
                     cartes = data.cartes[i];
                     jetons = data.jetons[i];
                 }
+            }
+
+            if (data.nbJoueurs === 1) {
+                message = "En attente d'adversaire";
+                document.getElementById('turn').innerHTML = message;
+                document.getElementById('all-in').style.display = "none";
+                document.getElementById('check').style.display = "none";
+                document.getElementById('suivre').style.display = "none";
+                document.getElementById('raise').style.display = "none";
+                document.getElementById('coucher').style.display = "none";
             }
 
             document.getElementById('pot').innerHTML = "Pot : " + data.pot;
