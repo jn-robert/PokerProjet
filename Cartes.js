@@ -2,7 +2,7 @@ module.exports = Cartes;
 
 function Cartes() {
     this.suits = ['s', 'h', 'd', 'c'];
-    this.ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'a'];
+    this.ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
     this.cards = [];
 
     this.init();
