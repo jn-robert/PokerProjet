@@ -328,7 +328,7 @@ function init() {
             player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
             socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
             $(window).on('unload', function () {
-                socket.emit("exit", {room: roomId, playerName: player.name});
+                socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jeton)});
             });
         });
 
@@ -416,12 +416,6 @@ function init() {
      */
     socket.on('err', (data) => {
         game.endGame(data.message);
-    });
-
-    $('#start').on('click', () => {
-        // console.log(game.getPlayer());
-        const roomID = $('#room').val();
-        socket.emit('start', {room: roomID, playerName: player.name});
     });
 
     socket.on('1stR', (data) => {
@@ -593,7 +587,8 @@ function init() {
     $('#exit').on('click', () => {
         // socket.leave(data.room);
         const roomId = $('#room').val();
-        socket.emit("exit", {room: roomId, playerName: player.name});
+        const jeton = $('#jetonNew').val();
+        socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jeton)});
         window.location.href = "game.html"; //retourne a la page d'accueil du jeu
 
     });
@@ -684,7 +679,7 @@ function init() {
         //desactive les boutons tant que l'autre joueur n'a pas joué
 
         /**
-         * récupère les variables jetobs et cartes du joueur
+         * récupère les variables jetons et cartes du joueur
          */
 
 
