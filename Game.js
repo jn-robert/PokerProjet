@@ -154,15 +154,14 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
 
                 if (action === "raise") {
                     this.actionPrec = action;
-                    this.misePrec = miseMin;
+                    this.misePrec += miseMin;
                     this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
-                            // if (this.tasHaut - this.listePlayerGame[i].getTas() <= this.listePlayerGame[i].jetons) {
+                            this.listePlayerGame[i].setAjoue(true);
                             this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
                             this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-                            // }
                         }
                     }
                 }
@@ -238,7 +237,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "raise") {
                     this.actionPrec = action;
-                    this.misePrec = miseMin;
+                    this.misePrec += miseMin;
                     this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
@@ -352,8 +351,8 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "raise") {
                     this.actionPrec = action;
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec + miseMin;
+                    this.misePrec += miseMin;
+                    this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
@@ -461,8 +460,8 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "raise") {
                     this.actionPrec = action;
-                    this.misePrec = miseMin;
-                    this.tasHaut = this.misePrec+miseMin;
+                    this.misePrec += miseMin;
+                    this.tasHaut = this.misePrec;
                     this.resetSetAjoue();
                     for (let i = 0; i < this.listePlayerGame.length; i++) {
                         if (this.listePlayerGame[i].getPlayerName() === name) {
