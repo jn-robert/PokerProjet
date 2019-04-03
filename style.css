@@ -1,7 +1,7 @@
 /* Split the screen in half */
 .splitScreen {
     height: 100%;
-    width: 80%;
+    width: 78%;
     position: fixed;
     z-index: 1;
     overflow-x: hidden;
@@ -79,13 +79,13 @@
 }
 
 .divButton{
-    width: 75%;
+    width: 78%;
     height: 100%;
     position: relative;
 }
 
 .divMessageGame{
-    width: 75%;
+    width: 78%;
     height: 100%;
     position: relative;
     background: #fdfdfd;
