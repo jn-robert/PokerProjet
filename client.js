@@ -255,6 +255,29 @@ function recpDonne(id) {
     });
 }
 
+function tailleChat(message) {
+    let test="";
+    if (message.length>20){
+        console.log("test taille");
+        let nbLignePourPhrase = Math.ceil(message.length % 20);
+        console.log(nbLignePourPhrase);
+        for (let i =1;i<nbLignePourPhrase+1;i++){
+            if (i === 1){
+                // console.log(message.substring(1, 19));
+                test = "<br>"+message.substring(0, 32)+ "<br>";
+            }else if (i >1) {
+                // console.log(message.substring(20*i,(20*(i+1)-1)));
+                test +=  message.substring(30*i,(30*(i+1)))+ "<br>";
+            }
+        }
+
+    }else {
+        test = message;
+    }
+    return test;
+
+}
+
 function infoJoueur(tabStats) {
     // var msg =
     //     "<table border='2'><tr><td>";
@@ -627,10 +650,10 @@ function init() {
         // console.log(roomId);
 
         if (room === `${data.room}`) {
-            if (data.message != "") {
+            if (data.message != ""){
                 var start = new Date();
                 minutetest();
-                $('.message').append('<p ><strong><span id="hour">' +' '+'  ['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': ' + data.message + '</p>');
+                $('.message').append('<p ><strong><span id="hour">' +' '+'  ['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': '+tailleChat(data.message)+'</p>');
                 $("#message").remove();
                 $("#messageEmplacement").append('<input style="width:100%" type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" autofocus/>');
                 var elmnt = document.getElementById("chatScroll");
