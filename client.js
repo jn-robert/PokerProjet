@@ -272,43 +272,43 @@ function init() {
     let game;
     let room;
 
+    socket.on('nombreJetonJoueurAffichage', (data) => {
+        document.getElementById("jetonDispo").innerText = data.jeton;
+        $("#jetonNew").attr({"max" : data.jeton,})
+        $("#jetonNewJoin").attr({"max" : data.jeton,})
 
-    // const socket = io.connect('myip:5000');
-    // Create a new game. Emit newGame event.
-    $('#new').on('click', () => {
-        const jeton = $('#jetonNew').val();
-        const roomId = $('#room').val();
-        if (!jeton || jeton < 100) {
-            alert('Nombre de jetons incorrecte');
-            return;
-        }
-        player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
-        socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
-        $(window).on('unload', function () {
-            socket.emit("exit", {room: roomId, playerName: player.name});
+        $('#new').on('click', () => {
+            const jeton = $('#jetonNew').val();
+            const roomId = $('#room').val();
+            if (!jeton || jeton <= 100 || jeton >= data.jeton) {
+                alert('Nombre de jetons incorrecte');
+                return;
+            }
+            player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
+            socket.emit('createGame', {name: getCookie("userCookie"), jeton: parseInt(jeton)});
+            $(window).on('unload', function () {
+                socket.emit("exit", {room: roomId, playerName: player.name});
+            });
+        });
+
+        $('#join').on('click', () => {
+            const roomID = $('#select').val();
+            const jeton = $('#jetonNewJoin').val();
+            const roomId = $('#room').val();
+            if (!roomID || !jeton || jeton <= 100 || jeton >= data.jeton) {
+                alert('Nombre de jetons incorrecte.');
+                return;
+            }
+            player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
+            socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
+            socket.emit('messageGameExit', {room: roomId, playerName: player.name, action: "join"});
+            $('#tablejoinpart').hide();
+            $(window).on('unload', function () {
+                socket.emit("exit", {room: roomId, playerName: player.name});
+            });
         });
     });
 
-    // Join an existing game on the entered roomId. Emit the joinGame event.
-    $('#join').on('click', () => {
-        const roomID = $('#select').val();
-        const jeton = $('#jetonNewJoin').val();
-        const roomId = $('#room').val();
-        if (!roomID || !jeton || jeton < 100) {
-            alert('Nombre de jetons incorrecte.');
-            return;
-        }
-        player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
-        socket.emit('joinGame', {name: getCookie("userCookie"), room: roomID, jeton: parseInt(jeton)});
-        socket.emit('messageGameExit', {room: roomId, playerName: player.name, action: "join"});
-        $('#tablejoinpart').hide();
-        $(window).on('unload', function () {
-            socket.emit("exit", {room: roomId, playerName: player.name});
-        });
-    });
-
-    // New Game created by current client. Update the UI and create new Game var.
-    // game = new Game();
     socket.on('newGame', (data) => {
         const message = `Hello, ${data.name}. Vous êtes dans le salon numéro: ${data.room}`;
         // Create game for player 1
@@ -583,11 +583,7 @@ function init() {
         socket.emit('nombreJetonJoueur', {pseudo: getCookie("userCookie")});
     });
 
-    socket.on('nombreJetonJoueurAffichage', (data) => {
-        document.getElementById("jetonDispo").innerText = data.jeton;
-        $("#jetonNew").attr({"max" : data.jeton,})
-        $("#jetonNewJoin").attr({"max" : data.jeton,})
-    });
+
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
      */
