@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('172.20.178.95:5000');
+const socket = io.connect('localhost:5000');
 let nameUser;
 
 
@@ -63,10 +63,10 @@ function chrono(roomId, name, jetons){
     // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
     // const room = $('#room').val();
     // const jeton = $('#jetonNew').val();
-    if (sec === "03") {
+   /* if (sec === "03") {
 
         socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
-    }
+    }*/
     timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
 }
 function chronoStart(roomId, name, jetons){
@@ -532,13 +532,14 @@ function init() {
         let message;
         let cartes;
         let jetons;
-        document.jetonJoueur2.style.display = "block";
-        document.CarteJoueur3.style.display = "block";
-        document.CarteJoueur4.style.display = "block";
+
 
         console.log(data.nbJoueurs);
 
         if(data.nbJoueurs === 2){
+            document.jetonJoueur2.style.display = "block";
+            document.CarteJoueur3.style.display = "block";
+            document.CarteJoueur4.style.display = "block";
             document.jetonJoueur3.style.display = "none";
             document.CarteJoueur5.style.display = "none";
             document.CarteJoueur6.style.display = "none";
@@ -546,12 +547,18 @@ function init() {
 
 
         if(data.nbJoueurs === 3){
+            document.jetonJoueur2.style.display = "block";
+            document.CarteJoueur3.style.display = "block";
+            document.CarteJoueur4.style.display = "block";
             document.jetonJoueur3.style.display = "block";
             document.CarteJoueur5.style.display = "block";
             document.CarteJoueur6.style.display = "block";
         }
 
         if(data.nbJoueurs === 4){
+            document.jetonJoueur3.style.display = "block";
+            document.CarteJoueur5.style.display = "block";
+            document.CarteJoueur6.style.display = "block";
             document.jetonJoueur4.style.display = "block";
             document.CarteJoueur7.style.display = "block";
             document.CarteJoueur8.style.display = "block";
@@ -1103,9 +1110,13 @@ function init() {
                     document.jetonJoueur3.style.display = "none";
                     document.CarteJoueur5.style.display = "none";
                     document.CarteJoueur6.style.display = "none";
+                    document.CarteJoueur7.style.display = "none";
+                    document.CarteJoueur8.style.display = "none";
                 }
                 if (data.nbJoueurs + 1 === 4) {
                     document.getElementById('label3').innerHTML = "";
+                    document.CarteJoueur5.style.display = "none";
+                    document.CarteJoueur6.style.display = "none";
                     document.jetonJoueur4.style.display = "none";
                     document.CarteJoueur7.style.display = "none";
                     document.CarteJoueur8.style.display = "none";
