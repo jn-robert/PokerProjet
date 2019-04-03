@@ -425,14 +425,6 @@ io.on('connection', (socket) => {
             game.distribGains(name);
         }
 
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
-                con.query("UPDATE player SET jetons = jetons - "+ jetonsActuellementMiser +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
-                    if (err) throw err;
-                });
-            }
-        }
-
         socket.emit('resultAction', {
             vainqueur: name,
             combiVainq: combi,
@@ -509,14 +501,6 @@ io.on('connection', (socket) => {
                 name = "egalite";
             }
             game.distribGains(name);
-        }
-
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() == data.playerName){
-                con.query("UPDATE player SET jetons = jetons - "+ data.miseJeton +" WHERE pseudo=" + mysql.escape(data.playerName), (err, rows) => {
-                    if (err) throw err;
-                });
-            }
         }
 
         socket.emit('resultAction', {
