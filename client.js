@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('http://localhost:5000'); // 172.20.178.95
+const socket = io.connect('http://172.20.178.95:5000');
 var nameUser;
 
 
@@ -466,6 +466,11 @@ function init() {
         var message;
         let cartes;
         let jetons;
+        document.getElementById("jetonJoueur2").style.display = "block";
+
+
+        document.CarteJoueur3.style.display = "block";
+        document.CarteJoueur4.style.display = "block";
 
         if (data.currentTurn === player.name) {
 
@@ -747,6 +752,7 @@ function init() {
             document.getElementById("messageGameRaise").style.color = "black";
             document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
         }
+
 
 
         //desactive les boutons tant que l'autre joueur n'a pas joué
