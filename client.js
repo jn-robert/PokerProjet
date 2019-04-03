@@ -405,16 +405,7 @@ function init() {
 
         if (data.nbJoueurs === 2) {
             const roomID = $('#room').val();
-            document.CarteJoueur3.style.display = "block";
-            document.CarteJoueur4.style.display = "block";
-            document.jetonJoueur2.style.display = "block"
             socket.emit('start', {room: roomID, playerName: player.name});
-        }
-
-        if (data.nbJoueurs === 3) {
-            document.CarteJoueur5.style.display = "block";
-            document.CarteJoueur6.style.display = "block";
-            document.jetonJoueur3.style.display = "block"
         }
 
 
