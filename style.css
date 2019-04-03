@@ -7,6 +7,17 @@
     overflow-x: hidden;
 }
 
+.rowCombo{
+    height: 0;
+    widht: 0px;
+}
+
+.combo{
+    height: 125px;
+    width: 425px;
+}
+
+
 .elementTable{
     width: 78%;
     height: 100%;
