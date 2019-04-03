@@ -25,6 +25,80 @@ const socket = io.connect('172.20.178.95:5000');
 let nameUser;
 
 
+var startTime = 0;
+var start = 0;
+var end = 0;
+var diff = 0;
+var timerID = 0;
+var sec;
+var roomT;
+var nameT;
+var jetonsT;
+function chrono(roomId, name, jetons){
+    end = new Date();
+    diff = end - start;
+    diff = new Date(diff);
+    var msec = diff.getMilliseconds();
+    sec = diff.getSeconds();
+    var min = diff.getMinutes();
+    var hr = diff.getHours()-1;
+    if (min < 10){
+        min = "0" + min;
+    }
+    if (sec < 10){
+        sec = "0" + sec;
+    }
+    if(msec < 10){
+        msec = "00" +msec;
+    }
+    else if(msec < 100){
+        msec = "0" +msec;
+    }
+    console.log("sec : "+sec);
+    console.log(name);
+    console.log(roomId);
+    roomT = roomId;
+    nameT = name;
+    jetonsT = jetons
+    // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
+    // const room = $('#room').val();
+    // const jeton = $('#jetonNew').val();
+    if (sec === "03") {
+
+        socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
+    }
+    timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
+}
+function chronoStart(roomId, name, jetons){
+    // document.chronoForm.startstop.value = "stop!";
+    // document.chronoForm.startstop.onclick = chronoStop;
+    // document.chronoForm.reset.onclick = chronoReset;
+    start = new Date();
+    chrono(roomId, name, jetons);
+}
+function chronoContinue(){
+    // document.chronoForm.startstop.value = "stop!";
+    // document.chronoForm.startstop.onclick = chronoStop;
+    // document.chronoForm.reset.onclick = chronoReset;
+    start = new Date()-diff;
+    start = new Date(start);
+    chrono();
+}
+function chronoReset(){
+    // document.getElementById("chronotime").innerHTML = "0:00:00:000";
+    start = new Date();
+}
+function chronoStopReset(){
+    // document.getElementById("chronotime").innerHTML = "0:00:00:000";
+    // document.chronoForm.startstop.onclick = chronoStart;
+}
+function chronoStop(){
+    // document.chronoForm.startstop.value = "start!";
+    // document.chronoForm.startstop.onclick = chronoContinue;
+    // document.chronoForm.reset.onclick = chronoStopReset;
+    clearTimeout(timerID);
+}
+
 
 /**
  * Gestion login
@@ -486,12 +560,21 @@ function init() {
 
         if (data.currentTurn === player.name) {
 
+            // chrono();
+
             message = "A votre tour";
             document.getElementById('all-in').style.display = "inline";
             document.getElementById('check').style.display = "inline";
             document.getElementById('suivre').style.display = "none";
             document.getElementById('raise').style.display = "inline";
             document.getElementById('coucher').style.display = "inline";
+            const roomId = $('#room').val();
+            const jeton = $('#jetonNew').val();
+
+            console.log("room : "+roomId);
+
+            chronoStart(1, data.currentTurn, parseInt(jeton));
+
         } else {
             message = "A votre adversaire";
             document.getElementById('all-in').style.display = "none";
@@ -638,6 +721,8 @@ function init() {
 
     $('#check').on('click', () => {
         const roomId = $('#room').val();
+        chronoStop();
+        console.log("after clic : "+sec);
         socket.emit('check', {room: roomId, playerName: player.name});
     });
 
