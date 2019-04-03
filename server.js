@@ -393,6 +393,7 @@ io.on('connection', (socket) => {
             });
         });
         game.joueJoueur(data.playerName, "suivre", 10);
+        var jetonsActuellementMiser = game.tasHaut;
         let idJoueurCurrentBooleanTour;
         for (let i = 0; i < game.listePlayerGame.length; i++) {
             if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
@@ -447,7 +448,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
-            playerName: data.playerName
+            playerName: data.playerName,
+            jetonsActuellementMiser: jetonsActuellementMiser
 
         });
         socket.broadcast.emit('resultAction', {
@@ -465,7 +467,8 @@ io.on('connection', (socket) => {
             cartes: listeCartes,
             cartesTapis: game.getTapis(),
             actionPrecedente: "suivre",
-            playerName: data.playerName
+            playerName: data.playerName,
+            jetonsActuellementMiser: jetonsActuellementMiser
 
         });
     });
