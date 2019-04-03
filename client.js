@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('http://172.20.178.95:5000');
+const socket = io.connect('localhost:5000');
 var nameUser;
 
 
@@ -455,11 +455,22 @@ function init() {
         var message;
         let cartes;
         let jetons;
-        document.getElementById("jetonJoueur2").style.display = "block";
-
-
+        document.jetonJoueur2.style.display = "block";
         document.CarteJoueur3.style.display = "block";
         document.CarteJoueur4.style.display = "block";
+
+        if(data.nbJoueurs === 2){
+            document.jetonJoueur3.style.display = "block";
+            document.CarteJoueur5.style.display = "block";
+            document.CarteJoueur6.style.display = "block";
+        }
+
+        if(data.nbJoueurs === 3){
+            document.jetonJoueur4.style.display = "block";
+            document.CarteJoueur7.style.display = "block";
+            document.CarteJoueur8.style.display = "block";
+        }
+
 
         if (data.currentTurn === player.name) {
 
