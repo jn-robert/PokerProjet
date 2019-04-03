@@ -539,15 +539,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                         }
                     }
                     if (!testTousJoue) {
-                        // this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                        // this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-
-                        //console.log("joueur n°" + i + " a joué");
                     } else {
-                        // this.listePlayerGame[i].jetons -= this.tasHaut - this.listePlayerGame[i].getTas();
-                        // this.listePlayerGame[i].tas += this.tasHaut - this.listePlayerGame[i].getTas();
-
-                        //console.log("dernier joueur qui a joue");
                         this.canPlay = true;
                     }
                 }

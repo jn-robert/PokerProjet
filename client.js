@@ -316,6 +316,11 @@ function init() {
         room = `${data.room}`;
         game = new Game(); //data.room
         game.displayBoard(message);
+        document.getElementById('all-in').style.display = "none";
+        document.getElementById('check').style.display = "none";
+        document.getElementById('suivre').style.display = "none";
+        document.getElementById('raise').style.display = "none";
+        document.getElementById('coucher').style.display = "none";
         $('#tablejoinpart').hide();
     });
 
@@ -340,6 +345,11 @@ function init() {
         room = `${data.room}`;
         game.displayBoard(message);
         player.setCurrentTurn(false);
+        document.getElementById('all-in').style.display = "none";
+        document.getElementById('check').style.display = "none";
+        document.getElementById('suivre').style.display = "none";
+        document.getElementById('raise').style.display = "none";
+        document.getElementById('coucher').style.display = "none";
         if (data.nbJoueurs === 2) {
             const roomID = $('#room').val();
             socket.emit('start', {room: roomID, playerName: player.name});
@@ -376,6 +386,8 @@ function init() {
     socket.on('1stR', (data) => {
 
         var message;
+        let cartes;
+        let jetons;
 
         if (data.currentTurn === player.name) {
 
@@ -409,12 +421,12 @@ function init() {
         document.getElementById('texte2').innerHTML = data.jetons2 + " jetons";
         document.getElementById('texte2').innerHTML = data.jetons2 + con" jetons";
         */
-        let cartes;
-        let jetons;
+
         for (let i = 0; i < data.nbJoueurs; i++) {
             if (data.name[i] === player.name) {
                 cartes = data.cartes[i];
                 jetons = data.jetons[i];
+
                 document.getElementById('label0').innerHTML = jetons;
                 if (i == 0) {
                     document.getElementById('label2').innerHTML = data.jetons[i + 1];
@@ -472,6 +484,24 @@ function init() {
             document.getElementById("texte3").hidden = false;
             document.getElementById("texte5").hidden = false;
 
+        }
+
+        // if (jetons === 0 || jetons === null) {
+        //     console.log("jetons : "+jetons);
+        //     window.location.href = "game.html";
+        // }
+
+        console.log(cartes);
+
+        if (cartes === undefined) {
+            const roomId = $('#room').val();
+            socket.emit("exit2", {room: roomId, playerName: player.name});
+            socket.on("exit2r", (data)=>{
+                if (data.test) {
+                    window.location.href = "game.html";
+                }
+            });
+            // window.location.href = "game.html";
         }
 
         document.CarteJoueur1.src = "image/" + cartes[0] + ".png";
@@ -625,14 +655,6 @@ function init() {
             }
         }
 
-        // let compteurAllIn = 0;
-        // if (jetons === 0) {
-        //     console.log("requete all-in");
-        //     const roomId = $('#room').val();
-        //     socket.emit('all-in', {room: roomId, playerName: player.name});
-        //     compteurAllIn = 1;
-        // }
-
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             var message;
@@ -725,8 +747,7 @@ function init() {
                 document.CarteJoueur2.src = "image/dos.png";
             }
         } else {
-
-            let cartes = null;
+            let cartes;
             let jetons;
             for (let i = 0; i < data.nbJoueurs; i++) {
                 if (data.name[i] === player.name) {
@@ -746,13 +767,9 @@ function init() {
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('messageGameAction').style.color = "red";
             document.getElementById('messageGameAction').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
-            // console.log(data.combiVainq);
 
-            // else {
-                socket.emit('continueGame', {playerName: player.name});
-            // }
-            // const roomID = $('#room').val();
-            // socket.emit('start', {room: roomID, playerName: player.name});
+            socket.emit('continueGame', {playerName: player.name});
+
         }
         let compteur = 0;
         let compteur2 = 0;
