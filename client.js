@@ -257,26 +257,38 @@ function recpDonne(id) {
 
 function tailleChat(message) {
     let test="";
-    if (message.length>20){
-        console.log("test taille");
-        let nbLignePourPhrase = Math.ceil(message.length % 20);
-        console.log(nbLignePourPhrase);
-        for (let i =1;i<nbLignePourPhrase+1;i++){
-            if (i === 1){
-                // console.log(message.substring(1, 19));
-                test = "<br>"+message.substring(0, 32)+ "<br>";
+    if (message.length>30){
+        let nbLignePourPhrase = Math.ceil(message.length / 30);
+        for (let i =1;i<nbLignePourPhrase;i++){
+            if (i === 1) {
+                if (message[31] !== " " && message[33] !== " ") {
+                    test = "<br>" + message.substring(0, 32) + "-<br>";
+                } else {
+                    test = "<br>" + message.substring(0, 32) + "<br>";
+                }
+            }else if(i === nbLignePourPhrase-1) {
+                if (message[(30*i)-1]!==" "&& message[(30*i)+1]!==" ") {
+                    test +=  message.substring(30*i,(30*(i+1)));
+                }else {
+                    test +=  message.substring(30*i,(30*(i+1)));
+                }
             }else if (i >1) {
-                // console.log(message.substring(20*i,(20*(i+1)-1)));
-                test +=  message.substring(30*i,(30*(i+1)))+ "<br>";
+                if (message[(30*i)-1]!==" "&& message[(30*i)+1]!==" ") {
+                    test +=  message.substring(30*i,(30*(i+1)))+ "-<br>";
+                }else {
+                    test +=  message.substring(30*i,(30*(i+1)))+ "<br>";
+                }
             }
         }
-
     }else {
         test = message;
     }
+    test[test.length-6]="z";
+    console.log(test);
     return test;
 
 }
+
 
 function infoJoueur(tabStats) {
     // var msg =
