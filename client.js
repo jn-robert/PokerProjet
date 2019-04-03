@@ -278,8 +278,8 @@ function init() {
     $('#new').on('click', () => {
         const jeton = $('#jetonNew').val();
         const roomId = $('#room').val();
-        if (!jeton) {
-            alert('Veuillez entrer le nombre de jeton');
+        if (!jeton || jeton < 100) {
+            alert('Nombre de jetons incorrecte');
             return;
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton));
@@ -294,8 +294,8 @@ function init() {
         const roomID = $('#select').val();
         const jeton = $('#jetonNewJoin').val();
         const roomId = $('#room').val();
-        if (!roomID || !jeton) {
-            alert('Erreur.');
+        if (!roomID || !jeton || jeton < 100) {
+            alert('Nombre de jetons incorrecte.');
             return;
         }
         player = new Player(id++, getCookie("userCookie"), parseInt(jeton), roomID);
@@ -585,7 +585,8 @@ function init() {
 
     socket.on('nombreJetonJoueurAffichage', (data) => {
         document.getElementById("jetonDispo").innerText = data.jeton;
-
+        $("#jetonNew").attr({"max" : data.jeton,})
+        $("#jetonNewJoin").attr({"max" : data.jeton,})
     });
     /**
      * change l'affichage en fonction du resultat envoyer par le serveur
