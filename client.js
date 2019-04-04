@@ -34,6 +34,7 @@ var sec;
 var roomT;
 var nameT;
 var jetonsT;
+var nbCoucT=0;
 function chrono(roomId, name, jetons){
     end = new Date();
     diff = end - start;
@@ -54,12 +55,12 @@ function chrono(roomId, name, jetons){
     else if(msec < 100){
         msec = "0" +msec;
     }
-    console.log("sec : "+sec);
-    console.log(name);
-    console.log(roomId);
+    // console.log("sec : "+sec);
+    // console.log(name);
+    // console.log(roomId);
     roomT = roomId;
     nameT = name;
-    jetonsT = jetons
+    jetonsT = jetons;
     // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
     // const room = $('#room').val();
     // const jeton = $('#jetonNew').val();
@@ -67,6 +68,11 @@ function chrono(roomId, name, jetons){
 
         socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
     }*/
+    if (sec === "05" ) {
+        nbCoucT++;
+        chronoStop();
+        socket.emit('coucher', {room: roomId, playerName: nameT});
+    }
     timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
 }
 function chronoStart(roomId, name, jetons){
@@ -459,6 +465,7 @@ function init() {
         document.getElementById('coucher').style.display = "none";
 
         if (data.nbJoueurs === 1) {
+            chronoStop();
             let message = "En attente d'adversaire";
             document.getElementById('turn').innerHTML = message;
             document.getElementById('all-in').style.display = "none";
@@ -578,11 +585,12 @@ function init() {
             const roomId = $('#room').val();
             const jeton = $('#jetonNew').val();
 
-            console.log("room : "+roomId);
+            // console.log("room : "+roomId);
 
-            chronoStart(1, data.currentTurn, parseInt(jeton));
+            chronoStart(roomId, data.currentTurn, parseInt(jeton));
 
         } else {
+            chronoStop();
             message = "A votre adversaire";
             document.getElementById('all-in').style.display = "none";
             document.getElementById('check').style.display = "none";
@@ -650,6 +658,7 @@ function init() {
 
         if (data.nbJoueurs === 1) {
             message = "En attente d'adversaire";
+            chronoStop();
             document.getElementById('turn').innerHTML = message;
             document.getElementById('all-in').style.display = "none";
             document.getElementById('check').style.display = "none";
@@ -692,12 +701,10 @@ function init() {
 
         }
 
-        // if (jetons === 0 || jetons === null) {
-        //     console.log("jetons : "+jetons);
-        //     window.location.href = "game.html";
-        // }
-
-        console.log(jetons);
+        const roomId = $('#room').val();
+        $(window).on('unload', function () {
+            socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(player.jeton)});
+        });
 
         if (jetons === undefined) {
             console.log("undefined client");
@@ -735,16 +742,19 @@ function init() {
 
     $('#suivre').on('click', () => {
         const roomId = $('#room').val();
+        chronoStop();
         socket.emit('suivre', {room: roomId, playerName: player.name});
 
     });
 
     $('#raise').on('click', () => {
+        chronoStop();
         socket.emit('raiseVerif', {playerName: player.name});
     });
 
     socket.on("raise", (data) => {
         const roomId = $('#room').val();
+        chronoStop();
         let mise = prompt("Veuillez entrer votre mise:");
         if (mise !== null && mise !== "" && data.jeton >= mise) {
             console.log("ok");
@@ -756,12 +766,14 @@ function init() {
 
     $('#all-in').on('click', () => {
         const roomId = $('#room').val();
+        chronoStop();
         socket.emit('all-in', {room: roomId, playerName: player.name});
 
     });
 
     $('#coucher').on('click', () => {
         const roomId = $('#room').val();
+        chronoStop();
         socket.emit('coucher', {room: roomId, playerName: player.name});
     });
 
@@ -769,6 +781,7 @@ function init() {
         // socket.leave(data.room);
         const roomId = $('#room').val();
         const jeton = $('#jetonNew').val();
+        chronoStop();
         socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jeton)});
         window.location.href = "game.html"; //retourne a la page d'accueil du jeu
 
@@ -917,6 +930,11 @@ function init() {
             }
         }
 
+        const roomId = $('#room').val();
+        $(window).on('unload', function () {
+            socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jetons)});
+        });
+
         if (data.tour < 6 && data.nbJoueurs !== 1) {
 
             let message;
@@ -940,6 +958,10 @@ function init() {
                 }
 
                 message = "A votre tour";
+
+                const roomId = $('#room').val();
+
+                chronoStart(roomId, data.currentTurn, parseInt(jetons));
 
                 switch (data.choixJoueurs) {
                     case "check":
@@ -988,6 +1010,7 @@ function init() {
                 }
             } else {
                 message = "A votre adversaire";
+                chronoStop();
                 document.getElementById('all-in').style.display = "none";
                 document.getElementById('check').style.display = "none";
                 document.getElementById('suivre').style.display = "none";
@@ -1021,7 +1044,8 @@ function init() {
             }
 
             if (data.nbJoueurs === 1) {
-                message = "En attente d'adversaire";
+                var message = "En attente d'adversaire";
+                chronoStop();
                 document.getElementById('turn').innerHTML = message;
                 document.getElementById('all-in').style.display = "none";
                 document.getElementById('check').style.display = "none";
