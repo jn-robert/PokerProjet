@@ -34,7 +34,6 @@ var sec;
 var roomT;
 var nameT;
 var jetonsT;
-var nbCoucT=0;
 function chrono(roomId, name, jetons){
     end = new Date();
     diff = end - start;
@@ -60,19 +59,14 @@ function chrono(roomId, name, jetons){
     console.log(roomId);
     roomT = roomId;
     nameT = name;
-    jetonsT = jetons;
+    jetonsT = jetons
     // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
     // const room = $('#room').val();
     // const jeton = $('#jetonNew').val();
-    if (sec === 15 && nbCoucT<2) {
-        nbCoucT++;
-        chronoStop();
-        socket.emit('coucher', {room: roomId, playerName: nameT});
-    }else if (sec === 15 && nbCoucT === 2) {
-        nbCoucT=0;
-        chronoStop()
+   /* if (sec === "03") {
+
         socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
-    }
+    }*/
     timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
 }
 function chronoStart(roomId, name, jetons){
@@ -458,14 +452,6 @@ function init() {
         room = `${data.room}`;
         game = new Game(); //data.room
         game.displayBoard(message);
-        roomT = room;
-        for (let i = 0; i < data.nbJoueurs; i++) {
-            if (data.name[i] === player.name) {
-                nameT = data.name[i];
-                jetonsT = data.jetons[i];
-            }
-        }
-
         document.getElementById('all-in').style.display = "none";
         document.getElementById('check').style.display = "none";
         document.getElementById('suivre').style.display = "none";
@@ -592,12 +578,11 @@ function init() {
             const roomId = $('#room').val();
             const jeton = $('#jetonNew').val();
 
-            if (data.nbJoueurs > 1) {
-                chronoStart(roomId, data.currentTurn, parseInt(jeton));
-            }
+            console.log("room : "+roomId);
+
+            chronoStart(1, data.currentTurn, parseInt(jeton));
 
         } else {
-            chronoStop();
             message = "A votre adversaire";
             document.getElementById('all-in').style.display = "none";
             document.getElementById('check').style.display = "none";
@@ -712,11 +697,6 @@ function init() {
         //     window.location.href = "game.html";
         // }
 
-        const roomId = $('#room').val();
-        $(window).on('unload', function () {
-            socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(player.jeton)});
-        });
-
         console.log(jetons);
 
         if (jetons === undefined) {
@@ -755,13 +735,11 @@ function init() {
 
     $('#suivre').on('click', () => {
         const roomId = $('#room').val();
-        chronoStop();
         socket.emit('suivre', {room: roomId, playerName: player.name});
 
     });
 
     $('#raise').on('click', () => {
-        chronoStop();
         socket.emit('raiseVerif', {playerName: player.name});
     });
 
@@ -778,14 +756,12 @@ function init() {
 
     $('#all-in').on('click', () => {
         const roomId = $('#room').val();
-        chronoStop();
         socket.emit('all-in', {room: roomId, playerName: player.name});
 
     });
 
     $('#coucher').on('click', () => {
         const roomId = $('#room').val();
-        chronoStop();
         socket.emit('coucher', {room: roomId, playerName: player.name});
     });
 
@@ -793,7 +769,6 @@ function init() {
         // socket.leave(data.room);
         const roomId = $('#room').val();
         const jeton = $('#jetonNew').val();
-        chronoStop();
         socket.emit("exit", {room: roomId, playerName: player.name, jetonP: parseInt(jeton)});
         window.location.href = "game.html"; //retourne a la page d'accueil du jeu
 
@@ -1070,6 +1045,7 @@ function init() {
             socket.emit('continueGame', {playerName: player.name});
 
         }
+
         let compteur = 0;
         let compteur2 = 0;
         if (data.tour > 2 && data.tour <= 6 && data.choixJoueurs !== 'coucher') {
@@ -1141,6 +1117,7 @@ function init() {
                     document.jetonJoueur4.style.visibility = "hidden";
                     document.CarteJoueur7.style.visibility = "hidden";
                     document.CarteJoueur8.style.visibility = "hidden";
+
                 }
 
             }
