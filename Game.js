@@ -150,16 +150,18 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
             case null:
                 this.actionPrec = action;
                 // console.log("name parametre : "+name);
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    this.listePlayerGame[i].setAjoue(false);
-                }
+                this.resetSetAjoue();
                 for (let i = 0; i < this.listePlayerGame.length; i++) {
                     if (this.listePlayerGame[i].getPlayerName() === name) {
                         this.listePlayerGame[i].setAjoue(true);
                     }
                 }
                 if (action === "check") {
-
+                    for (let i = 0; i < this.listePlayerGame.length; i++) {
+                        if (this.listePlayerGame[i].getPlayerName() === name) {
+                            this.listePlayerGame[i].setAjoue(true);
+                        }
+                    }
                 }
 
                 if (action === "raise") {
@@ -222,16 +224,11 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 break;
             case "check":
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.listePlayerGame[i].setAjoue(true);
-                    }
-                }
 
                 if (action === "check") {
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
-
+                            this.listePlayerGame[j].setAjoue(true);
                             for (let i = 0; i < this.listePlayerGame.length; i++) {
                                 if (!this.listePlayerGame[i].getAjoue()) {
                                     testTousJoue = false;
@@ -318,10 +315,27 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 if (action === "coucher") {
                     console.log("coucher");
+                    this.actionPrec=action;
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        console.log("a joue avant coucher : "+this.listePlayerGame[j]);
+                    }
+
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
                             this.listePlayerGame.splice(j, 1);
+                            // this.listePlayerGame[j].setAjoue(true);
                         }
+                    }
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        console.log("a joue après : "+this.listePlayerGame[j].getAjoue());
+
+                        if (!this.listePlayerGame[j].getAjoue()) {
+                            testTousJoue = false;
+                        }
+                    }
+                    if (!testTousJoue) {
+                    } else {
+                        this.canPlay = true;
                     }
                 }
                 break;
@@ -439,12 +453,23 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "coucher") {
+                    this.actionPrec=action;
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
                             this.listePlayerGame.splice(j, 1);
                         }
                     }
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        console.log("tas : "+this.listePlayerGame[j].getTas());
 
+                        if (!this.listePlayerGame[j].getAjoue()) {
+                            testTousJoue = false;
+                        }
+                    }
+                    if (!testTousJoue) {
+                    } else {
+                        this.canPlay = true;
+                    }
                 }
                 break;
 
@@ -561,6 +586,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "coucher") {
+                    this.actionPrec=action;
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
                             this.listePlayerGame.splice(j, 1);
@@ -625,6 +651,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     }
                 }
                 if (action === "coucher") {
+                    this.actionPrec=action;
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
                             this.listePlayerGame.splice(j, 1);
@@ -633,19 +660,32 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                 }
                 break;
             case "coucher":
-                for (let i = 0; i < this.listePlayerGame.length; i++) {
-                    if (this.listePlayerGame[i].getPlayerName() === name) {
-                        this.listePlayerGame[i].setAjoue(true);
-                    }
-                }
+
 
                 if (action === "check") {
                     this.actionPrec=action;
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame[j].setAjoue(true);
+                        }
+                    }
+                    for (let j = 0; j < this.listePlayerGame.length; j++) {
+                        console.log("tas : "+this.listePlayerGame[j].getTas());
+
+                        if (!this.listePlayerGame[j].getAjoue()) {
+                            testTousJoue = false;
+                        }
+                    }
+                    if (!testTousJoue) {
+                    } else {
+                        this.canPlay = true;
+                    }
                 }
 
                 if (action === "suivre") {
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
                         if (this.listePlayerGame[j].getPlayerName() === name) {
+                            this.listePlayerGame[j].setAjoue(true);
                             for (let i = 0; i < this.listePlayerGame.length; i++) {
                                 if (!this.listePlayerGame[i].getAjoue()) {
                                     testTousJoue = false;
@@ -922,11 +962,25 @@ Game.prototype.miseEnAttenteFinGame = function () {
 
 Game.prototype.exit = function (playerName) {
 
-    for (let i = 0; i < this.listePlayerGame.length; i++) {
-        if (this.listePlayerGame[i].getPlayerName() === playerName) {
-            this.listePlayerGame[i].setAjoue(true);
-        }
-    }
+    // for (let i = 0; i < this.listePlayerTable.length; i++) {
+    //     if (this.listePlayerTable[i].getPlayerName() === playerName) {
+    //         this.joueJoueur(playerName,"coucher",10);
+    //     }
+    // }
+
+    // let testTousJoue=true;
+    //
+    // for (let i = 0; i < this.listePlayerGame.length; i++) {
+    //     if (!this.listePlayerGame[i].getAjoue()) {
+    //         testTousJoue = false;
+    //     }
+    // }
+    // if (!testTousJoue) {
+    //     //console.log("joueur n°" + j + " a joué");
+    // } else {
+    //     //console.log("dernier joueur qui a joue");
+    //     this.canPlay = true;
+    // }
 
     for (let i = 0; i < this.listePlayerTable.length; i++) {
         if (this.listePlayerTable[i].getPlayerName() === playerName) {
@@ -940,7 +994,7 @@ Game.prototype.exit = function (playerName) {
         }
     }
 
-    this.dealer = (this.dealer)%this.listePlayerTable.length;
+    this.dealer = (this.dealer+1)%this.listePlayerTable.length;
 
 
 };

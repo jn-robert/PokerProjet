@@ -697,19 +697,19 @@ io.on('connection', (socket) => {
         game.joueJoueur(data.playerName, "coucher", 10);
 
         let idJoueurCurrentBooleanTour = 0;
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
+        for (let i = 0; i < game.listePlayerTable.length; i++) {
             if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = (i + 1) % game.listePlayerGame.length;
+                idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
             }
         }
 
         let listeCartes = [];
         let listeNoms = [];
         let listeJetons = [];
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            listeCartes[i] = game.listePlayerGame[i].getMain();
-            listeNoms[i] = game.listePlayerGame[i].getPlayerName();
-            listeJetons[i] = game.listePlayerGame[i].getJetons();
+        for (let i = 0; i < game.listePlayerTable.length; i++) {
+            listeCartes[i] = game.listePlayerTable[i].getMain();
+            listeNoms[i] = game.listePlayerTable[i].getPlayerName();
+            listeJetons[i] = game.listePlayerTable[i].getJetons();
             console.log("jetons : " + game.listePlayerTable[i].getJetons());
         }
 
@@ -864,79 +864,80 @@ io.on('connection', (socket) => {
                 indexJoueurLeave = i;
             }
         }
+        game.joueJoueur(data.playerName, "coucher", 20);
         game.exit(data.playerName);
         console.log("taille table : " + game.listePlayerTable.length);
-            con.query("UPDATE partie SET nbJoueur = " + game.listePlayerTable.length + " WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                if (err) throw err;
-            });
-            con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                if (err) throw err;
-                if (rows[0].nbJoueur === 0) {
-                    con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
-                        if (err) throw err;
-                    });
-                }
-            });
-            let idJoueurCurrentBooleanTour = 0;
-            for (let i = 0; i < game.listePlayerGame.length; i++) {
-                if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
-                    idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
-                }
-            }
-
-            let listeCartes = [];
-            let listeNoms = [];
-            let listeJetons = [];
-            for (let i = 0; i < game.listePlayerGame.length; i++) {
-                listeCartes[i] = game.listePlayerGame[i].getMain();
-                listeNoms[i] = game.listePlayerGame[i].getPlayerName();
-                listeJetons[i] = game.listePlayerGame[i].getJetons();
-            }
-
-            let name = "";
-            let highestIndex = 0;
-            let combi = "";
-            highestIndex = game.evalCarte();
-            if (game.listePlayerGame.length === 1) {
-                highestIndex = game.evalCarte();
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                game.distribGains(name);
-            } else if (game.tour > 5) {
-                if (highestIndex < game.listePlayerGame.length) {
-                    name = game.afficheJoueurName(highestIndex);
-                    combi = game.evalCards[highestIndex].handName;
-                } else {
-                    name = "egalite";
-                }
-                game.distribGains(name);
-            }
-
-            if (game.listePlayerTable.length > 0) {
-                socket.broadcast.emit('resultAction', {
-                    vainqueur: name,
-                    combiVainq: combi,
-                    tasHaut: game.tasHaut,
-                    jetonsRecolt: game.getRecoltJetons(),
-                    choixJoueurs: game.actionPrec,
-                    currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
-                    tour: game.getTour(),
-                    pot: game.pot,
-                    nbJoueurs: game.listePlayerGame.length,
-                    name: listeNoms,
-                    jetons: listeJetons,
-                    cartes: listeCartes,
-                    cartesTapis: game.getTapis(),
-                    actionPrecedente: "exit",
-                    playerName: data.playerName,
-                    indexPlayerLeave: indexJoueurLeave,
-                    nbJoueursTable: game.listePlayerTable.length
+        con.query("UPDATE partie SET nbJoueur = " + game.listePlayerTable.length + " WHERE idPartie=" + `${rooms}`, (err, rows) => {
+            if (err) throw err;
+        });
+        con.query("SELECT nbJoueur FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
+            if (err) throw err;
+            if (rows[0].nbJoueur === 0) {
+                con.query("DELETE FROM partie WHERE idPartie=" + `${rooms}`, (err, rows) => {
+                    if (err) throw err;
                 });
             }
+        });
+        let idJoueurCurrentBooleanTour = 0;
+        for (let i = 0; i < game.listePlayerTable.length; i++) {
+            if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
+                idJoueurCurrentBooleanTour = (i) % game.listePlayerGame.length;
+            }
+        }
+
+        let listeCartes = [];
+        let listeNoms = [];
+        let listeJetons = [];
+        for (let i = 0; i < game.listePlayerGame.length; i++) {
+            listeCartes[i] = game.listePlayerGame[i].getMain();
+            listeNoms[i] = game.listePlayerGame[i].getPlayerName();
+            listeJetons[i] = game.listePlayerGame[i].getJetons();
+        }
+
+        let name = "";
+        let highestIndex = 0;
+        let combi = "";
+        highestIndex = game.evalCarte();
+        if (game.listePlayerGame.length === 1) {
+            highestIndex = game.evalCarte();
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            game.distribGains(name);
+        } else if (game.tour > 5) {
+            if (highestIndex < game.listePlayerGame.length) {
+                name = game.afficheJoueurName(highestIndex);
+                combi = game.evalCards[highestIndex].handName;
+            } else {
+                name = "egalite";
+            }
+            game.distribGains(name);
+        }
+
+        if (game.listePlayerTable.length > 0) {
+            socket.broadcast.emit('resultAction', {
+                vainqueur: name,
+                combiVainq: combi,
+                tasHaut: game.tasHaut,
+                jetonsRecolt: game.getRecoltJetons(),
+                choixJoueurs: game.actionPrec,
+                currentTurn: game.listePlayerGame[idJoueurCurrentBooleanTour].getPlayerName(),
+                tour: game.getTour(),
+                pot: game.pot,
+                nbJoueurs: game.listePlayerGame.length,
+                name: listeNoms,
+                jetons: listeJetons,
+                cartes: listeCartes,
+                cartesTapis: game.getTapis(),
+                actionPrecedente: "exit",
+                playerName: data.playerName,
+                indexPlayerLeave: indexJoueurLeave,
+                nbJoueursTable: game.listePlayerTable.length
+            });
+        }
     });
 
     socket.on('exit2', (data) => {

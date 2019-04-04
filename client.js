@@ -34,28 +34,28 @@ var sec;
 var roomT;
 var nameT;
 var jetonsT;
-var nbCoucT=0;
-function chrono(roomId, name, jetons){
+var nbCoucT = 0;
+
+function chrono(roomId, name, jetons) {
     end = new Date();
     diff = end - start;
     diff = new Date(diff);
     var msec = diff.getMilliseconds();
     sec = diff.getSeconds();
     var min = diff.getMinutes();
-    var hr = diff.getHours()-1;
-    if (min < 10){
+    var hr = diff.getHours() - 1;
+    if (min < 10) {
         min = "0" + min;
     }
-    if (sec < 10){
+    if (sec < 10) {
         sec = "0" + sec;
     }
-    if(msec < 10){
-        msec = "00" +msec;
+    if (msec < 10) {
+        msec = "00" + msec;
+    } else if (msec < 100) {
+        msec = "0" + msec;
     }
-    else if(msec < 100){
-        msec = "0" +msec;
-    }
-    console.log("sec : "+sec);
+    console.log("sec : " + sec);
     console.log(name);
     console.log(roomId);
     roomT = roomId;
@@ -64,41 +64,46 @@ function chrono(roomId, name, jetons){
     // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
     // const room = $('#room').val();
     // const jeton = $('#jetonNew').val();
-    if (sec === 15 && nbCoucT<2) {
+    if (sec === 15 && nbCoucT < 2) {
         nbCoucT++;
         chronoStop();
         socket.emit('coucher', {room: roomId, playerName: nameT});
-    }else if (sec === 15 && nbCoucT === 2) {
-        nbCoucT=0;
+    } else if (sec === 15 && nbCoucT === 2) {
+        nbCoucT = 0;
         chronoStop()
         socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
     }
     timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
 }
-function chronoStart(roomId, name, jetons){
+
+function chronoStart(roomId, name, jetons) {
     // document.chronoForm.startstop.value = "stop!";
     // document.chronoForm.startstop.onclick = chronoStop;
     // document.chronoForm.reset.onclick = chronoReset;
     start = new Date();
     chrono(roomId, name, jetons);
 }
-function chronoContinue(){
+
+function chronoContinue() {
     // document.chronoForm.startstop.value = "stop!";
     // document.chronoForm.startstop.onclick = chronoStop;
     // document.chronoForm.reset.onclick = chronoReset;
-    start = new Date()-diff;
+    start = new Date() - diff;
     start = new Date(start);
     chrono();
 }
-function chronoReset(){
+
+function chronoReset() {
     // document.getElementById("chronotime").innerHTML = "0:00:00:000";
     start = new Date();
 }
-function chronoStopReset(){
+
+function chronoStopReset() {
     // document.getElementById("chronotime").innerHTML = "0:00:00:000";
     // document.chronoForm.startstop.onclick = chronoStart;
 }
-function chronoStop(){
+
+function chronoStop() {
     // document.chronoForm.startstop.value = "start!";
     // document.chronoForm.startstop.onclick = chronoContinue;
     // document.chronoForm.reset.onclick = chronoStopReset;
@@ -123,9 +128,9 @@ function setCookie(name, value, days) {
 
 function minutetest() {
     test = new Date();
-    if (test.getMinutes()<10){
-        return "0"+test.getMinutes();
-    }else{
+    if (test.getMinutes() < 10) {
+        return "0" + test.getMinutes();
+    } else {
         return test.getMinutes();
     }
 
@@ -336,34 +341,34 @@ function recpDonne(id) {
 }
 
 function tailleChat(message) {
-    let test="";
-    if (message.length>30){
+    let test = "";
+    if (message.length > 30) {
         let nbLignePourPhrase = Math.ceil(message.length / 30);
-        for (let i =1;i<nbLignePourPhrase;i++){
+        for (let i = 1; i < nbLignePourPhrase; i++) {
             if (i === 1) {
                 if (message[31] !== " " && message[33] !== " ") {
-                    test = "<br>" + message.substring(0, 32) + "-"+"<br>";
+                    test = "<br>" + message.substring(0, 32) + "-" + "<br>";
                 } else {
                     test = "<br>" + message.substring(0, 32) + "<br>";
                 }
-            }else if(i === nbLignePourPhrase-1) {
-                if (message[(30*i)-1]!==" "&& message[(30*i)+1]!==" ") {
-                    test +=  message.substring(30*i,(30*(i+1)));
-                }else {
-                    test +=  message.substring(30*i,(30*(i+1)));
+            } else if (i === nbLignePourPhrase - 1) {
+                if (message[(30 * i) - 1] !== " " && message[(30 * i) + 1] !== " ") {
+                    test += message.substring(30 * i, (30 * (i + 1)));
+                } else {
+                    test += message.substring(30 * i, (30 * (i + 1)));
                 }
-            }else if (i >1) {
-                if (message[(30*i)-1]!==" "&& message[(30*i)+1]!==" ") {
-                    test +=  message.substring(30*i,(30*(i+1)))+ "-"+"<br>";
-                }else {
-                    test +=  message.substring(30*i,(30*(i+1)))+ "<br>";
+            } else if (i > 1) {
+                if (message[(30 * i) - 1] !== " " && message[(30 * i) + 1] !== " ") {
+                    test += message.substring(30 * i, (30 * (i + 1))) + "-" + "<br>";
+                } else {
+                    test += message.substring(30 * i, (30 * (i + 1))) + "<br>";
                 }
             }
         }
-    }else {
+    } else {
         test = message;
     }
-    test[test.length-6]="z";
+    test[test.length - 6] = "z";
     console.log(test);
     return test;
 
@@ -376,11 +381,11 @@ function infoJoueur(tabStats) {
     let pseudo = tabStats.pseudo;
     $('#infoJoueur').append(
         "<ul class=\"list-group\">\n" +
-        "  <li class=\"list-group-item active\" style='text-align: center;'>"+pseudo+"</li>\n" +
-        "  <li class=\"list-group-item\"style='text-align: justify;'>Prenom :"+tabStats.prenom+"</li>\n" +
-        "  <li class=\"list-group-item\"style='text-align: justify;'>Nom :"+tabStats.nom+"</li>\n" +
-        "  <li class=\"list-group-item\"style='text-align: justify;'>Date d'inscription :"+tabStats.dateInscription+"</li>\n" +
-        "  <li class=\"list-group-item\"style='text-align: justify;'>Nombre de jetons : " + tabStats.jetons+"</li>\n" +
+        "  <li class=\"list-group-item active\" style='text-align: center;'>" + pseudo + "</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Prenom :" + tabStats.prenom + "</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Nom :" + tabStats.nom + "</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Date d'inscription :" + tabStats.dateInscription + "</li>\n" +
+        "  <li class=\"list-group-item\"style='text-align: justify;'>Nombre de jetons : " + tabStats.jetons + "</li>\n" +
         "</ul>"
         // "<table border='2'><tr><td>Pseudo : " + pseudo + "<br>Prenom :"  + tabStats.prenom + "<br> Nom : " + tabStats.nom + " + <br>Date d'inscription :  "+ tabStats.dateInscription + '<br>'+ "Nombre de jetons :  + tabStats.jetons + <br>"+ "</table></td></tr>"
 
@@ -399,8 +404,8 @@ function init() {
 
     socket.on('nombreJetonJoueurAffichage', (data) => {
         document.getElementById("jetonDispo").innerText = data.jeton;
-        $("#jetonNew").attr({"max" : data.jeton,});
-        $("#jetonNewJoin").attr({"max" : data.jeton,});
+        $("#jetonNew").attr({"max": data.jeton,});
+        $("#jetonNewJoin").attr({"max": data.jeton,});
 
         $('#new').on('click', () => {
             const jeton = $('#jetonNew').val();
@@ -419,7 +424,7 @@ function init() {
         socket.on('affichageBouton', (data) => {
             if (data.jeton > 100) {
                 $('.remettreJeton').hide();
-            }else{
+            } else {
                 $('.remettreJeton').show();
             }
         });
@@ -430,7 +435,7 @@ function init() {
 
         $('#remettreJeton').on('click', () => {
             console.log("coucou");
-            socket.emit('remettreJeton',{pseudo: getCookie("userCookie")});
+            socket.emit('remettreJeton', {pseudo: getCookie("userCookie")});
             location.reload();
         });
 
@@ -481,7 +486,7 @@ function init() {
             document.getElementById('raise').style.display = "none";
             document.getElementById('coucher').style.display = "none";
         }
-
+        chronoStop();
         $('#tablejoinpart').hide();
     });
 
@@ -550,7 +555,7 @@ function init() {
 
         console.log(data.nbJoueurs);
 
-        if(data.nbJoueurs === 2){
+        if (data.nbJoueurs === 2) {
             document.jetonJoueur2.style.visibility = "visible";
             document.CarteJoueur3.style.visibility = "visible";
             document.CarteJoueur4.style.visibility = "visible";
@@ -560,7 +565,7 @@ function init() {
         }
 
 
-        if(data.nbJoueurs === 3){
+        if (data.nbJoueurs === 3) {
             document.jetonJoueur2.style.visibility = "visible";
             document.CarteJoueur3.style.visibility = "visible";
             document.CarteJoueur4.style.visibility = "visible";
@@ -569,7 +574,7 @@ function init() {
             document.CarteJoueur6.style.visibility = "visible";
         }
 
-        if(data.nbJoueurs === 4){
+        if (data.nbJoueurs === 4) {
             document.jetonJoueur3.style.visibility = "visible";
             document.CarteJoueur5.style.visibility = "visible";
             document.CarteJoueur6.style.visibility = "visible";
@@ -617,47 +622,47 @@ function init() {
                 document.getElementById('label0').innerHTML = jetons;
                 if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2] + " (" + data.name[i + 2] + ")";
                     }
                     if (data.jetons[i + 3] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 3] +" ("+ data.name[i+3] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3] + " (" + data.name[i + 3] + ")";
                     }
                 }
                 if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2] + " (" + data.name[i + 2] + ")";
                     }
                 }
                 if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2] + " (" + data.name[i - 2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
 
                 }
                 if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 3] +" ("+ data.name[i-3] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3] + " (" + data.name[i - 3] + ")";
                     }
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2] + " (" + data.name[i - 2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                 }
             }
@@ -665,6 +670,7 @@ function init() {
 
         if (data.nbJoueurs === 1) {
             message = "En attente d'adversaire";
+            chronoStop();
             document.getElementById('turn').innerHTML = message;
             document.getElementById('all-in').style.display = "none";
             document.getElementById('check').style.display = "none";
@@ -739,7 +745,7 @@ function init() {
 
     });
 
-    socket.on("exit2r", (data)=>{
+    socket.on("exit2r", (data) => {
         if (data.test) {
             console.log("test");
             window.location.href = "game.html";
@@ -749,7 +755,7 @@ function init() {
     $('#check').on('click', () => {
         const roomId = $('#room').val();
         chronoStop();
-        console.log("after clic : "+sec);
+        console.log("after clic : " + sec);
         socket.emit('check', {room: roomId, playerName: player.name});
     });
 
@@ -771,7 +777,7 @@ function init() {
         if (mise !== null && mise !== "" && data.jeton >= mise) {
             console.log("ok");
             socket.emit('raise', {room: roomId, playerName: player.name, miseJeton: mise});
-        }else{
+        } else {
 
         }
     });
@@ -816,10 +822,10 @@ function init() {
         // console.log(roomId);
 
         if (room === `${data.room}`) {
-            if (data.message !== ""){
+            if (data.message !== "") {
                 let start = new Date();
                 minutetest();
-                $('.message').append('<p ><strong><span id="hour">' +'['+start.getHours() + ':' + minutetest()+']'+'</span>'+'  '+'<span id="name">'+ data.pseudo +'</span></strong> '+ ': '+tailleChat(data.message)+'</p>');
+                $('.message').append('<p ><strong><span id="hour">' + '[' + start.getHours() + ':' + minutetest() + ']' + '</span>' + '  ' + '<span id="name">' + data.pseudo + '</span></strong> ' + ': ' + tailleChat(data.message) + '</p>');
                 $("#message").remove();
                 $("#messageEmplacement").append('<input style="width:100%" type="text" name="message" id="message" placeholder="Une mauvaise pioche faite le savoir" autofocus/>');
                 let elmnt = document.getElementById("chatScroll");
@@ -868,19 +874,16 @@ function init() {
         document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
 
 
-        if(data.actionPrecedente === "suivre"){
+        if (data.actionPrecedente === "suivre") {
             document.getElementById("messageGameRaise").style.color = "red";
             document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a suivi : " + data.jetonsActuellementMiser;
-        }
-        else if(data.actionPrecedente === "raise"){
+        } else if (data.actionPrecedente === "raise") {
             document.getElementById("messageGameRaise").style.color = "red";
             document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé : " + data.miseEnCours;
-        }
-        else{
+        } else {
             document.getElementById("messageGameRaise").style.color = "black";
             document.getElementById("messageGameRaise").innerText = "Mise : le pot est actuellement a : " + data.pot;
         }
-
 
 
         //desactive les boutons tant que l'autre joueur n'a pas joué
@@ -899,48 +902,48 @@ function init() {
                 document.getElementById('label0').innerHTML = jetons;
                 if (i === 0) {
                     if (data.jetons[i + 1] !== undefined) {
-                        console.log("jetons i+1 : "+data.jetons[i+1]);
-                        document.getElementById('label2').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        console.log("jetons i+1 : " + data.jetons[i + 1]);
+                        document.getElementById('label2').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i + 2] + " (" + data.name[i + 2] + ")";
                     }
                     if (data.jetons[i + 3] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 3] +" ("+ data.name[i+3] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 3] + " (" + data.name[i + 3] + ")";
                     }
                 }
                 if (i === 1) {
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
                     if (data.jetons[i + 2] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 2] +" ("+ data.name[i+2] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 2] + " (" + data.name[i + 2] + ")";
                     }
                 }
                 if (i === 2) {
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 2] + " (" + data.name[i - 2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                     if (data.jetons[i + 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i + 1] +" ("+ data.name[i+1] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i + 1] + " (" + data.name[i + 1] + ")";
                     }
 
                 }
                 if (i === 3) {
                     if (data.jetons[i - 3] !== undefined) {
-                        document.getElementById('label2').innerHTML = data.jetons[i - 3] +" ("+ data.name[i-3] + ")";
+                        document.getElementById('label2').innerHTML = data.jetons[i - 3] + " (" + data.name[i - 3] + ")";
                     }
                     if (data.jetons[i - 2] !== undefined) {
-                        document.getElementById('label1').innerHTML = data.jetons[i - 2] +" ("+ data.name[i-2] + ")";
+                        document.getElementById('label1').innerHTML = data.jetons[i - 2] + " (" + data.name[i - 2] + ")";
                     }
                     if (data.jetons[i - 1] !== undefined) {
-                        document.getElementById('label3').innerHTML = data.jetons[i - 1] +" ("+ data.name[i-1] + ")";
+                        document.getElementById('label3').innerHTML = data.jetons[i - 1] + " (" + data.name[i - 1] + ")";
                     }
                 }
             }
@@ -1038,7 +1041,6 @@ function init() {
             }
 
 
-
             //affichage des letiables
 
             document.getElementById('turn').innerHTML = message;
@@ -1080,6 +1082,7 @@ function init() {
                 document.CarteJoueur1.src = "image/dos.png";
                 document.CarteJoueur2.src = "image/dos.png";
             }
+            chronoStop();
             document.getElementById('turn').innerHTML = "fin partie";
             document.getElementById('messageGameAction').style.color = "red";
             document.getElementById('messageGameAction').innerHTML = data.vainqueur + " vainqueur avec : " + data.combiVainq;
@@ -1130,7 +1133,7 @@ function init() {
             document.getElementById("messageGameAction").innerText = "Action : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
         }
 
-        if(data.actionPrecedente === "exit") {
+        if (data.actionPrecedente === "exit") {
             document.getElementById("messageGameJoin").style.color = "red";
             document.getElementById("messageGameJoin").innerText = "Connexion / Deconnexion : " + data.playerName + " a fait l'action : " + data.actionPrecedente;
             console.log(data.indexPlayerLeave);
