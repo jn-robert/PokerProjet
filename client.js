@@ -59,7 +59,7 @@ function chrono(roomId, name, jetons){
     nameT = name;
     jetonsT = jetons;
 
-    if (sec === 15 ) {
+    if (sec === 45 ) {
         nbCoucT++;
         chronoStop();
         socket.emit('coucher', {room: roomId, playerName: nameT});
