@@ -135,13 +135,24 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
     }
 
     if (bool) {
-
-        if (this.actionPrec === "raise") {
-            this.actionPrec = "suivre";
-        } else if (this.actionPrec === "check") {
-            this.actionPrec = "check";
-        } else {
-            this.actionPrec = "check";
+        let boolAll0 = true;
+        let nbJoueurDiff0 = 0;
+        for (let i = 0; i < this.listePlayerGame.length; i++) {
+            if (this.listePlayerGame[i].jetons !== 0) {
+                boolAll0=false;
+                nbJoueurDiff0++;
+            }
+        }
+        if (boolAll0 || nbJoueurDiff0===1) {
+            this.canPlay=true;
+        }else {
+            if (this.actionPrec === "raise") {
+                this.actionPrec = "suivre";
+            } else if (this.actionPrec === "check") {
+                this.actionPrec = "check";
+            } else {
+                this.actionPrec = "check";
+            }
         }
     }
 
