@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('localhost:5000');
+const socket = io.connect('172.20.178.95:5000');
 let nameUser;
 
 
@@ -854,11 +854,15 @@ function init() {
 
         if(data.actionPrecedente === "suivre"){
             document.getElementById("messageGameRaise").style.color = "red";
-            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a suivi : " + data.jetonsActuellementMiser;
+            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a suivi : " + data.tasHaut;
         }
         else if(data.actionPrecedente === "raise"){
             document.getElementById("messageGameRaise").style.color = "red";
             document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a misé : " + data.miseEnCours;
+        }
+        else if(data.actionPrecedente === "all-in"){
+            document.getElementById("messageGameRaise").style.color = "red";
+            document.getElementById("messageGameRaise").innerText = "Mise : " + data.playerName + " a all-in : " + data.tasHaut
         }
         else{
             document.getElementById("messageGameRaise").style.color = "black";
