@@ -21,7 +21,7 @@ class Player {
     };
 }
 
-const socket = io.connect('172.20.178.95:5000');
+const socket = io.connect('localhost:5000');
 let nameUser;
 
 
@@ -55,20 +55,11 @@ function chrono(roomId, name, jetons){
     else if(msec < 100){
         msec = "0" +msec;
     }
-    // console.log("sec : "+sec);
-    // console.log(name);
-    // console.log(roomId);
     roomT = roomId;
     nameT = name;
     jetonsT = jetons;
-    // document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
-    // const room = $('#room').val();
-    // const jeton = $('#jetonNew').val();
-   /* if (sec === "03") {
 
-        socket.emit("exit", {room: roomT, playerName: nameT, jetonP: jetonsT});
-    }*/
-    if (sec === "05" ) {
+    if (sec === 15 ) {
         nbCoucT++;
         chronoStop();
         socket.emit('coucher', {room: roomId, playerName: nameT});
@@ -76,32 +67,20 @@ function chrono(roomId, name, jetons){
     timerID = setTimeout("chrono(roomT,nameT,jetonsT)", 500);
 }
 function chronoStart(roomId, name, jetons){
-    // document.chronoForm.startstop.value = "stop!";
-    // document.chronoForm.startstop.onclick = chronoStop;
-    // document.chronoForm.reset.onclick = chronoReset;
     start = new Date();
     chrono(roomId, name, jetons);
 }
 function chronoContinue(){
-    // document.chronoForm.startstop.value = "stop!";
-    // document.chronoForm.startstop.onclick = chronoStop;
-    // document.chronoForm.reset.onclick = chronoReset;
     start = new Date()-diff;
     start = new Date(start);
     chrono();
 }
 function chronoReset(){
-    // document.getElementById("chronotime").innerHTML = "0:00:00:000";
     start = new Date();
 }
 function chronoStopReset(){
-    // document.getElementById("chronotime").innerHTML = "0:00:00:000";
-    // document.chronoForm.startstop.onclick = chronoStart;
 }
 function chronoStop(){
-    // document.chronoForm.startstop.value = "start!";
-    // document.chronoForm.startstop.onclick = chronoContinue;
-    // document.chronoForm.reset.onclick = chronoStopReset;
     clearTimeout(timerID);
 }
 

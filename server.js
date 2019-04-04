@@ -32,16 +32,16 @@ app.get('/stat', (req, res) => {
  */
 
 const con = mysql.createConnection({
-        host: 'serveurmysql',
+        /*host: 'serveurmysql',
         database: 'BDD_tnormant',
         user: 'tnormant',
         port: '3306',
-        password: '1708',
-/*    host: 'localhost',
+        password: '1708',*/
+    host: 'localhost',
     database: 'poker',
     user: 'root',
     port: '3306',
-    password: '',*/
+    password: '',
 });
 
 con.connect((err) => {
@@ -235,12 +235,14 @@ io.on('connection', (socket) => {
         // console.log(listeCartes);
         console.log("indice dealer : " + game.dealer);
 
-        let idJoueurCurrentBooleanTour;
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
-            if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
-                idJoueurCurrentBooleanTour = (i + 1) % game.listePlayerGame.length;
-            }
-        }
+        // let idJoueurCurrentBooleanTour;
+        // for (let i = 0; i < game.listePlayerGame.length; i++) {
+        //     if (game.listePlayerGame[i].getPlayerName() === data.playerName) {
+        //         idJoueurCurrentBooleanTour = (i + 1) % game.listePlayerGame.length;
+        //     }
+        // }
+
+        let idJoueurCurrentBooleanTour = (game.dealer+2) % game.listePlayerTable.length;
 
         switch (data.playerName) {
             case game.listePlayerGame[0].getPlayerName():
@@ -696,11 +698,13 @@ io.on('connection', (socket) => {
         game.joueJoueur(data.playerName, "coucher", 10);
 
         let idJoueurCurrentBooleanTour = 0;
-        for (let i = 0; i < game.listePlayerGame.length; i++) {
+        for (let i = 0; i < game.listePlayerTable.length; i++) {
             if (game.listePlayerTable[i].getPlayerName() === data.playerName) {
                 idJoueurCurrentBooleanTour = (i + 1) % game.listePlayerGame.length;
             }
         }
+
+        console.log("idCurrent : "+idJoueurCurrentBooleanTour);
 
         let listeCartes = [];
         let listeNoms = [];
@@ -795,7 +799,7 @@ io.on('connection', (socket) => {
                 listeJetons[i] = game.listePlayerGame[i].getJetons();
             }
 
-            let idJoueurCurrentBooleanTour = (game.dealer + 1) % game.listePlayerTable.length;
+            let idJoueurCurrentBooleanTour = (game.dealer+2) % game.listePlayerTable.length;
 
             console.log("indice dealer : " + game.dealer);
             console.log("data.playerName : " + data.playerName);
