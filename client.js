@@ -1045,7 +1045,6 @@ function init() {
             socket.emit('continueGame', {playerName: player.name});
 
         }
-
         let compteur = 0;
         let compteur2 = 0;
         if (data.tour > 2 && data.tour <= 6 && data.choixJoueurs !== 'coucher') {
