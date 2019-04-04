@@ -1054,7 +1054,7 @@ function init() {
         }
         let compteur = 0;
         let compteur2 = 0;
-        if (data.tour > 2 && data.tour <= 6 && data.choixJoueurs !== 'coucher') {
+        if (data.tour > 2 && data.tour <= 6) {
             for (let i = 0; i < data.tour; i++) {
                 //console.log(data.cartesTapis[i]);
             }
