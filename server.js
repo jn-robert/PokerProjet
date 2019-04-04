@@ -864,7 +864,7 @@ io.on('connection', (socket) => {
                 indexJoueurLeave = i;
             }
         }
-        game.joueJoueur(data.playerName, "coucher", 20);
+        // game.joueJoueur(data.playerName, "coucher", 20);
         game.exit(data.playerName);
         console.log("taille table : " + game.listePlayerTable.length);
         if (game.listePlayerTable.length > 0) {
