@@ -317,7 +317,7 @@ Game.prototype.joueJoueur = function (name, action, miseMin) {
                     console.log("coucher");
                     this.actionPrec=action;
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
-                        console.log("a joue avant coucher : "+this.listePlayerGame[j]);
+                        console.log("a joue avant coucher : "+this.listePlayerGame[j].getAjoue());
                     }
 
                     for (let j = 0; j < this.listePlayerGame.length; j++) {
